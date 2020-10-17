@@ -1,0 +1,25 @@
+package fpt.java.finalproject.services;
+
+public interface CartService {
+    public Cart  save(Cart entity) ;
+
+    public List <Cart> saveAll(List<Cart> entities);
+
+    public Optional<Cart> findById(Integer id) ;
+
+    public boolean existsById(Integer id) ;
+
+    public Iterable<Cart> findAll();
+
+    public List<Cart> findAllById(List<Integer> ids);
+
+    public long count() ;
+    
+    public void deleteById(Integer id);
+
+    public void delete(Cart entity) ;
+
+    public void deleteAll(List<Cart> entities) ;
+
+    public void deleteAll();
+}
