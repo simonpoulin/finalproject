@@ -1,16 +1,19 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="shoppack")
-public class ShopPack implements Serializable{
+@Table(name = "shoppacks")
+public class ShopPack implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +25,10 @@ public class ShopPack implements Serializable{
     @Column
     private String Rank;
 
-    public ShopPack() {
-    }
+    @OneToMany(mappedBy = "shopPack")
+    private Collection<Shop> shops;
 
-    public ShopPack(Integer id, String name, Float price, String rank) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        Rank = rank;
+    public ShopPack() {
     }
 
     public Integer getId() {
@@ -64,6 +63,12 @@ public class ShopPack implements Serializable{
         Rank = rank;
     }
 
-    
-    
+    public Collection<Shop> getShops() {
+        return shops;
+    }
+
+    public void setShops(Collection<Shop> shops) {
+        this.shops = shops;
+    }
+
 }

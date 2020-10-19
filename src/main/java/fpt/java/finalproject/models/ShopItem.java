@@ -1,6 +1,8 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,22 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopitem")
-public class ShopItem implements Serializable{
-  
+@Table(name = "shopitems")
+public class ShopItem implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column 
+    @Column
     private String title;
     @Column
-    private String  des;
+    private String des;
     @Column
     private Float price;
-    @Column Integer quantity;
+    @Column
+    Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -33,17 +37,16 @@ public class ShopItem implements Serializable{
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    public ShopItem() {
-    }
+    @OneToMany(mappedBy = "shopItem")
+    private Collection<ShopItemImage> shopItemImages;
 
-    public ShopItem(Integer id, String title, String des, Float price, Integer quantity, Product product, Shop shop) {
-        this.id = id;
-        this.title = title;
-        this.des = des;
-        this.price = price;
-        this.quantity = quantity;
-        this.product = product;
-        this.shop = shop;
+    @OneToMany(mappedBy = "shopItem")
+    private Collection<OrderDetail> orderDetails;
+
+    @OneToMany(mappedBy = "shopItem")
+    private Collection<CartDetail> cartDetails;
+
+    public ShopItem() {
     }
 
     public Integer getId() {
@@ -102,7 +105,28 @@ public class ShopItem implements Serializable{
         this.shop = shop;
     }
 
-    
-    
-    
+    public Collection<ShopItemImage> getShopItemImages() {
+        return shopItemImages;
+    }
+
+    public void setShopItemImages(Collection<ShopItemImage> shopItemImages) {
+        this.shopItemImages = shopItemImages;
+    }
+
+    public Collection<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Collection<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public Collection<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(Collection<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
+
 }

@@ -1,23 +1,25 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable{
-
+public class User implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+    @Column(columnDefinition = "varchar not null")
     private String username;
     @Column
     private String password;
@@ -28,25 +30,24 @@ public class User implements Serializable{
     @Column
     private String email;
     @Column
-    private String avatar_url;
+    private String avatarUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
+    @OneToOne(mappedBy = "user")
+    private Shop shop;
+
+    @OneToOne(mappedBy = "user")
     private Cart cart;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "user")
+    private Collection<Order> orders;
 
-    public User(Integer id, String username, String password, Integer phone, String address, String email,
-            String avatar_url, Cart cart) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.avatar_url = avatar_url;
-        this.cart = cart;
+    @OneToMany(mappedBy = "user")
+    private Collection<ShopEmployee> shopEmployees;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Recipient> recipients;
+
+    public User() {
     }
 
     public Integer getId() {
@@ -97,12 +98,20 @@ public class User implements Serializable{
         this.email = email;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public Cart getCart() {
@@ -113,7 +122,28 @@ public class User implements Serializable{
         this.cart = cart;
     }
 
-    
+    public Collection<Order> getOrders() {
+        return orders;
+    }
 
-    
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Collection<ShopEmployee> getShopEmployees() {
+        return shopEmployees;
+    }
+
+    public void setShopEmployees(Collection<ShopEmployee> shopEmployees) {
+        this.shopEmployees = shopEmployees;
+    }
+
+    public Collection<Recipient> getRecipients() {
+        return recipients;
+    }
+
+    public void setRecipients(Collection<Recipient> recipients) {
+        this.recipients = recipients;
+    }
+
 }

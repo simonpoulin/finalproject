@@ -1,6 +1,8 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "reciooients")
-public class Recipient implements Serializable{
+@Table(name = "recipients")
+public class Recipient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,16 +32,10 @@ public class Recipient implements Serializable{
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Recipient() {
-    }
+    @OneToMany(mappedBy = "recipient")
+    private Collection<Order> orders;
 
-    public Recipient(Integer id, String name, String address, Integer phone, String email, User user) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.user = user;
+    public Recipient() {
     }
 
     public Integer getId() {
@@ -89,7 +86,12 @@ public class Recipient implements Serializable{
         this.user = user;
     }
 
-    
+    public Collection<Order> getOrders() {
+        return orders;
+    }
 
-    
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
 }

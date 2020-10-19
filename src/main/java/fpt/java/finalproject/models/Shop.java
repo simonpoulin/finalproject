@@ -1,6 +1,7 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,13 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "shops")
-public class Shop implements Serializable{
-  
+public class Shop implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,8 +29,8 @@ public class Shop implements Serializable{
     private String address;
     @Column
     private Integer phone;
-    @Column 
-    private Date created_at;
+    @Column
+    private Date createdAt;
     @Column
     private String email;
     @Column
@@ -35,26 +38,20 @@ public class Shop implements Serializable{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    @MapsId
     private User user;
-    
+
     @ManyToOne
     @JoinColumn(name = "shop_pack_id")
-    private ShopPack shoppack;
+    private ShopPack shopPack;
+
+    @OneToMany(mappedBy = "shop")
+    private Collection<ShopItem> shopItems;
+
+    @OneToMany(mappedBy = "shop")
+    private Collection<ShopEmployee> shopEmployees;
 
     public Shop() {
-    }
-
-    public Shop(Integer id, String name, String address, Integer phone, Date created_at, String email, String status,
-            User user, ShopPack shoppack) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.created_at = created_at;
-        this.email = email;
-        this.status = status;
-        this.user = user;
-        this.shoppack = shoppack;
     }
 
     public Integer getId() {
@@ -89,12 +86,12 @@ public class Shop implements Serializable{
         this.phone = phone;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getEmail() {
@@ -121,15 +118,28 @@ public class Shop implements Serializable{
         this.user = user;
     }
 
-    public ShopPack getShoppack() {
-        return shoppack;
+    public ShopPack getShopPack() {
+        return shopPack;
     }
 
-    public void setShoppack(ShopPack shoppack) {
-        this.shoppack = shoppack;
+    public void setShopPack(ShopPack shopPack) {
+        this.shopPack = shopPack;
     }
 
-    
+    public Collection<ShopItem> getShopItems() {
+        return shopItems;
+    }
 
-    
+    public void setShopItems(Collection<ShopItem> shopItems) {
+        this.shopItems = shopItems;
+    }
+
+    public Collection<ShopEmployee> getShopEmployees() {
+        return shopEmployees;
+    }
+
+    public void setShopEmployees(Collection<ShopEmployee> shopEmployees) {
+        this.shopEmployees = shopEmployees;
+    }
+
 }

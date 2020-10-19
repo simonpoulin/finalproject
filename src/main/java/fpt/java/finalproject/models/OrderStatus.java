@@ -1,15 +1,18 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="orderstatuses")
+@Table(name = "orderstatuses")
 public class OrderStatus implements Serializable {
 
     @Id
@@ -17,14 +20,12 @@ public class OrderStatus implements Serializable {
     private Integer id;
 
     @Column
-    private String status_name;
+    private String statusName;
+
+    @OneToMany(mappedBy = "orderStatus")
+    private Collection<Order> orders;
 
     public OrderStatus() {
-    }
-
-    public OrderStatus(Integer id, String status_name) {
-        this.id = id;
-        this.status_name = status_name;
     }
 
     public Integer getId() {
@@ -35,13 +36,20 @@ public class OrderStatus implements Serializable {
         this.id = id;
     }
 
-    public String getStatus_name() {
-        return status_name;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setStatus_name(String status_name) {
-        this.status_name = status_name;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 
-    
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
 }

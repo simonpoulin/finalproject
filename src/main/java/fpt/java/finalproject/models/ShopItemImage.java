@@ -12,33 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopitemimage")
+@Table(name = "shopitemimages")
 public class ShopItemImage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column String imgae_url;
+    @Column
+    String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "shop_item_id")
-    private ShopItem shopitem;
+    private ShopItem shopItem;
 
     public ShopItemImage() {
-    }
-
-    public ShopItemImage(ShopItem shopitem, Integer id, String imgae_url) {
-        this.shopitem = shopitem;
-        this.id = id;
-        this.imgae_url = imgae_url;
-    }
-
-    public ShopItem getShopitem() {
-        return shopitem;
-    }
-
-    public void setShopitem(ShopItem shopitem) {
-        this.shopitem = shopitem;
     }
 
     public Integer getId() {
@@ -49,14 +36,20 @@ public class ShopItemImage implements Serializable {
         this.id = id;
     }
 
-    public String getImgae_url() {
-        return imgae_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgae_url(String imgae_url) {
-        this.imgae_url = imgae_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
-    
 
-    
+    public ShopItem getShopItem() {
+        return shopItem;
+    }
+
+    public void setShopItem(ShopItem shopItem) {
+        this.shopItem = shopItem;
+    }
+
 }

@@ -1,15 +1,18 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="brands")
+@Table(name = "brands")
 public class Brand implements Serializable {
 
     @Id
@@ -17,14 +20,12 @@ public class Brand implements Serializable {
     private Integer id;
 
     @Column
-    private String brand_name;
+    private String brandName;
+
+    @OneToMany(mappedBy = "brand")
+    private Collection<Product> products;
 
     public Brand() {
-    }
-
-    public Brand(Integer id, String brand_name) {
-        this.id = id;
-        this.brand_name = brand_name;
     }
 
     public Integer getId() {
@@ -35,12 +36,20 @@ public class Brand implements Serializable {
         this.id = id;
     }
 
-    public String getBrand_name() {
-        return brand_name;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
     }
 
 }

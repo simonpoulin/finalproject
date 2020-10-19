@@ -1,6 +1,7 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +25,7 @@ public class Employee implements Serializable {
     @Column
     private String password;
     @Column
-    private Date created_at;
+    private Date createdAt;
     @Column
     private Integer phone;
     @Column
@@ -31,26 +33,16 @@ public class Employee implements Serializable {
     @Column
     private String email;
     @Column
-    private String avatar_url;
+    private String avatarUrl;
 
     @ManyToOne
     @JoinColumn(name = "employee_role_id")
-    private EmployeeRole employeerole;
+    private EmployeeRole employeeRole;
+
+    @OneToMany(mappedBy = "empolyee")
+    private Collection<Product> products;
 
     public Employee() {
-    }
-
-    public Employee(Integer id, String username, String password, Date created_at, Integer phone, String address,
-            String email, String avatar_url, EmployeeRole employeerole) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.created_at = created_at;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.avatar_url = avatar_url;
-        this.employeerole = employeerole;
     }
 
     public Integer getId() {
@@ -77,12 +69,12 @@ public class Employee implements Serializable {
         this.password = password;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Integer getPhone() {
@@ -109,21 +101,31 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public EmployeeRole getEmployeerole() {
-        return employeerole;
+    public EmployeeRole getEmployeeRole() {
+        return employeeRole;
     }
 
-    public void setEmployeerole(EmployeeRole employeerole) {
-        this.employeerole = employeerole;
+    public void setEmployeeRole(EmployeeRole employeeRole) {
+        this.employeeRole = employeeRole;
     }
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
+    }
+
+    
 
     
     

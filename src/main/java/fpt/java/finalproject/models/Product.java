@@ -1,6 +1,8 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +23,9 @@ public class Product implements Serializable {
     @Column
     private String name;
     @Column
-    private String des; 
+    private String des;
+    @Column
+    private String status;  
 
     @ManyToOne
     @JoinColumn(name = "categoty_id")
@@ -32,26 +37,17 @@ public class Product implements Serializable {
     private Employee empolyee;
 
     @ManyToOne
-    @JoinColumn(name = "product_status_id")
-    private ProductStatus productstatus;
-
-
-    @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    public Product() {
-    }
+    @OneToMany(mappedBy = "product")
+    private Collection<ProductImage> productImages;
 
-    public Product(Integer id, String name, String des, Category category, Employee empolyee,
-            ProductStatus productstatus, Brand brand) {
-        this.id = id;
-        this.name = name;
-        this.des = des;
-        this.category = category;
-        this.empolyee = empolyee;
-        this.productstatus = productstatus;
-        this.brand = brand;
+    @OneToMany(mappedBy = "product")
+    private Collection<ShopItem> shopItems;
+
+    
+    public Product() {
     }
 
     public Integer getId() {
@@ -78,6 +74,14 @@ public class Product implements Serializable {
         this.des = des;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -94,14 +98,6 @@ public class Product implements Serializable {
         this.empolyee = empolyee;
     }
 
-    public ProductStatus getProductstatus() {
-        return productstatus;
-    }
-
-    public void setProductstatus(ProductStatus productstatus) {
-        this.productstatus = productstatus;
-    }
-
     public Brand getBrand() {
         return brand;
     }
@@ -110,7 +106,21 @@ public class Product implements Serializable {
         this.brand = brand;
     }
 
-    
+    public Collection<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(Collection<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public Collection<ShopItem> getShopItems() {
+        return shopItems;
+    }
+
+    public void setShopItems(Collection<ShopItem> shopItems) {
+        this.shopItems = shopItems;
+    }
 
     
 

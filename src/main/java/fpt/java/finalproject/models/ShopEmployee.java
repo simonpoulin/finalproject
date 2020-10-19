@@ -11,14 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopemployee")
+@Table(name = "shopemployees")
 public class ShopEmployee implements Serializable {
-  
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer shop_role_id;
-    
+    private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -26,41 +25,44 @@ public class ShopEmployee implements Serializable {
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "shop_role_id")
+    private ShopRole shopRole;
+
     public ShopEmployee() {
     }
 
-    public ShopEmployee(User user, Shop shop, Integer shop_role_id) {
-        this.user = user;
-        this.shop = shop;
-        this.shop_role_id = shop_role_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setShop(Shop shop) {
-        this.shop = shop;
-    }
-
-    public Integer getShop_role_id() {
-        return shop_role_id;
-    }
-
-    public void setShop_role_id(Integer shop_role_id) {
-        this.shop_role_id = shop_role_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Shop getShop() {
         return shop;
     }
-    
-    
-    
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    public ShopRole getShopRole() {
+        return shopRole;
+    }
+
+    public void setShopRole(ShopRole shopRole) {
+        this.shopRole = shopRole;
+    }
 
 }

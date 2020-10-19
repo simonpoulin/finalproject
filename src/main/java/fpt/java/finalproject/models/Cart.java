@@ -1,25 +1,36 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="carts")
-public class Cart implements Serializable{
-  
+@Table(name = "carts")
+public class Cart implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public Cart() {
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    @MapsId
+    private User user;
 
-    public Cart(Integer id) {
-        this.id = id;
+    @OneToMany(mappedBy = "cart")
+    private Collection<CartDetail> cartDetails;
+
+    public Cart() {
     }
 
     public Integer getId() {
@@ -29,5 +40,21 @@ public class Cart implements Serializable{
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Collection<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(Collection<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
+
 }

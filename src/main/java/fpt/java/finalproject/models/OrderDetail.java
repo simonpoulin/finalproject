@@ -24,14 +24,14 @@ public class OrderDetail implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "shop_item_id")
-    private ShopItem shopitem;
+    private ShopItem shopItem;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, ShopItem shopitem) {
+    public OrderDetail(Order order, ShopItem shopItem) {
         this.order = order;
-        this.shopitem = shopitem;
+        this.shopItem = shopItem;
     }
 
     public void setOrder(Order order) {
@@ -39,11 +39,11 @@ public class OrderDetail implements Serializable {
     }
 
     public ShopItem getShopitem() {
-        return shopitem;
+        return shopItem;
     }
 
-    public void setShopitem(ShopItem shopitem) {
-        this.shopitem = shopitem;
+    public void setShopitem(ShopItem shopItem) {
+        this.shopItem = shopItem;
     }
 
     public Integer getId() {

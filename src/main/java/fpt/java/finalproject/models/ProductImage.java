@@ -12,30 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="productimages")
-public class ProductImage implements Serializable{
+@Table(name = "productimages")
+public class ProductImage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private String image_url;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
     public ProductImage() {
-    }
-
-    public ProductImage(Product product, Integer id, String image_url) {
-        this.product = product;
-        this.id = id;
-        this.image_url = image_url;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Integer getId() {
@@ -46,17 +36,20 @@ public class ProductImage implements Serializable{
         this.id = id;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Product getProduct() {
         return product;
     }
 
-    
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
 }

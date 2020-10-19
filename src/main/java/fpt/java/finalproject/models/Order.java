@@ -1,5 +1,6 @@
 package fpt.java.finalproject.models;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,23 +29,25 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "oder_status_id")
-    private OrderStatus orderstatus;
+    private OrderStatus orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "recipients")
+    @JoinColumn(name = "recipient_id")
     private Recipient recipient;
 
-   /*  @OneToMany(mappedBy = "orderdetails", cascade = CascadeType.ALL)
-    private Collection<OrderDetail> orderdetail; */
+    
+
+    @OneToMany(mappedBy = "order")
+    private Collection<OrderDetail> orderDetails;
 
     public Order() {
     }
 
-    public Order(Integer id, Date date, User user, OrderStatus orderstatus, Recipient recipient) {
+    public Order(Integer id, Date date, User user, OrderStatus orderStatus, Recipient recipient) {
         this.id = id;
         this.date = date;
         this.user = user;
-        this.orderstatus = orderstatus;
+        this.orderStatus = orderStatus;
         this.recipient = recipient;
     }
 
@@ -72,11 +76,11 @@ public class Order implements Serializable {
     }
 
     public OrderStatus getOrderstatus() {
-        return orderstatus;
+        return orderStatus;
     }
 
-    public void setOrderstatus(OrderStatus orderstatus) {
-        this.orderstatus = orderstatus;
+    public void setOrderstatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Recipient getRecipient() {

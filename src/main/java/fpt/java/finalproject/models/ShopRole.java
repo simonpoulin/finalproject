@@ -1,29 +1,30 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "shoproles")
-public class ShopRole implements Serializable{
-    
+public class ShopRole implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private String role_name;
+    private String roleName;
+
+    @OneToMany(mappedBy = "shopRole")
+    private Collection<ShopEmployee> shopEmployees;
 
     public ShopRole() {
-    }
-
-    public ShopRole(Integer id, String role_name) {
-        this.id = id;
-        this.role_name = role_name;
     }
 
     public Integer getId() {
@@ -34,15 +35,20 @@ public class ShopRole implements Serializable{
         this.id = id;
     }
 
-    public String getRole_name() {
-        return role_name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
-    
-    
-    
+    public Collection<ShopEmployee> getShopEmployees() {
+        return shopEmployees;
+    }
+
+    public void setShopEmployees(Collection<ShopEmployee> shopEmployees) {
+        this.shopEmployees = shopEmployees;
+    }
+
 }
