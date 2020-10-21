@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminController {
-    @RequestMapping("")
-    public String equipmentList() {
-        return "index";
+    @RequestMapping("/cha")
+    public String cha() {
+        return "test/layout.html";
+    }
+
+    @RequestMapping("/con")
+    public String con() {
+        return "test/giao_dien.html";
     }
 }
