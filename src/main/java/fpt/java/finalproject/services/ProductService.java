@@ -16,7 +16,7 @@ public interface ProductService {
     public boolean existsById(Integer id);
 
 
-    public Iterable<Product> findAll();
+    public List<Product> findAll();
 
     public List<Product> findAllById(List<Integer> ids);
 

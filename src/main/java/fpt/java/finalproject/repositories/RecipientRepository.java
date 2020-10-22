@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import fpt.java.finalproject.models.Recipient;
 
 @Repository
-public interface RecipientRepository extends CrudRepository<Recipient , Integer> {
+public interface RecipientRepository extends CrudRepository<Recipient, Integer> {
     
 }

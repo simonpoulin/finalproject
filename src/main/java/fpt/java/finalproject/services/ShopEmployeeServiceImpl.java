@@ -31,8 +31,8 @@ public class ShopEmployeeServiceImpl implements ShopEmployeeService {
         return shopEmployeeRepository.existsById(id);
     }
     @Override
-    public Iterable<ShopEmployee> findAll() {
-        return shopEmployeeRepository.findAll();
+    public List<ShopEmployee> findAll() {
+        return (List<ShopEmployee>)shopEmployeeRepository.findAll();
     }
     @Override
     public List<ShopEmployee> findAllById(List<Integer> ids) {

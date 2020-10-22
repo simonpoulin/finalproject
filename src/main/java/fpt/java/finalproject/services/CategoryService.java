@@ -14,7 +14,7 @@ public interface CategoryService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<Category> findAll();
+    public List<Category> findAll();
 
     public List<Category> findAllById(List<Integer> ids);
 

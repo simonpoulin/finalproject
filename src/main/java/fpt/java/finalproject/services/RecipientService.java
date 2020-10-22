@@ -19,7 +19,7 @@ public interface RecipientService {
 
     public boolean existsById(Integer arg0);
 
-    public Iterable<Recipient> findAll();
+    public List<Recipient> findAll();
 
     public List<Recipient> findAllById(List<Integer> arg0) ;
 

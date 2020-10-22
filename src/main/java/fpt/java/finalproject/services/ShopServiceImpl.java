@@ -11,8 +11,10 @@ import fpt.java.finalproject.repositories.ShopRepository;
 
 @Service
 public class ShopServiceImpl implements ShopService {
+    
     @Autowired
     private ShopRepository shopRepository;
+
     @Override
     public  Shop save(Shop entity) {
         return shopRepository.save(entity);
@@ -30,8 +32,8 @@ public class ShopServiceImpl implements ShopService {
         return shopRepository.existsById(id);
     }
     @Override
-    public Iterable<Shop> findAll() {
-        return shopRepository.findAll();
+    public List<Shop> findAll() {
+        return (List<Shop>) shopRepository.findAll();
     }
     @Override
     public List<Shop> findAllById(List<Integer> ids) {

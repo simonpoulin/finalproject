@@ -15,7 +15,7 @@ public interface ShopRoleService {
 
     public boolean existsById(Integer id);
 
-    public Iterable<ShopRole> findAll() ;
+    public List<ShopRole> findAll() ;
 
     public List<ShopRole> findAllById(List<Integer> ids);
 

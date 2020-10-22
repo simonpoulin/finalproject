@@ -31,8 +31,8 @@ public class ProductImageServiceImpl implements ProductImageService {
         return productImageRepository.existsById(id);
     }
     @Override
-    public Iterable<ProductImage> findAll() {
-        return productImageRepository.findAll();
+    public List<ProductImage> findAll() {
+        return (List<ProductImage>) productImageRepository.findAll();
     }
     @Override
     public List<ProductImage> findAllById(List<Integer> ids) {

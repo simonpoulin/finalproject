@@ -32,8 +32,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         return oDetailRepostitory.existsById(id);
     }
     @Override
-    public Iterable<OrderDetail> findAll() {
-        return oDetailRepostitory.findAll();
+    public List<OrderDetail> findAll() {
+        return (List<OrderDetail>)oDetailRepostitory.findAll();
     }
     @Override
     public List<OrderDetail> findAllById(List<Integer> ids) {

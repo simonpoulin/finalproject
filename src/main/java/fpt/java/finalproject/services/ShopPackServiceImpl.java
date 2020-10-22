@@ -30,8 +30,8 @@ public class ShopPackServiceImpl implements ShopPackService {
         return shopPackRepository.existsById(id);
     }
     @Override
-    public Iterable<ShopPack> findAll() {
-        return shopPackRepository.findAll();
+    public List<ShopPack> findAll() {
+        return (List<ShopPack>) shopPackRepository.findAll();
     }
     @Override
     public List<ShopPack> findAllById(List<Integer> ids) {

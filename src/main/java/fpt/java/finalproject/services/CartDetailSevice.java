@@ -3,6 +3,7 @@ package fpt.java.finalproject.services;
 import java.util.List;
 import java.util.Optional;
 
+
 import fpt.java.finalproject.models.CartDetail;
 
 public interface CartDetailSevice {
@@ -15,7 +16,7 @@ public interface CartDetailSevice {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<CartDetail> findAll() ;
+    public List<CartDetail> findAll() ;
 
     public List<CartDetail> findAllById(List<Integer> ids);
 
@@ -28,4 +29,6 @@ public interface CartDetailSevice {
     public void deleteAll(List<CartDetail> entities);
     
     public void deleteAll() ;
+    
+
 }

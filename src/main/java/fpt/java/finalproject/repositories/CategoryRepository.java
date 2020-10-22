@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import fpt.java.finalproject.models.Category;
 @Repository
-public interface CategoryRepository extends CrudRepository<Category , Integer> {
+public interface CategoryRepository extends CrudRepository<Category, Integer> {
     
 }

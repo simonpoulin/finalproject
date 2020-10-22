@@ -15,7 +15,7 @@ public interface ProductImageService {
 
     public boolean existsById(Integer id);
 
-    public Iterable<ProductImage> findAll();
+    public List<ProductImage> findAll();
     
     public List<ProductImage> findAllById(List<Integer> ids);
 

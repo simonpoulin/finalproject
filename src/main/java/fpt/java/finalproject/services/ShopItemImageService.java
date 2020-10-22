@@ -15,7 +15,7 @@ public interface ShopItemImageService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<ShopItemImage> findAll() ;
+    public List<ShopItemImage> findAll() ;
 
     public List<ShopItemImage> findAllById(List<Integer> ids);
 

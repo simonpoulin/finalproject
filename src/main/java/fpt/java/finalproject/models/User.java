@@ -19,16 +19,22 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     @Column(columnDefinition = "varchar not null")
     private String username;
+
     @Column
     private String password;
+
     @Column
     private Integer phone;
+
     @Column
     private String address;
+
     @Column
     private String email;
+
     @Column
     private String avatarUrl;
 

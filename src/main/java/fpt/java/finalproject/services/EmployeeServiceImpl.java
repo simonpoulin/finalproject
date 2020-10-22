@@ -30,8 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.existsById(id);
     }
     @Override
-    public Iterable<Employee> findAll() {
-        return employeeRepository.findAll();
+    public List<Employee> findAll() {
+        return (List<Employee>)employeeRepository.findAll();
     }
     @Override
     public List<Employee> findAllById(List<Integer> ids) {

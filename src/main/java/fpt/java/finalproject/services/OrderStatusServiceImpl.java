@@ -32,8 +32,8 @@ public class OrderStatusServiceImpl implements OrderStatusService {
         return orderStatusRepository.existsById(id);
     }
     @Override
-    public Iterable<OrderStatus> findAll() {
-        return orderStatusRepository.findAll();
+    public List<OrderStatus> findAll() {
+        return (List<OrderStatus>)orderStatusRepository.findAll();
     }
     @Override
     public List<OrderStatus> findAllById(List<Integer> ids) {
