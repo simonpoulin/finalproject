@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit_layout.html}">
 
 <head>
     <title>Title</title>
@@ -13,7 +14,7 @@
 </head>
 
 <body>
-    <div>
+    <div layout:fragment="addOrEdit_form">
         <div class="row">
             <div class="col-sm-6 offset-3" style="margin-top: 20px;">
                 <div class="card">
@@ -25,11 +26,13 @@
                             <label for="my-input">Vai trò</label>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="" id="" disabled value="checkedValue">
-                                Quản lí         
-                                <input type="radio" class="form-check-input" name="" id="" disabled value="checkedValue">
-                                Nhân viên
-                              </label>
+                                    <input type="radio" class="form-check-input" name="" id="" disabled
+                                        value="checkedValue">
+                                    Quản lí         
+                                    <input type="radio" class="form-check-input" name="" id="" disabled
+                                        value="checkedValue">
+                                    Nhân viên
+                                </label>
                             </div>
                             <label for="my-input">Tên người dùng</label>
                             <input id="my-input" class="form-control" type="text" name="">

@@ -1,24 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit_layout.html}">
 
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
 
+    </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <div>
+    <div layout:fragment="addOrEdit_form">
         <div class="row">
             <div class="col-sm-6 offset-3" style="margin-top: 20px;">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Thêm mới sản phẩm</h5>
+                        <h5 class="card-title">THÊM MỚI SẢN PHẨM</h5>
+                        <hr>
                         <div class="form-group">
                             <label for="my-input">Mã sản phẩm</label>
                             <input id="my-input" class="form-control" type="text" name="">
