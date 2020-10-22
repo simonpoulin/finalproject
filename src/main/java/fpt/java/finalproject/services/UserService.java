@@ -15,7 +15,7 @@ public interface UserService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<User> findAll();
+    public List<User> findAll();
 
     public List<User> findAllById(List<Integer> ids) ;
 

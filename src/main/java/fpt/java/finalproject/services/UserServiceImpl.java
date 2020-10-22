@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsById(id);
     }
     @Override
-    public Iterable<User> findAll() {
-        return userRepository.findAll();
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
     }
     @Override
     public List<User> findAllById(List<Integer> ids) {

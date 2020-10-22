@@ -30,8 +30,8 @@ public class ShopRoleServiceImpl implements ShopRoleService {
         return shopRoleRepository.existsById(id);
     }
     @Override
-    public Iterable<ShopRole> findAll() {
-        return shopRoleRepository.findAll();
+    public List<ShopRole> findAll() {
+        return (List<ShopRole>) shopRoleRepository.findAll();
     }
     @Override
     public List<ShopRole> findAllById(List<Integer> ids) {

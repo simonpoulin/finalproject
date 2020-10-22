@@ -15,7 +15,7 @@ public interface ShopService {
 
     public boolean existsById(Integer id);
 
-    public Iterable<Shop> findAll();
+    public List<Shop> findAll();
 
     public List<Shop> findAllById(List<Integer> ids);
 

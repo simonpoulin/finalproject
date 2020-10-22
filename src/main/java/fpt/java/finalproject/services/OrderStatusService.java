@@ -15,7 +15,7 @@ public interface OrderStatusService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<OrderStatus> findAll() ;
+    public List<OrderStatus> findAll() ;
 
     public List<OrderStatus> findAllById(List<Integer> ids);
 

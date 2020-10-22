@@ -15,7 +15,7 @@ public interface ShopPackService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<ShopPack> findAll() ;
+    public List<ShopPack> findAll() ;
 
     public List<ShopPack> findAllById(List<Integer> ids);
 

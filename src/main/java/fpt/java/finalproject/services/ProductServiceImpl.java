@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.existsById(id);
     }
     @Override
-    public Iterable<Product> findAll() {
-        return productRepository.findAll();
+    public List<Product> findAll() {
+        return (List<Product>) productRepository.findAll();
     }
     @Override
     public List<Product> findAllById(List<Integer> ids) {

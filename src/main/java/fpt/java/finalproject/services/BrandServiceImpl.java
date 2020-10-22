@@ -59,5 +59,8 @@ public class BrandServiceImpl implements BrandService {
     public void deleteAll() {
         brandRepository.deleteAll();
     }
+    public List<Brand> findByBrandNameLikeOrderbyName(String brandName) {
+        return brandRepository.findByBrandNameLikeOrderbyName("%" + brandName + "%");
+    }
     
 }

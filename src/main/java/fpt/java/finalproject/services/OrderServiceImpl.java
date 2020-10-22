@@ -30,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
         return orderReposirory.existsById(id);
     }
     @Override
-    public Iterable<Order> findAll() {
-        return orderReposirory.findAll();
+    public List<Order> findAll() {
+        return (List<Order>)orderReposirory.findAll();
     }
     @Override
     public List<Order> findAllById(List<Integer> ids) {

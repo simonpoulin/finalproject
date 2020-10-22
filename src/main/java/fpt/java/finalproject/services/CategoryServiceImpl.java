@@ -31,8 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.existsById(id);
     }
     @Override
-    public Iterable<Category> findAll() {
-        return categoryRepository.findAll();
+    public List<Category> findAll() {
+        return (List<Category>)categoryRepository.findAll();
     }
     @Override
     public List<Category> findAllById(List<Integer> ids) {

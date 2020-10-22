@@ -30,8 +30,8 @@ public class CartServiceImpl implements CartService {
         return cartRepository.existsById(id);
     }
     @Override
-    public Iterable<Cart> findAll() {
-        return cartRepository.findAll();
+    public List<Cart> findAll() {
+        return (List<Cart>) cartRepository.findAll();
     }
     @Override
     public List<Cart> findAllById(List<Integer> ids) {
@@ -57,5 +57,8 @@ public class CartServiceImpl implements CartService {
         cartRepository.deleteAll();
     }
 
+    public List<Cart> findByCartNameLikeOrderbyName(String cartName) {
+        return cartRepository.findByCartNameLikeOrderbyName("%"+ cartName +"%");
+    }
     
 }

@@ -31,8 +31,8 @@ public class EmployeeRoleServiceImpl implements EmployeeRoleService {
         return employeeRoleRepository.existsById(id);
     }
     @Override
-    public Iterable<EmployeeRole> findAll() {
-        return employeeRoleRepository.findAll();
+    public List<EmployeeRole> findAll() {
+        return (List<EmployeeRole>)employeeRoleRepository.findAll();
     }
     @Override
     public List<EmployeeRole> findAllById(List<Integer> ids) {

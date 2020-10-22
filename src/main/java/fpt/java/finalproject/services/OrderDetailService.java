@@ -15,7 +15,7 @@ public interface OrderDetailService {
 
     public boolean existsById(Integer id);
 
-    public Iterable<OrderDetail> findAll() ;
+    public List<OrderDetail> findAll() ;
 
     public List<OrderDetail> findAllById(List<Integer> ids);
 

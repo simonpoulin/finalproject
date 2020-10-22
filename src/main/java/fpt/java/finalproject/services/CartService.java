@@ -14,7 +14,7 @@ public interface CartService {
 
     public boolean existsById(Integer id) ;
 
-    public Iterable<Cart> findAll();
+    public List<Cart> findAll();
 
     public List<Cart> findAllById(List<Integer> ids);
 
@@ -27,4 +27,6 @@ public interface CartService {
     public void deleteAll(List<Cart> entities) ;
 
     public void deleteAll();
+
+    List<Cart> findByCartNameLikeOrderbyName(String cartName);
 }

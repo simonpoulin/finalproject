@@ -15,7 +15,7 @@ public interface EmployeeRoleService {
 
     public boolean existsById(Integer id);
 
-    public Iterable<EmployeeRole> findAll() ;
+    public List<EmployeeRole> findAll() ;
 
     public List<EmployeeRole> findAllById(List<Integer> ids);
 

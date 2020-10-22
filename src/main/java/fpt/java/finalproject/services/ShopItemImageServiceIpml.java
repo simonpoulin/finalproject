@@ -31,8 +31,8 @@ public class ShopItemImageServiceIpml implements ShopItemImageService {
         return shopItemImageRepository.existsById(id);
     }
     @Override
-    public Iterable<ShopItemImage> findAll() {
-        return shopItemImageRepository.findAll();
+    public List<ShopItemImage> findAll() {
+        return (List<ShopItemImage>) shopItemImageRepository.findAll();
     }
     @Override
     public List<ShopItemImage> findAllById(List<Integer> ids) {

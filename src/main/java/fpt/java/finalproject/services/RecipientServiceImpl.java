@@ -38,8 +38,8 @@ public class RecipientServiceImpl implements RecipientService {
         return recipientRepository.existsById(arg0);
     }
 
-    public Iterable<Recipient> findAll() {
-        return recipientRepository.findAll();
+    public List<Recipient> findAll() {
+        return (List<Recipient>)recipientRepository.findAll();
     }
 
     public List<Recipient> findAllById(List<Integer> arg0) {
