@@ -11,8 +11,10 @@ import fpt.java.finalproject.repositories.ShopRepository;
 
 @Service
 public class ShopServiceImpl implements ShopService {
+    
     @Autowired
     private ShopRepository shopRepository;
+
     @Override
     public  Shop save(Shop entity) {
         return shopRepository.save(entity);
