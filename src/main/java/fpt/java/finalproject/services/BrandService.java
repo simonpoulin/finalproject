@@ -29,5 +29,4 @@ public interface BrandService {
 
     public void deleteAll() ;
 
-    List<Brand> findByBrandNameLikeOrderbyName(String brandName);
 }

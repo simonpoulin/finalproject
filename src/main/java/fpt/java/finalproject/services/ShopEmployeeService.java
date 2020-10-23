@@ -7,19 +7,19 @@ import fpt.java.finalproject.models.ShopEmployee;
 
 public interface ShopEmployeeService {
 
-    public  ShopEmployee save(ShopEmployee entity);
+    public ShopEmployee save(ShopEmployee entity);
 
-    public List<ShopEmployee>  saveAll(List<ShopEmployee> entities);
+    public List<ShopEmployee> saveAll(List<ShopEmployee> entities);
 
-    public Optional<ShopEmployee> findById(Integer id) ;
+    public Optional<ShopEmployee> findById(Integer id);
 
-    public boolean existsById(Integer id) ;
+    public boolean existsById(Integer id);
 
-    public List<ShopEmployee> findAll() ;
+    public List<ShopEmployee> findAll();
 
     public List<ShopEmployee> findAllById(List<Integer> ids);
 
-    public long count() ;
+    public long count();
 
     public void deleteById(Integer id);
 
@@ -27,6 +27,6 @@ public interface ShopEmployeeService {
 
     public void deleteAll(List<ShopEmployee> entities);
 
-    public void deleteAll() ;
+    public void deleteAll();
 
 }

@@ -7,25 +7,26 @@ import fpt.java.finalproject.models.ShopItemImage;
 
 public interface ShopItemImageService {
 
-    public ShopItemImage  save(ShopItemImage entity) ;
+    public ShopItemImage save(ShopItemImage entity);
 
-    public List<ShopItemImage>  saveAll(List<ShopItemImage> entities) ;
+    public List<ShopItemImage> saveAll(List<ShopItemImage> entities);
 
-    public Optional<ShopItemImage> findById(Integer id) ;
+    public Optional<ShopItemImage> findById(Integer id);
 
-    public boolean existsById(Integer id) ;
+    public boolean existsById(Integer id);
 
-    public List<ShopItemImage> findAll() ;
+    public List<ShopItemImage> findAll();
 
     public List<ShopItemImage> findAllById(List<Integer> ids);
 
-    public long count() ;
+    public long count();
 
     public void deleteById(Integer id);
 
-    public void delete(ShopItemImage entity) ;
+    public void delete(ShopItemImage entity);
 
     public void deleteAll(List<ShopItemImage> entities);
 
-    public void deleteAll() ;
+    public void deleteAll();
+    
 }

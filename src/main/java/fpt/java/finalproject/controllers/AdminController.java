@@ -5,63 +5,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminController {
-    @RequestMapping("/addOrEdit")
-    public String layoutChung() {
-        return "admin/layouts/add_or_edit_layout";
+
+    // Blank layout
+    @RequestMapping("/blank")
+    public String blank() {
+        return "module/layout_blank";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/addProduct")
-    public String addProduct() {
+    // Admin main layout
+    @RequestMapping("/amain")
+    public String adminMain() {
+        return "admin/layouts/layout_main";
+    }
+
+    // Admin add product
+    @RequestMapping("/aproductadd")
+    public String adminAddProduct() {
         return "admin/products/add_product";
     }
 
-    @RequestMapping("/productList")
-    public String productList() {
-        return "admin/products/product_list";
-    }
-
-    // -----------------------------------------------
-    @RequestMapping("/addEmployee")
-    public String addEmployee() {
+    // Admin add employee
+    @RequestMapping("/aemployeeadd")
+    public String adminAddEmployee() {
         return "admin/employees/add_employee";
     }
 
-    @RequestMapping("/employeeList")
-    public String EmployeeList() {
-        return "admin/employees/employee_list";
-    }
-
-    // -----------------------------------------------
-    @RequestMapping("/addItem")
-    public String addItem() {
+    // Admin add item
+    @RequestMapping("/aitemadd")
+    public String adminAddItem() {
         return "admin/items/add_item";
     }
 
-    @RequestMapping("/itemList")
-    public String itemList() {
-        return "admin/items/item_list";
-    }
-
-    // -----------------------------------------------
-    @RequestMapping("/editShop")
-    public String editShop() {
+    // Admin add shop
+    @RequestMapping("/ashopedit")
+    public String adminEditShop() {
         return "admin/shops/edit_shop";
     }
 
-    @RequestMapping("/shopList")
-    public String shopList() {
-        return "admin/shops/shop_list";
-    }
-
-    // -----------------------------------------------
-    @RequestMapping("/editUser")
-    public String editUser() {
+    // Admin add user
+    @RequestMapping("/auseredit")
+    public String adminEditUser() {
         return "admin/users/edit_user";
     }
 
-    @RequestMapping("/userList")
-    public String userList() {
-        return "admin/users/user_list";
+    // User home
+    @RequestMapping("/home")
+    public String home() {
+        return "user/home";
     }
+
+    // User login
+    @RequestMapping("/login")
+    public String login() {
+        return "user/login";
+    }
+
+    // User signup
+    @RequestMapping("/signup")
+    public String signup() {
+        return "user/signup";
+    }
+
 }

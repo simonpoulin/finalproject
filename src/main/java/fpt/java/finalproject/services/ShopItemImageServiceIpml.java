@@ -11,53 +11,63 @@ import fpt.java.finalproject.repositories.ShopItemImageRepository;
 
 @Service
 public class ShopItemImageServiceIpml implements ShopItemImageService {
+    
     @Autowired
     private ShopItemImageRepository shopItemImageRepository;
 
     @Override
-    public ShopItemImage  save(ShopItemImage entity) {
+    public ShopItemImage save(ShopItemImage entity) {
         return shopItemImageRepository.save(entity);
     }
+
     @Override
-    public List<ShopItemImage>  saveAll(List<ShopItemImage> entities) {
+    public List<ShopItemImage> saveAll(List<ShopItemImage> entities) {
         return (List<ShopItemImage>) shopItemImageRepository.saveAll(entities);
     }
+
     @Override
     public Optional<ShopItemImage> findById(Integer id) {
         return shopItemImageRepository.findById(id);
     }
+
     @Override
     public boolean existsById(Integer id) {
         return shopItemImageRepository.existsById(id);
     }
+
     @Override
     public List<ShopItemImage> findAll() {
         return (List<ShopItemImage>) shopItemImageRepository.findAll();
     }
+
     @Override
     public List<ShopItemImage> findAllById(List<Integer> ids) {
         return (List<ShopItemImage>) shopItemImageRepository.findAllById(ids);
     }
+
     @Override
     public long count() {
         return shopItemImageRepository.count();
     }
+
     @Override
     public void deleteById(Integer id) {
         shopItemImageRepository.deleteById(id);
     }
+
     @Override
     public void delete(ShopItemImage entity) {
         shopItemImageRepository.delete(entity);
     }
+
     @Override
     public void deleteAll(List<ShopItemImage> entities) {
         shopItemImageRepository.deleteAll(entities);
     }
+
     @Override
     public void deleteAll() {
         shopItemImageRepository.deleteAll();
     }
 
-    
 }

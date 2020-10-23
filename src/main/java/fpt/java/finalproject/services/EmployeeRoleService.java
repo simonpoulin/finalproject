@@ -7,15 +7,15 @@ import fpt.java.finalproject.models.EmployeeRole;
 
 public interface EmployeeRoleService {
 
-    public  EmployeeRole save(EmployeeRole entity);
-   
-    public List<EmployeeRole>  saveAll(List<EmployeeRole> entities);
+    public EmployeeRole save(EmployeeRole entity);
 
-    public Optional<EmployeeRole> findById(Integer id) ;
+    public List<EmployeeRole> saveAll(List<EmployeeRole> entities);
+
+    public Optional<EmployeeRole> findById(Integer id);
 
     public boolean existsById(Integer id);
 
-    public List<EmployeeRole> findAll() ;
+    public List<EmployeeRole> findAll();
 
     public List<EmployeeRole> findAllById(List<Integer> ids);
 
@@ -27,5 +27,6 @@ public interface EmployeeRoleService {
 
     public void deleteAll(List<EmployeeRole> entities);
 
-    public void deleteAll() ;
+    public void deleteAll();
+    
 }
