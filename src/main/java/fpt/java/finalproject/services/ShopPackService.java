@@ -6,26 +6,27 @@ import java.util.Optional;
 import fpt.java.finalproject.models.ShopPack;
 
 public interface ShopPackService {
-  
-    public  ShopPack  save(ShopPack entity);
 
-    public  List<ShopPack>  saveAll(List<ShopPack> entities);
+    public ShopPack save(ShopPack entity);
 
-    public Optional<ShopPack> findById(Integer id) ;
+    public List<ShopPack> saveAll(List<ShopPack> entities);
 
-    public boolean existsById(Integer id) ;
+    public Optional<ShopPack> findById(Integer id);
 
-    public List<ShopPack> findAll() ;
+    public boolean existsById(Integer id);
+
+    public List<ShopPack> findAll();
 
     public List<ShopPack> findAllById(List<Integer> ids);
 
-    public long count() ;
+    public long count();
 
     public void deleteById(Integer id);
 
-    public void delete(ShopPack entity) ;
+    public void delete(ShopPack entity);
 
     public void deleteAll(List<ShopPack> entities);
 
     public void deleteAll();
+    
 }

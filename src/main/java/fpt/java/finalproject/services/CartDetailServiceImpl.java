@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import fpt.java.finalproject.models.CartDetail;
 import fpt.java.finalproject.repositories.CartDetailRepository;
 
@@ -70,6 +69,5 @@ public class CartDetailServiceImpl implements CartDetailSevice {
     public void deleteAll() {
         cartDetailRepository.deleteAll();
     }
-    
-    
+
 }

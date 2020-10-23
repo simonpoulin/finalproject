@@ -7,5 +7,5 @@ import fpt.java.finalproject.models.Recipient;
 
 @Repository
 public interface RecipientRepository extends CrudRepository<Recipient, Integer> {
-    
+
 }

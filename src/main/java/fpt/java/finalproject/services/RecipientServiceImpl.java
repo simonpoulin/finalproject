@@ -11,6 +11,7 @@ import fpt.java.finalproject.repositories.RecipientRepository;
 
 @Service
 public class RecipientServiceImpl implements RecipientService {
+    
     @Autowired
     private RecipientRepository recipientRepository;
 
@@ -39,7 +40,7 @@ public class RecipientServiceImpl implements RecipientService {
     }
 
     public List<Recipient> findAll() {
-        return (List<Recipient>)recipientRepository.findAll();
+        return (List<Recipient>) recipientRepository.findAll();
     }
 
     public List<Recipient> findAllById(List<Integer> arg0) {
@@ -57,8 +58,5 @@ public class RecipientServiceImpl implements RecipientService {
     public List<Recipient> saveAll(List<Recipient> arg0) {
         return (List<Recipient>) recipientRepository.saveAll(arg0);
     }
-    
-    
-    
 
 }
