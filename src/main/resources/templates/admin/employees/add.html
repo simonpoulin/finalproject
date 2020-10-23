@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/layout_add_or_edit.html}">
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -19,23 +19,25 @@
             <div class="col-sm-6 offset-3" style="margin-top: 20px;">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">SỬA THÔNG TIN NGƯỜI DÙNG</h5>
+                        <h5 class="card-title">THÊM MỚI NHÂN VIÊN</h5>
                         <div class="form-group">
-                            <label for="my-input">ID Người dùng</label>
-                            <input id="my-input" class="form-control" disabled type="text" name="" value="USER01">
+                            <label for="my-input">Mã Nhân viên</label>
+                            <input id="my-input" class="form-control" type="text" name="">
                             <label for="my-input">Vai trò</label>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="" id="" disabled
-                                        value="checkedValue">
-                                    Quản lí         
-                                    <input type="radio" class="form-check-input" name="" id="" disabled
-                                        value="checkedValue">
-                                    Nhân viên
-                                </label>
+                                <input type="radio" class="form-check-input" name="" id="" value="checkedValue" checked>
+                                Quản lí         
+                                <input type="radio" class="form-check-input" name="" id="" value="checkedValue">
+                                Nhân viên
+                              </label>
                             </div>
-                            <label for="my-input">Tên người dùng</label>
+                            <label for="my-input">Username</label>
                             <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Password</label>
+                            <input id="my-input" class="form-control" type="password" name="">
+                            <label for="my-input">Created At</label>
+                            <input id="my-input" class="form-control" type="date" name="">
                             <label for="my-input">Số điện thoại</label>
                             <input id="my-input" class="form-control" type="text" name="">
                             <label for="my-input">Địa chỉ</label>
@@ -47,15 +49,16 @@
                                 <input id="my-input" class="form-control-file" type="file" name="">
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="submit" class="btn btn-primary">Thêm</button>
                             <button type="reset" class="btn btn-danger">Xóa trắng</button>
+                            <a href="Bảng Nhân Viên.html" class="btn btn-primary">Bảng nhân viên</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>

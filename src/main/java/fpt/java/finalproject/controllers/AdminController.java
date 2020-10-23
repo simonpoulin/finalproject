@@ -9,43 +9,43 @@ public class AdminController {
     // Blank layout
     @RequestMapping("/blank")
     public String blank() {
-        return "module/layout_blank";
+        return "module/blank_layout";
     }
 
     // Admin main layout
     @RequestMapping("/amain")
     public String adminMain() {
-        return "admin/layouts/layout_main";
+        return "admin/layouts/main";
     }
 
     // Admin add product
     @RequestMapping("/aproductadd")
     public String adminAddProduct() {
-        return "admin/products/add_product";
+        return "admin/products/add";
     }
 
     // Admin add employee
     @RequestMapping("/aemployeeadd")
     public String adminAddEmployee() {
-        return "admin/employees/add_employee";
+        return "admin/employees/add";
     }
 
     // Admin add item
     @RequestMapping("/aitemadd")
     public String adminAddItem() {
-        return "admin/items/add_item";
+        return "admin/items/add";
     }
 
     // Admin add shop
     @RequestMapping("/ashopedit")
     public String adminEditShop() {
-        return "admin/shops/edit_shop";
+        return "admin/shops/edit";
     }
 
     // Admin add user
     @RequestMapping("/auseredit")
     public String adminEditUser() {
-        return "admin/users/edit_user";
+        return "admin/users/edit";
     }
 
     // User home
