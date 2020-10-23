@@ -5,63 +5,125 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminController {
-    @RequestMapping("/addOrEdit")
-    public String layoutChung() {
-        return "admin/layouts/add_or_edit_layout";
+
+    // Blank layout
+    @RequestMapping("/blank")
+    public String blank() {
+        return "module/blank_layout";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/addProduct")
-    public String addProduct() {
-        return "admin/products/add_product";
+    // Admin main layout
+    @RequestMapping("/amain")
+    public String adminMain() {
+        return "admin/layouts/main";
     }
 
-    @RequestMapping("/productList")
-    public String productList() {
-        return "admin/products/product_list";
+    // Admin add product
+    @RequestMapping("/aproductadd")
+    public String adminAddProduct() {
+        return "admin/products/add";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/addEmployee")
-    public String addEmployee() {
-        return "admin/employees/add_employee";
+    // Admin edit product
+    @RequestMapping("/aproductedit")
+    public String adminEditProduct() {
+        return "admin/products/edit";
     }
 
-    @RequestMapping("/employeeList")
-    public String EmployeeList() {
-        return "admin/employees/employee_list";
+    // Admin add employee
+    @RequestMapping("/aemployeeadd")
+    public String adminAddEmployee() {
+        return "admin/employees/add";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/addItem")
-    public String addItem() {
-        return "admin/items/add_item";
+    // Admin edit employee
+    @RequestMapping("/aemployeeedit")
+    public String adminEditEmployee() {
+        return "admin/employees/edit";
     }
 
-    @RequestMapping("/itemList")
-    public String itemList() {
-        return "admin/items/item_list";
+    // Admin add item
+    @RequestMapping("/aitemadd")
+    public String adminAddItem() {
+        return "admin/items/add";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/editShop")
-    public String editShop() {
-        return "admin/shops/edit_shop";
+    // Admin edit item
+    @RequestMapping("/aitemedit")
+    public String adminEditItem() {
+        return "admin/items/edit";
     }
 
-    @RequestMapping("/shopList")
-    public String shopList() {
-        return "admin/shops/shop_list";
+    // Admin add shop
+    @RequestMapping("/ashopadd")
+    public String adminAddShop() {
+        return "admin/shops/add";
     }
 
-    // -----------------------------------------------
-    @RequestMapping("/editUser")
-    public String editUser() {
-        return "admin/users/edit_user";
+    // Admin edit shop
+    @RequestMapping("/ashopedit")
+    public String adminEditShop() {
+        return "admin/shops/edit";
     }
 
-    @RequestMapping("/userList")
-    public String userList() {
-        return "admin/users/user_list";
+    // Admin add user
+    @RequestMapping("/auseradd")
+    public String adminAddUser() {
+        return "admin/users/add";
+    }
+
+    // Admin edit user
+    @RequestMapping("/auseredit")
+    public String adminEditUser() {
+        return "admin/users/edit";
+    }
+
+    // User home
+    @RequestMapping("/home")
+    public String home() {
+        return "user/home";
+    }
+
+    // User login
+    @RequestMapping("/login")
+    public String login() {
+        return "user/login";
+    }
+
+    // User signup
+    @RequestMapping("/signup")
+    public String signup() {
+        return "user/signup";
+    }
+
+    // User forget password
+    @RequestMapping("/forgetpassword")
+    public String forgetPassword() {
+        return "user/forget_password";
+    }
+
+    // ------------------------------------------
+    // Admin home
+    @RequestMapping("/ahome")
+    public String adminHome() {
+        return "admin/admin_page";
+    }
+
+    // Admin login
+    @RequestMapping("/alogin")
+    public String adminLogin() {
+        return "admin/login";
+    }
+
+    // Admin signup
+    @RequestMapping("/asignup")
+    public String adminSignup() {
+        return "admin/signup";
+    }
+
+    // Admin forget password
+    @RequestMapping("/aforgetpassword")
+    public String adminForgetPassword() {
+        return "admin/forget_password";
     }
 }

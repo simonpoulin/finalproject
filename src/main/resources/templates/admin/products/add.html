@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="addOrEdit_form">
+        <div class="row">
+            <div class="col-sm-6 offset-3" style="margin-top: 20px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">THÊM MỚI SẢN PHẨM</h5>
+                        <hr>
+                        <div class="form-group">
+                            <label for="my-input">Mã sản phẩm</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Tên sản phẩm</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Mã thể loại</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Tên thể loại</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Nhãn hiệu</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-textarea">Mô tả</label>
+                            <textarea id="my-textarea" class="form-control" name="" rows="3"></textarea>
+                            <hr>
+                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="reset" class="btn btn-danger">Xóa trắng</button>
+                            <a href="Bảng Sản Phẩm.html" class="btn btn-primary">Bảng sản phẩm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

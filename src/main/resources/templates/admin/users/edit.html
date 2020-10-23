@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="addOrEdit_form">
+        <div class="row">
+            <div class="col-sm-6 offset-3" style="margin-top: 20px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">SỬA THÔNG TIN NGƯỜI DÙNG</h5>
+                        <div class="form-group">
+                            <label for="my-input">ID Người dùng</label>
+                            <input id="my-input" class="form-control" type="text" name="" value="USER01">
+                            <label for="my-input">Vai trò</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="" id="" value="checkedValue">
+                                    Quản lí         
+                                    <input type="radio" class="form-check-input" name="" id="" value="checkedValue">
+                                    Nhân viên
+                                </label>
+                            </div>
+                            <label for="my-input">Tên người dùng</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Số điện thoại</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Địa chỉ</label>
+                            <input id="my-input" class="form-control" type="text" name="">
+                            <label for="my-input">Email</label>
+                            <input id="my-input" class="form-control" type="email" name="">
+                            <div class="form-group">
+                                <label for="my-input">Avatar</label>
+                                <input id="my-input" class="form-control-file" type="file" name="">
+                            </div>
+                            <hr>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="reset" class="btn btn-danger">Xóa trắng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
