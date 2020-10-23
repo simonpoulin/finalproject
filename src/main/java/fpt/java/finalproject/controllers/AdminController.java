@@ -102,7 +102,6 @@ public class AdminController {
         return "user/forget_password";
     }
 
-    // ------------------------------------------
     // Admin home
     @RequestMapping("/ahome")
     public String adminHome() {

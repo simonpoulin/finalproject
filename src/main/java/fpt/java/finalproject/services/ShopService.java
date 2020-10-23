@@ -7,19 +7,19 @@ import fpt.java.finalproject.models.Shop;
 
 public interface ShopService {
 
-    public  Shop save(Shop entity) ;
+    public Shop save(Shop entity);
 
     public List<Shop> saveAll(List<Shop> entities);
 
-    public Optional<Shop> findById(Integer id) ;
+    public Optional<Shop> findById(Integer id);
 
     public boolean existsById(Integer id);
 
-    public Iterable<Shop> findAll();
+    public List<Shop> findAll();
 
     public List<Shop> findAllById(List<Integer> ids);
 
-    public long count() ;
+    public long count();
 
     public void deleteById(Integer id);
 
@@ -27,6 +27,6 @@ public interface ShopService {
 
     public void deleteAll(List<Shop> entities);
 
-    public void deleteAll() ;
-    
+    public void deleteAll();
+
 }
