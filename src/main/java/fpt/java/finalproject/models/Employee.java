@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name ="employees")
@@ -20,18 +24,27 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column
     private String username;
+
     @Column
     private String password;
+
     @Column
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
+
     @Column
     private Integer phone;
+
     @Column
     private String address;
+
     @Column
     private String email;
+
     @Column
     private String avatarUrl;
 

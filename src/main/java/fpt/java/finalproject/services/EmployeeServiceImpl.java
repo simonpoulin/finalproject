@@ -11,13 +11,50 @@ import fpt.java.finalproject.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
-    public Employee save(Employee entity) {
-        return employeeRepository.save(entity);
+    public void save(Employee entity) throws Exception {
+
+        Employee e = employeeRepository.save(entity);
+
+        // Send error on fail
+        if (e == null) {
+            throw new Exception("Cannot save");
+        }
+
+        return;
+    }
+
+    @Override
+    public Employee findById(Integer id) throws Exception {
+
+        Employee e = new Employee();
+
+        // Find employee
+        Optional<Employee> opts = employeeRepository.findById(id);
+
+        // Set employee
+        if (opts.isPresent()) {
+            e = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("Employee not found");
+        }
+
+        return e;
+    }
+
+    @Override
+    public void deleteById(Integer id) throws Exception {
+        employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Employee> findAll() throws Exception {
+        return (List<Employee>) employeeRepository.findAll();
     }
 
     @Override
@@ -26,18 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> findById(Integer id) {
-        return employeeRepository.findById(id);
-    }
-
-    @Override
     public boolean existsById(Integer id) {
         return employeeRepository.existsById(id);
-    }
-
-    @Override
-    public List<Employee> findAll() {
-        return (List<Employee>) employeeRepository.findAll();
     }
 
     @Override
@@ -48,11 +75,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public long count() {
         return employeeRepository.count();
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        employeeRepository.deleteById(id);
     }
 
     @Override
