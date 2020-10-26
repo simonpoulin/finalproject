@@ -24,10 +24,22 @@ public class AdminController {
         return "admin/products/add";
     }
 
+    // Admin edit product
+    @RequestMapping("/aproductedit")
+    public String adminEditProduct() {
+        return "admin/products/edit";
+    }
+
     // Admin add employee
     @RequestMapping("/aemployeeadd")
     public String adminAddEmployee() {
         return "admin/employees/add";
+    }
+
+    // Admin edit employee
+    @RequestMapping("/aemployeeedit")
+    public String adminEditEmployee() {
+        return "admin/employees/edit";
     }
 
     // Admin add item
@@ -36,13 +48,31 @@ public class AdminController {
         return "admin/items/add";
     }
 
+    // Admin edit item
+    @RequestMapping("/aitemedit")
+    public String adminEditItem() {
+        return "admin/items/edit";
+    }
+
     // Admin add shop
+    @RequestMapping("/ashopadd")
+    public String adminAddShop() {
+        return "admin/shops/add";
+    }
+
+    // Admin edit shop
     @RequestMapping("/ashopedit")
     public String adminEditShop() {
         return "admin/shops/edit";
     }
 
     // Admin add user
+    @RequestMapping("/auseradd")
+    public String adminAddUser() {
+        return "admin/users/add";
+    }
+
+    // Admin edit user
     @RequestMapping("/auseredit")
     public String adminEditUser() {
         return "admin/users/edit";
@@ -66,4 +96,33 @@ public class AdminController {
         return "user/signup";
     }
 
+    // User forget password
+    @RequestMapping("/forgetpassword")
+    public String forgetPassword() {
+        return "user/forget_password";
+    }
+
+    // Admin home
+    @RequestMapping("/ahome")
+    public String adminHome() {
+        return "admin/admin_page";
+    }
+
+    // Admin login
+    @RequestMapping("/alogin")
+    public String adminLogin() {
+        return "admin/login";
+    }
+
+    // Admin signup
+    @RequestMapping("/asignup")
+    public String adminSignup() {
+        return "admin/signup";
+    }
+
+    // Admin forget password
+    @RequestMapping("/aforgetpassword")
+    public String adminForgetPassword() {
+        return "admin/forget_password";
+    }
 }
