@@ -36,6 +36,12 @@ public class AdminController {
         return "admin/products/edit";
     }
 
+    // Admin list product
+    @RequestMapping("/aproductlist")
+    public String adminListProduct() {
+        return "admin/products/list";
+    }
+
     // Admin add employee
     @RequestMapping("/aemployeeadd")
     public String adminAddEmployee() {
@@ -46,6 +52,12 @@ public class AdminController {
     @RequestMapping("/aemployeeedit")
     public String adminEditEmployee() {
         return "admin/employees/edit";
+    }
+
+    // Admin List employee
+    @RequestMapping("/aemployeelist")
+    public String aemployeelist() {
+        return "admin/employees/list";
     }
 
     // Admin add item
@@ -60,6 +72,12 @@ public class AdminController {
         return "admin/items/edit";
     }
 
+    // Admin list item
+    @RequestMapping("/aitemlist")
+    public String adminListItem() {
+        return "admin/items/list";
+    }
+
     // Admin add shop
     @RequestMapping("/ashopadd")
     public String adminAddShop() {
@@ -72,6 +90,12 @@ public class AdminController {
         return "admin/shops/edit";
     }
 
+    // Admin list shop
+    @RequestMapping("/ashoplist")
+    public String adminListShop() {
+        return "admin/shops/list";
+    }
+
     // Admin add user
     @RequestMapping("/auseradd")
     public String adminAddUser() {
@@ -82,6 +106,12 @@ public class AdminController {
     @RequestMapping("/auseredit")
     public String adminEditUser() {
         return "admin/users/edit";
+    }
+    
+    // Admin list user
+    @RequestMapping("/auserlist")
+    public String adminListUser() {
+        return "admin/users/list";
     }
 
     // User home
@@ -130,5 +160,11 @@ public class AdminController {
     @RequestMapping("/aforgetpassword")
     public String adminForgetPassword() {
         return "admin/forget_password";
+    }
+
+    // admin page
+    @RequestMapping("/adminpage")
+    public String adminpage() {
+        return "admin/ad_page_test";
     }
 }
