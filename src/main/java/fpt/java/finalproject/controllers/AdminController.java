@@ -12,6 +12,12 @@ public class AdminController {
         return "module/blank_layout";
     }
 
+    // Error layout
+    @RequestMapping("/error404")
+    public String errorLayout() {
+        return "module/error";
+    }
+
     // Admin main layout
     @RequestMapping("/amain")
     public String adminMain() {
