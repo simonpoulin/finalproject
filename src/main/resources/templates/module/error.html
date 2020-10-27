@@ -29,29 +29,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center">
                         <span class="display-1 d-block">404</span>
-
                         <div class="mb-4 lead">
-                            <b>The page you are looking for was not found.</b>
+                            <b th:text="${res.message}"></b>
                         </div>
-                        <form action="">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                data-target="#exampleModal">
-                                SHOW ERROR
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            mô tả lỗi ở đây
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br><br>
-                            <label for=""><a href="">BACK TO HOME</a></label>
-                        </form>
                     </div>
                 </div>
             </div>
