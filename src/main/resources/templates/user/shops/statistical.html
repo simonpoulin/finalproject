@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chart1.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="col-sm-2">
+            <a style="margin-left: 90px;" class="navbar-brand" href="#">LOGO</a>
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div style="left: 400px;" class="col-sm-6">
+            <a style="margin-right: 15px;" href="#"><img src="icons/notification_48px.png" alt=""></a>
+            <a style="margin-right: 15px;" href="#"><img src="icons/male_user_48px.png" alt=""></a>
+            <a style="margin-right: 15px;" href="#"><img src="icons/shopping_cart_48px.png" alt=""></a>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card sticky" style="margin-left: 1px; margin-top: 1px;">
+                <div class="card-header">
+                    <img src="icons/prototype_48px.png" alt="">Quản lí đơn hàng
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tất cả đơn hàng</li>
+                    <li class="list-group-item">Xử lí hoạt động</li>
+                    <li class="list-group-item">Trả / Hoàn tiền</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/aliexpress_48px.png" alt="">Quản lí sản phẩm
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tất cả sản phẩm</li>
+                    <li class="list-group-item">Thêm sản phẩm</li>
+                    <li class="list-group-item">Sản phẩm vi phạm</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/us_dollar_48px.png" alt="">Tài chính
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Doanh thu</li>
+                    <li class="list-group-item">Ví Shopee</li>
+                    <li class="list-group-item">Tài khoản ngân hàng</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/bar_chart_48px.png" alt="">Dữ liệu
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Phân tích bán hàng</li>
+                    <li class="list-group-item">Hiệu quả hoạt động</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/maintenance_48px.png" alt="">Quản lí Shop
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Trang trí shop</li>
+                    <li class="list-group-item">Danh mục của shop</li>
+                    <li class="list-group-item">Thiết lập shop</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
+
+            <div class="container-fluid"
+                style="background-color: rgb(247, 247, 247); margin: 10px 0px 10px -30px; height: 50px; line-height: 50px;">
+                <label>Khung thời gian:&ensp; </label><select id="time">
+                    <option value="ngay" selected>Ngày</option>
+                    <option value="thang"> Tháng </option>
+                    <option value="nam"> Năm</option>
+                </select> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                <label for="">Mặt hàng:&ensp;</label><select id="mathang">
+                    <option value="A" selected>A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+            <div class="container-fluid">
+                <table class="table table-light" style="margin-left: -20px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Lượt xem</th>
+                            <th>Số lượng bán</th>
+                            <th>Doang Thu</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DTDD</td>
+                            <td>200</td>
+                            <td>20</td>
+                            <td>2000$</td>
+                        </tr>
+                        <tr>
+                            <td>DTDD</td>
+                            <td>200</td>
+                            <td>20</td>
+                            <td>2000$</td>
+                        </tr>
+                        <tr>
+                            <td>DTDD</td>
+                            <td>200</td>
+                            <td>20</td>
+                            <td>2000$</td>
+                        </tr>
+                        <tr>
+                            <td>DTDD</td>
+                            <td>200</td>
+                            <td>20</td>
+                            <td>2000$</td>
+                        </tr>
+                    </tbody>
+                    <tfoot style="background-color: antiquewhite;">
+
+                        <tr>
+                            <td>
+                                <h6>Tổng</h6>
+                            </td>
+                            <td>800</td>
+                            <td>80</td>
+                            <td>8000$</td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+
+
+            
+<div id="line-multiple">
+
+    <h3>Thống kê lượt tương tác</h3>
+  
+    <chart data="#traffic"
+           map-xy="year deathsPer100000"
+           scale-x-linear="1 10"
+           scale-y-linear="1 100">
+      <guide-y></guide-y>
+      <guide-x></guide-x>
+      <groups by="state">
+        <line></line>
+      </groups>
+      <groups by="state">
+        <points></points>
+      </groups>
+      <annotation data-deaths-per100000="85"
+                  data-year="9">DTDD</annotation>
+      <annotation data-deaths-per100000="55"
+                  data-year="9">Laptop</annotation>
+      <annotation data-deaths-per100000="40"
+                  data-year="9">Quanao</annotation>
+      <annotation data-deaths-per100000="28"
+                  data-year="9">TB</annotation>
+    </chart>
+              </div>
+              <div id="line-multiple">
+  <hr>
+    <h3>Thống kê số sản phẩm bán</h3>
+  
+    <chart data="#traffic"
+           map-xy="year deathsPer100000"
+           scale-x-linear="1 10"
+           scale-y-linear="1 100">
+      <guide-y></guide-y>
+      <guide-x></guide-x>
+      <groups by="state">
+        <line></line>
+      </groups>
+      <groups by="state">
+        <points></points>
+      </groups>
+      <annotation data-deaths-per100000="85"
+                  data-year="9">DTDD</annotation>
+      <annotation data-deaths-per100000="55"
+                  data-year="9">Laptop</annotation>
+      <annotation data-deaths-per100000="40"
+                  data-year="9">Quanao</annotation>
+      <annotation data-deaths-per100000="28"
+                  data-year="9">TB</annotation>
+    </chart>
+              </div>
+              <div id="line-multiple">
+  
+    <h3>Thống kê doanh thu</h3>
+  
+    <chart data="#traffic"
+           map-xy="year deathsPer100000"
+           scale-x-linear="1 10"
+           scale-y-linear="1 100">
+      <guide-y></guide-y>
+      <guide-x></guide-x>
+      <groups by="state">
+        <line></line>
+      </groups>
+      <groups by="state">
+        <points></points>
+      </groups>
+      <annotation data-deaths-per100000="85"
+                  data-year="9">DTDD</annotation>
+      <annotation data-deaths-per100000="55"
+                  data-year="9">Laptop</annotation>
+      <annotation data-deaths-per100000="40"
+                  data-year="9">Quanao</annotation>
+      <annotation data-deaths-per100000="28"
+                  data-year="9">TB</annotation>
+    </chart>
+              </div>
+        </div>
+    </div>
+    <link rel="variance-data" id="traffic" th:href="@{/images/traffic.csv}" />
+    <script src="//variancecharts.com/cdn/variance-noncommercial-standalone-f47ffcf.min.js" charset="UTF-8"></script>
+</body>
+
+</html>

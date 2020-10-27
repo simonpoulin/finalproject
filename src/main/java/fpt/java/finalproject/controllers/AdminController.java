@@ -125,4 +125,53 @@ public class AdminController {
     public String adminForgetPassword() {
         return "admin/forget_password";
     }
-}
+
+    //User*******************************************
+
+    @RequestMapping("/ublank")
+    public String BlankUser() {
+        return "user/layouts/blank_user_layouts";
+    }
+    @RequestMapping("/umain")
+    public String MainUser() {
+        return "user/layouts/main_user";
+    }
+     @RequestMapping("/adduser")
+    public String AddUser() {
+        return "user/layouts/add_user";
+    }
+    @RequestMapping("/cart")
+    public String Cart() {
+        return "user/cart";
+    }
+    @RequestMapping("/carth")
+    public String CartHistory() {
+        return "user/cart_history";
+    }
+    
+    @RequestMapping("/personal")
+    public String Personal() {
+        return "user/personal";
+    }
+    @RequestMapping("/product")
+    public String Pproduct() {
+        return "user/product";
+    }
+    @RequestMapping("/productde")
+    public String ProductlDetails() {
+        return "user/product_details";
+    }
+    @RequestMapping("/statistical")
+    public String Statisticals() {
+        return "user/shop/statistical";
+    }
+    @RequestMapping("/store")
+    public String Store() {
+        return "user/store";
+    }
+    @RequestMapping("/chart")
+    public String Chart() {
+        return "user/shop/chart";
+    }
+
+}  
