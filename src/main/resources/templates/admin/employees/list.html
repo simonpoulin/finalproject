@@ -1,7 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{admin/layouts/list.html}">
-<html lang="en">
 
 <head>
     <title>Title</title>
@@ -10,66 +9,38 @@
 <body>
     <div layout:fragment="list_form">
         <div class="col-sm-12" style="margin-top: 20px;">
-            <form action="">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">BẢNG THÔNG TIN NHÂN VIÊN</h5>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <th>Mã Nhân viên</th>
-                                <th>Vai trò</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Created At</th>
-                                <th>Số điện thoại</th>
-                                <th>Địa chỉ</th>
-                                <th>Email</th>
-                                <th>Avatar</th>
-                                <th>Hành động</th>
-                            </tbody>
-                            <tbody>
-                                <td>NV01</td>
-                                <td>Nhân Viên</td>
-                                <td>nv01</td>
-                                <td>123</td>
-                                <td>12/12/2020</td>
-                                <td>0941111111</td>
-                                <td>Đà Nẵng</td>
-                                <td>nv01@gmail.com</td>
-                                <td>Img.jpg</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                            <tbody>
-                                <td>NV02</td>
-                                <td>Quản Lí</td>
-                                <td>nv02</td>
-                                <td>123</td>
-                                <td>12/12/2020</td>
-                                <td>0941111111</td>
-                                <td>Đà Nẵng</td>
-                                <td>nv01@gmail.com</td>
-                                <td>Img.jpg</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                            <tbody>
-                                <td>NV03</td>
-                                <td>Nhân Viên</td>
-                                <td>nv03</td>
-                                <td>123</td>
-                                <td>12/12/2020</td>
-                                <td>0941111111</td>
-                                <td>Đà Nẵng</td>
-                                <td>nv01@gmail.com</td>
-                                <td>Img.jpg</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">BẢNG THÔNG TIN NHÂN VIÊN</h5>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <th>Mã Nhân viên</th>
+                            <th>Vai trò</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Created At</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>Email</th>
+                            <th>Avatar</th>
+                            <th>Hành động</th>
+                        </tbody>
+                        <tbody th:each="e : ${res.employeeList}">
+                            <td th:text="${e.id}"></td>
+                            <td th:text="${e.employeeRole.roleName}"></td>
+                            <td th:text="${e.username}"></td>
+                            <td th:text="${e.password}"></td>
+                            <td th:text="${e.createdAt}"></td>
+                            <td th:text="${e.phone}"></td>
+                            <td th:text="${e.address}"></td>
+                            <td th:text="${e.email}"></td>
+                            <td th:text="${e.id}">Img.jpg</td>
+                            <td><button type="button" class="btn btn-primary">Sửa</button>
+                                <button type="button" class="btn btn-danger">Xóa</button></td>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </body>
