@@ -21,11 +21,11 @@ public class EmployeeResponse extends Response {
         this.employee = employee;
     }
 
-    public boolean isEdit() {
+    public boolean getIsEdit() {
         return isEdit;
     }
 
-    public void setEdit(boolean isEdit) {
+    public void setIsEdit(boolean isEdit) {
         this.isEdit = isEdit;
     }
 

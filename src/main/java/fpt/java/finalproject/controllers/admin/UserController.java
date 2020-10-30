@@ -11,42 +11,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.response.EmployeeResponse;
-import fpt.java.finalproject.services.EmployeeService;
+import fpt.java.finalproject.models.User;
+import fpt.java.finalproject.response.UserResponse;
+import fpt.java.finalproject.services.UserService;
 
-@RequestMapping("/admin/employees")
+@RequestMapping("/admin/users")
 @Controller
-public class EmployeeController {
+public class UserController {
 
-    EmployeeResponse res;
+    UserResponse res;
 
     @Autowired
-    EmployeeService employeeService;
+    UserService userService;
 
     // Direct to add page
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new EmployeeResponse();
-        res.setTitle("Thêm nhân viên");
-        res.setIsEdit(false);
+        res = new UserResponse();
+        res.setTitle("Thêm người dùng");
 
         // Send new response bean
         m.addAttribute("res", res);
 
-        return "admin/employees/add_or_edit";
+        return "admin/users/add_or_edit";
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(Employee e, ModelMap m) {
+    public String save(User u, ModelMap m) {
 
-        res = new EmployeeResponse();
+        res = new UserResponse();
 
-        // Save employee
+        // Save user
         try {
-            employeeService.save(e);
+            userService.save(u);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -62,19 +61,19 @@ public class EmployeeController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/employees";
+        return "redirect:/admin/users";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
-        Employee e = new Employee();
+        res = new UserResponse();
+        User u = new User();
 
-        // Find employee
+        // Find user
         try {
-            e = employeeService.findById(id);
+            u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -84,14 +83,14 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setEmployee(e);
+        res.setUser(u);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/add_or_edit";
+        return "admin/users/add_or_edit";
     }
 
     // List
@@ -99,16 +98,16 @@ public class EmployeeController {
     public String list(ModelMap m) {
 
         Object obj = m.getAttribute("res");
-        List<Employee> l;
+        List<User> l;
 
         if (obj == null) {
-            res = new EmployeeResponse();
+            res = new UserResponse();
         } else {
-            res = (EmployeeResponse) obj;
+            res = (UserResponse) obj;
         }
 
         try {
-            l = employeeService.findAll();
+            l = userService.findAll();
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -118,25 +117,25 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setEmployeeList(l);
+        res.setUserList(l);
         res.setIsEdit(true);
-        res.setTitle("Danh sách nhân viên");
+        res.setTitle("Danh sách người dùng");
 
         // Send response
         m.addAttribute("res", res);
-        return "admin/employees/list";
+        return "admin/users/list";
     }
 
     // Detail
     @GetMapping("/{id}")
     public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
-        Employee e = new Employee();
+        res = new UserResponse();
+        User u = new User();
 
-        // Find employee
+        // Find user
         try {
-            e = employeeService.findById(id);
+            u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -146,24 +145,24 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setEmployee(e);
-        res.setTitle("Thông tin nhân viên");
+        res.setUser(u);
+        res.setTitle("Thông tin người dùng");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/edit";
+        return "admin/users/edit";
     }
 
     // Delete
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
+        res = new UserResponse();
 
-        // Find employee
+        // Find user
         try {
-            employeeService.deleteById(id);
+            userService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -173,11 +172,11 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setTitle("Xóa nhân viên thành công");
+        res.setTitle("Xóa người dùng thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/employees";
+        return "redirect:/admin/users";
     }
 }

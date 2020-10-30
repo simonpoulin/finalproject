@@ -1,13 +1,12 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{admin/layouts/main.html}">
+    layout:decorate="~{admin/layouts/main.html}">
 
 <head>
     <!-- Add division to title fragment -->
     <div layout:fragment="title">
 
-        <!-- list title fragment -->
-        <div layout:fragment="list_title"></div>
+        <title th:text="${res.title}"></title>
 
     </div>
 </head>
@@ -16,11 +15,18 @@ layout:decorate="~{admin/layouts/main.html}">
 
     <!-- Add division to section fragment -->
     <div layout:fragment="section">
+        <div class="col-sm-12" style="margin-top: 20px;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${res.title}"></h5>
 
-        <!-- list form fragment -->
-        <div layout:fragment="list_form">
+                    <!-- list form fragment -->
+                    <div layout:fragment="list_form">
+                    </div>
+
+                </div>
+            </div>
         </div>
-
     </div>
 
 </body>

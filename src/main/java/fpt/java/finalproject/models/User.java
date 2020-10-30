@@ -20,6 +20,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Column
+    private String name;
+    
     @Column(columnDefinition = "varchar not null")
     private String username;
 
@@ -150,6 +153,14 @@ public class User implements Serializable {
 
     public void setRecipients(Collection<Recipient> recipients) {
         this.recipients = recipients;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

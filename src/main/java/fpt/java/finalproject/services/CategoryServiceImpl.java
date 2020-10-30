@@ -16,8 +16,44 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public Category save(Category entity) {
-        return categoryRepository.save(entity);
+    public void save(Category entity) throws Exception {
+
+        Category c = categoryRepository.save(entity);
+
+        // Send error on fail
+        if (c == null) {
+            throw new Exception("Cannot save");
+        }
+
+    }
+
+    @Override
+    public Category findById(Integer id) throws Exception {
+
+        Category c = new Category();
+
+        // Find category
+        Optional<Category> opts = categoryRepository.findById(id);
+
+        // Set category
+        if (opts.isPresent()) {
+            c = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("Category not found");
+        }
+
+        return c;
+    }
+
+    @Override
+    public List<Category> findAll() throws Exception {
+        return (List<Category>) categoryRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Integer id) throws Exception {
+        categoryRepository.deleteById(id);
     }
 
     @Override
@@ -26,18 +62,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Optional<Category> findById(Integer id) {
-        return categoryRepository.findById(id);
-    }
-
-    @Override
     public boolean existsById(Integer id) {
         return categoryRepository.existsById(id);
-    }
-
-    @Override
-    public List<Category> findAll() {
-        return (List<Category>) categoryRepository.findAll();
     }
 
     @Override
@@ -48,11 +74,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public long count() {
         return categoryRepository.count();
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        categoryRepository.deleteById(id);
     }
 
     @Override

@@ -11,42 +11,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.response.EmployeeResponse;
-import fpt.java.finalproject.services.EmployeeService;
+import fpt.java.finalproject.models.Brand;
+import fpt.java.finalproject.response.BrandResponse;
+import fpt.java.finalproject.services.BrandService;
 
-@RequestMapping("/admin/employees")
+@RequestMapping("/admin/brands")
 @Controller
-public class EmployeeController {
+public class BrandController {
 
-    EmployeeResponse res;
+    BrandResponse res;
 
     @Autowired
-    EmployeeService employeeService;
+    BrandService brandService;
 
     // Direct to add page
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new EmployeeResponse();
-        res.setTitle("Thêm nhân viên");
-        res.setIsEdit(false);
+        res = new BrandResponse();
+        res.setTitle("Thêm nhãn hàng");
 
         // Send new response bean
         m.addAttribute("res", res);
 
-        return "admin/employees/add_or_edit";
+        return "admin/brands/add_or_edit";
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(Employee e, ModelMap m) {
+    public String save(Brand b, ModelMap m) {
 
-        res = new EmployeeResponse();
+        res = new BrandResponse();
 
-        // Save employee
+        // Save brand
         try {
-            employeeService.save(e);
+            brandService.save(b);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -62,19 +61,19 @@ public class EmployeeController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/employees";
+        return "redirect:/admin/brands";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
-        Employee e = new Employee();
+        res = new BrandResponse();
+        Brand b = new Brand();
 
-        // Find employee
+        // Find brand
         try {
-            e = employeeService.findById(id);
+            b = brandService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -84,14 +83,14 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setEmployee(e);
+        res.setBrand(b);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/add_or_edit";
+        return "admin/brands/add_or_edit";
     }
 
     // List
@@ -99,16 +98,16 @@ public class EmployeeController {
     public String list(ModelMap m) {
 
         Object obj = m.getAttribute("res");
-        List<Employee> l;
+        List<Brand> l;
 
         if (obj == null) {
-            res = new EmployeeResponse();
+            res = new BrandResponse();
         } else {
-            res = (EmployeeResponse) obj;
+            res = (BrandResponse) obj;
         }
 
         try {
-            l = employeeService.findAll();
+            l = brandService.findAll();
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -118,52 +117,24 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setEmployeeList(l);
+        res.setBrandList(l);
         res.setIsEdit(true);
-        res.setTitle("Danh sách nhân viên");
+        res.setTitle("Danh sách nhãn hàng");
 
         // Send response
         m.addAttribute("res", res);
-        return "admin/employees/list";
-    }
-
-    // Detail
-    @GetMapping("/{id}")
-    public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
-
-        res = new EmployeeResponse();
-        Employee e = new Employee();
-
-        // Find employee
-        try {
-            e = employeeService.findById(id);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
-
-        // Set response
-        res.setEmployee(e);
-        res.setTitle("Thông tin nhân viên");
-
-        // Send response
-        m.addAttribute("res", res);
-
-        return "admin/employees/edit";
+        return "admin/brands/list";
     }
 
     // Delete
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
+        res = new BrandResponse();
 
-        // Find employee
+        // Find brand
         try {
-            employeeService.deleteById(id);
+            brandService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setError(true);
@@ -173,11 +144,11 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setTitle("Xóa nhân viên thành công");
+        res.setTitle("Xóa nhãn hàng thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/employees";
+        return "redirect:/admin/brands";
     }
 }

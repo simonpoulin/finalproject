@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new Exception("Cannot save");
         }
 
-        return;
     }
 
     @Override

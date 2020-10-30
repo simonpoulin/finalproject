@@ -11,22 +11,12 @@
         <table class="table table-bordered">
             <tbody>
                 <th>ID</th>
-                <th>Tên người dùng</th>
-                <th>Username</th>
-                <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Email</th>
-                <th>Avatar</th>
+                <th>Tên nhãn hàng</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="e : ${res.userList}">
-                <td th:text="${e.id}"></td>
-                <td th:text="${e.name}"></td>
-                <th th:text="${e.username}"></th>
-                <td th:text="${e.phone}"></td>
-                <td th:text="${e.address}"></td>
-                <td th:text="${e.email}"></td>
-                <td th:text="${e.id}"></td>
+            <tbody th:each="b : ${res.brandList}">
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.brandName}"></td>
                 <td>
                     <button type="button" class="btn btn-primary">Sửa</button>
                     <button type="button" class="btn btn-danger">Xóa</button>

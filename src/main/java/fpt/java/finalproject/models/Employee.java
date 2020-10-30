@@ -18,12 +18,15 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name ="employees")
+@Table(name = "employees")
 public class Employee implements Serializable {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column
+    private String name;
 
     @Column
     private String username;
@@ -138,8 +141,12 @@ public class Employee implements Serializable {
         this.products = products;
     }
 
-    
+    public String getName() {
+        return name;
+    }
 
-    
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
