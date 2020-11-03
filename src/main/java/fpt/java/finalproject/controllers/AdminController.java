@@ -1,7 +1,24 @@
 package fpt.java.finalproject.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import fpt.java.finalproject.models.Brand;
+import fpt.java.finalproject.models.Category;
+import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.Product;
+import fpt.java.finalproject.models.Shop;
+import fpt.java.finalproject.models.ShopItem;
+import fpt.java.finalproject.models.User;
+import fpt.java.finalproject.repositories.CategoryRepository;
+import fpt.java.finalproject.response.BrandResponse;
+import fpt.java.finalproject.response.CategoryResponse;
+import fpt.java.finalproject.response.EmployeeResponse;
+import fpt.java.finalproject.response.ProductResponse;
+import fpt.java.finalproject.response.ShopItemResponse;
+import fpt.java.finalproject.response.ShopResponse;
+import fpt.java.finalproject.response.UserResponse;
 
 @Controller
 public class AdminController {
@@ -12,159 +29,110 @@ public class AdminController {
         return "module/blank_layout";
     }
 
-    // Error layout
-    @RequestMapping("/error404")
-    public String errorLayout() {
-        return "module/error";
-    }
-
-    // Admin main layout
-    @RequestMapping("/amain")
-    public String adminMain() {
-        return "admin/layouts/main";
-    }
-
-    // Admin add product
-    @RequestMapping("/aproductadd")
-    public String adminAddProduct() {
-        return "admin/products/add";
-    }
-
-    // Admin edit product
-    @RequestMapping("/aproductedit")
-    public String adminEditProduct() {
-        return "admin/products/edit";
-    }
-
-    // Admin list product
-    @RequestMapping("/aproductlist")
-    public String adminListProduct() {
-        return "admin/products/list";
-    }
-
-    // Admin add employee
-    @RequestMapping("/aemployeeadd")
-    public String adminAddEmployee() {
-        return "admin/employees/add";
-    }
-
-    // Admin edit employee
-    @RequestMapping("/aemployeeedit")
-    public String adminEditEmployee() {
-        return "admin/employees/edit";
-    }
-
-    // Admin List employee
-    @RequestMapping("/aemployeelist")
-    public String aemployeelist() {
-        return "admin/employees/list";
-    }
-
-    // Admin add item
-    @RequestMapping("/aitemadd")
-    public String adminAddItem() {
-        return "admin/items/add";
-    }
-
-    // Admin edit item
-    @RequestMapping("/aitemedit")
-    public String adminEditItem() {
-        return "admin/items/edit";
-    }
-
-    // Admin list item
-    @RequestMapping("/aitemlist")
-    public String adminListItem() {
-        return "admin/items/list";
-    }
-
-    // Admin add shop
-    @RequestMapping("/ashopadd")
-    public String adminAddShop() {
-        return "admin/shops/add";
-    }
-
-    // Admin edit shop
-    @RequestMapping("/ashopedit")
-    public String adminEditShop() {
-        return "admin/shops/edit";
-    }
-
-    // Admin list shop
-    @RequestMapping("/ashoplist")
-    public String adminListShop() {
-        return "admin/shops/list";
-    }
-
-    // Admin add user
-    @RequestMapping("/auseradd")
-    public String adminAddUser() {
-        return "admin/users/add";
-    }
-
-    // Admin edit user
-    @RequestMapping("/auseredit")
-    public String adminEditUser() {
-        return "admin/users/edit";
+    // Admin Brand detail
+    @RequestMapping("/abranddetail")
+    public String adminBrandDetail(ModelMap m) {
+        // the nay cung duowc ok
+        BrandResponse res = new BrandResponse();
+        Brand b = new Brand();
+        b.setId(1);
+        b.setBrandName("abc");
+        res.setBrand(b);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/brands/detail";
     }
     
-    // Admin list user
-    @RequestMapping("/auserlist")
-    public String adminListUser() {
-        return "admin/users/list";
+    // Admin Empoyee details
+    @RequestMapping("aemployeedetail")
+    public String adminEmployeeDetail(ModelMap m){
+        EmployeeResponse res = new EmployeeResponse();
+        Employee e = new Employee();
+        //e.setEmployeeRole("");
+        e.setId(1);
+        e.setName("Pham Ngoc Tung");
+        e.setUsername("username");
+        e.setPassword("password");
+        //e.setCreatedAt(2020-12-12);
+        //e.setPhone();
+        e.setAddress("address");
+        e.setEmail("email");
+        e.setAvatarUrl("avatarUrl");
+        res.setEmployee(e);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/employees/detail";
     }
 
-    // User home
-    @RequestMapping("/home")
-    public String home() {
-        return "user/home";
+    // Admin categories details
+    @RequestMapping("acategorydetail")
+    public String adminCategoryDetail(ModelMap m){
+        CategoryResponse res = new CategoryResponse();
+        Category c = new Category();
+        c.setId(1);
+        c.setCategoryName("smartphone");
+        res.setCategory(c);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/categories/detail";
     }
 
-    // User login
-    @RequestMapping("/login")
-    public String login() {
-        return "user/login";
+    // Admin item detail
+    @RequestMapping("aitemdetail")
+    public String adminItemDetail(ModelMap m){
+        ShopItemResponse res = new ShopItemResponse();
+        ShopItem s = new ShopItem();
+        s.setId(1);
+        s.setTitle("APPLE IPHONE 8 99%");
+        s.setDes("LOCK NHẬT");
+        //s.setPrice();
+        s.setQuantity(12);
+        res.setShopItem(s);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/items/detail";
     }
 
-    // User signup
-    @RequestMapping("/signup")
-    public String signup() {
-        return "user/signup";
+    //Admin user detail
+    @RequestMapping("auserdetail")
+    public String adminUserDetail(ModelMap m){
+        UserResponse res = new UserResponse();
+        User u = new User();
+        u.setId(1);
+        u.setName("Pham Ngoc Tung");
+        u.setUsername("tunggzsu128");
+        u.setPassword("123");
+        u.setPhone(941687974);
+        u.setAddress("Da Nang City");
+        u.setEmail("tungpham2127@gmail.com");
+        u.setAvatarUrl("avatarUrl");
+        res.setUser(u);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/users/detail";
     }
 
-    // User forget password
-    @RequestMapping("/forgetpassword")
-    public String forgetPassword() {
-        return "user/forget_password";
+    //Admin product detail
+    @RequestMapping("aproductdetail")
+    public String adminproductDetail(ModelMap m){
+        ProductResponse res = new ProductResponse();
+        Product p = new Product();
+        p.setId(1);
+        p.setName("Iphone 8");
+        // p.setShopItems("shopItems");
+        // p.setCategory(category);
+        // p.setBrand(brand);
+        p.setStatus("Hoạt động");
+        p.setDes("Lock nhật");
+        res.setProduct(p);
+        m.addAttribute("res", res);
+        System.out.println(res);
+        return "admin/products/detail";
     }
 
-    // Admin home
-    @RequestMapping("/ahome")
-    public String adminHome() {
-        return "admin/admin_page";
-    }
-
-    // Admin login
-    @RequestMapping("/alogin")
-    public String adminLogin() {
-        return "admin/login";
-    }
-
-    // Admin signup
-    @RequestMapping("/asignup")
-    public String adminSignup() {
-        return "admin/signup";
-    }
-
-    // Admin forget password
-    @RequestMapping("/aforgetpassword")
-    public String adminForgetPassword() {
-        return "admin/forget_password";
-    }
-
-    // admin page
-    @RequestMapping("/adminpage")
-    public String adminpage() {
-        return "admin/ad_page_test";
-    }
+    //Admin shop detail
+    @RequestMapping("/ashopdetail")
+    public String adminShopDetail(ModelMap m);
+    ShopResponse res = new ShopResponse();
+    return "admin/shops/detail";
 }

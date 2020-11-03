@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/detail.html}">
+
+<head>
+    <title>Title</title>
+</head>
+
+<body>
+    <div layout:fragment="detail_form">
+        <div class="col-sm-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">CHI TIẾT NGƯỜI DÙNG</h5>
+                    <hr>
+                    <table class="table table-light">
+                        <tbody>
+                            <th>
+                                ID
+                            </th>
+                            <td th:text="${res.user.id}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>
+                                Tên người dùng
+                            </th>
+                            <td th:text="${res.user.name}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Username</th>
+                            <td th:text="${res.user.username}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Password</th>
+                            <td th:text="${res.user.password}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Số điện thoại</th>
+                            <td th:text="${res.user.phone}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Địa chỉ</th>
+                            <td th:text="${res.user.address}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Email</th>
+                            <td th:text="${res.user.email}"></td>
+                        </tbody>
+                        <tbody>
+                            <th>Avatar</th>
+                            <td th:text="${res.user.avatarUrl}"></td>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" type="button">Danh sách người dùng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>
