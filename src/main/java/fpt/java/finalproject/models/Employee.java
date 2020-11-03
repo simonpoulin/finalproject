@@ -25,30 +25,30 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "varchar(50) not null")
     private String name;
 
-    @Column
+    @Column(columnDefinition = "varchar(50) not null")
     private String username;
 
-    @Column
+    @Column(columnDefinition = "varchar(50) not null")
     private String password;
 
-    @Column
+    @Column(columnDefinition = "date not null")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
 
-    @Column
+    @Column(columnDefinition = "varchar(10) not null")
     private Integer phone;
 
-    @Column
+    @Column(columnDefinition = "varchar(500) not null")
     private String address;
 
-    @Column
+    @Column(columnDefinition = "varchar(50) not null")
     private String email;
 
-    @Column
+    @Column(columnDefinition = "varchar(500)")
     private String avatarUrl;
 
     @ManyToOne

@@ -1,4 +1,5 @@
 package fpt.java.finalproject.models;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -20,7 +21,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "date not null")
     private Date date;
 
     @ManyToOne
@@ -34,8 +35,6 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "recipient_id")
     private Recipient recipient;
-
-    
 
     @OneToMany(mappedBy = "order")
     private Collection<OrderDetail> orderDetails;
@@ -91,6 +90,20 @@ public class Order implements Serializable {
         this.recipient = recipient;
     }
 
-    
-    
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Collection<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Collection<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
 }

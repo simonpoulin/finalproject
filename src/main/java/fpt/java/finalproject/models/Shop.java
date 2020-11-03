@@ -23,18 +23,27 @@ public class Shop implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "varchar(500) not null")
     private String name;
-    @Column
+
+    @Column(columnDefinition = "varchar(500) not null")
     private String address;
-    @Column
+
+    @Column(columnDefinition = "varchar(10) not null")
     private Integer phone;
-    @Column
+
+    @Column(columnDefinition = "date not null")
     private Date createdAt;
-    @Column
+
+    @Column(columnDefinition = "varchar(50) not null")
     private String email;
-    @Column
+
+    @Column(columnDefinition = "varchar(50) not null")
     private String status;
+
+    @Column(columnDefinition = "varchar(500)")
+    private String avatarUrl;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -140,6 +149,14 @@ public class Shop implements Serializable {
 
     public void setShopEmployees(Collection<ShopEmployee> shopEmployees) {
         this.shopEmployees = shopEmployees;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
 }

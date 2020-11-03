@@ -19,7 +19,7 @@ public class OrderStatus implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "varchar(50) not null")
     private String statusName;
 
     @OneToMany(mappedBy = "orderStatus")

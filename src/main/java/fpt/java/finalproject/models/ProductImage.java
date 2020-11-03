@@ -18,7 +18,8 @@ public class ProductImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "varchar(500) not null")
     private String imageUrl;
 
     @ManyToOne

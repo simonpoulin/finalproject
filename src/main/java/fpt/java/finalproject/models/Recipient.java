@@ -16,16 +16,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "recipients")
 public class Recipient implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "varchar(50) not null")
     private String name;
-    @Column
+
+    @Column(columnDefinition = "varchar(50) not null")
     private String address;
-    @Column
-    private Integer phone;
-    @Column
+
+    @Column(columnDefinition = "varchar(10) not null")
+    private String phone;
+
+    @Column(columnDefinition = "varchar(50) not null")
     private String email;
 
     @ManyToOne
@@ -62,14 +67,6 @@ public class Recipient implements Serializable {
         this.address = address;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -92,6 +89,14 @@ public class Recipient implements Serializable {
 
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
