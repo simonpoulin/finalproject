@@ -1,0 +1,85 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin/layouts/detail.html}">
+
+<head>
+  <title>Title</title>
+</head>
+
+<body>
+  <div layout:fragment="detail_form">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Employee Detail</h5>
+          <hr>
+          <table class="table table-light">
+            <tbody>
+              <th>
+                Vai trò
+              </th>
+              <td></td>
+            </tbody>
+            <tbody>
+              <th>
+                ID
+              </th>
+              <td th:text="${res.employee.id}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Tên nhân viên
+              </th>
+              <td th:text="${res.employee.name}">Phạm Ngọc Tùng</td>
+            </tbody>
+            <tbody>
+              <th>
+                Username
+              </th>
+              <td th:text="${res.employee.username}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Password
+              </th>
+              <td th:text="${res.employee.password}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Created At
+              </th>
+              <td th:text="${res.employee.createdAt}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Số điện thoại
+              </th>
+              <td th:text="${res.employee.phone}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Địa chỉ
+              </th>
+              <td th:text="${res.employee.address}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Email
+              </th>
+              <td th:text="${res.employee.email}"></td>
+            </tbody>
+            <tbody>
+              <th>
+                Avatar
+              </th>
+              <td th:text="${res.employee.AvatarUrl}"></td>
+            </tbody>
+          </table>
+          <button class="btn btn-primary" type="button">List Employees</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

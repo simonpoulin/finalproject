@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin/layouts/detail.html}">
+
+<head>
+  <title>Title</title>
+</head>
+
+<body>
+  <div layout:fragment="detail_form">
+    <div class="col-sm-6 offset-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">CHI TIẾT THỂ LOẠI</h5>
+          <p class="card-text">Content</p>
+          <hr>
+          <table class="table table-light">
+            <tbody>
+              <th>ID</th>
+              <td th:text="${res.category.id}"></td>
+            </tbody>
+            <tbody>
+              <th>Tên thể loại</th>
+              <td th:text="${res.category.CategoryName}">Thời trang nữ</td>
+            </tbody>
+          </table>
+          <button class="btn btn-primary" type="button">Danh sách thể loại</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

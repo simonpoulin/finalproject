@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin/layouts/detail.html}">
+
+<head>
+  <title>Title</title>
+</head>
+
+<body>
+  <div layout:fragment="detail_form">
+    <div class="col-sm-6 offset-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Brand Detail</h5>
+          <p class="card-text">Content</p>
+          <hr>
+          <table class="table table-light">
+            <tbody>
+              <th>ID</th>
+              <td th:text="${res.brand.id}"></td>
+            </tbody>
+            <tbody>
+              <th>Tên nhãn hàng</th>
+              <td th:text="${res.brand.brandName}"></td>
+            </tbody>
+          </table>
+
+          <button class="btn btn-primary" type="button">Danh sách nhãn hàng</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
