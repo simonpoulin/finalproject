@@ -18,12 +18,12 @@ public class ShopPack implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String name;
-    @Column
+
+    @Column(columnDefinition = "float not null")
     private Float price;
-    @Column
-    private String Rank;
 
     @OneToMany(mappedBy = "shopPack")
     private Collection<Shop> shops;
@@ -53,14 +53,6 @@ public class ShopPack implements Serializable {
 
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public String getRank() {
-        return Rank;
-    }
-
-    public void setRank(String rank) {
-        Rank = rank;
     }
 
     public Collection<Shop> getShops() {

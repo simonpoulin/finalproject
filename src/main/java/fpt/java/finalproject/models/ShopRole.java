@@ -18,7 +18,8 @@ public class ShopRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String roleName;
 
     @OneToMany(mappedBy = "shopRole")

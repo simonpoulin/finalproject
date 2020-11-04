@@ -20,13 +20,17 @@ public class ShopItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String title;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String des;
-    @Column
+
+    @Column(columnDefinition = "float not null")
     private Float price;
-    @Column
+
+    @Column(columnDefinition = "int not null")
     Integer quantity;
 
     @ManyToOne

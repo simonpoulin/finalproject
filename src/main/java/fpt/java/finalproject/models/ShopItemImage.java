@@ -18,8 +18,9 @@ public class ShopItemImage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
-    String imageUrl;
+
+    @Column(columnDefinition = "nvarchar(500) not null")
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "shop_item_id")

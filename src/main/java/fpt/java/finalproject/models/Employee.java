@@ -25,30 +25,30 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String name;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String password;
 
-    @Column
+    @Column(columnDefinition = "date not null")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
 
-    @Column
-    private Integer phone;
+    @Column(columnDefinition = "nvarchar(10) not null")
+    private String phone;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String address;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500)")
     private String avatarUrl;
 
     @ManyToOne
@@ -91,14 +91,6 @@ public class Employee implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public String getAddress() {
@@ -147,6 +139,14 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

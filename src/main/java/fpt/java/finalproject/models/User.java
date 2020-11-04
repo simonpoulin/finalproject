@@ -1,6 +1,7 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -15,31 +16,34 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String name;
-    
-    @Column(columnDefinition = "varchar not null")
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String password;
 
-    @Column
-    private Integer phone;
+    @Column(columnDefinition = "nvarchar(10) not null")
+    private String phone;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String address;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500)")
     private String avatarUrl;
+
+    @Column
+    private Date createdAt;
 
     @OneToOne(mappedBy = "user")
     private Shop shop;
@@ -81,14 +85,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public String getAddress() {
@@ -161,6 +157,22 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

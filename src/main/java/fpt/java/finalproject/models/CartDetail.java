@@ -12,20 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="cartdetails")
+@Table(name = "cartdetails")
 public class CartDetail implements Serializable {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column 
+    @Column(columnDefinition = "int not null")
     private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "shop_item_id")
     private ShopItem shopItem;
-    
+
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
@@ -65,7 +65,4 @@ public class CartDetail implements Serializable {
         this.cart = cart;
     }
 
- 
-    
-    
 }

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{admin/layouts/list.html}">
@@ -8,51 +7,31 @@
 </head>
 
 <body>
+
     <div layout:fragment="list_form">
-        <div class="col-sm-6 offset-3" style="margin-top: 20px;">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">BẢNG DANH SÁCH MẶT HÀNG</h5>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <th>Mã Mặt hàng</th>
-                            <th>Tiêu đề</th>
-                            <th>Miêu tả</th>
-                            <th>Giá bán</th>
-                            <th>Định lượng</th>
-                            <th>Hành động</th>
-                        </tbody>
-                        <tbody>
-                            <td>ITEM01</td>
-                            <td>Điện tử</td>
-                            <td>text</td>
-                            <td>1000$</td>
-                            <td>text</td>
-                            <td><button type="button" class="btn btn-primary">Sửa</button>
-                                <button type="button" class="btn btn-danger">Xóa</button></td>
-                        </tbody>
-                        <tbody>
-                            <td>ITEM01</td>
-                            <td>Điện tử</td>
-                            <td>text</td>
-                            <td>1000$</td>
-                            <td>text</td>
-                            <td><button type="button" class="btn btn-primary">Sửa</button>
-                                <button type="button" class="btn btn-danger">Xóa</button></td>
-                        </tbody>
-                        <tbody>
-                            <td>ITEM01</td>
-                            <td>Điện tử</td>
-                            <td>text</td>
-                            <td>1000$</td>
-                            <td>text</td>
-                            <td><button type="button" class="btn btn-primary">Sửa</button>
-                                <button type="button" class="btn btn-danger">Xóa</button></td>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+        <table class="table table-bordered">
+            <tbody>
+                <th>Mã Mặt hàng</th>
+                <th>Tiêu đề</th>
+                <th>Miêu tả</th>
+                <th>Giá bán</th>
+                <th>Số lượng</th>
+                <th>Hành động</th>
+            </tbody>
+            <tbody th:each="i : ${res.shopItemList}">
+                <td th:text="${i.id}"></td>
+                <td th:text="${i.title}"></td>
+                <td th:text="${i.des}"></td>
+                <td th:text="${i.price}"></td>
+                <td th:text="${i.quantity}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                </td>
+            </tbody>
+        </table>
+
     </div>
 </body>
 

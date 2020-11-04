@@ -23,22 +23,30 @@ public class Shop implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String name;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String address;
-    @Column
-    private Integer phone;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(10) not null")
+    private String phone;
+
+    @Column(columnDefinition = "date not null")
     private Date createdAt;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String status;
+
+    @Column(columnDefinition = "nvarchar(500)")
+    private String avatarUrl;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @MapsId
     private User user;
 
     @ManyToOne
@@ -76,14 +84,6 @@ public class Shop implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public Date getCreatedAt() {
@@ -140,6 +140,22 @@ public class Shop implements Serializable {
 
     public void setShopEmployees(Collection<ShopEmployee> shopEmployees) {
         this.shopEmployees = shopEmployees;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

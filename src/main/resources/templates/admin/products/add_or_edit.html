@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="addOrEdit_form">
+
+        <form class="form-group" th:action="@{admin/products/save}" method="POST" th:object="${res.product}">
+            <div th:if="${res.isEdit}">
+                <label for="my-input">Mã sản phẩm</label>
+                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+            </div>
+            <label for="my-input">Tên sản phẩm</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{name}">
+            <label for="my-input">Danh mục</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{category.categoryName}">
+            <label for="my-input">Nhãn hiệu</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{brand.brandName}">
+            <label for="my-textarea">Mô tả</label>
+            <textarea id="my-textarea" class="form-control" th:field="*{des}" rows="5"></textarea>
+            <hr>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
