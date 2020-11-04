@@ -48,8 +48,8 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user")
     private Shop shop;
 
-    @OneToOne(mappedBy = "user")
-    private Cart cart;
+    @OneToMany(mappedBy = "user")
+    private Collection<CartDetail> cartDetails;
 
     @OneToMany(mappedBy = "user")
     private Collection<Order> orders;
@@ -119,14 +119,6 @@ public class User implements Serializable {
         this.shop = shop;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
     public Collection<Order> getOrders() {
         return orders;
     }
@@ -173,6 +165,14 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Collection<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(Collection<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
     }
 
 }

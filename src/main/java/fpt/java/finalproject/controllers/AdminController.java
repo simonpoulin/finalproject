@@ -64,6 +64,7 @@ public class AdminController {
         e.setAddress("address");
         e.setEmail("email");
         e.setAvatarUrl("avatarUrl");
+        e.setEmployeeRole(r);
 
         // Set response
         res.setEmployee(e);
