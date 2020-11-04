@@ -31,7 +31,7 @@ public class User implements Serializable {
     private String password;
 
     @Column(columnDefinition = "varchar(10) not null")
-    private Integer phone;
+    private String phone;
 
     @Column(columnDefinition = "varchar(500) not null")
     private String address;
@@ -85,14 +85,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public String getAddress() {
@@ -173,6 +165,14 @@ public class User implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

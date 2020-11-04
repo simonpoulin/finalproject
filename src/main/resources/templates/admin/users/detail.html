@@ -8,53 +8,43 @@
 
 <body>
     <div layout:fragment="detail_form">
-        <div class="col-sm-6 offset-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">CHI TIẾT NGƯỜI DÙNG</h5>
-                    <hr>
-                    <table class="table table-light">
-                        <tbody>
-                            <th>
-                                ID
-                            </th>
-                            <td th:text="${res.user.id}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>
-                                Tên người dùng
-                            </th>
-                            <td th:text="${res.user.name}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Username</th>
-                            <td th:text="${res.user.username}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Password</th>
-                            <td th:text="${res.user.password}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Số điện thoại</th>
-                            <td th:text="${res.user.phone}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Địa chỉ</th>
-                            <td th:text="${res.user.address}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Email</th>
-                            <td th:text="${res.user.email}"></td>
-                        </tbody>
-                        <tbody>
-                            <th>Avatar</th>
-                            <td th:text="${res.user.avatarUrl}"></td>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-primary" type="button">Danh sách người dùng</button>
-                </div>
-            </div>
-        </div>
+
+        <table class="table table-light" th:object="${res.user}">
+            <tbody>
+                <th>ID</th>
+                <td th:text="*{id}"></td>
+            </tbody>
+            <tbody>
+                <th>Tên người dùng</th>
+                <td th:text="*{name}"></td>
+            </tbody>
+            <tbody>
+                <th>Username</th>
+                <td th:text="*{username}"></td>
+            </tbody>
+            <tbody>
+                <th>Password</th>
+                <td th:text="*{password}"></td>
+            </tbody>
+            <tbody>
+                <th>Số điện thoại</th>
+                <td th:text="*{phone}"></td>
+            </tbody>
+            <tbody>
+                <th>Địa chỉ</th>
+                <td th:text="*{address}"></td>
+            </tbody>
+            <tbody>
+                <th>Email</th>
+                <td th:text="*{email}"></td>
+            </tbody>
+            <tbody>
+                <th>Avatar</th>
+                <td th:text="*{avatarUrl}"></td>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" type="button">Danh sách người dùng</button>
+
     </div>
 
 </html>

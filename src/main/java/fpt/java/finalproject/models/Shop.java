@@ -31,7 +31,7 @@ public class Shop implements Serializable {
     private String address;
 
     @Column(columnDefinition = "varchar(10) not null")
-    private Integer phone;
+    private String phone;
 
     @Column(columnDefinition = "date not null")
     private Date createdAt;
@@ -85,14 +85,6 @@ public class Shop implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public Date getCreatedAt() {
@@ -157,6 +149,14 @@ public class Shop implements Serializable {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

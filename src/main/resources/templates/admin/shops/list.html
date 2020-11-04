@@ -8,66 +8,29 @@
 
 <body>
     <div layout:fragment="list_form">
-        <div class="col-sm-12" style="margin-top: 20px;">
-            <form action="">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">BẢNG DANH SÁCH CỬA HÀNG</h5>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <th>ID Cửa Hàng</th>
-                                <th>Tên Cửa Hàng</th>
-                                <th>Địa Chỉ</th>
-                                <th>Số điện thoại</th>
-                                <th>Email</th>
-                                <th>Trạng Thái</th>
-                                <th>Hành động</th>
-                            </tbody>
-                            <tbody>
-                                <td>SHOP01</td>
-                                <td>Tùng Sneaker</td>
-                                <td>Liên Chiểu, Đà Nẵng</td>
-                                <td>0941687974</td>
-                                <td>tungsneaker@gmail.com</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                            <tbody>
-                                <td>SHOP01</td>
-                                <td>Tùng Sneaker</td>
-                                <td>Liên Chiểu, Đà Nẵng</td>
-                                <td>0941687974</td>
-                                <td>tungsneaker@gmail.com</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                            <tbody>
-                                <td>SHOP01</td>
-                                <td>Tùng Sneaker</td>
-                                <td>Liên Chiểu, Đà Nẵng</td>
-                                <td>0941687974</td>
-                                <td>tungsneaker@gmail.com</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                            <tbody>
-                                <td>SHOP01</td>
-                                <td>Tùng Sneaker</td>
-                                <td>Liên Chiểu, Đà Nẵng</td>
-                                <td>0941687974</td>
-                                <td>tungsneaker@gmail.com</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-primary">Sửa</button>
-                                    <button type="button" class="btn btn-danger">Xóa</button></td>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </form>
-        </div>
+
+        <table class="table table-bordered">
+            <tbody>
+                <th>ID Cửa Hàng</th>
+                <th>Tên Cửa Hàng</th>
+                <th>Địa Chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Trạng Thái</th>
+                <th>Avatar</th>
+            </tbody>
+            <tbody th:each="s : ${res.shopList}">
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.name}"></td>
+                <td th:text="${s.adress}"></td>
+                <td th:text="${s.phone}"></td>
+                <td th:text="${s.email}"></td>
+                <td th:text="${s.avatarUrl}"></td>
+                <td><button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-danger">Xóa</button></td>
+            </tbody>
+        </table>
+
     </div>
 </body>
 

@@ -1,5 +1,7 @@
 package fpt.java.finalproject.controllers;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,17 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Category;
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.models.Product;
-import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.models.User;
-import fpt.java.finalproject.repositories.CategoryRepository;
 import fpt.java.finalproject.response.BrandResponse;
 import fpt.java.finalproject.response.CategoryResponse;
 import fpt.java.finalproject.response.EmployeeResponse;
 import fpt.java.finalproject.response.ProductResponse;
 import fpt.java.finalproject.response.ShopItemResponse;
-import fpt.java.finalproject.response.ShopResponse;
 import fpt.java.finalproject.response.UserResponse;
 
 @Controller
@@ -42,23 +42,32 @@ public class AdminController {
         System.out.println(res);
         return "admin/brands/detail";
     }
-    
+
     // Admin Empoyee details
-    @RequestMapping("aemployeedetail")
-    public String adminEmployeeDetail(ModelMap m){
+    @RequestMapping("/aemployeedetail")
+    public String adminEmployeeDetail(ModelMap m) {
         EmployeeResponse res = new EmployeeResponse();
+        
+        // Set EmployeeRole
+        EmployeeRole r = new EmployeeRole();
+        r.setId(12);
+        r.setRoleName("Super");
+
+        // Set Employee
         Employee e = new Employee();
-        //e.setEmployeeRole("");
         e.setId(1);
         e.setName("Pham Ngoc Tung");
         e.setUsername("username");
         e.setPassword("password");
-        //e.setCreatedAt(2020-12-12);
-        //e.setPhone();
+        e.setCreatedAt(new Date(new Date().getTime()));
+        e.setPhone("0775352970");
         e.setAddress("address");
         e.setEmail("email");
         e.setAvatarUrl("avatarUrl");
+
+        // Set response
         res.setEmployee(e);
+        res.setTitle("Employee detail");
         m.addAttribute("res", res);
         System.out.println(res);
         return "admin/employees/detail";
@@ -66,7 +75,7 @@ public class AdminController {
 
     // Admin categories details
     @RequestMapping("acategorydetail")
-    public String adminCategoryDetail(ModelMap m){
+    public String adminCategoryDetail(ModelMap m) {
         CategoryResponse res = new CategoryResponse();
         Category c = new Category();
         c.setId(1);
@@ -79,13 +88,13 @@ public class AdminController {
 
     // Admin item detail
     @RequestMapping("aitemdetail")
-    public String adminItemDetail(ModelMap m){
+    public String adminItemDetail(ModelMap m) {
         ShopItemResponse res = new ShopItemResponse();
         ShopItem s = new ShopItem();
         s.setId(1);
         s.setTitle("APPLE IPHONE 8 99%");
         s.setDes("LOCK NHẬT");
-        //s.setPrice();
+        // s.setPrice();
         s.setQuantity(12);
         res.setShopItem(s);
         m.addAttribute("res", res);
@@ -93,16 +102,16 @@ public class AdminController {
         return "admin/items/detail";
     }
 
-    //Admin user detail
+    // Admin user detail
     @RequestMapping("auserdetail")
-    public String adminUserDetail(ModelMap m){
+    public String adminUserDetail(ModelMap m) {
         UserResponse res = new UserResponse();
         User u = new User();
         u.setId(1);
         u.setName("Pham Ngoc Tung");
         u.setUsername("tunggzsu128");
         u.setPassword("123");
-        u.setPhone(941687974);
+        u.setPhone("941687974");
         u.setAddress("Da Nang City");
         u.setEmail("tungpham2127@gmail.com");
         u.setAvatarUrl("avatarUrl");
@@ -112,9 +121,9 @@ public class AdminController {
         return "admin/users/detail";
     }
 
-    //Admin product detail
+    // Admin product detail
     @RequestMapping("aproductdetail")
-    public String adminproductDetail(ModelMap m){
+    public String adminproductDetail(ModelMap m) {
         ProductResponse res = new ProductResponse();
         Product p = new Product();
         p.setId(1);
@@ -130,9 +139,11 @@ public class AdminController {
         return "admin/products/detail";
     }
 
-    //Admin shop detail
+    // Admin shop detail
     @RequestMapping("/ashopdetail")
-    public String adminShopDetail(ModelMap m);
-    ShopResponse res = new ShopResponse();
-    return "admin/shops/detail";
+    public String adminShopDetail(ModelMap m) {
+        // ShopResponse res = new ShopResponse();
+        return "admin/shops/detail";
+    }
+
 }

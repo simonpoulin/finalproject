@@ -40,7 +40,7 @@ public class Employee implements Serializable {
     private Date createdAt;
 
     @Column(columnDefinition = "varchar(10) not null")
-    private Integer phone;
+    private String phone;
 
     @Column(columnDefinition = "varchar(500) not null")
     private String address;
@@ -93,14 +93,6 @@ public class Employee implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -147,6 +139,14 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
