@@ -21,16 +21,16 @@ public class Recipient implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(50) not null")
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String name;
 
-    @Column(columnDefinition = "varchar(50) not null")
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String address;
 
-    @Column(columnDefinition = "varchar(10) not null")
+    @Column(columnDefinition = "nvarchar(10) not null")
     private String phone;
 
-    @Column(columnDefinition = "varchar(50) not null")
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
     @ManyToOne

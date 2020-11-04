@@ -19,7 +19,7 @@ public class EmployeeRole implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(100) not null")
+    @Column(columnDefinition = "nvarchar(100) not null")
     private String roleName;
 
     @OneToMany(mappedBy = "employeeRole")

@@ -21,10 +21,10 @@ public class ShopItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String title;
 
-    @Column(columnDefinition = "varchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String des;
 
     @Column(columnDefinition = "float not null")

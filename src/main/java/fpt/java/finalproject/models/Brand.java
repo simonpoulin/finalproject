@@ -19,7 +19,7 @@ public class Brand implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String brandName;
 
     @OneToMany(mappedBy = "brand")

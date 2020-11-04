@@ -19,7 +19,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(50) not null")
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String categoryName;
 
     @OneToMany(mappedBy = "category")

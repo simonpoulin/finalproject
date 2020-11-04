@@ -21,13 +21,13 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "varchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String name;
 
-    @Column(columnDefinition = "varchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String des;
 
-    @Column(columnDefinition = "varchar(50) not null")
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String status;
 
     @ManyToOne
