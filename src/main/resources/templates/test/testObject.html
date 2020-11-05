@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{module/blank_layout.html}">
+
+<head>
+
+    <div layout:fragment="head">
+        <title th:text="${res.title}"></title>
+    </div>
+
+</head>
+
+<body>
+
+    <div layout:fragment="body">
+
+        <h1 th:text="${res.title}"></h1>
+        <br>
+        <h4 th:text="${res.message}"></h4>
+        <br>
+        <hr>
+        <br>
+        <h4>Is Edit: </h4>
+        <h4 th:text="${res.isEdit}"></h4>
+        <br>
+        <hr>
+        <br>
+        <table class="table table-light" th:object="${res.object}">
+            <tbody>
+                <th>ID</th>
+                <td th:text="*{id}"></td>
+            </tbody>
+            <tbody>
+                <th>Name</th>
+                <td th:text="*{brandName}"></td>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>

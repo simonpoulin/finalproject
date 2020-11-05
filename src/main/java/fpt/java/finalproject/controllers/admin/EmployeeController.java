@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.response.EmployeeResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/employees")
 @Controller
 public class EmployeeController {
-
-    EmployeeResponse res;
 
     @Autowired
     EmployeeService employeeService;
@@ -28,7 +28,7 @@ public class EmployeeController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new EmployeeResponse();
+        ObjectResponse<Employee> res = new ObjectResponse<>();
         res.setTitle("Thêm nhân viên");
         res.setIsEdit(false);
 
@@ -42,14 +42,14 @@ public class EmployeeController {
     @PostMapping("/save")
     public String save(Employee e, ModelMap m) {
 
-        res = new EmployeeResponse();
+        Response res = new Response();
 
         // Save employee
         try {
             employeeService.save(e);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -69,7 +69,7 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
+        ObjectResponse<Employee> res = new ObjectResponse<>();
         Employee e = new Employee();
 
         // Find employee
@@ -77,14 +77,14 @@ public class EmployeeController {
             e = employeeService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setEmployee(e);
+        res.setObject(e);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
@@ -98,28 +98,36 @@ public class EmployeeController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Object obj = m.getAttribute("res");
-        List<Employee> l;
-
+        Response obj = (Response) m.getAttribute("res");
+        ListResponse<Employee> res = new ListResponse<>();
         if (obj == null) {
-            res = new EmployeeResponse();
+            res = new ListResponse<>();
         } else {
-            res = (EmployeeResponse) obj;
+            res.setNewResponse(obj);
+            ;
         }
 
+        List<Employee> l;
         try {
             l = employeeService.findAll();
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setEmployeeList(l);
-        res.setIsEdit(true);
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
         res.setTitle("Danh sách nhân viên");
 
         // Send response
@@ -131,7 +139,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
+        ObjectResponse<Employee> res = new ObjectResponse<>();
         Employee e = new Employee();
 
         // Find employee
@@ -139,14 +147,14 @@ public class EmployeeController {
             e = employeeService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setEmployee(e);
+        res.setObject(e);
         res.setTitle("Thông tin nhân viên");
 
         // Send response
@@ -159,14 +167,14 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new EmployeeResponse();
+        Response res = new Response();
 
         // Find employee
         try {
             employeeService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

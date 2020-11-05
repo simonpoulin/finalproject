@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.User;
-import fpt.java.finalproject.response.UserResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.UserService;
 
 @RequestMapping("/admin/users")
 @Controller
 public class UserController {
-
-    UserResponse res;
 
     @Autowired
     UserService userService;
@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new UserResponse();
+        Response res = new Response();
         res.setTitle("Thêm người dùng");
 
         // Send new response bean
@@ -41,14 +41,14 @@ public class UserController {
     @PostMapping("/save")
     public String save(User u, ModelMap m) {
 
-        res = new UserResponse();
+        ObjectResponse<User> res = new ObjectResponse<>();
 
         // Save user
         try {
             userService.save(u);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -68,7 +68,7 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new UserResponse();
+        ObjectResponse<User> res = new ObjectResponse<>();
         User u = new User();
 
         // Find user
@@ -76,14 +76,14 @@ public class UserController {
             u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setUser(u);
+        res.setObject(u);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
@@ -97,28 +97,36 @@ public class UserController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Object obj = m.getAttribute("res");
-        List<User> l;
-
+        Response obj = (Response) m.getAttribute("res");
+        ListResponse<User> res = new ListResponse<>();
         if (obj == null) {
-            res = new UserResponse();
+            res = new ListResponse<>();
         } else {
-            res = (UserResponse) obj;
+            res.setNewResponse(obj);
+            ;
         }
 
+        List<User> l;
         try {
             l = userService.findAll();
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setUserList(l);
-        res.setIsEdit(true);
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
         res.setTitle("Danh sách người dùng");
 
         // Send response
@@ -130,7 +138,7 @@ public class UserController {
     @GetMapping("/{id}")
     public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new UserResponse();
+        ObjectResponse<User> res = new ObjectResponse<>();
         User u = new User();
 
         // Find user
@@ -138,14 +146,14 @@ public class UserController {
             u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setUser(u);
+        res.setObject(u);
         res.setTitle("Thông tin người dùng");
 
         // Send response
@@ -158,14 +166,14 @@ public class UserController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new UserResponse();
+        Response res = new Response();
 
         // Find user
         try {
             userService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

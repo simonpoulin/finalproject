@@ -7,6 +7,11 @@ public class Response {
     public Response() {
     }
 
+    public void setNewResponse(Response res) {
+        this.setIsError(res.getIsError());
+        this.setMessage(res.getMessage());
+    }
+
     public String getTitle() {
         return title;
     }
@@ -23,11 +28,11 @@ public class Response {
         this.message = message;
     }
 
-    public Boolean isError() {
+    public Boolean getIsError() {
         return isError;
     }
 
-    public void setError(Boolean isError) {
+    public void setIsError(Boolean isError) {
         this.isError = isError;
     }
 

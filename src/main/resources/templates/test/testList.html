@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{module/blank_layout.html}">
+
+<head>
+
+    <div layout:fragment="head">
+        <title th:text="${res.title}"></title>
+    </div>
+
+</head>
+
+<body>
+
+    <div layout:fragment="body">
+
+        <h1 th:text="${res.title}"></h1>
+        <br>
+        <h4 th:text="${res.message}"></h4>
+        <br>
+        <hr>
+
+        <table class="table table-light">
+            <tbody>
+                <th>Page</th>
+                <td th:text="${res.page}"></td>
+            </tbody>
+            <tbody>
+                <th>TotalPage</th>
+                <td th:text="${res.totalPage}"></td>
+            </tbody>
+            <tbody>
+                <th>Limit</th>
+                <td th:text="${res.limit}"></td>
+            </tbody>
+            <tbody>
+                <th>ID</th>
+                <th>Name</th>
+            </tbody>
+            <tbody th:each="o : ${res.pagedList}">
+                <td th:text="${o.id}"></td>
+                <td th:text="${o.brandName}"></td>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
