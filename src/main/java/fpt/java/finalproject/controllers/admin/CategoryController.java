@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Category;
-import fpt.java.finalproject.response.CategoryResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.CategoryService;
 
 @RequestMapping("/admin/categories")
 @Controller
 public class CategoryController {
-
-    CategoryResponse res;
 
     @Autowired
     CategoryService categoryService;
@@ -28,7 +28,7 @@ public class CategoryController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new CategoryResponse();
+        ObjectResponse<Category> res = new ObjectResponse<>();
         res.setTitle("Thêm danh mục");
 
         // Send new response bean
@@ -41,14 +41,14 @@ public class CategoryController {
     @PostMapping("/save")
     public String save(Category c, ModelMap m) {
 
-        res = new CategoryResponse();
+        Response res = new Response();
 
         // Save category
         try {
             categoryService.save(c);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -68,7 +68,7 @@ public class CategoryController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new CategoryResponse();
+        ObjectResponse<Category> res = new ObjectResponse<>();
         Category c = new Category();
 
         // Find category
@@ -76,14 +76,14 @@ public class CategoryController {
             c = categoryService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setCategory(c);
+        res.setObject(c);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
@@ -97,28 +97,36 @@ public class CategoryController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Object obj = m.getAttribute("res");
-        List<Category> l;
-
+        Response obj = (Response) m.getAttribute("res");
+        ListResponse<Category> res = new ListResponse<>();
         if (obj == null) {
-            res = new CategoryResponse();
+            res = new ListResponse<>();
         } else {
-            res = (CategoryResponse) obj;
+            res.setNewResponse(obj);
+            ;
         }
 
+        List<Category> l;
         try {
             l = categoryService.findAll();
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setCategoryList(l);
-        res.setIsEdit(true);
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
         res.setTitle("Danh sách danh mục");
 
         // Send response
@@ -130,14 +138,14 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new CategoryResponse();
+        Response res = new Response();
 
         // Find category
         try {
             categoryService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

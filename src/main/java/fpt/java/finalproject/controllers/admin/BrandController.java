@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Brand;
-import fpt.java.finalproject.response.BrandResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.BrandService;
 
 @RequestMapping("/admin/brands")
 @Controller
 public class BrandController {
-
-    BrandResponse res;
 
     @Autowired
     BrandService brandService;
@@ -28,7 +28,7 @@ public class BrandController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        res = new BrandResponse();
+        ObjectResponse<Brand> res = new ObjectResponse<>();
         res.setTitle("Thêm nhãn hàng");
 
         // Send new response bean
@@ -41,14 +41,14 @@ public class BrandController {
     @PostMapping("/save")
     public String save(Brand b, ModelMap m) {
 
-        res = new BrandResponse();
+        Response res = new Response();
 
         // Save brand
         try {
             brandService.save(b);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -68,7 +68,7 @@ public class BrandController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new BrandResponse();
+        ObjectResponse<Brand> res = new ObjectResponse<>();
         Brand b = new Brand();
 
         // Find brand
@@ -76,14 +76,14 @@ public class BrandController {
             b = brandService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setBrand(b);
+        res.setObject(b);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
@@ -97,28 +97,36 @@ public class BrandController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Object obj = m.getAttribute("res");
-        List<Brand> l;
-
+        Response obj = (Response) m.getAttribute("res");
+        ListResponse<Brand> res = new ListResponse<>();
         if (obj == null) {
-            res = new BrandResponse();
+            res = new ListResponse<>();
         } else {
-            res = (BrandResponse) obj;
+            res.setNewResponse(obj);
+            ;
         }
 
+        List<Brand> l;
         try {
             l = brandService.findAll();
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
 
         // Set response
-        res.setBrandList(l);
-        res.setIsEdit(true);
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
         res.setTitle("Danh sách nhãn hàng");
 
         // Send response
@@ -130,14 +138,14 @@ public class BrandController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        res = new BrandResponse();
+        Response res = new Response();
 
         // Find brand
         try {
             brandService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setError(true);
+            res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

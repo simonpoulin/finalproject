@@ -1,25 +1,22 @@
 package fpt.java.finalproject.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Brand;
-import fpt.java.finalproject.models.Category;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.models.ShopItem;
-import fpt.java.finalproject.models.User;
-import fpt.java.finalproject.response.BrandResponse;
-import fpt.java.finalproject.response.CategoryResponse;
-import fpt.java.finalproject.response.EmployeeResponse;
+import fpt.java.finalproject.response.ListResponse;
 import fpt.java.finalproject.response.ObjectResponse;
 import fpt.java.finalproject.response.ProductResponse;
 import fpt.java.finalproject.response.ShopItemResponse;
-import fpt.java.finalproject.response.UserResponse;
 
 @Controller
 public class AdminController {
@@ -30,24 +27,10 @@ public class AdminController {
         return "module/blank_layout";
     }
 
-    // Admin Brand detail
-    @RequestMapping("/abranddetail")
-    public String adminBrandDetail(ModelMap m) {
-        // the nay cung duowc ok
-        BrandResponse res = new BrandResponse();
-        Brand b = new Brand();
-        b.setId(1);
-        b.setBrandName("abc");
-        res.setBrand(b);
-        m.addAttribute("res", res);
-        System.out.println(res);
-        return "admin/brands/detail";
-    }
-
     // Admin Empoyee details
     @RequestMapping("/aemployeedetail")
     public String adminEmployeeDetail(ModelMap m) {
-        EmployeeResponse res = new EmployeeResponse();
+        ObjectResponse<Employee> res = new ObjectResponse<>();
 
         // Set EmployeeRole
         EmployeeRole r = new EmployeeRole();
@@ -68,24 +51,11 @@ public class AdminController {
         e.setEmployeeRole(r);
 
         // Set response
-        res.setEmployee(e);
+        res.setObject(e);
         res.setTitle("Employee detail");
         m.addAttribute("res", res);
         System.out.println(res);
         return "admin/employees/detail";
-    }
-
-    // Admin categories details
-    @RequestMapping("acategorydetail")
-    public String adminCategoryDetail(ModelMap m) {
-        CategoryResponse res = new CategoryResponse();
-        Category c = new Category();
-        c.setId(1);
-        c.setCategoryName("smartphone");
-        res.setCategory(c);
-        m.addAttribute("res", res);
-        System.out.println(res);
-        return "admin/categories/detail";
     }
 
     // Admin item detail
@@ -102,25 +72,6 @@ public class AdminController {
         m.addAttribute("res", res);
         System.out.println(res);
         return "admin/items/detail";
-    }
-
-    // Admin user detail
-    @RequestMapping("auserdetail")
-    public String adminUserDetail(ModelMap m) {
-        UserResponse res = new UserResponse();
-        User u = new User();
-        u.setId(1);
-        u.setName("Pham Ngoc Tung");
-        u.setUsername("tunggzsu128");
-        u.setPassword("123");
-        u.setPhone("941687974");
-        u.setAddress("Da Nang City");
-        u.setEmail("tungpham2127@gmail.com");
-        u.setAvatarUrl("avatarUrl");
-        res.setUser(u);
-        m.addAttribute("res", res);
-        System.out.println(res);
-        return "admin/users/detail";
     }
 
     // Admin product detail
@@ -148,16 +99,16 @@ public class AdminController {
         return "admin/shops/detail";
     }
 
-    // Test entity response
-    @RequestMapping("/er")
-    public String entityResponse(ModelMap m) {
+    // Test object response
+    @RequestMapping("/or")
+    public String objectResponse(ModelMap m) {
 
         // Set new Brand
         Brand b = new Brand();
         b.setId(1);
         b.setBrandName("brandName");
 
-        // Set new EntityResponse
+        // Set new ObjectResponse
         ObjectResponse<Brand> res = new ObjectResponse<>();
         res.setObject(b);
         res.setIsEdit(true);
@@ -166,7 +117,58 @@ public class AdminController {
 
         // Send response
         m.addAttribute("res", res);
-        return "test/test";
+        return "test/testObject";
     }
 
+    // Test entity response
+    @RequestMapping("/lr")
+    public String listResponse(ModelMap m) {
+
+        // Set new Brand
+        Brand b1 = new Brand();
+        b1.setId(1);
+        b1.setBrandName("abc");
+        Brand b2 = new Brand();
+        b2.setId(2);
+        b2.setBrandName("ghi");
+        Brand b3 = new Brand();
+        b3.setId(3);
+        b3.setBrandName("mno");
+        Brand b4 = new Brand();
+        b4.setId(4);
+        b4.setBrandName("xyz");
+
+        // Set new List
+        List<Brand> l = new ArrayList<>();
+        l.add(b1);
+        l.add(b1);
+        l.add(b1);
+        l.add(b1);
+        l.add(b2);
+        l.add(b2);
+        l.add(b2);
+        l.add(b2);
+        l.add(b3);
+        l.add(b3);
+        l.add(b3);
+        l.add(b3);
+        l.add(b4);
+        l.add(b4);
+        l.add(b4);
+        l.add(b4);
+
+        // Set new EntityResponse
+        ListResponse<Brand> res = new ListResponse<>();
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        res.setTitle("Test");
+        res.setMessage("Testing new response");
+
+        // Send response
+        m.addAttribute("res", res);
+        return "test/testList";
+    }
 }

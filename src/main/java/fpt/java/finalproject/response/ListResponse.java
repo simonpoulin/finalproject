@@ -12,22 +12,10 @@ public class ListResponse<E> extends Response {
     public ListResponse() {
     }
 
-    public void generateResponse() {
-        generateResponse(this.list);
-    }
-
-    public void generateResponse(List<E> list) {
-        generateResponse(list, this.limit);
-    }
-
-    public void generateResponse(List<E> list, int limit) {
-        generateResponse(list, limit, this.page);
-    }
-
-    public void generateResponse(List<E> list, int limit, int page) {
+    public void generateResponse(List<E> list, int limit, int page) throws Exception {
 
         // Set limit
-        if (limit != 0) {
+        if (limit > 0) {
             this.limit = limit;
         } else {
             limit = this.limit = new Config().PAGE_LIMIT;
@@ -40,11 +28,29 @@ public class ListResponse<E> extends Response {
             list = this.list;
         }
 
+        // Set page
+        if (page < 0) {
+            this.page = page = 0;
+        } else {
+            this.page = page;
+        }
+
         // Set totalPage
-        this.totalPage = Math.floorDiv(list.size(), limit);
+        this.totalPage = (int) Math.ceil(((double) list.size()) / ((double) limit));
+        if (page >= totalPage) {
+            throw new Exception("out of pages");
+        }
 
         // Set pagedList
-        this.pagedList = list.subList(page * limit, (page + 1) * limit);
+        int fromIndex = page * limit;
+        int toIndex = 0;
+        if (page == totalPage - 1) {
+            toIndex = list.size();
+        } else {
+            toIndex = fromIndex + limit;
+        }
+
+        this.pagedList = list.subList(fromIndex, toIndex);
 
     }
 
@@ -56,22 +62,6 @@ public class ListResponse<E> extends Response {
         this.list = list;
     }
 
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
     public List<E> getPagedList() {
         return pagedList;
     }
@@ -80,11 +70,27 @@ public class ListResponse<E> extends Response {
         this.pagedList = pagedList;
     }
 
-    public int getLimit() {
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public Integer getLimit() {
         return limit;
     }
 
-    public void setLimit(int limit) {
+    public void setLimit(Integer limit) {
         this.limit = limit;
     }
 
