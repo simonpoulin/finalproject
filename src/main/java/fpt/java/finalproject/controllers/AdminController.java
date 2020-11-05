@@ -16,6 +16,7 @@ import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.BrandResponse;
 import fpt.java.finalproject.response.CategoryResponse;
 import fpt.java.finalproject.response.EmployeeResponse;
+import fpt.java.finalproject.response.ObjectResponse;
 import fpt.java.finalproject.response.ProductResponse;
 import fpt.java.finalproject.response.ShopItemResponse;
 import fpt.java.finalproject.response.UserResponse;
@@ -47,7 +48,7 @@ public class AdminController {
     @RequestMapping("/aemployeedetail")
     public String adminEmployeeDetail(ModelMap m) {
         EmployeeResponse res = new EmployeeResponse();
-        
+
         // Set EmployeeRole
         EmployeeRole r = new EmployeeRole();
         r.setId(12);
@@ -145,6 +146,27 @@ public class AdminController {
     public String adminShopDetail(ModelMap m) {
         // ShopResponse res = new ShopResponse();
         return "admin/shops/detail";
+    }
+
+    // Test entity response
+    @RequestMapping("/er")
+    public String entityResponse(ModelMap m) {
+
+        // Set new Brand
+        Brand b = new Brand();
+        b.setId(1);
+        b.setBrandName("brandName");
+
+        // Set new EntityResponse
+        ObjectResponse<Brand> res = new ObjectResponse<>();
+        res.setObject(b);
+        res.setIsEdit(true);
+        res.setTitle("Test");
+        res.setMessage("Testing new response");
+
+        // Send response
+        m.addAttribute("res", res);
+        return "test/test";
     }
 
 }
