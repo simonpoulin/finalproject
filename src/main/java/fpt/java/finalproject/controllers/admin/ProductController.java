@@ -12,53 +12,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Product;
-import fpt.java.finalproject.response.ProductResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.ProductService;
 
 @Controller
-@RequestMapping("product")
+@RequestMapping("/products")
 public class ProductController {
-
-    private ProductResponse productResponse;
     
     @Autowired
     private ProductService productService;
 
     @GetMapping("/add")
-    public String add(ModelMap model){
+    public String add(ModelMap m){
 
-        productResponse = new ProductResponse();
-        productResponse.setTitle("Thêm cửa hàng");
+        ObjectResponse<Product> res = new ObjectResponse<Product>();
+
+        res.setTitle("Thêm sản phẩm");
+        res.setIsEdit(false);
 
         // Send new response bean
-        model.addAttribute("res", productResponse);
+        m.addAttribute("res", res);
         return "admin/products/add";
     }
     //end function add
 
     // save new
     @PostMapping("/save")
-    public String save(ModelMap model, Product product){
-        productResponse = new ProductResponse();
+    public String save(ModelMap m, Product p){
+
+        Response res = new Response();
 
         //save new product
         try{
-            productService.save(product);
+            productService.save(p);
         }catch(Exception ex){
 
             //return fail
-            productResponse.setError(true);
-            productResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", productResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
         //Set response
-        productResponse.setMessage("Lưu thành công");
+        res.setMessage("Lưu thành công");
 
         //send response
-        model.addAttribute("res", productResponse);
+        m.addAttribute("res", res);
 
         // Redirect to list
         return "redirect:/admin/products";
@@ -67,30 +70,30 @@ public class ProductController {
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") Integer id, ModelMap model){
+    public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        productResponse = new ProductResponse();
-        Product product = new Product();
+        ObjectResponse<Product> res = new ObjectResponse<>();
+        Product p = new Product();
 
         // Find by id product
         try{
-            product = productService.findById(id);
+            p = productService.findById(id);
         }catch(Exception ex){
              //return fail
-             productResponse.setError(true);
-             productResponse.setMessage(ex.getMessage());
-             model.addAttribute("res", productResponse);
+             res.setIsError(true);
+             res.setMessage(ex.getMessage());
+             m.addAttribute("res", p);
              return "module/error";
         }
         // end try catch
         
         // Set response
-        productResponse.setProduct(product);
-        productResponse.setEdit(true);
-        productResponse.setTitle("cập nhật thông tin");
+        res.setObject(p);
+        res.setIsEdit(true);
+        res.setTitle("cập nhật thông tin");
 
         // Send response
-        model.addAttribute("res", productResponse);
+        m.addAttribute("res", res);
 
         return "admin/products/add";
     }
@@ -98,89 +101,98 @@ public class ProductController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap model){
+    public String list(ModelMap m){
 
-        Object obj = model.addAttribute("res");
-        List<Product> list;
+        Object obj = m.addAttribute("res");
+        ListResponse<Product> res = new ListResponse<>();
+        List<Product> l;
         if(obj == null){
-            productResponse = new ProductResponse();
+            res = new ListResponse<>();
         }else{
-            productResponse = (ProductResponse) obj;
+            res.setNewResponse(res);
         }
         // end if else
 
         try {
-            list = productService.findAll();
+            l = productService.findAll();
         } catch (Exception ex) {
            //return fail
-           productResponse.setError(true);
-           productResponse.setMessage(ex.getMessage());
-           model.addAttribute("res", productResponse);
+           res.setIsError(true);
+           res.setMessage(ex.getMessage());
+           m.addAttribute("res", res);
            return "module/error";
         }
         // end try catch
 
         // Set response
-        productResponse.setProductList(list);
-        productResponse.setEdit(true);
-        productResponse.setTitle("Danh sách sản phẩm");
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
+        res.setTitle("Danh sách sản phẩm");
 
         // Send response
-        model.addAttribute("res", productResponse);
-        return "admin/products/list";
+        m.addAttribute("res", res);
+        return "test/testList";
     }
     //end function list
 
     // Detail
     @GetMapping("/{id}")
-    public String detail (@PathVariable(name ="id") Integer id, ModelMap model){
+    public String detail (@PathVariable(name ="id") Integer id, ModelMap m){
 
-        productResponse = new ProductResponse();
-        Product product = new Product();
+        Product p = new Product();
+        ObjectResponse<Product> res = new ObjectResponse<>();
 
         // Find by id
       try {
-            product = productService.findById(id);
+            p = productService.findById(id);
         } catch (Exception ex) {
             //return fail
-            productResponse.setError(true);
-            productResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", productResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end function try catch
 
         //Set response
-        productResponse.setProduct(product);
-        productResponse.setTitle("Thông tin sản phẩm");
+        res.setObject(p);
+        res.setTitle("Thông tin sản phẩm");
 
         //Send response
-        model.addAttribute("res", productResponse);
+        m.addAttribute("res", res);
         return "admin/products/edit";
     }
     //end funcition detail
 
     //del
     @DeleteMapping("/{id}")
-    public String del(@PathVariable(name = "id") Integer id,  ModelMap model){
-        productResponse = new ProductResponse();
+    public String del(@PathVariable(name = "id") Integer id,  ModelMap m){
+
+        Response res = new Response();
 
         // del by id
         try {
             productService.deleteById(id);
         } catch (Exception ex) {
             //return fail
-            productResponse.setError(true);
-            productResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", productResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         
         //Set Response
-        productResponse.setTitle("Xóa sản phẩm");
+        res.setTitle("Xóa sản phẩm");
 
         // send Response
-        model.addAttribute("res", productResponse);
+        m.addAttribute("res", res);
 
         return "redirect:/admin/products";
     }

@@ -12,174 +12,185 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Shop;
-import fpt.java.finalproject.response.ShopResponse;
+import fpt.java.finalproject.response.ListResponse;
+import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.ShopService;
 
 @Controller
-@RequestMapping("shop")
+@RequestMapping("/shops")
 public class ShopController{
-
-    private ShopResponse shopResponse;
 
     @Autowired
     private ShopService shopService;
 
     // Direct to add page
     @GetMapping("/add")
-    public String add(ModelMap model){
+    public String add(ModelMap m){
+        
+        ObjectResponse<Shop> res = new ObjectResponse<Shop>();
 
-        shopResponse = new ShopResponse();
-        shopResponse.setTitle("Thêm cửa hàng");
+        res.setTitle("Thêm cửa hàng");
+        res.setIsEdit(false);
+        res.setObject(new Shop());
 
         // Send new response bean
-        model.addAttribute("res", shopResponse);
-        
-        return "admin/shops/add";
+        m.addAttribute("res", res);
+        return "test/testAdd";
     }
     //end function add();
 
     // save new
     @PostMapping("/save")
-    public String save(Shop shop, ModelMap model){
+    public String save(Shop s, ModelMap m){
 
-        shopResponse = new ShopResponse();
+        Response res = new Response();
 
         // save new shop
         try{
-            shopService.save(shop);
+            shopService.save(s);
         }catch(Exception ex){
             
             //return fail
-            shopResponse.setError(true);
-            shopResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", shopResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
         // Set response 
-        shopResponse.setMessage("Lưu thành công");
+        res.setMessage("Lưu thành công");
 
         // Send response
-        model.addAttribute("res", shopResponse);
+        m.addAttribute("res", res);
 
         // Redirect to list
-        return "redirect:/admin/shop";
+        return "redirect:/test/testAdd";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") Integer id, ModelMap model){
+    public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        shopResponse = new ShopResponse();
-        Shop shop = new Shop();
+        ObjectResponse<Shop> res = new ObjectResponse<>();
+        Shop s = new Shop();
         // Find by id Shop
         try{
-            shop = shopService.findById(id);
+            s = shopService.findById(id);
         }catch(Exception ex){
-            shopResponse.setError(true);
-            shopResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", shopResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
         // Set response
-        shopResponse.setShop(shop);
-        shopResponse.setEdit(true);
-        shopResponse.setTitle("Cập nhật thông tin");
+        res.setObject(s);
+        res.setIsEdit(true);
+        res.setTitle("Cập nhật thông tin");
 
         // Send response
-        model.addAttribute("res", shopResponse);
+        m.addAttribute("res", res);
 
-        return "admin/shops/add";
+        return "test/testAdd";
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap model){
+    public String list(ModelMap m){
 
-        Object obj = model.getAttribute("res");
-        List<Shop> list;
+        Object obj = m.getAttribute("res");
+        ListResponse<Shop> res = new ListResponse<>();
         if(obj == null){
-            shopResponse = new ShopResponse();
+            res = new ListResponse<>();
         }else{
-            shopResponse = (ShopResponse) obj;
+            res.setNewResponse(res);
         }
         // end if else
 
+        List<Shop> l;
         try{
-            list = shopService.findAll();
+            l = shopService.findAll();
         }catch(Exception ex){
 
             // Return erroe on fail
-            shopResponse.setError(true);
-            shopResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", shopResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
         // Set response
-        shopResponse.setShopList(list);
-        shopResponse.setEdit(true);
-        shopResponse.setTitle("Danh Sách Người Dùng");
+        try {
+            res.generateResponse(l, 0, 0);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
+        res.setTitle("Danh sách cửa hàng");
 
         // Send Response
-        model.addAttribute("res", shopResponse);
-        return "admin/shops/list";
+        m.addAttribute("res", res);
+        return "test/testList";
     }
     // End function list
 
     // Detail
-    @GetMapping("/{id}")
-    public String detail(@PathVariable(name ="id") Integer id, ModelMap model){
+    @GetMapping("detail/{id}")
+    public String detail(@PathVariable(name ="id") Integer id, ModelMap m){
 
-        shopResponse = new ShopResponse();
-        Shop shop = new Shop();
+        Shop s = new Shop();
+        ObjectResponse<Shop> res= new ObjectResponse<>();
 
         // Find Shop by id
         try{
-            shop = shopService.findById(id);
+            s = shopService.findById(id);
         }catch(Exception ex){
             // return error
-            shopResponse.setError(true);
-            shopResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", shopResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // End try catch
 
         // Set response
-        shopResponse.setShop(shop);
-        shopResponse.setTitle("Thông tin cửa hàng");
+        res.setObject(s);
+        res.setTitle("Thông tin cửa hàng");
 
         // Send Response
-        model.addAttribute("res", shopResponse);
-        return "admin/shops/edit";
+        m.addAttribute("res", res);
+        return "test/testObject";
     }
     //end function detail
 
     //Del
     @DeleteMapping("/{id}")
-    public String del(@PathVariable(name = "id") Integer id, ModelMap model){
-        shopResponse = new ShopResponse();
+    public String del(@PathVariable(name = "id") Integer id, ModelMap m){
+
+        Response res = new Response();
 
         // find shop by id
         try{
             shopService.deleteById(id);
         }catch(Exception ex){
-            shopResponse.setError(true);
-            shopResponse.setMessage(ex.getMessage());
-            model.addAttribute("res", shopResponse);
+            res.setIsError(true);
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
             return "module/error";
         }
         // Set Response
 
-        shopResponse.setTitle("Xóa cửa hàng");
+        res.setTitle("Xóa cửa hàng");
 
         // send Response
-        model.addAttribute("res", shopResponse);
+        m.addAttribute("res", res);
 
         return "redirect:/admin/shops";
 
