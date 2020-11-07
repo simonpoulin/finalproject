@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{user/layouts/main_user.html}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lich su</title>
+  <link rel="stylesheet" href="../static/assets/css/style.css" />
+</head>
+
+<body>
+  <div layout:fragment="section">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="crow"></div>
+        <div style="background-color: rgb(241, 241, 241); margin-left: -25px" class="row">
+          <div style="margin-top: -800px; font-size: 20px; padding-bottom: 10px" class="col-3 sticky muc">
+            <a style="margin: 60px 0px 20px 0px" href="#">
+              <img style="height: 30px; width: 30px" src="images/icons8-male-user-30.png" alt="" />
+              Chỉnh sửa tài khoản</a><br />
+            <a style="margin: 60px 0px 20px 0px" href="#"><img style="height: 30px; width: 30px"
+                src="images/icons8-add-basket-80.png" alt="" />&ensp;Đơn hàng</a><br />
+            <a style="margin: 20px 0px 20px 0px" href="#"><img style="height: 30px; width: 30px"
+                src="images/icons8-bell-64.png" alt="" />&ensp;Thông báo</a><br />
+          </div>
+          <div style="background-color: rgb(255, 255, 255); height: 1000px" class="col-9">
+            <div class="row">
+              <div class="col-12 text-danger">
+                <h1>Đơn hàng</h1>
+                <hr />
+              </div>
+            </div>
+            <div class="trangthai">
+              <a style="margin-left: 50px" href="#">Tất cả</a>
+              <a style="margin-left: 50px" href="#">Chờ lấy hàng</a>
+              <a style="margin-left: 50px" href="#">Đang giao</a>
+              <a style="margin-left: 50px" href="#">Đã giao</a>
+              <a style="margin-left: 50px" href="#">Đã hủy</a>
+              <br />
+              <table>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="../static/assets/images/product.png" />
+                      <div>
+                        <p>Điện Thoại</p>
+                        <small>Price: $50.00</small>
+                        <br />
+                        <a href="">Remove</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><input value="1" /></td>
+                  <td>$50.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="../static/assets/images/q.jpg" />
+                      <div>
+                        <p>Điện Thoại</p>
+                        <small>Price: $75.00</small>
+                        <br />
+                        <a href="">Remove</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><input value="1" /></td>
+                  <td>$75.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="../static/assets/images/product.png" />
+                      <div>
+                        <p>Điện Thoại</p>
+                        <small>Price: $50.00</small>
+                        <br />
+                        <a href="">Remove</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><input value="1" /></td>
+                  <td>$50.00</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
