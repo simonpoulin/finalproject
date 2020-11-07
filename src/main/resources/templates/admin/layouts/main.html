@@ -19,13 +19,15 @@
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
 
-        <!-- Nav bar -->
+        
         <div>
             <div class="wrapper">
                 <!-- Sidebar  -->
                 <nav id="sidebar">
                     <div class="sidebar-header">
-                        <h3 style="margin-left: 22px;">SURFNSHOP</h3>
+                        <a style="text-decoration: none; color: white;" href="#">
+                            <h3 style="margin-left: 22px; ">SURFNSHOP</h3>
+                        </a>
                     </div>
                     <ul class="list-unstyled components">
                         <li class="active">
@@ -34,7 +36,6 @@
                                 <b>Dashboard</b>
                             </a>
                         </li>
-
                         <li class="active">
                             <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse"
                                 aria-expanded="false" class="dropdown-toggle">
@@ -43,49 +44,22 @@
                             </a>
                             <ul class="collapse list-unstyled" id="ProductManagementSubmenu">
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#brandsSubmenu" data-toggle="collapse"
-                                        aria-expanded="false" class="dropdown-toggle">
+                                    <a style="text-decoration: none;" th:href="@{/admin/brands}">
                                         <i class="fas fa-home"></i>
                                         <b>Brands</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="brandsSubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none; margin-left: 30px;" href="#">Add Brands</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Brands</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#categoriesSubmenu" data-toggle="collapse"
-                                        aria-expanded="false" class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/categories}">
+                                        <i class="fas fa-home"></i>
                                         <b>Categories</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="categoriesSubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Categories</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Categories</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#Productssubmenu" data-toggle="collapse"
-                                        class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/products}">
+                                        <i class="fas fa-home"></i>
                                         <b>Products</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="Productssubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Products</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Products</a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -97,34 +71,16 @@
                             </a>
                             <ul class="collapse list-unstyled" id="accountManagementsubmenu">
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#employeessubmenu" data-toggle="collapse"
-                                        class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/employees}">
+                                        <i class="fas fa-home"></i>
                                         <b>Employees</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="employeessubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Employees</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Employees</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#Userssubmenu" data-toggle="collapse"
-                                        class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/users}">
+                                        <i class="fas fa-home"></i>
                                         <b>Users</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="Userssubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Users</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Users</a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -136,34 +92,16 @@
                             </a>
                             <ul class="collapse list-unstyled" id="shopManagementsubmenu">
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#itemssubmenu" data-toggle="collapse"
-                                        class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/items}">
+                                        <i class="fas fa-home"></i>
                                         <b>Items</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="itemssubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Items</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Items</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="active">
-                                    <a style="text-decoration: none;" href="#Shopssubmenu" data-toggle="collapse"
-                                        class="dropdown-toggle">
-                                        <i class="fas fa-copy"></i>
+                                    <a style="text-decoration: none;" th:href="@{/admin/shops}">
+                                        <i class="fas fa-home"></i>
                                         <b>Shops</b>
                                     </a>
-                                    <ul class="collapse list-unstyled" id="Shopssubmenu">
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">Add Shops</a>
-                                        </li>
-                                        <li>
-                                            <a style="color: white; text-decoration: none;margin-left: 30px;" href="#">List Shops</a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </li>
