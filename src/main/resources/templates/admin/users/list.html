@@ -19,7 +19,7 @@
                 <th>Avatar</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="e : ${res.userList}">
+            <tbody th:each="e : ${res.pagedList}">
                 <td th:text="${e.id}"></td>
                 <td th:text="${e.name}"></td>
                 <th th:text="${e.username}"></th>

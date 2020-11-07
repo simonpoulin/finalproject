@@ -13,14 +13,14 @@
                 <div class="card-body">
                     <h5 class="card-title">CHI TIẾT SẢN PHẨM</h5>
                     <hr>
-                    <table class="table table-light">
+                    <table class="table table-light" th:object="${res.object}">
                         <tbody>
                             <th>ID</th>
-                            <td th:text="${res.product.id}"></td>
+                            <td th:text="*{id}"></td>
                         </tbody>
                         <tbody>
                             <th>Tên sản phẩm</th>
-                            <td th:text="${res.product.name}"></td>
+                            <td th:text="*{name}"></td>
                         </tbody>
                         <tbody>
                             <th>Mã thể loại</th>

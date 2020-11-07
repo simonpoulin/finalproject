@@ -18,7 +18,7 @@
                 <th>Mô tả</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="p : ${res.productList}">
+            <tbody th:each="p : ${res.pagedList}">
                 <td th:text="${p.id}"></td>
                 <td th:text="${p.name}"></td>
                 <td th:text="${p.category.categoryName}"></td>

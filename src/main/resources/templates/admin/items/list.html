@@ -19,7 +19,7 @@
                 <th>Số lượng</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="i : ${res.shopItemList}">
+            <tbody th:each="i : ${res.pagedList}">
                 <td th:text="${i.id}"></td>
                 <td th:text="${i.title}"></td>
                 <td th:text="${i.des}"></td>
