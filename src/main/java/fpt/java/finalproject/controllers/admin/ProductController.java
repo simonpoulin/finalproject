@@ -18,7 +18,7 @@ import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.ProductService;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 public class ProductController {
     
     @Autowired

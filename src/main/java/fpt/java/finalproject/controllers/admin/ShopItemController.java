@@ -18,7 +18,7 @@ import fpt.java.finalproject.response.Response;
 import fpt.java.finalproject.services.ShopItemService;
 
 @Controller
-@RequestMapping("/shopitems")
+@RequestMapping("/admin/shopitems")
 public class ShopItemController {
     
     @Autowired
