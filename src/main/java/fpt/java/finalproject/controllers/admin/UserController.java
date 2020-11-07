@@ -103,7 +103,6 @@ public class UserController {
             res = new ListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<User> l;

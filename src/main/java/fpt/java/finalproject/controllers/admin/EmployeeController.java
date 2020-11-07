@@ -104,7 +104,6 @@ public class EmployeeController {
             res = new ListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<Employee> l;
