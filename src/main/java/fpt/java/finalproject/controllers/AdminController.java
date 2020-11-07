@@ -171,4 +171,82 @@ public class AdminController {
         m.addAttribute("res", res);
         return "test/testList";
     }
+
+
+
+       //User*******************************************
+    @RequestMapping("/ublank")
+    public String BlankUser() {
+        return "user/layouts/blank_user_layouts";
+    }
+    @RequestMapping("/umain")
+    public String MainUser() {
+        return "user/layouts/main_user";
+    }
+     @RequestMapping("/adduser")
+    public String AddUser() {
+        return "user/layouts/add_user";
+    }
+    @RequestMapping("/cart")
+    public String Cart() {
+        return "user/cart/cart";
+    }
+    @RequestMapping("/carth")
+    public String CartHistory() {
+        return "user/cart/cart_history";
+    }
+    
+    @RequestMapping("/personal")
+    public String Personal() {
+        return "user/shops/personal";
+    }
+    @RequestMapping("/product")
+    public String Pproduct() {
+        return "user/products/product";
+    }
+    @RequestMapping("/productde")
+    public String ProductlDetails() {
+        return "user/products/product_details";
+    }
+    @RequestMapping("/statistical")
+    public String Statisticals() {
+        return "user/statistical";
+    }
+    @RequestMapping("/store")
+    public String Store() {
+        return "user/shops/store";
+    }
+    @RequestMapping("/chart")
+    public String Chart() {
+        return "user/shops/chart";
+    }
+    @RequestMapping("/list")
+    public String List() {
+        return "user/layouts/list";
+    }
+    @RequestMapping("/listpro")
+    public String ListProducts() {
+        return "user/products/list_products";
+    }
+    @RequestMapping("/addproduct")
+    public String AddProducts() {
+        return "user/products/add_product";
+    }
+    @RequestMapping("/editproduct")
+    public String EditProducts() {
+        return "user/products/edit_product";
+    }
+    @RequestMapping("/addemployees")
+    public String Addemployees() {
+        return "user/employees/add_employees";
+    }
+    @RequestMapping("/editemployees")
+    public String Editemployees() {
+        return "user/employees/edit_employees";
+    }
+    @RequestMapping("/listemployees")
+    public String Listemployees() {
+        return "user/employees/list_employees";
+    }
+    
 }

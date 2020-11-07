@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{user/layouts/main_user.html}">
+
+<head>
+  <!-- Add division to title fragment -->
+  <div layout:fragment="title">
+    <!-- Add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title"></div>
+  </div>
+</head>
+
+<body>
+  <div layout:fragment="section">
+    <div class="row" >
+      <div class="col-sm-3" >
+        <div class="card">
+          <div class="card-header">
+            <img src="assets/icons/menu_48px.png" alt="" />Danh mục sản phẩm
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Phụ Kiện Điện Tử</li>
+            <li class="list-group-item">TV & Thiết Bị Điện Gia Dụng</li>
+            <li class="list-group-item">Sức Khỏe & Làm Đẹp</li>
+            <li class="list-group-item">Hàng Mẹ, Bé & Đồ Chơi</li>
+            <li class="list-group-item">Siêu Thị Tạp Hóa</li>
+            <li class="list-group-item">Hàng Gia dụng & Đời sống</li>
+            <li class="list-group-item">Thời Trang Nữ</li>
+            <li class="list-group-item">Thời Trang Nam</li>
+            <li class="list-group-item">Phụ Kiện Thời Trang</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <a>Sắp sếp theo:</a>
+            <button style="background-color: white; padding: 3px">
+              Liên quan
+            </button>
+            <button style="background-color: white; padding: 3px">
+              Mới nhất
+            </button>
+            <button style="background-color: white; padding: 3px">
+              Bán chạy
+            </button>
+
+            <select>
+              <option>Giá: từ thấp đến cao</option>
+              <option>Giá: từ cao đến thấp</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="container">
+            <h3 class="h3">Hot</h3>
+            <div class="row">
+
+              <div class="col-md-3 col-sm-6">
+                <div class="product-grid6">
+                  <div class="product-image6">
+                    <a href="#">
+                      <img class="pic-1"
+                        src="https://www.didongmy.com/vnt_upload/product/07_2020/thumbs/600_iphone-12-max-600x600.jpg">
+                    </a>
+                  </div>
+                  <div class="product-content">
+                    <h3 class="title"><a href="#">Iphone 12</a></h3>
+                    <div class="price">$11.00
+                      <span>$14.00</span>
+                    </div>
+                  </div>
+                  <ul class="social">
+                    <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                    <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="product-grid6">
+                  <div class="product-image6">
+                    <a href="#">
+                      <img class="pic-1"
+                        src="https://www.didongmy.com/vnt_upload/product/07_2020/thumbs/600_iphone-12-max-600x600.jpg">
+                    </a>
+                  </div>
+                  <div class="product-content">
+                    <h3 class="title"><a href="#">Women's Red Top</a></h3>
+                    <div class="price">$8.00
+                      <span>$12.00</span>
+                    </div>
+                  </div>
+                  <ul class="social">
+                    <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                    <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="product-grid6">
+                  <div class="product-image6">
+                    <a href="#">
+                      <img class="pic-1"
+                        src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png">
+                    </a>
+                  </div>
+                  <div class="product-content">
+                    <h3 class="title"><a href="#">Iphone 12</a></h3>
+                    <div class="price">$11.00
+                      <span>$14.00</span>
+                    </div>
+                  </div>
+                  <ul class="social">
+                    <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                    <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="product-grid6">
+                  <div class="product-image6">
+                    <a href="#">
+                      <img class="pic-1"
+                        src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png">
+                    </a>
+                  </div>
+                  <div class="product-content">
+                    <h3 class="title"><a href="#">Iphone 12</a></h3>
+                    <div class="price">$11.00
+                      <span>$14.00</span>
+                    </div>
+                  </div>
+                  <ul class="social">
+                    <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                    <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 10px;" class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="product-grid6">
+              <div class="product-image6">
+                <a href="#">
+                  <img class="pic-1"
+                    src="https://www.didongmy.com/vnt_upload/product/07_2020/thumbs/600_iphone-12-max-600x600.jpg">
+                </a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">Iphone 12</a></h3>
+                <div class="price">$11.00
+                  <span>$14.00</span>
+                </div>
+              </div>
+              <ul class="social">
+                <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-grid6">
+              <div class="product-image6">
+                <a href="#">
+                  <img class="pic-1"
+                    src="https://www.didongmy.com/vnt_upload/product/07_2020/thumbs/600_iphone-12-max-600x600.jpg">
+                </a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">Women's Red Top</a></h3>
+                <div class="price">$8.00
+                  <span>$12.00</span>
+                </div>
+              </div>
+              <ul class="social">
+                <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-grid6">
+              <div class="product-image6">
+                <a href="#">
+                  <img class="pic-1"
+                    src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png">
+                </a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">Iphone 12</a></h3>
+                <div class="price">$11.00
+                  <span>$14.00</span>
+                </div>
+              </div>
+              <ul class="social">
+                <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-grid6">
+              <div class="product-image6">
+                <a href="#">
+                  <img class="pic-1"
+                    src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png">
+                </a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">Iphone 12</a></h3>
+                <div class="price">$11.00
+                  <span>$14.00</span>
+                </div>
+              </div>
+              <ul class="social">
+                <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/layouts/list.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="list_form" >
+        <div class="container-fluid" >
+         
+<button style="float: right; width: 250px;"  type="button" class="btn btn-primary">Add</button>
+            
+            <table class="table " style="margin-left: -20px;">
+                <thead class="thead-light">
+                    <tr>
+                        
+                        <th>Mã Nhân viên</th>
+                <th>Tên nhân viên</th>
+                <th>Vai trò</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Created At</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Avatar</th>
+                <th>Hành động</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            Nguyễn văn Hải
+                        </td>
+                        <td>Nhân viên</td>
+                        <td>user1</td>
+                        <td>123456</td>
+                        <td>12/12/2020</td>
+                        <td>0868963852</td>
+                        <td>Đà nẵng</td>
+                        <td>user12gmail.com</td>
+                        <td></td>
+                        <td><a href="">Edit</a></td>
+                    </tr>
+                    
+                    
+                </tbody>
+
+            </table>
+            <hr>
+        </div>
+    </div>
+
+</body>
+
+</html>

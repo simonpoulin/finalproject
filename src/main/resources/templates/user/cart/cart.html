@@ -1,0 +1,113 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/layouts/main_user.html}">
+
+<head>
+    <!-- Add division to title fragment -->
+    <div layout:fragment="title">
+
+        <!-- Add-or-edit title fragment -->
+        <div layout:fragment="addOrEdit_title"></div>
+
+    </div>
+</head>
+
+<body>
+
+    <div layout:fragment="section">
+
+        <div class="small-container">
+            <div class="col-12">
+                <h1>Cart</h1>
+            </div>
+        </div>
+        <div class="small-container cart-page">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img th:src="@{/images/product.png}">
+
+                            <div>
+                                <p>Điện Thoại</p>
+                                <small>Price: $50.00</small>
+                                <br>
+                                <a href="">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>$50.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img th:src="@{/images/product.png}">
+                            <div>
+                                <p>Điện Thoại</p>
+                                <small>Price: $75.00</small>
+                                <br>
+                                <a href="">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>$75.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img th:src="@{/images/product.png}">
+                            <div>
+                                <p>Điện Thoại</p>
+                                <small>Price: $50.00</small>
+                                <br>
+                                <a href="">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <td>$50.00</td>
+                </tr>
+            </table>
+
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>175.000$</td>
+
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>25.00$</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>200.000$</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                        <td> <button type="button" class="btn btn-primary">Buy</button></td>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
