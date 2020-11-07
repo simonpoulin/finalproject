@@ -19,7 +19,7 @@
                 <th>Trạng Thái</th>
                 <th>Avatar</th>
             </tbody>
-            <tbody th:each="s : ${res.shopList}">
+            <tbody th:each="s : ${res.pagedList}">
                 <td th:text="${s.id}"></td>
                 <td th:text="${s.name}"></td>
                 <td th:text="${s.adress}"></td>
