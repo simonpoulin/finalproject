@@ -7,21 +7,21 @@ import fpt.java.finalproject.models.Product;
 
 public interface ProductService {
 
-    public Product save(Product entity);
+    public void save(Product entity) throws Exception;
 
     public List<Product> saveAll(List<Product> entities);
 
-    public Optional<Product> findById(Integer id);
+    public Product findById(Integer id) throws Exception;
 
     public boolean existsById(Integer id);
 
-    public List<Product> findAll();
+    public List<Product> findAll() throws Exception;
 
     public List<Product> findAllById(List<Integer> ids);
 
     public long count();
 
-    public void deleteById(Integer id);
+    public void deleteById(Integer id) throws Exception;
 
     public void delete(Product entity);
 

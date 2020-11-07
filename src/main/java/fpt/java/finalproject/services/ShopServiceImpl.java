@@ -16,8 +16,13 @@ public class ShopServiceImpl implements ShopService {
     private ShopRepository shopRepository;
 
     @Override
-    public Shop save(Shop entity) {
-        return shopRepository.save(entity);
+    public void save(Shop entity) throws Exception {
+       Shop shop = shopRepository.save(entity);
+
+       // Send error
+        if(shop == null){
+            throw new Exception("Cannot save");
+        }
     }
 
     @Override
@@ -26,8 +31,20 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Optional<Shop> findById(Integer id) {
-        return shopRepository.findById(id);
+    public Shop findById(Integer id) throws Exception {
+        Shop shop = new Shop();
+
+        // find by id 
+        Optional<Shop> optShop = shopRepository.findById(id);
+
+        // Set shop
+        if(optShop.isPresent()){
+            shop = optShop.get();
+        }else{
+            // Send mess error
+            throw new Exception("Cannot save");
+        }
+        return shop;
     }
 
     @Override
@@ -36,7 +53,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> findAll() {
+    public List<Shop> findAll() throws Exception{
         return (List<Shop>) shopRepository.findAll();
     }
 
@@ -51,7 +68,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Integer id) throws Exception {
         shopRepository.deleteById(id);
     }
 
@@ -69,5 +86,4 @@ public class ShopServiceImpl implements ShopService {
     public void deleteAll() {
         shopRepository.deleteAll();
     }
-
 }
