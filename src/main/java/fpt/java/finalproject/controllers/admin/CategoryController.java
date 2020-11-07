@@ -103,7 +103,6 @@ public class CategoryController {
             res = new ListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<Category> l;

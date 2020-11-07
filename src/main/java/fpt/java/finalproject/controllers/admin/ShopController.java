@@ -11,111 +11,117 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.response.ListResponse;
 import fpt.java.finalproject.response.ObjectResponse;
 import fpt.java.finalproject.response.Response;
-import fpt.java.finalproject.services.EmployeeService;
+import fpt.java.finalproject.services.ShopService;
 
-@RequestMapping("/admin/employees")
 @Controller
-public class EmployeeController {
+@RequestMapping("/admin/shops")
+public class ShopController{
 
     @Autowired
-    EmployeeService employeeService;
+    private ShopService shopService;
 
     // Direct to add page
     @GetMapping("/add")
-    public String add(ModelMap m) {
+    public String add(ModelMap m){
+        
+        ObjectResponse<Shop> res = new ObjectResponse<Shop>();
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
-        res.setTitle("Thêm nhân viên");
+        res.setTitle("Thêm cửa hàng");
         res.setIsEdit(false);
+        res.setObject(new Shop());
 
         // Send new response bean
         m.addAttribute("res", res);
-
-        return "admin/employees/add_or_edit";
+        return "test/testAdd";
     }
+    //end function add();
 
-    // Save new
+    // save new
     @PostMapping("/save")
-    public String save(Employee e, ModelMap m) {
+    public String save(Shop s, ModelMap m){
 
         Response res = new Response();
 
-        // Save employee
-        try {
-            employeeService.save(e);
-        } catch (Exception ex) {
-            // Return error on fail
+        // save new shop
+        try{
+            shopService.save(s);
+        }catch(Exception ex){
+            
+            //return fail
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
+        // end try catch
 
-        // Set response
-        res.setMessage("Lưu thành công!");
+        // Set response 
+        res.setMessage("Lưu thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        // Redirect to list page
-        return "redirect:/admin/employees";
+        // Redirect to list
+        return "redirect:/test/testAdd";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
+    public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
-        Employee e = new Employee();
-
-        // Find employee
-        try {
-            e = employeeService.findById(id);
-        } catch (Exception ex) {
-            // Return error on fail
+        ObjectResponse<Shop> res = new ObjectResponse<>();
+        Shop s = new Shop();
+        // Find by id Shop
+        try{
+            s = shopService.findById(id);
+        }catch(Exception ex){
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
+        // end try catch
 
         // Set response
-        res.setObject(e);
+        res.setObject(s);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/add_or_edit";
+        return "test/testAdd";
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m) {
+    public String list(ModelMap m){
 
-        Response obj = (Response) m.getAttribute("res");
-        ListResponse<Employee> res = new ListResponse<>();
-        if (obj == null) {
+        Object obj = m.getAttribute("res");
+        ListResponse<Shop> res = new ListResponse<>();
+        if(obj == null){
             res = new ListResponse<>();
-        } else {
-            res.setNewResponse(obj);
+        }else{
+            res.setNewResponse(res);
         }
+        // end if else
 
-        List<Employee> l;
-        try {
-            l = employeeService.findAll();
-        } catch (Exception ex) {
-            // Return error on fail
+        List<Shop> l;
+        try{
+            l = shopService.findAll();
+        }catch(Exception ex){
+
+            // Return erroe on fail
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
+        // end try catch
 
         // Set response
         try {
@@ -127,64 +133,66 @@ public class EmployeeController {
             m.addAttribute("res", res);
             return "module/error";
         }
-        res.setTitle("Danh sách nhân viên");
+        res.setTitle("Danh sách cửa hàng");
 
-        // Send response
+        // Send Response
         m.addAttribute("res", res);
-        return "admin/employees/list";
+        return "test/testList";
     }
+    // End function list
 
     // Detail
-    @GetMapping("/{id}")
-    public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
+    @GetMapping("detail/{id}")
+    public String detail(@PathVariable(name ="id") Integer id, ModelMap m){
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
-        Employee e = new Employee();
+        Shop s = new Shop();
+        ObjectResponse<Shop> res= new ObjectResponse<>();
 
-        // Find employee
-        try {
-            e = employeeService.findById(id);
-        } catch (Exception ex) {
-            // Return error on fail
+        // Find Shop by id
+        try{
+            s = shopService.findById(id);
+        }catch(Exception ex){
+            // return error
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
+        // End try catch
 
         // Set response
-        res.setObject(e);
-        res.setTitle("Thông tin nhân viên");
+        res.setObject(s);
+        res.setTitle("Thông tin cửa hàng");
 
-        // Send response
+        // Send Response
         m.addAttribute("res", res);
-
-        return "admin/employees/edit";
+        return "test/testObject";
     }
+    //end function detail
 
-    // Delete
+    //Del
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
+    public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
         Response res = new Response();
 
-        // Find employee
-        try {
-            employeeService.deleteById(id);
-        } catch (Exception ex) {
-            // Return error on fail
+        // find shop by id
+        try{
+            shopService.deleteById(id);
+        }catch(Exception ex){
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
+        // Set Response
 
-        // Set response
-        res.setTitle("Xóa nhân viên thành công");
+        res.setTitle("Xóa cửa hàng");
 
-        // Send response
+        // send Response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/employees";
+        return "redirect:/admin/shops";
+
     }
 }

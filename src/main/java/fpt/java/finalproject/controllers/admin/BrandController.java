@@ -103,7 +103,6 @@ public class BrandController {
             res = new ListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<Brand> l;
