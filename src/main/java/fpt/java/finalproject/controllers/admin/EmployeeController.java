@@ -30,7 +30,7 @@ public class EmployeeController {
 
         ObjectResponse<Employee> res = new ObjectResponse<>();
         res.setTitle("Thêm nhân viên");
-        res.setIsEdit(false);
+        res.setObject(new Employee());
 
         // Send new response bean
         m.addAttribute("res", res);
@@ -159,7 +159,7 @@ public class EmployeeController {
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/edit";
+        return "admin/employees/detail";
     }
 
     // Delete
