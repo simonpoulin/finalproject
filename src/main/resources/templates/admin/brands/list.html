@@ -14,9 +14,9 @@
                 <th>Tên nhãn hàng</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="b : ${res.brandList}">
-                <td th:text="${b.id}"></td>
-                <td th:text="${b.brandName}"></td>
+            <tbody th:each="b : ${res.pagedList}">
+                <td th:text="${id}"></td>
+                <td th:text="${brandName}"></td>
                 <td>
                     <button type="button" class="btn btn-primary">Sửa</button>
                     <button type="button" class="btn btn-danger">Xóa</button>
