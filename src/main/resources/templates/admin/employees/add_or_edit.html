@@ -11,7 +11,7 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/employees/save}" method="POST" th:object="${res.employee}">
+        <form class="form-group" th:action="@{admin/employees/save}" method="POST" th:object="${res.object}">
             <label for="my-input">Vai trò</label>
             <div class="form-check">
                 <label class="form-check-label">
