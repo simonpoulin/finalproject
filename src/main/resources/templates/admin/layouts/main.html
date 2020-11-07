@@ -21,40 +21,223 @@
 
         <!-- Nav bar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="col-sm-2">
-                    <a style="margin-left: 90px;" class="navbar-brand" href="#">LOGO</a>
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                </div>
-                <div style="left: 400px;" class="col-sm-6">
-                    <a style="margin-right: 15px;" href="#"><img th:src="@{'/icons/notification_48px.png'}" alt=""></a>
-                    <a style="margin-right: 15px;" href="#"><img th:src="@{'/icons/male_user_48px.png'}" alt=""></a>
-                    <a style="margin-right: 15px;" href="#"><img th:src="@{'/icons/shopping_cart_48px.png'}" alt=""></a>
-                </div>
-            </nav>
-        </div>
+            <div class="wrapper">
+                <!-- Sidebar  -->
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3 style="margin-left: 22px;">SURFNSHOP</h3>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#">
+                                <i class="fas fa-paper-plane"></i>
+                                <b>Dashboard</b>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#brandsSubmenu" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle">
+                                <i class="fas fa-home"></i>
+                                <b>Brands</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="brandsSubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Brands</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Brands</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#categoriesSubmenu" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Categories</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="categoriesSubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Categories</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Categories</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#employeessubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Employees</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="employeessubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Employees</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Employees</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#itemssubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Items</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="itemssubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Items</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Items</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#Productssubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Products</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="Productssubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Products</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Products</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#Shopssubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Shops</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="Shopssubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Shops</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Shops</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#Userssubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Users</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="Userssubmenu">
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">Add Users</a>
+                                </li>
+                                <li>
+                                    <a style="color: white; text-decoration: none;" href="#">List Users</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
 
-        <!-- Section fragment -->
-        <div layout:fragment="section"></div>
-        <div layout:fragment="sidenav"></div>
-
-        <!-- Footer -->
-        <div>
-            <div class="card" style="margin-top: 10px;">
-                <div class="card-body">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">Content</p>
-                </div>
-                <div class="card-footer">
-                    Footer
+                <!-- Page Content  -->
+                <div id="content">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="nav navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <div style="padding-right: 30px;" class="dropdown">
+                                            <a style="margin-right: 5px;" href="#"><img
+                                                    th:src="@{'/icons/male_user_48px.png'}" alt=""></a>
+                                            <a style="cursor: pointer;" data-toggle="dropdown">
+                                                <b>Hi Phạm Ngọc Tùng !</b>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Chỉnh sửa tài khoảng</a>
+                                                <hr>
+                                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Section fragment -->
+                    <div layout:fragment="section"></div>
+                    <div layout:fragment="sidenav"></div>
                 </div>
             </div>
         </div>
-
     </div>
-
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <div class="container-fluid flex-column flex-md-row">
+            <div class="row">
+                <strong>
+                    <a href="#" class="navbar-brand d-none d-sm-block ml-5 nav-link nav-item">Duck</a></strong>
+                <a href="#" class="navbar-brand d-none d-sm-block nav-link nav-item lead">Duck</a>
+                <a href="#" class="navbar-brand d-none d-sm-block nav-link nav-item lead">Duck</a>
+                <a href="#" class="navbar-brand d-none d-sm-block nav-link nav-item lead">Goose</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarRiseUp"
+                aria-controls="navbarRiseUp" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bg-dark" id="navbarRiseUp">
+                <div class="container">
+                    <div class="row">
+                    </div>
+                </div>
+                <!----------- Footer Bar ------------>
+                <footer class="container-fluid text-light">
+                    <div class="row">
+                        <div class="col-lg-4 pt-2">
+                            <h2>Logo</h2>
+                            <p class="text-muted">I&#x2019;ve taken my bows and my curtain calls. You brought me fame
+                                and fortune and everything that goes with it I thank you all. But it&#x2019;s been no
+                                bed of roses...no pleasure cruise. I consider it a challenge before the human race and
+                                I ain&#x2019;t gonna lose.</p>
+                        </div>
+                        <div class="col-lg-8 footer-nav">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active bg-dark text-light" id="home-tab" data-toggle="tab"
+                                        href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                        aria-controls="profile" aria-selected="false">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                        aria-controls="contact" aria-selected="false">Contact</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
+                                    <h5>Newsletter</h5>
+                                    <p class="text-muted">I&#x2019;ve taken my bows and my curtain calls. You brought me
+                                        fame and fortune and everything that goes with it I thank you all. But
+                                        it&#x2019;s been no bed of roses...no pleasure cruise. I consider it a challenge
+                                        before the human race and I ain&#x2019;t gonna lose.</p>
+                                    <p id="copyright-mobile" class="mt-3"></p>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    bbb</div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    ccc</div>
+                            </div>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+            </div>
+            </footer>
+        </div>
+    </nav>
 </body>
 
 </html>
