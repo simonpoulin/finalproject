@@ -175,78 +175,79 @@ public class AdminController {
 
 
        //User*******************************************
-    @RequestMapping("/ublank")
-    public String BlankUser() {
-        return "user/layouts/blank_user_layouts";
-    }
-    @RequestMapping("/umain")
-    public String MainUser() {
-        return "user/layouts/main_user";
-    }
-     @RequestMapping("/adduser")
-    public String AddUser() {
-        return "user/layouts/add_user";
-    }
-    @RequestMapping("/cart")
-    public String Cart() {
-        return "user/cart/cart";
-    }
-    @RequestMapping("/carth")
-    public String CartHistory() {
-        return "user/cart/cart_history";
+    @RequestMapping("ublank")
+    public String Blank() {
+        return "module/blank_layout";
     }
     
     @RequestMapping("/personal")
     public String Personal() {
-        return "user/shops/personal";
+        return "user/account/personal";
     }
+    @RequestMapping("/editpe")
+    public String EditPersonal() {
+        return "user/account/edit";
+    }
+
+    @RequestMapping("/cart")
+    public String Cart() {
+        return "user/carts/cart";
+    }
+
+    @RequestMapping("/umain")
+    public String MainUser() {
+        return "user/layouts/main";
+    }
+    @RequestMapping("/addoredit")
+    public String AddOrEdit() {
+        return "user/layouts/add_or_edit";
+    }
+    @RequestMapping("/udetail")
+    public String Detail() {
+        return "user/layouts/detail";
+    }
+    @RequestMapping("/ulist")
+    public String List() {
+        return "user/layouts/list";
+    }
+
+
+    @RequestMapping("/order")
+    public String Order() {
+        return "user/orders/order";
+    }   
+    
     @RequestMapping("/product")
     public String Pproduct() {
         return "user/products/product";
     }
-    @RequestMapping("/productde")
-    public String ProductlDetails() {
-        return "user/products/product_details";
+    @RequestMapping("/productdetail")
+    public String PproductDetail() {
+        return "user/products/detail";
     }
-    @RequestMapping("/statistical")
-    public String Statisticals() {
-        return "user/statistical";
+
+    @RequestMapping("/employeesadd")
+    public String EmployeesAdd() {
+        return "user/sales/employees/add_or_edit";
     }
-    @RequestMapping("/store")
-    public String Store() {
-        return "user/shops/store";
+    @RequestMapping("/employeeslist")
+    public String EmployeesList() {
+        return "user/sales/employees/list";
     }
-    @RequestMapping("/chart")
-    public String Chart() {
-        return "user/shops/chart";
+    @RequestMapping("/orderlist")
+    public String OrderList() {
+        return "user/sales/orders/list";
     }
-    @RequestMapping("/list")
-    public String List() {
-        return "user/layouts/list";
+    @RequestMapping("/productsadd")
+    public String ProductsAdd() {
+        return "user/sales/products/add_or_edit";
     }
-    @RequestMapping("/listpro")
-    public String ListProducts() {
-        return "user/products/list_products";
+    @RequestMapping("/productslist")
+    public String ProductsList() {
+        return "user/sales/products/list";
     }
-    @RequestMapping("/addproduct")
-    public String AddProducts() {
-        return "user/products/add_product";
-    }
-    @RequestMapping("/editproduct")
-    public String EditProducts() {
-        return "user/products/edit_product";
-    }
-    @RequestMapping("/addemployees")
-    public String Addemployees() {
-        return "user/employees/add_employees";
-    }
-    @RequestMapping("/editemployees")
-    public String Editemployees() {
-        return "user/employees/edit_employees";
-    }
-    @RequestMapping("/listemployees")
-    public String Listemployees() {
-        return "user/employees/list_employees";
-    }
+
+
+
     
 }

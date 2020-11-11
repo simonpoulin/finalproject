@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/layouts/add_or_edit.html}">
+
+<head>
+    <div layout:fragment="title">
+        <div layout:fragment="addOrEdit_title"></div>
+      </div>
+</head>
+
+<body>
+
+
+    <div layout:fragment="addOrEdit_form">
+
+        <form class="form-group">
+            
+            <label for="my-input">Tên người dùng</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Username</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Password</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Số điện thoại</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Địa chỉ</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Email</label>
+            <input id="my-input" class="form-control" type="email">
+            <div class="form-group">
+                <label for="my-input">Avatar</label>
+                <input id="my-input" class="form-control-file" type="file" name="">
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

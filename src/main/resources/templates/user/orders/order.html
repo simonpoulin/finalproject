@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{user/layouts/main_user.html}">
+  layout:decorate="~{user/layouts/main.html}">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lich su</title>
-  <link rel="stylesheet" href="../static/assets/css/style.css" />
+  <div layout:fragment="title">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <div layout:fragment="addOrEdit_title"></div>
+
+  </div>
 </head>
 
 <body>
   <div layout:fragment="section">
+
     <div class="container-fluid">
       <div class="container">
         <div class="crow"></div>
         <div style="background-color: rgb(241, 241, 241); margin-left: -25px" class="row">
-          <div style="margin-top: -800px; font-size: 20px; padding-bottom: 10px" class="col-3 sticky muc">
+          <div style=" font-size: 20px; padding-bottom: 10px" class="col-3 sticky muc">
             <a style="margin: 60px 0px 20px 0px" href="#">
               <img style="height: 30px; width: 30px" src="images/icons8-male-user-30.png" alt="" />
               Chỉnh sửa tài khoản</a><br />
             <a style="margin: 60px 0px 20px 0px" href="#"><img style="height: 30px; width: 30px"
-                src="images/icons8-add-basket-80.png" alt="" />&ensp;Đơn hàng</a><br />
+                th:src="@{images/icons8-add-basket-80.png}" alt="" />&ensp;Đơn hàng</a><br />
             <a style="margin: 20px 0px 20px 0px" href="#"><img style="height: 30px; width: 30px"
                 src="images/icons8-bell-64.png" alt="" />&ensp;Thông báo</a><br />
           </div>
@@ -31,7 +33,7 @@
                 <hr />
               </div>
             </div>
-            <div class="trangthai">
+            <div class="trangthai mb-50">
               <a style="margin-left: 50px" href="#">Tất cả</a>
               <a style="margin-left: 50px" href="#">Chờ lấy hàng</a>
               <a style="margin-left: 50px" href="#">Đang giao</a>
@@ -40,13 +42,16 @@
               <br />
               <table>
                 <tr>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+              </tr>
+                <tr>
                   <td>
                     <div class="cart-info">
-                      <img src="../static/assets/images/product.png" />
+                      <img th:src="@{images/product.png}"  />
                       <div>
                         <p>Điện Thoại</p>
-                        <small>Price: $50.00</small>
-                        <br />
                         <a href="">Remove</a>
                       </div>
                     </div>
@@ -57,11 +62,9 @@
                 <tr>
                   <td>
                     <div class="cart-info">
-                      <img src="../static/assets/images/q.jpg" />
+                      <img src="images/q.jpg" />
                       <div>
                         <p>Điện Thoại</p>
-                        <small>Price: $75.00</small>
-                        <br />
                         <a href="">Remove</a>
                       </div>
                     </div>
@@ -72,11 +75,9 @@
                 <tr>
                   <td>
                     <div class="cart-info">
-                      <img src="../static/assets/images/product.png" />
+                      <img src="images/product.png" />
                       <div>
                         <p>Điện Thoại</p>
-                        <small>Price: $50.00</small>
-                        <br />
                         <a href="">Remove</a>
                       </div>
                     </div>

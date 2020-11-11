@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{module/blank_layout.html}">
+
+<head>
+
+  <!-- Add division to head fragment -->
+  <div layout:fragment="head">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Title fragment -->
+    <div layout:fragment="title"></div>
+
+  </div>
+
+</head>
+
+<body>
+
+  <div layout:fragment="body">
+
+    <div class="navbar" style="background-color: rgb(87, 73, 219);color: rgb(217, 240, 255)" >
+      <div class="col-sm-2">
+        <a style="margin-left: 90px;color: rgb(213, 231, 247);" class="navbar-brand" href="#">LOGO</a>
+      </div>
+      <div class="col-sm-4">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      </div>
+      <div class="col-sm-6 " >
+        <a style="margin-left: 150px;color: rgb(213, 231, 247);"  href="#"><img th:src="@{/icons/notification_48px.png}">Thông báo</a>
+        <a style="margin-right: 15px;color: rgb(213, 231, 247); " href="#"><img width="50px" th:src="@{images/icons8-add-basket-80.png}">Đơn hàng</a>
+        <a style="margin-right: 15px;color: rgb(213, 231, 247);" href="#"><img th:src="@{/icons/shopping_cart_48px.png}">Giỏ hàng</a>
+        <a style="margin-right: 15px;color: rgb(213, 231, 247);" href="#"><img th:src="@{/icons/male_user_48px.png}">Tài khoản</a>
+      </div>
+    </div>
+
+    <div layout:fragment="section" style="min-height: 500px;"></div>
+
+    <footer class="page-footer font-small blue pt-4" style="background-color: rgb(81, 52, 151);color: rgb(217, 240, 255);">
+      <div class="container-fluid text-center text-md-left">
+        <div class="row">
+          <div class="col-md-6 mt-md-0 mt-3">
+            <h5 class="text-uppercase">Footer Content</h5>
+
+          </div>
+          <hr class="clearfix w-100 d-md-none pb-3">
+          <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Links</h5>
+    
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+                <a href="#!">Link 3</a>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href=""> Surfnshop</a>
+      </div>
+      
+    
+    </footer>
+  </div>
+
+</body>
+
+</html>
