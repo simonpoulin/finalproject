@@ -171,4 +171,8 @@ public class AdminController {
         m.addAttribute("res", res);
         return "test/testList";
     }
+    @RequestMapping("/dashboard")
+    public String dashboard(){
+        return "admin/dashboard";
+    }
 }
