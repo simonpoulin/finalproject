@@ -158,7 +158,7 @@ public class UserController {
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/users/edit";
+        return "admin/users/detail";
     }
 
     // Delete
