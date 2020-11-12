@@ -28,12 +28,15 @@ public class ProductController {
     public String add(ModelMap m){
 
         ObjectResponse<Product> res = new ObjectResponse<Product>();
+        Product p = new Product();
 
         res.setTitle("Thêm sản phẩm");
         res.setIsEdit(false);
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", p);
+
         return "admin/products/add";
     }
     //end function add
@@ -88,12 +91,12 @@ public class ProductController {
         // end try catch
         
         // Set response
-        res.setObject(p);
         res.setIsEdit(true);
         res.setTitle("cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", p);
 
         return "admin/products/add";
     }

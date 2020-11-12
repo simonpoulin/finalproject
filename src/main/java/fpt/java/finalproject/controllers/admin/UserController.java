@@ -1,5 +1,6 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,15 @@ public class UserController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        Response res = new Response();
+        ObjectResponse<User> res = new ObjectResponse<>();
+        User u = new User();
+       
+
         res.setTitle("Thêm người dùng");
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
         return "admin/users/add_or_edit";
     }
@@ -83,12 +88,12 @@ public class UserController {
         }
 
         // Set response
-        res.setObject(u);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
         return "admin/users/add_or_edit";
     }

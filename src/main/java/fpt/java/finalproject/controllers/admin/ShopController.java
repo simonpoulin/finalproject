@@ -29,13 +29,15 @@ public class ShopController{
     public String add(ModelMap m){
         
         ObjectResponse<Shop> res = new ObjectResponse<Shop>();
+        Shop s = new Shop();
 
         res.setTitle("Thêm cửa hàng");
         res.setIsEdit(false);
-        res.setObject(new Shop());
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", s);
+
         return "test/testAdd";
     }
     //end function add();
@@ -87,12 +89,12 @@ public class ShopController{
         // end try catch
 
         // Set response
-        res.setObject(s);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", s);
 
         return "test/testAdd";
     }

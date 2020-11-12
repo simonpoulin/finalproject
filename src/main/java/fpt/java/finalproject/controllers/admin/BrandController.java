@@ -29,9 +29,12 @@ public class BrandController {
     public String add(ModelMap m) {
 
         ObjectResponse<Brand> res = new ObjectResponse<>();
+        Brand b = new Brand();
+
         res.setTitle("Thêm nhãn hàng");
 
         // Send new response bean
+        m.addAttribute("object", b);
         m.addAttribute("res", res);
 
         return "admin/brands/add_or_edit";
@@ -83,13 +86,12 @@ public class BrandController {
         }
 
         // Set response
-        res.setObject(b);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
-
+        m.addAttribute("object", b);
         return "admin/brands/add_or_edit";
     }
 

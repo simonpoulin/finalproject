@@ -29,11 +29,12 @@ public class EmployeeController {
     public String add(ModelMap m) {
 
         ObjectResponse<Employee> res = new ObjectResponse<>();
+        Employee e = new Employee();
         res.setTitle("Thêm nhân viên");
-        res.setObject(new Employee());
-
+        
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", e);
 
         return "admin/employees/add_or_edit";
     }
@@ -84,12 +85,12 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setObject(e);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", e);
 
         return "admin/employees/add_or_edit";
     }

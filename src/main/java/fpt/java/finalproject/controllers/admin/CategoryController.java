@@ -29,10 +29,13 @@ public class CategoryController {
     public String add(ModelMap m) {
 
         ObjectResponse<Category> res = new ObjectResponse<>();
+        Category c = new Category();
         res.setTitle("Thêm danh mục");
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", c);
+
 
         return "admin/categories/add_or_edit";
     }
@@ -83,12 +86,12 @@ public class CategoryController {
         }
 
         // Set response
-        res.setObject(c);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", c);
 
         return "admin/categories/add_or_edit";
     }

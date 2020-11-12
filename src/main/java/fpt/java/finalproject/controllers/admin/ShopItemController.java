@@ -25,16 +25,17 @@ public class ShopItemController {
     private ShopItemService shopItemService;
 
     @GetMapping("/add")
-    public String add(ModelMap model){
+    public String add(ModelMap m){
         
         ObjectResponse<ShopItem> res = new ObjectResponse<ShopItem>();
+        ShopItem sI = new ShopItem();
 
         res.setTitle("Thêm Mặt Hàng");
-        res.setIsEdit(false);
-        res.setObject(new ShopItem());
 
         // Send new response bean
-        model.addAttribute("res", res);
+        m.addAttribute("res", res);
+        m.addAttribute("object", sI);
+
         return "admin/shopitems/add";
     }
     //end function add
@@ -89,12 +90,13 @@ public class ShopItemController {
         // end try catch
 
         // Set response
-        res.setObject(sI);
         res.setIsEdit(true);
         res.setTitle("cập nhật thành công");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", sI);
+
         return "admin/shopitems/add";
     }
     // end function edit
