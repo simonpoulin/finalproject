@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Product;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.ProductService;
 
 @Controller
@@ -27,7 +27,7 @@ public class ProductController {
     @GetMapping("/add")
     public String add(ModelMap m){
 
-        ObjectResponse<Product> res = new ObjectResponse<Product>();
+        AdminObjectResponse<Product> res = new AdminObjectResponse<Product>();
         Product p = new Product();
 
         res.setTitle("Thêm sản phẩm");
@@ -45,7 +45,7 @@ public class ProductController {
     @PostMapping("/save")
     public String save(ModelMap m, Product p){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         //save new product
         try{
@@ -75,7 +75,7 @@ public class ProductController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        ObjectResponse<Product> res = new ObjectResponse<>();
+        AdminObjectResponse<Product> res = new AdminObjectResponse<>();
         Product p = new Product();
 
         // Find by id product
@@ -107,10 +107,10 @@ public class ProductController {
     public String list(ModelMap m){
 
         Object obj = m.addAttribute("res");
-        ListResponse<Product> res = new ListResponse<>();
+        AdminListResponse<Product> res = new AdminListResponse<>();
         List<Product> l;
         if(obj == null){
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         }else{
             res.setNewResponse(res);
         }
@@ -150,7 +150,7 @@ public class ProductController {
     public String detail (@PathVariable(name ="id") Integer id, ModelMap m){
 
         Product p = new Product();
-        ObjectResponse<Product> res = new ObjectResponse<>();
+        AdminObjectResponse<Product> res = new AdminObjectResponse<>();
 
         // Find by id
       try {
@@ -178,7 +178,7 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public String del(@PathVariable(name = "id") Integer id,  ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // del by id
         try {
@@ -191,10 +191,10 @@ public class ProductController {
             return "module/error";
         }
         
-        //Set Response
+        //Set AdminResponse
         res.setTitle("Xóa sản phẩm");
 
-        // send Response
+        // send AdminResponse
         m.addAttribute("res", res);
 
         return "redirect:/admin/products";

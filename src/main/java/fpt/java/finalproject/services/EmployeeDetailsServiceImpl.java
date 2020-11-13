@@ -8,10 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import fpt.java.finalproject.auth.EmployeeAuth;
 import fpt.java.finalproject.auth.EmployeeDetails;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.repositories.EmployeeRepository;
@@ -24,7 +24,7 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public EmployeeAuth loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Employee employee = employeeRepository.findByUsername(username);
         if (employee == null) {

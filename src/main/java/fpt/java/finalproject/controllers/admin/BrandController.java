@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Brand;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
 
 @RequestMapping("/admin/brands")
@@ -28,7 +28,7 @@ public class BrandController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        ObjectResponse<Brand> res = new ObjectResponse<>();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
         Brand b = new Brand();
 
         res.setTitle("Thêm nhãn hàng");
@@ -44,7 +44,7 @@ public class BrandController {
     @PostMapping("/save")
     public String save(Brand b, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Save brand
         try {
@@ -71,7 +71,7 @@ public class BrandController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<Brand> res = new ObjectResponse<>();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
         Brand b = new Brand();
 
         // Find brand
@@ -99,10 +99,10 @@ public class BrandController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Response obj = (Response) m.getAttribute("res");
-        ListResponse<Brand> res = new ListResponse<>();
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        AdminListResponse<Brand> res = new AdminListResponse<>();
         if (obj == null) {
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
         }
@@ -139,7 +139,7 @@ public class BrandController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Find brand
         try {
