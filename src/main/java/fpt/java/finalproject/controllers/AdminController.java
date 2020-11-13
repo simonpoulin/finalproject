@@ -13,8 +13,8 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.models.ShopItem;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.ProductResponse;
 import fpt.java.finalproject.response.ShopItemResponse;
 
@@ -30,7 +30,7 @@ public class AdminController {
     // Admin Empoyee details
     @RequestMapping("/aemployeedetail")
     public String adminEmployeeDetail(ModelMap m) {
-        ObjectResponse<Employee> res = new ObjectResponse<>();
+        AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
 
         // Set EmployeeRole
         EmployeeRole r = new EmployeeRole();
@@ -109,7 +109,7 @@ public class AdminController {
         b.setBrandName("brandName");
 
         // Set new ObjectResponse
-        ObjectResponse<Brand> res = new ObjectResponse<>();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
         res.setObject(b);
         res.setIsEdit(true);
         res.setTitle("Test");
@@ -158,7 +158,7 @@ public class AdminController {
         l.add(b4);
 
         // Set new EntityResponse
-        ListResponse<Brand> res = new ListResponse<>();
+        AdminListResponse<Brand> res = new AdminListResponse<>();
         try {
             res.generateResponse(l, 0, 0);
         } catch (Exception e) {

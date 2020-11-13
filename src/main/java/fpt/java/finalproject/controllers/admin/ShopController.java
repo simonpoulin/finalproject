@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Shop;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.ShopService;
 
 @Controller
@@ -28,7 +28,7 @@ public class ShopController{
     @GetMapping("/add")
     public String add(ModelMap m){
         
-        ObjectResponse<Shop> res = new ObjectResponse<Shop>();
+        AdminObjectResponse<Shop> res = new AdminObjectResponse<Shop>();
         Shop s = new Shop();
 
         res.setTitle("Thêm cửa hàng");
@@ -46,7 +46,7 @@ public class ShopController{
     @PostMapping("/save")
     public String save(Shop s, ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // save new shop
         try{
@@ -75,7 +75,7 @@ public class ShopController{
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        ObjectResponse<Shop> res = new ObjectResponse<>();
+        AdminObjectResponse<Shop> res = new AdminObjectResponse<>();
         Shop s = new Shop();
         // Find by id Shop
         try{
@@ -104,9 +104,9 @@ public class ShopController{
     public String list(ModelMap m){
 
         Object obj = m.getAttribute("res");
-        ListResponse<Shop> res = new ListResponse<>();
+        AdminListResponse<Shop> res = new AdminListResponse<>();
         if(obj == null){
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         }else{
             res.setNewResponse(res);
         }
@@ -137,7 +137,7 @@ public class ShopController{
         }
         res.setTitle("Danh sách cửa hàng");
 
-        // Send Response
+        // Send AdminResponse
         m.addAttribute("res", res);
         return "test/testList";
     }
@@ -148,7 +148,7 @@ public class ShopController{
     public String detail(@PathVariable(name ="id") Integer id, ModelMap m){
 
         Shop s = new Shop();
-        ObjectResponse<Shop> res= new ObjectResponse<>();
+        AdminObjectResponse<Shop> res= new AdminObjectResponse<>();
 
         // Find Shop by id
         try{
@@ -166,7 +166,7 @@ public class ShopController{
         res.setObject(s);
         res.setTitle("Thông tin cửa hàng");
 
-        // Send Response
+        // Send AdminResponse
         m.addAttribute("res", res);
         return "test/testObject";
     }
@@ -176,7 +176,7 @@ public class ShopController{
     @DeleteMapping("/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // find shop by id
         try{
@@ -187,11 +187,11 @@ public class ShopController{
             m.addAttribute("res", res);
             return "module/error";
         }
-        // Set Response
+        // Set AdminResponse
 
         res.setTitle("Xóa cửa hàng");
 
-        // send Response
+        // send AdminResponse
         m.addAttribute("res", res);
 
         return "redirect:/admin/shops";
