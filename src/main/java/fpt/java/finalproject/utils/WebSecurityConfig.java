@@ -35,21 +35,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/").hasRole("EMPLOYEE")
-                .antMatchers("/manager").hasRole("MANAGER")
-                .antMatchers("/admin").hasRole("ADMIN")
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/")
-                .failureUrl("/login?error")
-                .and()
-            .exceptionHandling()
-                .accessDeniedPage("/403");
+            .antMatcher("/admin/**")
+                .authorizeRequests()
+                    .antMatchers("/admin/signup").permitAll()
+                    .antMatchers("/admin/register").permitAll()
+                    .antMatchers("/admin/forgetpassword").permitAll()
+                    .antMatchers("/admin/recover").permitAll()
+                    .antMatchers("/admin/**").hasRole("EMPLOYEE")
+                    .antMatchers("/").hasRole("EMPLOYEE")
+                    .antMatchers("/manager").hasRole("MANAGER")
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .and()
+                .formLogin()
+                    .loginPage("/admin/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/admin/dashboard")
+                    .failureUrl("/admin/login?error")
+                    .and()
+                .exceptionHandling()
+                    .accessDeniedPage("/403");
     }
 
     @Bean
