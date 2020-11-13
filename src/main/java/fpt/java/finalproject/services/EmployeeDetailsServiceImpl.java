@@ -1,6 +1,5 @@
 package fpt.java.finalproject.services;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import fpt.java.finalproject.auth.EmployeeDetails;
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.models.EmployeeDetails;
-import fpt.java.finalproject.models.EmployeeDetailsIntf;
 import fpt.java.finalproject.repositories.EmployeeRepository;
 
 @Service
@@ -33,7 +31,7 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-        Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         int role = employee.getEmployeeRole().getId();
 
         if (role >= 1) {
@@ -48,6 +46,6 @@ public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 
-        return new EmployeeDetails(employee.getUsername(), employee.getPassword(), grantedAuthorities);
+        return new EmployeeDetails(employee, grantedAuthorities);
     }
 }
