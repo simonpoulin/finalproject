@@ -27,9 +27,28 @@ public class TestComponent implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
+        // Add role
+        if (employeeRoleRepository.findById(1) == null) {
+            EmployeeRole er = new EmployeeRole();
+            er.setId(1);
+            er.setRoleName("Employee");
+            employeeRoleRepository.save(er);
+        }
+        if (employeeRoleRepository.findById(2) == null) {
+            EmployeeRole er = new EmployeeRole();
+            er.setId(2);
+            er.setRoleName("Manager");
+            employeeRoleRepository.save(er);
+        }
+        if (employeeRoleRepository.findById(3) == null) {
+            EmployeeRole er = new EmployeeRole();
+            er.setId(3);
+            er.setRoleName("Admin");
+            employeeRoleRepository.save(er);
+        }
 
         // Admin account
-        if (employeeRepository.findByUsername("a1") == null) {
+        if (employeeRepository.findById(1) == null) {
             Employee admin = new Employee();
             admin.setUsername("a1");
             admin.setPassword(passwordEncoder.encode("123456"));
@@ -44,7 +63,7 @@ public class TestComponent implements ApplicationListener<ContextRefreshedEvent>
         }
 
         // Manager account
-        if (employeeRepository.findByUsername("a2") == null) {
+        if (employeeRepository.findById(2) == null) {
             Employee manager = new Employee();
             manager.setUsername("a2");
             manager.setPassword(passwordEncoder.encode("123456"));
@@ -59,7 +78,7 @@ public class TestComponent implements ApplicationListener<ContextRefreshedEvent>
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("a3") == null) {
+        if (employeeRepository.findById(3) == null) {
             Employee employee = new Employee();
             employee.setUsername("a3");
             employee.setPassword(passwordEncoder.encode("123456"));

@@ -37,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .antMatcher("/admin/**")
                 .authorizeRequests()
-                    .antMatchers("/admin/signup").permitAll()
+                    .antMatchers("/admin/**").permitAll()
+                   /*  .antMatchers("/admin/signup").permitAll()
                     .antMatchers("/admin/register").permitAll()
                     .antMatchers("/admin/forgetpassword").permitAll()
                     .antMatchers("/admin/recover").permitAll()
@@ -51,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/admin/dashboard")
-                    .failureUrl("/admin/login?error")
+                    .failureUrl("/admin/login?error") */
                     .and()
                 .exceptionHandling()
                     .accessDeniedPage("/403");

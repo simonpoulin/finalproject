@@ -8,7 +8,7 @@ public interface UserService {
 
     public void save(User entity) throws Exception;
 
-    public List<User> findAll() throws Exception;
+    public List<User> findAll();
 
     public User findById(Integer id) throws Exception;
 

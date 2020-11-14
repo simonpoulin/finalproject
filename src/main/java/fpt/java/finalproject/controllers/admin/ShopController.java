@@ -7,15 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Shop;
+import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.ShopService;
+import fpt.java.finalproject.services.UserService;
 
 @Controller
 @RequestMapping("/admin/shops")
@@ -23,6 +26,9 @@ public class ShopController{
 
     @Autowired
     private ShopService shopService;
+
+    @Autowired 
+    private UserService userService;
 
     // Direct to add page
     @GetMapping("/add")
@@ -38,7 +44,7 @@ public class ShopController{
         m.addAttribute("res", res);
         m.addAttribute("object", s);
 
-        return "test/testAdd";
+        return "test/test_add_or_edit";
     }
     //end function add();
 
@@ -47,9 +53,10 @@ public class ShopController{
     public String save(Shop s, ModelMap m){
 
         AdminResponse res = new AdminResponse();
-
+        User u = new User();
         // save new shop
         try{
+            s.setId(u.getId());
             shopService.save(s);
         }catch(Exception ex){
             
@@ -68,7 +75,7 @@ public class ShopController{
         m.addAttribute("res", res);
 
         // Redirect to list
-        return "redirect:/test/testAdd";
+        return "redirect:/test/test_add_or_edit";
     }
 
     // Direct to edit page
@@ -96,7 +103,7 @@ public class ShopController{
         m.addAttribute("res", res);
         m.addAttribute("object", s);
 
-        return "test/testAdd";
+        return "test/test_add_or_edit";
     }
 
     // List
@@ -139,7 +146,7 @@ public class ShopController{
 
         // Send AdminResponse
         m.addAttribute("res", res);
-        return "test/testList";
+        return "admin/shops/list";
     }
     // End function list
 
@@ -168,7 +175,7 @@ public class ShopController{
 
         // Send AdminResponse
         m.addAttribute("res", res);
-        return "test/testObject";
+        return "admin/shops/detail";
     }
     //end function detail
 
@@ -195,6 +202,10 @@ public class ShopController{
         m.addAttribute("res", res);
 
         return "redirect:/admin/shops";
-
+    }
+    
+    @ModelAttribute(name = "users")
+    public List<User> getUsers(){
+        return userService.findAll();
     }
 }
