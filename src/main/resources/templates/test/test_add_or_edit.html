@@ -11,31 +11,19 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{/admin/register/save}" method="POST" th:object="${object}">
-            <div th:if="${res.isEdit}">
-                <label for="my-input">ID</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
-            </div>
+        <form class="form-group" th:action="@{/admin/shops/save}" method="POST" th:object="${object}">
+            <label for="my-input">ID</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{id}">
             <label for="my-input">Tên </label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
-            <label for="my-input">tk</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{username}">
-            <label for="my-input">mk</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{password}">
-            <label for="my-input">sdt</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{phone}">
             <label for="my-input">dc</label>
             <input id="my-input" class="form-control" type="text" th:field="*{address}">
-
             <label for="my-input">email</label>
             <input id="my-input" class="form-control" type="text" th:field="*{email}">
-            <label for="my-input">Quyen</label>
-            <select th:field="*{employeeRole.id}">
-                <option value=""> -- </option>
-                <option th:each="employeeRole : ${employeeRoles}"
-                   th:value="${employeeRole.id}"
-                   th:text="${employeeRole.roleName}">
-         </select>
+            <label for="my-input">phone</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{phone}">
+            <label for="my-input">status</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{status}">
             <hr>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

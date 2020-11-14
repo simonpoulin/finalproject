@@ -1,5 +1,6 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.ShopPackService;
 import fpt.java.finalproject.services.ShopService;
 import fpt.java.finalproject.services.UserService;
 
@@ -29,6 +31,9 @@ public class ShopController{
 
     @Autowired 
     private UserService userService;
+
+    @Autowired 
+    private ShopPackService shopPackService;
 
     // Direct to add page
     @GetMapping("/add")
@@ -53,10 +58,16 @@ public class ShopController{
     public String save(Shop s, ModelMap m){
 
         AdminResponse res = new AdminResponse();
-        User u = new User();
+
+        s.setCreatedAt(new Date(new Date().getTime()));
+        try {
+            s.setShopPack(shopPackService.findById(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         // save new shop
         try{
-            s.setId(u.getId());
             shopService.save(s);
         }catch(Exception ex){
             
@@ -64,6 +75,7 @@ public class ShopController{
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
+            ex.printStackTrace();
             return "module/error";
         }
         // end try catch
@@ -73,9 +85,10 @@ public class ShopController{
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", s);
 
         // Redirect to list
-        return "redirect:/test/test_add_or_edit";
+        return "test/test_add_or_edit";
     }
 
     // Direct to edit page

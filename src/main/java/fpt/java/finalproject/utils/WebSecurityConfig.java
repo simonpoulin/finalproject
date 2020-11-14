@@ -37,25 +37,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .antMatcher("/admin/**")
                 .authorizeRequests()
-                    .antMatchers("/admin/**").permitAll()
-                   /*  .antMatchers("/admin/signup").permitAll()
+                    // .antMatchers("/admin/**").permitAll()
                     .antMatchers("/admin/register").permitAll()
+                    .antMatchers("/admin/register/save").permitAll()
                     .antMatchers("/admin/forgetpassword").permitAll()
+
+                    // em chưa phân quyền nữa này
+                    
                     .antMatchers("/admin/recover").permitAll()
-                    .antMatchers("/admin/**").hasRole("EMPLOYEE")
-                    .antMatchers("/").hasRole("EMPLOYEE")
-                    .antMatchers("/manager").hasRole("MANAGER")
-                    .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/admin/shops").hasRole("EMPLOYEE")
+                    // .antMatchers("/").hasRole("EMPLOYEE")
+                    // .antMatchers("/manager").hasRole("MANAGER")
+                    // .antMatchers("/admin").hasRole("ADMIN")
                     .and()
                 .formLogin()
                     .loginPage("/admin/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/admin/dashboard")
-                    .failureUrl("/admin/login?error") */
+                    .failureUrl("/admin/login?error")
                     .and()
                 .exceptionHandling()
-                    .accessDeniedPage("/403");
+                    .accessDeniedPage("/admin/403");
     }
 
     @Bean

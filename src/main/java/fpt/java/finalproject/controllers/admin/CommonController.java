@@ -8,12 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeRoleService;
@@ -32,7 +30,7 @@ public class CommonController {
     private PasswordEncoder passwordEncoder;
 
     // Direct to add page
-    @GetMapping("/add")
+    @GetMapping("/register")
     public String add(ModelMap m) {
 
         AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
@@ -43,16 +41,18 @@ public class CommonController {
         m.addAttribute("res", res);
         m.addAttribute("object", e);
 
-        return "test/test_add_or_edit";
+        return "admin/signup";
     }
 
     // Save new
-    @PostMapping("/save")
+    @PostMapping("/register/save")
     public String save(Employee e, ModelMap m) {
-
+        //ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k , ....
         AdminResponse res = new AdminResponse();
         e.setCreatedAt(new Date(new Date().getTime()));
         e.setPassword(passwordEncoder.encode(e.getPassword()));
+        e.setEmployeeRole(employeeRoleService.findById(1));
+
         // Save employee
         try {
             employeeService.save(e);
@@ -65,17 +65,38 @@ public class CommonController {
         }
 
         // Set response
-        res.setMessage("Lưu thành công!");
+        res.setMessage("Đăng ký thành công!");
 
         // Send response
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/employees";
-    }
-    @ModelAttribute(name = "employeeRoles")
-    public List<EmployeeRole> getEmployeeRoles(){
-        return employeeRoleService.findAll();
+        return "admin/login";
     }
     
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "admin/dashboard";
+    }
+
+    @GetMapping("")
+    public String blank() {
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/login")
+    public String getLogin() {
+        return "admin/login";
+    }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "module/error";
+    }
+
 }
