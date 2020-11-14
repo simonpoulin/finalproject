@@ -1,14 +1,16 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/list.html}">
+    layout:decorate="~{user/layouts/list.html}">
 
 <head>
-    <title>Title</title>
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
 </head>
 
 <body>
     <div layout:fragment="list_form">
-        <table class="table table-bordered">
+        <table class="table">
             <tbody>
                 <th>Mã đơn hàng</th>
                 <th>Tên mặt hàng</th>
@@ -24,7 +26,6 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button type="button" class="btn btn-primary">Sửa</button>
                     <button type="button" class="btn btn-danger">Xóa</button>
                 </td>
             </tbody>

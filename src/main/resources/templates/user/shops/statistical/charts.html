@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/layouts/shop_page.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+<body>
+    <div layout:fragment="shop_page">
+        <div class="container-fluid" style="background-color: rgb(247, 247, 247);">
+            <label>Khung thời gian:</label>
+            <select id="time">
+                <option value="ngay" selected>Ngày</option>
+                <option value="thang"> Tháng </option>
+                <option value="nam"> Năm</option>
+            </select>
+            <label for="">Mặt hàng:&ensp;</label><select id="mathang">
+                <option value="A" selected>Mặt hàng 1</option>
+                <option value="B">Mặt hàng 2</option>
+                <option value="C">Mặt hàng 3</option>
+            </select>
+        </div>
+        <div class="container-fluid">
+            <table class="table table-light" style="margin-left: -20px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng bán</th>
+                        <th>Doang Thu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                   
+                </tbody>
+                <tfoot style="background-color: antiquewhite;">
+                    <tr>
+                        <td>
+                            <h6>Tổng</h6>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <hr>
+        <div id="chartContainer" style="height: 500px; width: 96%;"></div>
+        <hr><br>
+        <div id="chartContainer2" style="height: 500px; width: 96%;"></div>
+        <hr><br>
+        <div id="chartContainer3" style="height: 500px; width: 96%;"></div>
+        <hr>
+        <script th:src="@{js/chart.js}"></script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
+
+
+</body>
+
+</html>

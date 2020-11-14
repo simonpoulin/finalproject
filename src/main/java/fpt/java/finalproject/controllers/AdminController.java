@@ -191,7 +191,7 @@ public class AdminController {
 
     @RequestMapping("/cart")
     public String Cart() {
-        return "user/carts/cart";
+        return "user/carts/show";
     }
 
     @RequestMapping("/umain")
@@ -214,12 +214,12 @@ public class AdminController {
 
     @RequestMapping("/order")
     public String Order() {
-        return "user/orders/order";
+        return "user/orders/show";
     }   
     
     @RequestMapping("/product")
     public String Pproduct() {
-        return "user/products/product";
+        return "user/products/show";
     }
     @RequestMapping("/productdetail")
     public String PproductDetail() {
@@ -228,24 +228,41 @@ public class AdminController {
 
     @RequestMapping("/employeesadd")
     public String EmployeesAdd() {
-        return "user/sales/employees/add_or_edit";
+        return "user/shops/employees/add_or_edit";
     }
     @RequestMapping("/employeeslist")
     public String EmployeesList() {
-        return "user/sales/employees/list";
+        return "user/shops/employees/list";
+    }
+    @RequestMapping("/employeesdetail")
+    public String EmployeesDetail() {
+        return "user/shops/employees/detail";
     }
     @RequestMapping("/orderlist")
     public String OrderList() {
-        return "user/sales/orders/list";
+        return "user/shops/orders/list";
     }
     @RequestMapping("/productsadd")
     public String ProductsAdd() {
-        return "user/sales/products/add_or_edit";
+        return "user/shops/products/add_or_edit";
     }
     @RequestMapping("/productslist")
     public String ProductsList() {
-        return "user/sales/products/list";
+        return "user/shops/products/list";
     }
+    @RequestMapping("/productsdetail")
+    public String ProductsDetail() {
+        return "user/shops/products/detail";
+    }
+    @RequestMapping("/shoppage")
+    public String ShoppPage() {
+        return "user/layouts/shop_page";
+    }
+    @RequestMapping("/statistical")
+    public String Statisticale() {
+        return "user/shops/statistical/charts";
+    }
+
 
 
 

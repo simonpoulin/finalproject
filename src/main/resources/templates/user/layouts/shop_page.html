@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{user/layouts/main.html}">
+
+<head>
+
+  <!-- Add division to head fragment -->
+  <div layout:fragment="head">
+    <script th:src="@{js/chart.js}"></script>
+    <link id="traffic" rel="variance-data" th:href="@{images/traffic.csv}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Title fragment -->
+    <div layout:fragment="title"></div>
+
+  </div>
+
+</head>
+
+<body>
+
+  <div layout:fragment="section">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card" style="margin-left: 1px; margin-top: 1px;">
+                <div class="card-header">
+                    <img src="icons/prototype_48px.png" alt="">Quản lí đơn hàng
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tất cả đơn hàng</li>
+                    <li class="list-group-item">Xử lí hoạt động</li>
+                    <li class="list-group-item">Trả / Hoàn tiền</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/aliexpress_48px.png" alt="">Quản lí sản phẩm
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Tất cả sản phẩm</li>
+                    <li class="list-group-item">Thêm sản phẩm</li>
+                    <li class="list-group-item">Sản phẩm vi phạm</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/us_dollar_48px.png" alt="">Tài chính
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Doanh thu</li>
+                    <li class="list-group-item">Ví Shopee</li>
+                    <li class="list-group-item">Tài khoản ngân hàng</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/bar_chart_48px.png" alt="">Dữ liệu
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Phân tích bán hàng</li>
+                    <li class="list-group-item">Hiệu quả hoạt động</li>
+                </ul>
+                <div class="card-header">
+                    <img src="icons/maintenance_48px.png" alt="">Quản lí Shop
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Trang trí shop</li>
+                    <li class="list-group-item">Danh mục của shop</li>
+                    <li class="list-group-item">Thiết lập shop</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-9" layout:fragment="shop_page" style="min-height: 500px;"></div>
+    </div>
+
+   
+      
+    
+  </div>
+
+</body>
+
+</html>

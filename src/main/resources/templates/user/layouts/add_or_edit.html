@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{user/layouts/main.html}">
+    layout:decorate="~{user/layouts/shop_page.html}">
 
 <head>
     <div layout:fragment="title">
@@ -11,11 +11,11 @@
 <body>
 
     <!-- Add division to section fragment -->
-    <div layout:fragment="section">
+    <div layout:fragment="shop_page">
 
         <div class="row">
-            <div class="col-sm-6 offset-3" style="margin-top: 20px;">
-                <div class="card">
+            <div class="col-sm-12 " style="margin-top: 20px;  ">
+                <div class="card" style="width: 80%;margin: auto;">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
 
