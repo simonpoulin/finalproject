@@ -1,0 +1,87 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/main.html}">
+
+<head>
+    <title>Title</title>
+</head>
+
+<body>
+    <div layout:fragment="dashboard">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card text-white bg-primary"> <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        <div class="card-body">
+                            <p style="color: white;">NEW ORDERS</p>
+                            <h4 class="card-title">50</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card text-white bg-danger"> <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        <div class="card-body">
+                            <p style="color: white;" class="card-text">TOTAL INCOME</p>
+                            <h4 class="card-title">$1000</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card text-white bg-success"> <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        <div class="card-body">
+                            <p style="color: white;" class="card-text">TOTAL EXPENSE</p>
+                            <h4 class="card-title">24130</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card text-white bg-warning"> <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        <div class="card-body">
+                            <p style="color: white;" class="card-text">NEW USERS</p>
+                            <h4 class="card-title">1020</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 40px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">To-Do List</h5><hr>
+                        <table style="text-align: center;" class="table table-light">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="th-lg">Chưa thanh toán</th>
+                                    <th class="th-lg">Chờ lấy hàng</th>
+                                    <th class="th-lg">Đã xử lí</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>50</td>
+                                    <td>2</td>
+                                    <td>10</td>
+                                </tr>
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="th-lg">Đơn bị hủy</th>
+                                        <th class="th-lg">Trả hàng/hoàn tiền</th>
+                                        <th class="th-lg">Sản phẩm hết hàng</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>
