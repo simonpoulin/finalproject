@@ -14,6 +14,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import fpt.java.finalproject.services.EmployeeDetailsService;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
 @EnableWebSecurity
@@ -35,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .antMatcher("/admin/**")
+            // .antMatcher("/admin/**")
                 .authorizeRequests()
-                    // .antMatchers("/admin/**").permitAll()
+                    .antMatchers("/admin/**").permitAll()
                     .antMatchers("/admin/register").permitAll()
                     .antMatchers("/admin/register/save").permitAll()
                     .antMatchers("/admin/forgetpassword").permitAll()
@@ -115,12 +116,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SpringSecurityDialect securityDialect() {
         return new SpringSecurityDialect();
     }
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
     
     @Bean
-    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver, SpringSecurityDialect sec) {
+    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver, SpringSecurityDialect sec, LayoutDialect layout) {
         final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.addDialect(sec); // Enable use of "sec"
+        templateEngine.addDialect(layout);
         return templateEngine;
     }
 
