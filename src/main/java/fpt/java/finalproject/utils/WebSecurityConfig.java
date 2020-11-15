@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/brands/del/**").hasRole("MANAGER")
                     .antMatchers("/admin/brands/**").hasRole("MANAGER")
                    
-                    .antMatchers("/admin/find").hasRole("MANAGER")
+                    .antMatchers("/admin/find/**").hasRole("MANAGER")
 
                     .antMatchers("/admin/products/add").hasRole("MANAGER")
                     .antMatchers("/admin/products/save").hasRole("MANAGER")
@@ -93,7 +93,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/users/**").hasRole("MANAGER")
 
                     // ROlE admin
-                    .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/admin/employees").hasRole("ADMIN")
                     .antMatchers("/admin/employees/add").hasRole("ADMIN")
                     .antMatchers("/admin/employees/save").hasRole("ADMIN")
