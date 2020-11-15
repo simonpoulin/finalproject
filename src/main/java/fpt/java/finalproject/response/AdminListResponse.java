@@ -8,11 +8,12 @@ public class AdminListResponse<E> extends AdminResponse {
 
     private List<E> list, pagedList;
     private Integer page, totalPage, limit;
+    private String pagingStr;
 
     public AdminListResponse() {
     }
 
-    public void generateResponse(List<E> list, int limit, int page) throws Exception {
+    public void generateResponse(List<E> list, int limit, int page, String pagingStr) throws Exception {
 
         // Set limit
         if (limit > 0) {
@@ -52,6 +53,14 @@ public class AdminListResponse<E> extends AdminResponse {
 
         this.pagedList = list.subList(fromIndex, toIndex);
 
+        // Set pagingStr
+        if (pagingStr.contains("?")) {
+            pagingStr += "&";
+        } else {
+            pagingStr += "?";
+        }
+        this.pagingStr = pagingStr + "page=";
+        
     }
 
     public List<E> getList() {

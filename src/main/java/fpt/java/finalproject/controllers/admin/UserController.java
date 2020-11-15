@@ -122,7 +122,7 @@ public class UserController {
 
         // Set response
         try {
-            res.generateResponse(l, 0, 0);
+            // res.generateResponse(l, 0, 0);
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);

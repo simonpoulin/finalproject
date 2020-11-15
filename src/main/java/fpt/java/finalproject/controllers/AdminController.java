@@ -160,7 +160,7 @@ public class AdminController {
         // Set new EntityResponse
         AdminListResponse<Brand> res = new AdminListResponse<>();
         try {
-            res.generateResponse(l, 0, 0);
+            // res.generateResponse(l, 0, 0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
