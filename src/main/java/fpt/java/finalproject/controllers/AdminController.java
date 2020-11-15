@@ -13,8 +13,8 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.models.ShopItem;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.ProductResponse;
 import fpt.java.finalproject.response.ShopItemResponse;
 
@@ -30,7 +30,7 @@ public class AdminController {
     // Admin Empoyee details
     @RequestMapping("/aemployeedetail")
     public String adminEmployeeDetail(ModelMap m) {
-        ObjectResponse<Employee> res = new ObjectResponse<>();
+        AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
 
         // Set EmployeeRole
         EmployeeRole r = new EmployeeRole();
@@ -109,7 +109,7 @@ public class AdminController {
         b.setBrandName("brandName");
 
         // Set new ObjectResponse
-        ObjectResponse<Brand> res = new ObjectResponse<>();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
         res.setObject(b);
         res.setIsEdit(true);
         res.setTitle("Test");
@@ -158,9 +158,9 @@ public class AdminController {
         l.add(b4);
 
         // Set new EntityResponse
-        ListResponse<Brand> res = new ListResponse<>();
+        AdminListResponse<Brand> res = new AdminListResponse<>();
         try {
-            res.generateResponse(l, 0, 0);
+            // res.generateResponse(l, 0, 0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -171,100 +171,8 @@ public class AdminController {
         m.addAttribute("res", res);
         return "test/testList";
     }
-
-
-
-       //User*******************************************
-    @RequestMapping("ublank")
-    public String Blank() {
-        return "module/blank_layout";
+    @RequestMapping("/dashboard")
+    public String dashboard(){
+        return "admin/dashboard";
     }
-    
-    @RequestMapping("/personal")
-    public String Personal() {
-        return "user/account/personal";
-    }
-    @RequestMapping("/editpe")
-    public String EditPersonal() {
-        return "user/account/edit";
-    }
-
-    @RequestMapping("/cart")
-    public String Cart() {
-        return "user/carts/show";
-    }
-
-    @RequestMapping("/umain")
-    public String MainUser() {
-        return "user/layouts/main";
-    }
-    @RequestMapping("/addoredit")
-    public String AddOrEdit() {
-        return "user/layouts/add_or_edit";
-    }
-    @RequestMapping("/udetail")
-    public String Detail() {
-        return "user/layouts/detail";
-    }
-    @RequestMapping("/ulist")
-    public String List() {
-        return "user/layouts/list";
-    }
-
-
-    @RequestMapping("/order")
-    public String Order() {
-        return "user/orders/show";
-    }   
-    
-    @RequestMapping("/product")
-    public String Pproduct() {
-        return "user/products/show";
-    }
-    @RequestMapping("/productdetail")
-    public String PproductDetail() {
-        return "user/products/detail";
-    }
-
-    @RequestMapping("/employeesadd")
-    public String EmployeesAdd() {
-        return "user/shops/employees/add_or_edit";
-    }
-    @RequestMapping("/employeeslist")
-    public String EmployeesList() {
-        return "user/shops/employees/list";
-    }
-    @RequestMapping("/employeesdetail")
-    public String EmployeesDetail() {
-        return "user/shops/employees/detail";
-    }
-    @RequestMapping("/orderlist")
-    public String OrderList() {
-        return "user/shops/orders/list";
-    }
-    @RequestMapping("/productsadd")
-    public String ProductsAdd() {
-        return "user/shops/products/add_or_edit";
-    }
-    @RequestMapping("/productslist")
-    public String ProductsList() {
-        return "user/shops/products/list";
-    }
-    @RequestMapping("/productsdetail")
-    public String ProductsDetail() {
-        return "user/shops/products/detail";
-    }
-    @RequestMapping("/shoppage")
-    public String ShoppPage() {
-        return "user/layouts/shop_page";
-    }
-    @RequestMapping("/statistical")
-    public String Statisticale() {
-        return "user/shops/statistical/charts";
-    }
-
-
-
-
-    
 }

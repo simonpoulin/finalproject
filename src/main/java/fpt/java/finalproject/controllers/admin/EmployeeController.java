@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/employees")
@@ -28,12 +29,13 @@ public class EmployeeController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
+        AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
+        Employee e = new Employee();
         res.setTitle("Thêm nhân viên");
-        res.setIsEdit(false);
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", e);
 
         return "admin/employees/add_or_edit";
     }
@@ -42,7 +44,7 @@ public class EmployeeController {
     @PostMapping("/save")
     public String save(Employee e, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Save employee
         try {
@@ -69,7 +71,7 @@ public class EmployeeController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
+        AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
         Employee e = new Employee();
 
         // Find employee
@@ -84,27 +86,28 @@ public class EmployeeController {
         }
 
         // Set response
-        res.setObject(e);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", e);
 
         return "admin/employees/add_or_edit";
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m) {
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "0") Integer role) {
 
-        Response obj = (Response) m.getAttribute("res");
-        ListResponse<Employee> res = new ListResponse<>();
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        AdminListResponse<Employee> res = new AdminListResponse<>();
         if (obj == null) {
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<Employee> l;
@@ -118,9 +121,27 @@ public class EmployeeController {
             return "module/error";
         }
 
+        // Set paging string
+        boolean isFirst = true;
+        String pagingStr = "/admin/employees";
+
+        if (!name.equals("")) {
+            pagingStr += "?name=" + name;
+            isFirst = false;
+        }
+
+        if (role != 0) {
+            if (isFirst) {
+                pagingStr += "?";
+            } else {
+                pagingStr += "&";
+            }
+            pagingStr += "role=" + role;
+        }
+
         // Set response
         try {
-            res.generateResponse(l, 0, 0);
+            res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);
@@ -139,7 +160,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<Employee> res = new ObjectResponse<>();
+        AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
         Employee e = new Employee();
 
         // Find employee
@@ -160,14 +181,14 @@ public class EmployeeController {
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/employees/edit";
+        return "admin/employees/detail";
     }
 
     // Delete
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Find employee
         try {

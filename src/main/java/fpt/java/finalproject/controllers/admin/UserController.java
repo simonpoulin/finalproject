@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.User;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.UserService;
 
 @RequestMapping("/admin/users")
@@ -28,11 +28,15 @@ public class UserController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        Response res = new Response();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
+        User u = new User();
+       
+
         res.setTitle("Thêm người dùng");
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
         return "admin/users/add_or_edit";
     }
@@ -41,7 +45,7 @@ public class UserController {
     @PostMapping("/save")
     public String save(User u, ModelMap m) {
 
-        ObjectResponse<User> res = new ObjectResponse<>();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
 
         // Save user
         try {
@@ -68,7 +72,7 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<User> res = new ObjectResponse<>();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
         User u = new User();
 
         // Find user
@@ -83,12 +87,12 @@ public class UserController {
         }
 
         // Set response
-        res.setObject(u);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
         return "admin/users/add_or_edit";
     }
@@ -97,13 +101,12 @@ public class UserController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Response obj = (Response) m.getAttribute("res");
-        ListResponse<User> res = new ListResponse<>();
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        AdminListResponse<User> res = new AdminListResponse<>();
         if (obj == null) {
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<User> l;
@@ -119,7 +122,7 @@ public class UserController {
 
         // Set response
         try {
-            res.generateResponse(l, 0, 0);
+            // res.generateResponse(l, 0, 0);
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);
@@ -138,7 +141,7 @@ public class UserController {
     @GetMapping("/{id}")
     public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<User> res = new ObjectResponse<>();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
         User u = new User();
 
         // Find user
@@ -159,14 +162,14 @@ public class UserController {
         // Send response
         m.addAttribute("res", res);
 
-        return "admin/users/edit";
+        return "admin/users/detail";
     }
 
     // Delete
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Find user
         try {

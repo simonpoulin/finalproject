@@ -1,7 +1,6 @@
 package fpt.java.finalproject.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import fpt.java.finalproject.models.EmployeeRole;
 
@@ -11,7 +10,7 @@ public interface EmployeeRoleService {
 
     public List<EmployeeRole> saveAll(List<EmployeeRole> entities);
 
-    public Optional<EmployeeRole> findById(Integer id);
+    public EmployeeRole findById(Integer id);
 
     public boolean existsById(Integer id);
 

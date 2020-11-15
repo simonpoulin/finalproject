@@ -4,15 +4,16 @@ import java.util.List;
 
 import fpt.java.finalproject.utils.Config;
 
-public class ListResponse<E> extends Response {
+public class AdminListResponse<E> extends AdminResponse {
 
     private List<E> list, pagedList;
     private Integer page, totalPage, limit;
+    private String pagingStr;
 
-    public ListResponse() {
+    public AdminListResponse() {
     }
 
-    public void generateResponse(List<E> list, int limit, int page) throws Exception {
+    public void generateResponse(List<E> list, int limit, int page, String pagingStr) throws Exception {
 
         // Set limit
         if (limit > 0) {
@@ -52,6 +53,14 @@ public class ListResponse<E> extends Response {
 
         this.pagedList = list.subList(fromIndex, toIndex);
 
+        // Set pagingStr
+        if (pagingStr.contains("?")) {
+            pagingStr += "&";
+        } else {
+            pagingStr += "?";
+        }
+        this.pagingStr = pagingStr + "page=";
+        
     }
 
     public List<E> getList() {
@@ -92,6 +101,14 @@ public class ListResponse<E> extends Response {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public String getPagingStr() {
+        return pagingStr;
+    }
+
+    public void setPagingStr(String pagingStr) {
+        this.pagingStr = pagingStr;
     }
 
 }

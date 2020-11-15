@@ -11,7 +11,7 @@
 	<!-- Add division to detail form fragment -->
 	<div layout:fragment="detail_form">
 
-		<table class="table table-light" th:object="${res.employee}">
+		<table class="table table-light" th:object="${res.object}">
 			<tbody>
 				<th>Vai trò</th>
 				<td></td>
@@ -53,8 +53,7 @@
 				<td th:text="*{avatarUrl}"></td>
 			</tbody>
 		</table>
-		<button class="btn btn-primary" type="button">List Employees</button>
-
+		<a th:href="@{/admin/employees}" class="btn btn-primary">Danh sách nhân viên</a>
 	</div>
 
 </body>

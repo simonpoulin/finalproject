@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Category;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.CategoryService;
 
 @RequestMapping("/admin/categories")
@@ -28,11 +28,14 @@ public class CategoryController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        ObjectResponse<Category> res = new ObjectResponse<>();
+        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
+        Category c = new Category();
         res.setTitle("Thêm danh mục");
 
         // Send new response bean
         m.addAttribute("res", res);
+        m.addAttribute("object", c);
+
 
         return "admin/categories/add_or_edit";
     }
@@ -41,7 +44,7 @@ public class CategoryController {
     @PostMapping("/save")
     public String save(Category c, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Save category
         try {
@@ -68,7 +71,7 @@ public class CategoryController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        ObjectResponse<Category> res = new ObjectResponse<>();
+        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
         Category c = new Category();
 
         // Find category
@@ -83,12 +86,12 @@ public class CategoryController {
         }
 
         // Set response
-        res.setObject(c);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", c);
 
         return "admin/categories/add_or_edit";
     }
@@ -97,13 +100,12 @@ public class CategoryController {
     @GetMapping("")
     public String list(ModelMap m) {
 
-        Response obj = (Response) m.getAttribute("res");
-        ListResponse<Category> res = new ListResponse<>();
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        AdminListResponse<Category> res = new AdminListResponse<>();
         if (obj == null) {
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
-            ;
         }
 
         List<Category> l;
@@ -119,7 +121,7 @@ public class CategoryController {
 
         // Set response
         try {
-            res.generateResponse(l, 0, 0);
+            // res.generateResponse(l, 0, 0);
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);
@@ -138,7 +140,7 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // Find category
         try {

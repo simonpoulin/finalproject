@@ -1,7 +1,6 @@
 package fpt.java.finalproject.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import fpt.java.finalproject.models.Product;
 

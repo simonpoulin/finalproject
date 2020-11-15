@@ -11,7 +11,7 @@ import fpt.java.finalproject.repositories.ShopPackRepository;
 
 @Service
 public class ShopPackServiceImpl implements ShopPackService {
-    
+
     @Autowired
     private ShopPackRepository shopPackRepository;
 
@@ -26,8 +26,18 @@ public class ShopPackServiceImpl implements ShopPackService {
     }
 
     @Override
-    public Optional<ShopPack> findById(Integer id) {
-        return shopPackRepository.findById(id);
+    public ShopPack findById(Integer id) {
+        ShopPack shopPack = new ShopPack();
+
+        // find by id
+        Optional<ShopPack> optShopPack = shopPackRepository.findById(id);
+
+        // Set shopPack
+        if (optShopPack.isPresent()) {
+            shopPack = optShopPack.get();
+        }
+        
+        return shopPack;
     }
 
     @Override
