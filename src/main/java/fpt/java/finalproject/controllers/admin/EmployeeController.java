@@ -141,7 +141,7 @@ public class EmployeeController {
 
         // Set response
         try {
-            res.generateResponse(l, 0, page, pagingStr);
+            res.generateResponse(l, 1, page, pagingStr);
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);

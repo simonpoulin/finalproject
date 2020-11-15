@@ -12,7 +12,6 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.repositories.EmployeeRepository;
 import fpt.java.finalproject.repositories.EmployeeRoleRepository;
-import fpt.java.finalproject.services.EmployeeRoleService;
 
 @Component
 public class TestComponent implements ApplicationListener<ContextRefreshedEvent> {

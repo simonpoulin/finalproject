@@ -103,4 +103,12 @@ public class AdminListResponse<E> extends AdminResponse {
         this.limit = limit;
     }
 
+    public String getPagingStr() {
+        return pagingStr;
+    }
+
+    public void setPagingStr(String pagingStr) {
+        this.pagingStr = pagingStr;
+    }
+
 }
