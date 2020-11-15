@@ -69,5 +69,4 @@ public class ShopEmployeeServiceImpl implements ShopEmployeeService {
     public void deleteAll() {
         shopEmployeeRepository.deleteAll();
     }
-
 }

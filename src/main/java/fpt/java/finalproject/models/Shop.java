@@ -3,7 +3,6 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,11 +18,12 @@ import javax.persistence.Table;
 public class Shop implements Serializable {
 
     @Id
+    @Column(name = "user_id")
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToOne
     @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(columnDefinition = "nvarchar(500) not null")

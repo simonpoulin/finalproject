@@ -7,5 +7,5 @@ import fpt.java.finalproject.models.Employee;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
-
+    Employee findByUsername(String username);
 }

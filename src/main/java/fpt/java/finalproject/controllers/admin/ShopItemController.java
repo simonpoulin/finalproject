@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.ShopItem;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.ShopItemService;
 
 @Controller
@@ -25,16 +25,17 @@ public class ShopItemController {
     private ShopItemService shopItemService;
 
     @GetMapping("/add")
-    public String add(ModelMap model){
+    public String add(ModelMap m){
         
-        ObjectResponse<ShopItem> res = new ObjectResponse<ShopItem>();
+        AdminObjectResponse<ShopItem> res = new AdminObjectResponse<ShopItem>();
+        ShopItem sI = new ShopItem();
 
         res.setTitle("Thêm Mặt Hàng");
-        res.setIsEdit(false);
-        res.setObject(new ShopItem());
 
         // Send new response bean
-        model.addAttribute("res", res);
+        m.addAttribute("res", res);
+        m.addAttribute("object", sI);
+
         return "admin/shopitems/add";
     }
     //end function add
@@ -43,7 +44,7 @@ public class ShopItemController {
     @PostMapping("/save")
     public String save(ModelMap m, ShopItem sI){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // save new shopitem
         try {
@@ -73,7 +74,7 @@ public class ShopItemController {
     @GetMapping("/edit/{id}")
     public String edit(ModelMap m, @PathVariable(name = "id") Integer id){
 
-        ObjectResponse<ShopItem> res = new ObjectResponse<>();
+        AdminObjectResponse<ShopItem> res = new AdminObjectResponse<>();
         ShopItem sI = new ShopItem();
 
         //find by id shopitem
@@ -89,12 +90,13 @@ public class ShopItemController {
         // end try catch
 
         // Set response
-        res.setObject(sI);
         res.setIsEdit(true);
         res.setTitle("cập nhật thành công");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", sI);
+
         return "admin/shopitems/add";
     }
     // end function edit
@@ -106,9 +108,9 @@ public class ShopItemController {
 
         Object obj = m.addAttribute("res");
         List<ShopItem> l;
-        ListResponse<ShopItem> res = new ListResponse<>();
+        AdminListResponse<ShopItem> res = new AdminListResponse<>();
         if(obj == null){
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         }else{
             res.setNewResponse(res);
         }
@@ -147,7 +149,7 @@ public class ShopItemController {
     @GetMapping("/{id}")
     public String detail(@PathVariable(name ="id") Integer id, ModelMap m){
 
-        ObjectResponse<ShopItem> res = new ObjectResponse<>();
+        AdminObjectResponse<ShopItem> res = new AdminObjectResponse<>();
         ShopItem sI = new ShopItem();
 
         // Find by id
@@ -176,7 +178,7 @@ public class ShopItemController {
     @DeleteMapping("/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         //dell by id
         try {

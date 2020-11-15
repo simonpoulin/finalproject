@@ -31,7 +31,7 @@ public class Employee implements Serializable {
     @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
 
-    @Column(columnDefinition = "nvarchar(50) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String password;
 
     @Column(columnDefinition = "date not null")
@@ -147,6 +147,13 @@ public class Employee implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [address=" + address + ", avatarUrl=" + avatarUrl + ", createdAt=" + createdAt + ", email="
+                + email + ", employeeRole=" + employeeRole + ", id=" + id + ", name=" + name + ", password=" + password
+                + ", phone=" + phone + ", products=" + products + ", username=" + username + "]";
     }
 
 }

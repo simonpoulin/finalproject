@@ -1,5 +1,6 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Shop;
-import fpt.java.finalproject.response.ListResponse;
-import fpt.java.finalproject.response.ObjectResponse;
-import fpt.java.finalproject.response.Response;
+import fpt.java.finalproject.models.User;
+import fpt.java.finalproject.response.AdminListResponse;
+import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.ShopPackService;
 import fpt.java.finalproject.services.ShopService;
+import fpt.java.finalproject.services.UserService;
 
 @Controller
 @RequestMapping("/admin/shops")
@@ -24,19 +29,27 @@ public class ShopController{
     @Autowired
     private ShopService shopService;
 
+    @Autowired 
+    private UserService userService;
+
+    @Autowired 
+    private ShopPackService shopPackService;
+
     // Direct to add page
     @GetMapping("/add")
     public String add(ModelMap m){
         
-        ObjectResponse<Shop> res = new ObjectResponse<Shop>();
+        AdminObjectResponse<Shop> res = new AdminObjectResponse<Shop>();
+        Shop s = new Shop();
 
         res.setTitle("Thêm cửa hàng");
         res.setIsEdit(false);
-        res.setObject(new Shop());
 
         // Send new response bean
         m.addAttribute("res", res);
-        return "test/testAdd";
+        m.addAttribute("object", s);
+
+        return "test/test_add_or_edit";
     }
     //end function add();
 
@@ -44,8 +57,15 @@ public class ShopController{
     @PostMapping("/save")
     public String save(Shop s, ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
+        s.setCreatedAt(new Date(new Date().getTime()));
+        try {
+            s.setShopPack(shopPackService.findById(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         // save new shop
         try{
             shopService.save(s);
@@ -55,6 +75,7 @@ public class ShopController{
             res.setIsError(true);
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
+            ex.printStackTrace();
             return "module/error";
         }
         // end try catch
@@ -64,16 +85,17 @@ public class ShopController{
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", s);
 
         // Redirect to list
-        return "redirect:/test/testAdd";
+        return "test/test_add_or_edit";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        ObjectResponse<Shop> res = new ObjectResponse<>();
+        AdminObjectResponse<Shop> res = new AdminObjectResponse<>();
         Shop s = new Shop();
         // Find by id Shop
         try{
@@ -87,14 +109,14 @@ public class ShopController{
         // end try catch
 
         // Set response
-        res.setObject(s);
         res.setIsEdit(true);
         res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("res", res);
+        m.addAttribute("object", s);
 
-        return "test/testAdd";
+        return "test/test_add_or_edit";
     }
 
     // List
@@ -102,9 +124,9 @@ public class ShopController{
     public String list(ModelMap m){
 
         Object obj = m.getAttribute("res");
-        ListResponse<Shop> res = new ListResponse<>();
+        AdminListResponse<Shop> res = new AdminListResponse<>();
         if(obj == null){
-            res = new ListResponse<>();
+            res = new AdminListResponse<>();
         }else{
             res.setNewResponse(res);
         }
@@ -135,9 +157,9 @@ public class ShopController{
         }
         res.setTitle("Danh sách cửa hàng");
 
-        // Send Response
+        // Send AdminResponse
         m.addAttribute("res", res);
-        return "test/testList";
+        return "admin/shops/list";
     }
     // End function list
 
@@ -146,7 +168,7 @@ public class ShopController{
     public String detail(@PathVariable(name ="id") Integer id, ModelMap m){
 
         Shop s = new Shop();
-        ObjectResponse<Shop> res= new ObjectResponse<>();
+        AdminObjectResponse<Shop> res= new AdminObjectResponse<>();
 
         // Find Shop by id
         try{
@@ -164,9 +186,9 @@ public class ShopController{
         res.setObject(s);
         res.setTitle("Thông tin cửa hàng");
 
-        // Send Response
+        // Send AdminResponse
         m.addAttribute("res", res);
-        return "test/testObject";
+        return "admin/shops/detail";
     }
     //end function detail
 
@@ -174,7 +196,7 @@ public class ShopController{
     @DeleteMapping("/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
-        Response res = new Response();
+        AdminResponse res = new AdminResponse();
 
         // find shop by id
         try{
@@ -185,14 +207,18 @@ public class ShopController{
             m.addAttribute("res", res);
             return "module/error";
         }
-        // Set Response
+        // Set AdminResponse
 
         res.setTitle("Xóa cửa hàng");
 
-        // send Response
+        // send AdminResponse
         m.addAttribute("res", res);
 
         return "redirect:/admin/shops";
-
+    }
+    
+    @ModelAttribute(name = "users")
+    public List<User> getUsers(){
+        return userService.findAll();
     }
 }

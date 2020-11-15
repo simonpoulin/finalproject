@@ -11,7 +11,7 @@ public interface ShopPackService {
 
     public List<ShopPack> saveAll(List<ShopPack> entities);
 
-    public Optional<ShopPack> findById(Integer id);
+    public ShopPack findById(Integer id);
 
     public boolean existsById(Integer id);
 

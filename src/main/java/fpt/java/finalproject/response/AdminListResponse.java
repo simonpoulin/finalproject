@@ -4,12 +4,12 @@ import java.util.List;
 
 import fpt.java.finalproject.utils.Config;
 
-public class ListResponse<E> extends Response {
+public class AdminListResponse<E> extends AdminResponse {
 
     private List<E> list, pagedList;
     private Integer page, totalPage, limit;
 
-    public ListResponse() {
+    public AdminListResponse() {
     }
 
     public void generateResponse(List<E> list, int limit, int page) throws Exception {
