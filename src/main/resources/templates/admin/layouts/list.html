@@ -16,16 +16,17 @@
     <!-- Add division to section fragment -->
     <div layout:fragment="section">
         <div class="col-sm-12" style="margin-top: 20px;">
-            <div class="card">
+            <h5 class="card-title" th:text="${res.title}"></h5>
+            <div style="border-radius: 10px;" class="card">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${res.title}"></h5>
+                    
                     <!-- <button type="button" class="btn btn-primary">Tạo Mới</button><hr> -->
                     <!-- list form fragment -->
                     <div layout:fragment="list_form">
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 20px;" th:if="${res.totalPage > 0}">
+            <div style="margin-top: 20px; float: right; padding-right: 40px;" th:if="${res.totalPage > 0}">
                 <nav aria-label="...">
                     <ul class="pagination pagination-lg" th:if="${res.page < 7}">
                         <li th:if="${res.totalPage > 0}" class="page-item">
