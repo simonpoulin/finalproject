@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ShopPackService;
 import fpt.java.finalproject.services.ShopService;
 import fpt.java.finalproject.services.UserService;
@@ -35,6 +38,23 @@ public class ShopController{
     @Autowired 
     private ShopPackService shopPackService;
 
+    @Autowired
+    EmployeeService employeeService;
+
+    public String response(ModelMap m, String routing, AdminListResponse<Shop> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Shop> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
     // Direct to add page
     @GetMapping("/add")
     public String add(ModelMap m){
@@ -43,13 +63,12 @@ public class ShopController{
         Shop s = new Shop();
 
         res.setTitle("Thêm cửa hàng");
-        res.setIsEdit(false);
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", s);
 
-        return "test/test_add_or_edit";
+        return response(m, "admin/shops/add_or_edit", res);
+
     }
     //end function add();
 
@@ -58,8 +77,8 @@ public class ShopController{
     public String save(Shop s, ModelMap m){
 
         AdminResponse res = new AdminResponse();
-
         s.setCreatedAt(new Date(new Date().getTime()));
+
         try {
             s.setShopPack(shopPackService.findById(1));
         } catch (Exception e) {
@@ -116,14 +135,16 @@ public class ShopController{
         m.addAttribute("res", res);
         m.addAttribute("object", s);
 
-        return "test/test_add_or_edit";
+        return response(m, "admin/shops/add_or_edit", res);
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m){
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name,
+    @RequestParam(required = false, defaultValue = "0") Integer role){
 
-        Object obj = m.getAttribute("res");
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Shop> res = new AdminListResponse<>();
         if(obj == null){
             res = new AdminListResponse<>();
@@ -131,35 +152,44 @@ public class ShopController{
             res.setNewResponse(res);
         }
         // end if else
+        
+        // Set paging string
+        boolean isFirst = true;
+        String pagingStr = "/admin/shops";
+
+        if (!name.equals("")) {
+            pagingStr += "?name=" + name;
+            isFirst = false;
+        }
+
+        if (role != 0) {
+            if (isFirst) {
+                pagingStr += "?";
+            } else {
+                pagingStr += "&";
+            }
+            pagingStr += "role=" + role;
+        }
 
         List<Shop> l;
         try{
             l = shopService.findAll();
+            res.generateResponse(l, 0, page, pagingStr);
         }catch(Exception ex){
-
-            // Return erroe on fail
-            res.setErrorCode("404");
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // return fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         // end try catch
-
-        // Set response
-        try {
-            // res.generateResponse(l, 0, 0);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setErrorCode("404");
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
         res.setTitle("Danh sách cửa hàng");
 
         // Send AdminResponse
         m.addAttribute("res", res);
-        return "admin/shops/list";
+        return response(m, "admin/shops/list", res);
     }
     // End function list
 
@@ -188,7 +218,7 @@ public class ShopController{
 
         // Send AdminResponse
         m.addAttribute("res", res);
-        return "admin/shops/detail";
+        return response(m, "admin/shops/detail", res);
     }
     //end function detail
 

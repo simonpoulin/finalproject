@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/list.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/list.html}">
 
 <head>
     <title>Title</title>
@@ -13,6 +12,7 @@
         <table class="table table-bordered">
             <tbody>
                 <th>Mã Mặt hàng</th>
+                <th>Tên sản phẩm</th>
                 <th>Tiêu đề</th>
                 <th>Miêu tả</th>
                 <th>Giá bán</th>
@@ -21,8 +21,9 @@
             </tbody>
             <tbody th:each="i : ${res.pagedList}">
                 <td th:text="${i.id}"></td>
+                <td th:text="${i.product.name}"></td>
                 <td th:text="${i.title}"></td>
-                <td th:text="${i.des}"></td>
+                <td th:text="${i.product.des}"></td>
                 <td th:text="${i.price}"></td>
                 <td th:text="${i.quantity}"></td>
                 <td>
