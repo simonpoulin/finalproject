@@ -17,36 +17,32 @@
 
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
-
         <div class="row">
             <div class="col-sm-4 offset-4">
-                <div class="card" style="margin-top: 130px;">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <h4 style="text-align: center;">ĐĂNG NHẬP</h4>
+                <div class="signup">
+                    <h1 class="signup-heading">Đăng Nhập</h1>
+                    <form action="javscript:voi(0);" class="signup-form" autocomplete="off" th:action="@{/admin/login}"
+                        method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Tên đăng nhập</label>
+                            <input name="username" type="text" class="form-input" id="name" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Mật khẩu</label>
+                            <input name="password" type="password" class="form-input" id="email" placeholder="Mật khẩu">
+                        </div>
+                        <button type="submit" class="form-submit">Đăng nhập</button>
+                        <br>
                         <hr />
-                        <form class="col-sm-8 offset-2" th:action="@{/admin/login}" method="POST">
-                            <div class="form-group">
-                                <label for="my-input">Tài khoản</label>
-                                <input id="my-input" class="form-control" type="text" name="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="my-input">Mật khẩu</label>
-                                <input id="my-input" class="form-control" type="password" name="password"><br>
-                                <center><button class="btn btn-primary" type="submit">Login</button></center>
-                            </div>
-                            <hr />
-                            <div style="text-align: center;">
-                                <a style="text-decoration: none;" href="#">Đăng Kí   </a>
-                                <a style="text-decoration: none;" href="#">Quên Mật Khẩu</a>
-
-                            </div>
-                        </form>
-                    </div>
+                        <div style="text-align: center;">
+                            <a style="text-decoration: none;" href="#">Đăng Kí   </a>
+                            <a style="text-decoration: none;" href="#">Quên Mật Khẩu</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </body>

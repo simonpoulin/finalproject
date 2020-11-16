@@ -15,48 +15,41 @@
 
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
-
         <div class="row">
-            <div class="col-sm-6 offset-3">
-                <div class="card" style="margin-top: 10px;">
-                    <div class="card-body" style="height: 700px;">
-                        <h5 class="card-title">
-                            <p style="text-align: center; font-size: 30px;">ĐĂNG KÍ</p>
-                        </h5>
-                        <div class="row">
-                            <div class="col-sm-8 offset-2">
-                                <div class="form-group">
-                                    <label for="my-input">Tài khoản</label>
-                                    <input id="my-input" class="form-control" type="text" name="">
-                                    <label for="my-input">Mật khẩu</label>
-                                    <input id="my-input" class="form-control" type="password" name="">
-                                    <label for="my-input">Xác nhận mật khẩu</label>
-                                    <input id="my-input" class="form-control" type="password" name="">
-                                    <label for="my-input">Họ và tên </label>
-                                    <input id="my-input" class="form-control" type="text" name="">
-                                    <label for="my-input">Email</label>
-                                    <input id="my-input" class="form-control" type="email" name="">
-                                    <div class="form-group">
-                                        <label for="my-select">Giới Tính</label>
-                                        <select id="my-select" class="form-control" name="">
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
-                                        </select>
-                                    </div>
-                                    <label for="my-input">Số điện thoại</label>
-                                    <input id="my-input" class="form-control" type="text" name="">
-                                    <br>
-                                    <button class="btn btn-primary" type="button">Đăng Kí</button>
-                                </div>
-                            </div>
+            <div class="col-sm-4 offset-4">
+                <div class="signup">
+                    <h1 class="signup-heading">Đăng Kí</h1>
+                    <form action="javscript:voi(0);" class="signup-form" autocomplete="off">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-input" id="name" placeholder="Tên đăng nhập">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-input" id="name" placeholder="Họ và tên">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Email</label>
+                            <input type="email" class="form-input" id="name" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Số điện thoại</label>
+                            <input type="number" class="form-input" id="name" placeholder="Họ và tên">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-input" id="email" placeholder="Nhập mật khẩu">
+                        </div>
+                        <button type="submit" class="form-submit">Đăng kí</button>
+                    </form>
+                    <p class="signup-already">Already have an account ? <a th:href="@{/admin/login}" class="signup-already-link">Login</a></p>
                 </div>
             </div>
+            
         </div>
-
+        
     </div>
-    
+
 </body>
 
 </html>
