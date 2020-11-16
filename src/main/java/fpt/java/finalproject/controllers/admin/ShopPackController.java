@@ -69,7 +69,7 @@ public class ShopPackController {
             shopPackService.save(c);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -97,7 +97,7 @@ public class ShopPackController {
             c = shopPackService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -134,11 +134,13 @@ public class ShopPackController {
             l = shopPackService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // Return error on fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         res.setTitle("Danh sách danh mục");
 
@@ -157,7 +159,7 @@ public class ShopPackController {
             shopPackService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

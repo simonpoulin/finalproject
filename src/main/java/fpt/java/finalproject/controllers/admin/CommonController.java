@@ -58,7 +58,7 @@ public class CommonController {
             employeeService.save(e);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -95,7 +95,11 @@ public class CommonController {
     }
 
     @GetMapping("/403")
-    public String accessDenied() {
+    public String accessDenied(ModelMap m) {
+        AdminResponse res = new AdminResponse();
+        res.setErrorCode("403");
+        res.setMessage("You don't have rights to get in!!!");
+        m.addAttribute("res", res);
         return "module/error";
     }
     

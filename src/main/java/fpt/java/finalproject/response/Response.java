@@ -1,15 +1,9 @@
 package fpt.java.finalproject.response;
 
 public class Response {
-    private String title, message;
-    private boolean isError;
+    private String title, message, errorCode;
 
     public Response() {
-    }
-
-    public void setNewResponse(Response res) {
-        this.message = res.getMessage();
-        this.title = res.getTitle();
     }
     
     public String getTitle() {
@@ -28,12 +22,12 @@ public class Response {
         this.message = message;
     }
 
-    public Boolean getIsError() {
-        return isError;
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public void setIsError(Boolean isError) {
-        this.isError = isError;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
 }

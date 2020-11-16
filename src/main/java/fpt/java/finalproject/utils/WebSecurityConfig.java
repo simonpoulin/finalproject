@@ -66,8 +66,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/brands/del/**").hasRole("MANAGER")
                     .antMatchers("/admin/brands/**").hasRole("MANAGER")
                    
-                    .antMatchers("/admin/find/**").hasRole("MANAGER")
-
                     .antMatchers("/admin/products/add").hasRole("MANAGER")
                     .antMatchers("/admin/products/save").hasRole("MANAGER")
                     .antMatchers("/admin/products/edit/**").hasRole("MANAGER")
@@ -105,6 +103,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/admin/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
+                    .successForwardUrl("/admin/dashboard")
                     .defaultSuccessUrl("/admin/dashboard")
                     .failureUrl("/admin/login?error")
                     .and()

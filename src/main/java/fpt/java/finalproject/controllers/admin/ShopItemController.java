@@ -52,7 +52,7 @@ public class ShopItemController {
         } catch (Exception ex) {
            
             // Return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -82,7 +82,7 @@ public class ShopItemController {
             sI = shopItemService.findById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";
@@ -120,7 +120,7 @@ public class ShopItemController {
             l = shopItemService.findAll();
         } catch (Exception ex) {
             // Return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -132,7 +132,7 @@ public class ShopItemController {
             // res.generateResponse(l, 0, 0);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -157,7 +157,7 @@ public class ShopItemController {
             sI = shopItemService.findById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";
@@ -185,7 +185,7 @@ public class ShopItemController {
             shopItemService.deleteById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";

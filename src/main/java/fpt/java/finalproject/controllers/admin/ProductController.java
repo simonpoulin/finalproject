@@ -105,7 +105,7 @@ public class ProductController {
         } catch (Exception ex) {
 
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -135,7 +135,7 @@ public class ProductController {
             p = productService.findById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", p);
             return "module/error";
@@ -157,7 +157,7 @@ public class ProductController {
     @GetMapping("")
     public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
-        Object obj = m.addAttribute("res");
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Product> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
@@ -176,7 +176,7 @@ public class ProductController {
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
                 // return fail
-                res.setIsError(true);
+                res.setErrorCode("404");
                 res.setMessage(ex.getMessage());
                 m.addAttribute("res", res);
                 return "module/error";
@@ -203,7 +203,7 @@ public class ProductController {
             p = productService.findById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -231,7 +231,7 @@ public class ProductController {
             productService.deleteById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

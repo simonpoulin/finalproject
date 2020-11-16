@@ -70,7 +70,7 @@ public class BrandController {
             brandService.save(b);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -98,7 +98,7 @@ public class BrandController {
             b = brandService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -134,11 +134,13 @@ public class BrandController {
             l = brandService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // Return error on fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         res.setTitle("Danh sách nhãn hàng");
 
@@ -157,7 +159,7 @@ public class BrandController {
             brandService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

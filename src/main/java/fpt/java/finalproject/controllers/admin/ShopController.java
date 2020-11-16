@@ -72,7 +72,7 @@ public class ShopController{
         }catch(Exception ex){
             
             //return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             ex.printStackTrace();
@@ -101,7 +101,7 @@ public class ShopController{
         try{
             s = shopService.findById(id);
         }catch(Exception ex){
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -138,7 +138,7 @@ public class ShopController{
         }catch(Exception ex){
 
             // Return erroe on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -150,7 +150,7 @@ public class ShopController{
             // res.generateResponse(l, 0, 0);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -175,7 +175,7 @@ public class ShopController{
             s = shopService.findById(id);
         }catch(Exception ex){
             // return error
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -202,7 +202,7 @@ public class ShopController{
         try{
             shopService.deleteById(id);
         }catch(Exception ex){
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
