@@ -11,13 +11,49 @@ import fpt.java.finalproject.repositories.BrandRepository;
 
 @Service
 public class BrandServiceImpl implements BrandService {
-    
+
     @Autowired
     private BrandRepository brandRepository;
 
     @Override
-    public Brand save(Brand entity) {
-        return brandRepository.save(entity);
+    public void save(Brand entity) throws Exception {
+
+        Brand b = brandRepository.save(entity);
+
+        // Send error on fail
+        if (b == null) {
+            throw new Exception("Cannot save");
+        }
+
+    }
+
+    @Override
+    public Brand findById(Integer id) throws Exception {
+
+        Brand b = new Brand();
+
+        // Find brand
+        Optional<Brand> opts = brandRepository.findById(id);
+
+        // Set brand
+        if (opts.isPresent()) {
+            b = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("Brand not found");
+        }
+
+        return b;
+    }
+
+    @Override
+    public List<Brand> findAll() throws Exception {
+        return (List<Brand>) brandRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Integer id) throws Exception {
+        brandRepository.deleteById(id);
     }
 
     @Override
@@ -26,8 +62,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public Optional<Brand> findById(Integer id) {
-        return brandRepository.findById(id);
+    public List<Brand> findAllById(List<Integer> ids) {
+        return (List<Brand>) brandRepository.findAllById(ids);
     }
 
     @Override
@@ -36,23 +72,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<Brand> findAll() {
-        return (List<Brand>) brandRepository.findAll();
-    }
-
-    @Override
-    public List<Brand> findAllById(List<Integer> ids) {
-        return (List<Brand>) brandRepository.findAllById(ids);
-    }
-
-    @Override
     public long count() {
         return brandRepository.count();
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        brandRepository.deleteById(id);
     }
 
     @Override

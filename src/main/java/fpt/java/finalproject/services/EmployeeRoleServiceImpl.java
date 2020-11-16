@@ -26,8 +26,18 @@ public class EmployeeRoleServiceImpl implements EmployeeRoleService {
     }
 
     @Override
-    public Optional<EmployeeRole> findById(Integer id) {
-        return employeeRoleRepository.findById(id);
+    public EmployeeRole findById(Integer id) {
+        EmployeeRole e = new EmployeeRole();
+
+        // Find employee
+        Optional<EmployeeRole> opts = employeeRoleRepository.findById(id);
+
+        // Set employee
+        if (opts.isPresent()) {
+            e = opts.get();
+        }
+
+        return e;
     }
 
     @Override

@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/list.html}">
+
+<head>
+    <title>Title</title>
+</head>
+
+<body>
+    <div layout:fragment="list_form">
+
+        <table class="table table-bordered">
+            <tbody>
+                <th>Mã Sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Danh mục</th>
+                <th>Nhãn hiệu</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tbody>
+            <tbody th:each="p : ${res.pagedList}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.category.categoryName}"></td>
+                <td th:text="${p.brand.brandName}"></td>
+                <td th:text="${p.des}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                </td>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

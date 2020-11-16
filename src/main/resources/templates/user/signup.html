@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{module/blank_layout.html}">
 
@@ -16,24 +17,26 @@
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
 
-        <div class="row">
-            <div class="col-sm-6 offset-3">
-                <div class="card" style="margin-top: 10px;">
-                    <div class="card-body" style="height: 700px;">
-                        <h5 class="card-title">
-                            <p style="text-align: center; font-size: 30px;">ĐĂNG KÍ</p>
-                        </h5>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="card" style="height: 420px;">
-                                    <img class="card-img-top" src="" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">LOGO</h5>
-                                    </div>
-                                    <img class="card-img-bottom" src="" alt="">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
+       <div class="row">
+        <div class="col-sm-6 offset-3">
+            <div class="card" style="margin-top: 10px;">
+                <div class="card-body" style="height: 700px;">
+                    <h5 class="card-title">
+                        <p style="text-align: center; font-size: 30px;">ĐĂNG KÍ</p>
+                    </h5>
+                    <div class="row">
+                        <div class="col-sm-8 offset-2">
+                            <div class="form-group">
+                                <label for="my-input">Tài khoảng</label>
+                                <input id="my-input" class="form-control" type="text" name="">
+                                <label for="my-input">Mật khẩu</label>
+                                <input id="my-input" class="form-control" type="password" name="">
+                                <label for="my-input">Xác nhận mật khẩu</label>
+                                <input id="my-input" class="form-control" type="password" name="">
+                                <label for="my-input">Họ và tên </label>
+                                <input id="my-input" class="form-control" type="text" name="">
+                                <label for="my-input">Email</label>
+                                <input id="my-input" class="form-control" type="email" name="">
                                 <div class="form-group">
                                     <label for="my-input">Tài khoảng</label>
                                     <input id="my-input" class="form-control" type="text" name="">
@@ -62,6 +65,10 @@
                                     </div>
                                     <button class="btn btn-primary" type="button">Đăng Kí</button>
                                 </div>
+                                <label for="my-input">Số điện thoại</label>
+                                <input id="my-input" class="form-control" type="text" name="">
+                                <br>
+                                <button class="btn btn-primary" type="button">Đăng Kí</button>
                             </div>
                         </div>
                     </div>

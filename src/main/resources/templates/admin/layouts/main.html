@@ -19,41 +19,127 @@
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
 
-        <!-- Nav bar -->
+        
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="col-sm-2">
-                    <a style="margin-left: 90px;" class="navbar-brand" href="#">LOGO</a>
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                </div>
-                <div style="left: 400px;" class="col-sm-6">
-                    <a style="margin-right: 15px;" href="#"><img src="notification_48px.png" alt=""></a>
-                    <a style="margin-right: 15px;" href="#"><img src="icons/male_user_48px.png" alt=""></a>
-                    <a style="margin-right: 15px;" href="#"><img src="icons/shopping_cart_48px.png" alt=""></a>
-                </div>
-            </nav>
-        </div>
+            <div class="wrapper">
+                <!-- Sidebar  -->
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <a style="text-decoration: none; color: white;" href="#">
+                            <h3 style="margin-left: 22px; ">SURFNSHOP</h3>
+                        </a>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#">
+                                <a style="text-decoration: none;" th:href="@{/}">
+                                <i class="fas fa-paper-plane"></i>
+                                <b>Dashboard</b>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle">
+                                <i class="fas fa-home"></i>
+                                <b>Product Management</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="ProductManagementSubmenu">
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/brands}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Brands</b>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/categories}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Categories</b>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/products}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Products</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Account Management</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="accountManagementsubmenu">
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/employees}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Employees</b>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/users}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Users</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a style="text-decoration: none;" href="#shopManagementsubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Shop Management</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="shopManagementsubmenu">
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/items}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Items</b>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/shops}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Shops</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
 
-        <!-- Section fragment -->
-        <div layout:fragment="section"></div>
-
-        <!-- Footer -->
-        <div>
-            <div class="card" style="margin-top: 10px;">
-                <div class="card-body">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">Content</p>
-                </div>
-                <div class="card-footer">
-                    Footer
+                <!-- Page Content  -->
+                <div id="content">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="nav navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <div style="padding-right: 30px;" class="dropdown">
+                                            <a style="margin-right: 5px;" href="#"><img
+                                                    th:src="@{'/icons/male_user_48px.png'}" alt=""></a>
+                                            <a style="cursor: pointer;" data-toggle="dropdown">
+                                                <b>Hi Phạm Ngọc Tùng !</b>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Chỉnh sửa tài khoảng</a>
+                                                <hr>
+                                                <a class="dropdown-item" href="#">Đăng xuất</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div layout:fragment="dashboard"></div>
+                    <!-- Section fragment -->
+                    <div layout:fragment="section"></div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </body>
 
 </html>

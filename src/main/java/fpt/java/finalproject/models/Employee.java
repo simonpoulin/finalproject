@@ -12,27 +12,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name ="employees")
+@Table(name = "employees")
 public class Employee implements Serializable {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
+    private String name;
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String password;
-    @Column
+
+    @Column(columnDefinition = "date not null")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
-    @Column
-    private Integer phone;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(10) not null")
+    private String phone;
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String address;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500)")
     private String avatarUrl;
 
     @ManyToOne
@@ -77,14 +93,6 @@ public class Employee implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -125,8 +133,27 @@ public class Employee implements Serializable {
         this.products = products;
     }
 
-    
+    public String getName() {
+        return name;
+    }
 
-    
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [address=" + address + ", avatarUrl=" + avatarUrl + ", createdAt=" + createdAt + ", email="
+                + email + ", employeeRole=" + employeeRole + ", id=" + id + ", name=" + name + ", password=" + password
+                + ", phone=" + phone + ", products=" + products + ", username=" + username + "]";
+    }
+
 }

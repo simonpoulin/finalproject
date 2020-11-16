@@ -1,8 +1,10 @@
 package fpt.java.finalproject.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,39 +12,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column(columnDefinition = "varchar not null")
+
+    @Column(columnDefinition = "nvarchar(50) not null")
+    private String name;
+
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String password;
 
-    @Column
-    private Integer phone;
+    @Column(columnDefinition = "nvarchar(10) not null")
+    private String phone;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String address;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
-    @Column
+    @Column(columnDefinition = "nvarchar(500)")
     private String avatarUrl;
 
-    @OneToOne(mappedBy = "user")
+    @Column
+    private Date createdAt;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Shop shop;
 
-    @OneToOne(mappedBy = "user")
-    private Cart cart;
+    @OneToMany(mappedBy = "user")
+    private Collection<CartDetail> cartDetails;
 
     @OneToMany(mappedBy = "user")
     private Collection<Order> orders;
@@ -80,14 +90,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -120,14 +122,6 @@ public class User implements Serializable {
         this.shop = shop;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
     public Collection<Order> getOrders() {
         return orders;
     }
@@ -150,6 +144,38 @@ public class User implements Serializable {
 
     public void setRecipients(Collection<Recipient> recipients) {
         this.recipients = recipients;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Collection<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(Collection<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
     }
 
 }

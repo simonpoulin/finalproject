@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layouts/detail.html}">
+
+<head>
+	<title>Title</title>
+</head>
+
+<body>
+
+	<!-- Add division to detail form fragment -->
+	<div layout:fragment="detail_form">
+		<table class="table table-light" th:object="${res.object}">
+			<tbody>
+				<th>ID</th>
+				<td th:text="*{id}"></td>
+			</tbody>
+			<tbody>
+				<th>Tiêu đề</th>
+				<td th:text="*{title}"></td>
+			</tbody>
+			<tbody>
+				<th>Miêu tả</th>
+				<td th:text="*{des}"></td>
+			</tbody>
+			<tbody>
+				<th>Giá bán</th>
+				<td th:text="*{price}"></td>
+			</tbody>
+			<tbody>
+				<th>Định lượng</th>
+				<td th:text="*{quantity}"></td>
+			</tbody>
+		</table>
+		<button class="btn btn-primary" type="button">Danh sách mặt hàng</button>
+
+	</div>
+
+</body>
+
+</html>

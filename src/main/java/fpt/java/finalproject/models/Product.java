@@ -16,21 +16,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String name;
-    @Column
+
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String des;
-    @Column
-    private String status;  
+
+    @Column(columnDefinition = "nvarchar(50) not null")
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "categoty_id")
     private Category category;
-
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -46,7 +48,6 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private Collection<ShopItem> shopItems;
 
-    
     public Product() {
     }
 
@@ -121,7 +122,5 @@ public class Product implements Serializable {
     public void setShopItems(Collection<ShopItem> shopItems) {
         this.shopItems = shopItems;
     }
-
-    
 
 }

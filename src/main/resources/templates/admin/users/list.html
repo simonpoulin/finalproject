@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/list.html}">
+
+<head>
+</head>
+
+<body>
+    <div layout:fragment="list_form">
+        <table class="table table-bordered">
+            <tbody>
+                <th>ID</th>
+                <th>Tên người dùng</th>
+                <th>Username</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Avatar</th>
+                <th>Hành động</th>
+            </tbody>
+            <tbody th:each="e : ${res.pagedList}">
+                <td th:text="${e.id}"></td>
+                <td><a style="text-decoration: none; color: black;" th:href="@{'/admin/users/' + ${e.id}}" th:text="${e.name}"></a></td>
+                <th th:text="${e.username}"></th>
+                <td th:text="${e.phone}"></td>
+                <td th:text="${e.address}"></td>
+                <td th:text="${e.email}"></td>
+                <td th:text="${e.id}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                </td>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

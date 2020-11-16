@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/main.html}">
+
+<head>
+     <!-- Add division to title fragment -->
+    <div layout:fragment="title">
+
+        <title th:text="${res.title}"></title>
+
+    </div>
+</head>
+
+<body>
+
+     <!-- Add division to section fragment -->
+    <div layout:fragment="section">
+
+        <div class="col-sm-12" style="margin-top: 20px;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${res.title}"></h5>
+                    <!-- detail form fragment -->
+                    <div layout:fragment="detail_form"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

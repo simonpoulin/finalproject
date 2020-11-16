@@ -12,23 +12,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="cartdetails")
+@Table(name = "cartdetails")
 public class CartDetail implements Serializable {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column 
+    @Column(columnDefinition = "int not null")
     private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "shop_item_id")
     private ShopItem shopItem;
-    
+
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public CartDetail() {
     }
@@ -57,15 +57,12 @@ public class CartDetail implements Serializable {
         this.shopItem = shopItem;
     }
 
-    public Cart getCart() {
-        return cart;
+    public User getUser() {
+        return user;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setUser(User user) {
+        this.user = user;
     }
 
- 
-    
-    
 }

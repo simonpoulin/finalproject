@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
+
+<head>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="addOrEdit_form">
+
+        <form class="form-group" th:action="@{admin/users/save}" method="POST" th:object="${res.object}">
+            <div th:if="${res.isEdit}">
+                <label for="my-input">ID</label>
+                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+            </div>
+            <label for="my-input">Tên người dùng</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{name}">
+            <label for="my-input">Username</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{username}">
+            <label for="my-input">Password</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{password}">
+            <label for="my-input">Số điện thoại</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{phone}">
+            <label for="my-input">Địa chỉ</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{address}">
+            <label for="my-input">Email</label>
+            <input id="my-input" class="form-control" type="email" th:field="*{email}">
+            <div class="form-group">
+                <label for="my-input">Avatar</label>
+                <input id="my-input" class="form-control-file" type="file" name="">
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

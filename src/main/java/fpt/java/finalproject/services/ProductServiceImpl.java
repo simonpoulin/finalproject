@@ -16,8 +16,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Product save(Product entity) {
-        return productRepository.save(entity);
+    public void save(Product entity)  throws Exception{
+       Product product = productRepository.save(entity);
+
+       // Send error
+       if(product == null){
+        throw new Exception("Cannot save");
+       }
     }
 
     @Override
@@ -26,8 +31,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findById(Integer id) {
-        return productRepository.findById(id);
+    public Product findById(Integer id) throws Exception {
+       Product product = new Product();
+
+       // find by id
+       Optional<Product> optProduct = productRepository.findById(id);
+
+       // Set Product
+       if(optProduct.isPresent()){
+           product = optProduct.get();
+       }else{
+           // send mess error
+           throw new Exception("Cannot found");
+       }
+       return product;
     }
 
     @Override
@@ -51,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Integer id) throws Exception{
         productRepository.deleteById(id);
     }
 
