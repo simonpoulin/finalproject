@@ -10,21 +10,19 @@
 
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
-
-        <form class="form-group" th:action="@{admin/brands/save}" method="POST" th:object="${object}">
+        <form class="form-group" th:action="@{admin/shoppacks/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
                 <input id="my-input" class="form-control" disabled type="text" th:value="*{id}">
                 <input type="hidden" th:field="*{id}">
             </div>
-            <label for="my-input">Tên nhãn hàng</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{brandName}">
-            
+            <label for="my-input">Tên gói</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{shopPackName}">
+            <label for="my-input">Giá</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{price}">
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
-
     </div>
-
 </body>
 
 </html>

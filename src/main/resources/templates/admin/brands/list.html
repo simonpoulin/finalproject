@@ -21,12 +21,13 @@
                     <td th:text="${id}"></td>
                     <td th:text="${brandName}"></td>
                     <td>
+                        <a th:href="@{'/admin/brands/edit/' + ${res.object.id}}"
+                            style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
                         <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
                             data-toggle="modal" data-target="#exampleModal">
                             Xóa
                         </a>
-
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -38,13 +39,13 @@
                                     <div class="modal-footer">
                                         <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Hủy</button>
-                                        <a style="border-radius: 10px; color: white;" type="button"
+                                        <a th:href="@{'/admin/brands/delete/' + ${res.object.id}}"
+                                            style="border-radius: 10px; color: white;" type="button"
                                             class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                     </td>
                 </tbody>
             </table>

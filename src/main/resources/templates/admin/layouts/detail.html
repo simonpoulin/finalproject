@@ -17,9 +17,9 @@
     <div layout:fragment="section">
 
         <div class="col-sm-12" style="margin-top: 20px;">
+            <h5 class="card-title" th:text="${res.title}"></h5>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${res.title}"></h5>
                     <!-- detail form fragment -->
                     <div layout:fragment="detail_form"></div>
 

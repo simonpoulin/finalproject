@@ -175,7 +175,7 @@ public class ShopItemController {
     // End function detail
 
     //del
-    @DeleteMapping("/{id}")
+    @RequestMapping("/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
         AdminResponse res = new AdminResponse();

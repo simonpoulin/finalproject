@@ -19,7 +19,8 @@
         <form class="form-group" th:action="@{admin/products/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">Mã sản phẩm</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}" disabled>
+                <input id="my-input" class="form-control" type="text" th:value="*{id}" disabled>
+                <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tên sản phẩm</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">

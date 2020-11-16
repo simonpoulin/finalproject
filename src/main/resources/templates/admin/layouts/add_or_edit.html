@@ -17,11 +17,10 @@
     <div layout:fragment="section">
 
         <div class="row">
-            <div class="col-sm-6 offset-3" style="margin-top: 20px;">
+            <div class="col-sm-12" style="margin-top: 20px;">
+                <h5 class="card-title" th:text="${res.title}"></h5>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${res.title}"></h5>
-
                         <!-- Add-or-edit form fragment -->
                         <div layout:fragment="addOrEdit_form"></div>
 

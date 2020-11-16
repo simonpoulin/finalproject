@@ -7,37 +7,27 @@
 </head>
 
 <body>
-
     <div layout:fragment="list_form">
-        <a th:href="@{'/admin/items/add'}"
-        style="float: right; color: white; margin-right: 70px; border-radius: 10px;" class="btn btn-primary">Thêm
-        mới</a>
-        <table class="table table-light">
+
+        <table class="table table-bordered">
             <tbody>
-                <th>Mã Mặt hàng</th>
-                <th>Tiêu đề</th>
-                <th>Miêu tả</th>
-                <th>Giá bán</th>
-                <th>Số lượng</th>
-                <th>Cửa hàng</th>
+                <th>ID</th>
+                <th>Tên gói</th>
+                <th>Giá</th>
                 <th>Hành động</th>
             </tbody>
-            <tbody th:each="i : ${res.pagedList}">
-                <td th:text="${i.id}"></td>
-                <td th:text="${i.title}"></td>
-                <td th:text="${i.des}"></td>
-                <td th:text="${i.price}"></td>
-                <td th:text="${i.quantity}"></td>
-                <td th:text="${i.shop.name}"></td>
+            <tbody th:each="sp : ${res.pagedList}">
+                <td th:text="${sp.id}"></td>
+                <td th:text="${sp.shopPackName}"></td>
+                <td th:text="${sp.price}"></td>
                 <td>
-                    <!-- Button trigger modal -->
-                    <a th:href="@{'/admin/items/edit/' + ${i.id}}" style="border-radius: 10px; color: white;"
+                    <a th:href="@{'/admin/shoppacks/edit/' + ${sp.id}}" style="border-radius: 10px; color: white;"
                         class="btn btn-primary">Sửa</a>
+                    <!-- Button trigger modal -->
                     <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
                         data-toggle="modal" data-target="#exampleModal">
                         Xóa
                     </a>
-
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -49,7 +39,7 @@
                                 <div class="modal-footer">
                                     <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
                                         data-dismiss="modal">Hủy</button>
-                                    <a th:href="@{'/admin/items/delete/' + ${i.id}}"
+                                    <a th:href="@{'/admin/shoppacks/delete/' + ${sp.id}}"
                                         style="border-radius: 10px; color: white;" type="button"
                                         class="btn btn-danger">Xóa</a>
                                 </div>

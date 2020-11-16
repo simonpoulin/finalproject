@@ -20,6 +20,8 @@
                     <td th:text="${c.id}"></td>
                     <td th:text="${c.categoryName}"></td>
                     <td>
+                        <a th:href="@{'/admin/categories/edit/' + ${res.object.id}}"
+                            style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
                         <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
                             data-toggle="modal" data-target="#exampleModal">
@@ -37,13 +39,13 @@
                                     <div class="modal-footer">
                                         <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Hủy</button>
-                                        <a style="border-radius: 10px; color: white;" type="button"
+                                        <a th:href="@{'/admin/categories/delete/' + ${res.object.id}}" style="border-radius: 10px; color: white;" type="button"
                                             class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
+
                     </td>
                 </tbody>
             </table>

@@ -175,12 +175,8 @@ public class AdminController {
     public String dashboard(){
         return "admin/dashboard";
     }
-    @RequestMapping("/signup")
-    public String signup(){
-        return "admin/signup";
-    }
-    @RequestMapping("/login")
-    public String login(){
-        return "admin/login";
+    @RequestMapping("/shoppack")
+    public String shoppack(){
+        return "admin/shopPack/add_or_edit";
     }
 }
