@@ -36,15 +36,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            // .antMatcher("/admin/**")
+            .antMatcher("/admin/**")
                 .authorizeRequests()
-                    .antMatchers("/admin/**").permitAll()
                     .antMatchers("/admin/register").permitAll()
                     .antMatchers("/admin/register/save").permitAll()
                     .antMatchers("/admin/forgetpassword").permitAll()
                     .antMatchers("/admin/recover").permitAll()
 
-                    // ROLE Employee
+					// ROLE Employee
+					.antMatchers("/admin/dashboard").hasRole("EMPLOYEE")
                     .antMatchers("/admin/shops").hasRole("EMPLOYEE")
                     .antMatchers("/admin/brands").hasRole("EMPLOYEE")
                     .antMatchers("/admin/categories").hasRole("EMPLOYEE")
@@ -109,7 +109,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .failureUrl("/admin/login?error")
                     .and()
                 .exceptionHandling()
-                    .accessDeniedPage("/admin/403");
+					.accessDeniedPage("/admin/403")
+					.and()
+				.logout()
+					.logoutUrl("/admin/logout")
+					.logoutSuccessUrl("/admin/login");
     }
 
     @Bean

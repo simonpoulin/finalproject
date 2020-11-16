@@ -11,6 +11,7 @@ public class AdminListResponse<E> extends AdminResponse {
     private String pagingStr;
 
     public AdminListResponse() {
+        super();
     }
 
     public void generateResponse(List<E> list, int limit, int page, String pagingStr) throws Exception {

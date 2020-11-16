@@ -6,6 +6,8 @@ import fpt.java.finalproject.models.Employee;
 
 public interface EmployeeService {
 
+    public Employee getAuthEmployee();
+
     public void save(Employee entity) throws Exception;
 
     public List<Employee> findAll() throws Exception;

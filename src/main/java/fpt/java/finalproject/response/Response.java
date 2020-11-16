@@ -7,11 +7,6 @@ public class Response {
     public Response() {
     }
 
-    public void setNewResponse(Response res) {
-        this.setIsError(res.getIsError());
-        this.setMessage(res.getMessage());
-    }
-
     public String getTitle() {
         return title;
     }
