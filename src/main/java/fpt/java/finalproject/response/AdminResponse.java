@@ -9,6 +9,11 @@ public class AdminResponse extends Response {
     public AdminResponse() {
     }
 
+    public void setNewResponse(AdminResponse res) {
+        this.setMessage(res.getMessage());
+        this.setTitle(res.getTitle());
+    }
+
     public Employee getAuthEmployee() {
         return authEmployee;
     }

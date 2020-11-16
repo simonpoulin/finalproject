@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/list.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/list.html}">
 
 <head>
 </head>
@@ -18,19 +17,17 @@
                     </tr>
                 </thead>
                 <tbody th:each="b : ${res.pagedList}">
-                    <td th:text="${id}"></td>
-                    <td th:text="${brandName}"></td>
+                    <td th:text="${b.id}"></td>
+                    <td th:text="${b.brandName}"></td>
                     <td>
                         <a th:href="@{'/admin/brands/edit/' + ${res.object.id}}"
                             style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
-                        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
-                            data-toggle="modal" data-target="#exampleModal">
+                        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             Xóa
                         </a>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -105,7 +104,7 @@ public class ProductController {
         } catch (Exception ex) {
 
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -135,7 +134,7 @@ public class ProductController {
             p = productService.findById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", p);
             return "module/error";
@@ -157,7 +156,7 @@ public class ProductController {
     @GetMapping("")
     public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
-        Object obj = m.addAttribute("res");
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Product> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
@@ -176,7 +175,7 @@ public class ProductController {
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
                 // return fail
-                res.setIsError(true);
+                res.setErrorCode("404");
                 res.setMessage(ex.getMessage());
                 m.addAttribute("res", res);
                 return "module/error";
@@ -203,7 +202,7 @@ public class ProductController {
             p = productService.findById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -221,7 +220,7 @@ public class ProductController {
     // end funcition detail
 
     // del
-    @DeleteMapping("/{id}")
+    @RequestMapping("/delete/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
@@ -231,7 +230,7 @@ public class ProductController {
             productService.deleteById(id);
         } catch (Exception ex) {
             // return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

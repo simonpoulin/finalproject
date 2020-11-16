@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.models.Category;
+import fpt.java.finalproject.models.ShopPack;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
-import fpt.java.finalproject.services.CategoryService;
+import fpt.java.finalproject.services.ShopPackService;
 import fpt.java.finalproject.services.EmployeeService;
 
-@RequestMapping("/admin/categories")
+@RequestMapping("/admin/shoppacks")
 @Controller
-public class CategoryController {
+public class ShopPackController {
 
     @Autowired
-    CategoryService categoryService;
+    ShopPackService shopPackService;
 
     @Autowired
     private EmployeeService employeeService;
 
-    public String response(ModelMap m, String routing, AdminListResponse<Category> res) {
+    public String response(ModelMap m, String routing, AdminListResponse<ShopPack> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
         res.setAuthEmployee(authEmployee);
         m.addAttribute("res", res);
         return routing;
     }
 
-    public String response(ModelMap m, String routing, AdminObjectResponse<Category> res) {
+    public String response(ModelMap m, String routing, AdminObjectResponse<ShopPack> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
         res.setAuthEmployee(authEmployee);
         m.addAttribute("res", res);
@@ -47,25 +47,25 @@ public class CategoryController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
-        Category c = new Category();
-        res.setTitle("Thêm danh mục");
+        AdminObjectResponse<ShopPack> res = new AdminObjectResponse<>();
+        ShopPack c = new ShopPack();
+        res.setTitle("Thêm gói cửa hàng");
 
         // Send new response bean
         m.addAttribute("object", c);
 
-        return response(m, "admin/categories/add_or_edit", res);
+        return response(m, "admin/shoppacks/add_or_edit", res);
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(Category c, ModelMap m) {
+    public String save(ShopPack c, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
 
-        // Save category
+        // Save shopPack
         try {
-            categoryService.save(c);
+            shopPackService.save(c);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -81,19 +81,19 @@ public class CategoryController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/categories";
+        return "redirect:/admin/shoppacks";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
-        Category c = new Category();
+        AdminObjectResponse<ShopPack> res = new AdminObjectResponse<>();
+        ShopPack c = new ShopPack();
 
-        // Find category
+        // Find shopPack
         try {
-            c = categoryService.findById(id);
+            c = shopPackService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -109,7 +109,7 @@ public class CategoryController {
         // Send response
         m.addAttribute("object", c);
 
-        return response(m, "admin/categories/add_or_edit", res);
+        return response(m, "admin/shoppacks/add_or_edit", res);
     }
 
     // List
@@ -117,7 +117,7 @@ public class CategoryController {
     public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
-        AdminListResponse<Category> res = new AdminListResponse<>();
+        AdminListResponse<ShopPack> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
         } else {
@@ -125,12 +125,12 @@ public class CategoryController {
         }
 
         // Set paging string
-        String pagingStr = "/admin/categories";
+        String pagingStr = "/admin/shoppacks";
 
         // Set list
-        List<Category> l;
+        List<ShopPack> l;
         try {
-            l = categoryService.findAll();
+            l = shopPackService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
@@ -141,10 +141,10 @@ public class CategoryController {
                 return "module/error";
             }
         }
-        res.setTitle("Danh sách danh mục");
+        res.setTitle("Danh sách gói cửa hàng");
 
         // Send response
-        return response(m, "admin/categories/list", res);
+        return response(m, "admin/shoppacks/list", res);
     }
 
     // Delete
@@ -153,9 +153,9 @@ public class CategoryController {
 
         AdminResponse res = new AdminResponse();
 
-        // Find category
+        // Find shopPack
         try {
-            categoryService.deleteById(id);
+            shopPackService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -165,11 +165,11 @@ public class CategoryController {
         }
 
         // Set response
-        res.setTitle("Xóa danh mục thành công");
+        res.setTitle("Xóa gói cửa hàng thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/categories";
+        return "redirect:/admin/shoppacks";
     }
 }

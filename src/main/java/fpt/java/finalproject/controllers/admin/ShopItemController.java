@@ -5,24 +5,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ShopItemService;
 
 @Controller
-@RequestMapping("/admin/shopitems")
+@RequestMapping("/admin/items")
 public class ShopItemController {
     
     @Autowired
     private ShopItemService shopItemService;
+
+    @Autowired
+    EmployeeService employeeService;
+
+    public String response(ModelMap m, String routing, AdminListResponse<ShopItem> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<ShopItem> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
 
     @GetMapping("/add")
     public String add(ModelMap m){
@@ -36,7 +55,7 @@ public class ShopItemController {
         m.addAttribute("res", res);
         m.addAttribute("object", sI);
 
-        return "admin/shopitems/add";
+        return response(m, "admin/items/add_or_edit", res);
     }
     //end function add
 
@@ -45,14 +64,13 @@ public class ShopItemController {
     public String save(ModelMap m, ShopItem sI){
 
         AdminResponse res = new AdminResponse();
-
         // save new shopitem
         try {
             shopItemService.save(sI);
         } catch (Exception ex) {
            
             // Return fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -66,7 +84,7 @@ public class ShopItemController {
         m.addAttribute("res", res);
 
         // Redirect to list
-        return "redirect:/admin/shopitems";
+        return "redirect:/admin/items";
     }
     // end function save
 
@@ -82,66 +100,74 @@ public class ShopItemController {
             sI = shopItemService.findById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";
         }
         // end try catch
-
-        // Set response
-        res.setIsEdit(true);
-        res.setTitle("cập nhật thành công");
-
         // Send response
         m.addAttribute("res", res);
         m.addAttribute("object", sI);
 
-        return "admin/shopitems/add";
+        return response(m, "admin/items/add_or_edit", res);
     }
     // end function edit
 
     //List
     @GetMapping("")
-    public String list(ModelMap m){
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name,
+    @RequestParam(required = false, defaultValue = "0") Integer role){
 
-
-        Object obj = m.addAttribute("res");
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
         List<ShopItem> l;
         AdminListResponse<ShopItem> res = new AdminListResponse<>();
-        if(obj == null){
+
+        if (obj == null) {
             res = new AdminListResponse<>();
-        }else{
-            res.setNewResponse(res);
+        } else {
+            res.setNewResponse(obj);
         }
+
+        // Set paging string
+        boolean isFirst = true;
+        String pagingStr = "/admin/items";
+
+        if (!name.equals("")) {
+            pagingStr += "?name=" + name;
+            isFirst = false;
+        }
+
+        if (role != 0) {
+            if (isFirst) {
+                pagingStr += "?";
+            } else {
+                pagingStr += "&";
+            }
+            pagingStr += "role=" + role;
+        }
+
         // end if else
 
         try {
             l = shopItemService.findAll();
+            res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // Return fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // return fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         // end try catch
-
-        // Set response
-        try {
-            // res.generateResponse(l, 0, 0);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
         res.setTitle("Danh sách mặt hàng");
 
         // send response
         m.addAttribute("res", res);
-        return "test/testList";
+        return response(m, "admin/items/list", res);
     }
     // end function list
 
@@ -157,7 +183,7 @@ public class ShopItemController {
             sI = shopItemService.findById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";
@@ -170,12 +196,12 @@ public class ShopItemController {
 
         // send response
         m.addAttribute("res", res);
-        return "admin/shopitems/add";
+        return response(m, "admin/items/detail", res);
     }
     // End function detail
 
     //del
-    @RequestMapping("/{id}")
+    @RequestMapping("/delete/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
 
         AdminResponse res = new AdminResponse();
@@ -185,7 +211,7 @@ public class ShopItemController {
             shopItemService.deleteById(id);
         } catch (Exception ex) {
            // Return fail
-           res.setIsError(true);
+           res.setErrorCode("404");
            res.setMessage(ex.getMessage());
            m.addAttribute("res", res);
            return "module/error";
@@ -196,6 +222,6 @@ public class ShopItemController {
         // send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/shopitems";
+        return "redirect:/admin/items";
     }
 }
