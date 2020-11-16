@@ -6,7 +6,7 @@ import fpt.java.finalproject.utils.Config;
 
 public class AdminListResponse<E> extends AdminResponse {
 
-    private List<E> list, pagedList;
+    private List<E> pagedList;
     private Integer page, totalPage, limit;
     private String pagingStr;
 
@@ -21,13 +21,6 @@ public class AdminListResponse<E> extends AdminResponse {
             this.limit = limit;
         } else {
             limit = this.limit = new Config().PAGE_LIMIT;
-        }
-
-        // Set list
-        if (list != null) {
-            this.list = list;
-        } else {
-            list = this.list;
         }
 
         // Set page
@@ -62,14 +55,6 @@ public class AdminListResponse<E> extends AdminResponse {
         }
         this.pagingStr = pagingStr + "page=";
         
-    }
-
-    public List<E> getList() {
-        return list;
-    }
-
-    public void setList(List<E> list) {
-        this.list = list;
     }
 
     public List<E> getPagedList() {
