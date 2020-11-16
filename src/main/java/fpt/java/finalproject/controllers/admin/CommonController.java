@@ -1,9 +1,10 @@
 package fpt.java.finalproject.controllers.admin;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.repositories.EmployeeRepository;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeRoleService;
@@ -29,6 +31,9 @@ public class CommonController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     // Direct to add page
     @GetMapping("/register")
     public String add(ModelMap m) {
@@ -36,7 +41,7 @@ public class CommonController {
         AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
         Employee e = new Employee();
         res.setTitle("Thêm nhân viên");
-        
+
         // Send new response bean
         m.addAttribute("res", res);
         m.addAttribute("object", e);
@@ -47,7 +52,8 @@ public class CommonController {
     // Save new
     @PostMapping("/register/save")
     public String save(Employee e, ModelMap m) {
-        //ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k , ....
+        // ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k ,
+        // ....
         AdminResponse res = new AdminResponse();
         e.setCreatedAt(new Date(new Date().getTime()));
         e.setPassword(passwordEncoder.encode(e.getPassword()));
@@ -73,10 +79,10 @@ public class CommonController {
         // Redirect to list page
         return "admin/login";
     }
-    
+
     @GetMapping("/dashboard")
-    public String dashboard() {
-        return "admin/dashboard";
+    public String dashboard(ModelMap m) {
+        return adminResponse(m, "admin/dashboard");
     }
 
     @GetMapping("")
@@ -97,6 +103,16 @@ public class CommonController {
     @GetMapping("/403")
     public String accessDenied() {
         return "module/error";
+    }
+    
+    public String adminResponse(ModelMap m, String routing) {
+        if (m.getAttribute("authEmployee") == null) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipalName = authentication.getName();
+            Employee authEmployee = employeeRepository.findByUsername(currentPrincipalName);
+            m.addAttribute("authEmployee", authEmployee);
+        }
+        return routing;
     }
 
 }

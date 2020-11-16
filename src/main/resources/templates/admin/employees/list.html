@@ -21,15 +21,19 @@
             </tbody>
             <tbody th:each="e : ${res.pagedList}">
                 <td th:text="${e.id}"></td>
-                <td><a style="text-decoration: none; color: black;" th:href="@{'/admin/employees/' + ${e.id}}" th:text="${e.name}"></a></td>
+                <td>
+                    <a style="text-decoration: none; color: black;" th:href="@{'/admin/employees/' + ${e.id}}"
+                        th:text="${e.name}">
+                    </a>
+                </td>
                 <td th:text="${e.employeeRole.roleName}"></td>
                 <td th:text="${e.phone}"></td>
                 <td th:text="${e.address}"></td>
                 <td th:text="${e.email}"></td>
                 <td th:text="${e.id}"></td>
                 <td>
-                    <button type="button" class="btn btn-primary">Sửa</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <a th:href="@{'/admin/employees/edit/' + ${e.id}}" class="btn btn-primary">Sửa</a>
+                    <a th:href="@{'/admin/employees/delete/' + ${e.id}}" class="btn btn-danger">Xóa</a>
                 </td>
             </tbody>
         </table>

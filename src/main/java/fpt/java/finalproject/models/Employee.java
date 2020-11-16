@@ -39,7 +39,7 @@ public class Employee implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
 
-    @Column(columnDefinition = "nvarchar(10) not null")
+    @Column(columnDefinition = "nvarchar(100) not null")
     private String phone;
 
     @Column(columnDefinition = "nvarchar(500) not null")

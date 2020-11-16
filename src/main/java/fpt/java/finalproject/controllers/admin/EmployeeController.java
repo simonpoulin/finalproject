@@ -1,21 +1,25 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.EmployeeRoleService;
 import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/employees")
@@ -24,6 +28,14 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    EmployeeRoleService employeeRoleService;
+
+    @ModelAttribute(name = "employeeRoles")
+    public List<EmployeeRole> getEmployeeRoles() {
+        return employeeRoleService.findAll();
+    }
 
     // Direct to add page
     @GetMapping("/add")
@@ -45,7 +57,8 @@ public class EmployeeController {
     public String save(Employee e, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
-
+        e.setCreatedAt(new Date(new Date().getTime()));
+        e.setPassword(new BCryptPasswordEncoder().encode(e.getPassword()));
         // Save employee
         try {
             employeeService.save(e);
@@ -185,7 +198,7 @@ public class EmployeeController {
     }
 
     // Delete
-    @DeleteMapping("/{id}")
+    @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
@@ -209,4 +222,5 @@ public class EmployeeController {
 
         return "redirect:/admin/employees";
     }
+
 }

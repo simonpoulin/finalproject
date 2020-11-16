@@ -108,18 +108,10 @@ public class BrandController {
         }
 
         List<Brand> l;
-        try {
-            l = brandService.findAll();
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
 
         // Set response
         try {
+            l = brandService.findAll();
             // res.generateResponse(l, 0, 0,);
         } catch (Exception ex) {
             // Return error on fail
