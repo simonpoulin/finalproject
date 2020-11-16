@@ -137,7 +137,7 @@ body {
         #sidebar {
             min-width: 250px;
             max-width: 250px;
-            background: #6d7fcc;
+            background: #4389ff;
             color: #fff;
             transition: all 0.3s;
         }
@@ -189,7 +189,7 @@ body {
 
         #sidebar .sidebar-header {
             padding: 20px;
-            background: #6d7fcc;
+            background: #4389ff;
         }
 
         #sidebar .sidebar-header strong {
@@ -199,7 +199,7 @@ body {
 
         #sidebar ul.components {
             padding: 20px 0;
-            border-bottom: 1px solid #6d7fcc;
+            border-bottom: 1px solid #4389ff;
         }
 
         #sidebar ul li a {
@@ -209,8 +209,8 @@ body {
         }
 
         #sidebar ul li a:hover {
-            color: #7386D5;
-            background: #7386D5;
+            color: #4389ff;
+            background: #4389ff;
         }
 
         #sidebar ul li a i {
@@ -220,7 +220,7 @@ body {
         #sidebar ul li.active>a,
         a[aria-expanded="true"] {
             color: #fff;
-            background: #6d7fcc;
+            background: #4389ff;
         }
 
         a[data-toggle="collapse"] {
@@ -238,7 +238,7 @@ body {
         ul ul a {
             font-size: 0.9em !important;
             padding-left: 30px !important;
-            background: #6d7fcc;
+            background: #4389ff;
         }
 
         ul.CTAs {
@@ -255,7 +255,7 @@ body {
 
         a.article,
         a.article:hover {
-            background: #6d7fcc !important;
+            background: #4389ff !important;
             color: #fff !important;
         }
 
