@@ -1,7 +1,6 @@
 package fpt.java.finalproject.controllers.admin;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +35,7 @@ public class CommonController {
         AdminObjectResponse<Employee> res = new AdminObjectResponse<>();
         Employee e = new Employee();
         res.setTitle("Thêm nhân viên");
-        
+
         // Send new response bean
         m.addAttribute("res", res);
         m.addAttribute("object", e);
@@ -47,7 +46,8 @@ public class CommonController {
     // Save new
     @PostMapping("/register/save")
     public String save(Employee e, ModelMap m) {
-        //ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k , ....
+        // ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k ,
+        // ....
         AdminResponse res = new AdminResponse();
         e.setCreatedAt(new Date(new Date().getTime()));
         e.setPassword(passwordEncoder.encode(e.getPassword()));
@@ -73,10 +73,10 @@ public class CommonController {
         // Redirect to list page
         return "admin/login";
     }
-    
+
     @GetMapping("/dashboard")
-    public String dashboard() {
-        return "admin/dashboard";
+    public String dashboard(ModelMap m) {
+        return response(m, "admin/dashboard");
     }
 
     @GetMapping("")
@@ -98,5 +98,21 @@ public class CommonController {
     public String accessDenied() {
         return "module/error";
     }
+    
+    public String response(ModelMap m, String routing) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        AdminResponse res = new AdminResponse();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
+
+    // @GetMapping(value = "/authUser")
+    // @ResponseBody
+    // public String currentUserNameSimple(HttpServletRequest request) {
+    //     String currentPrincipalName = request.getUserPrincipal()getName();
+
+    //     return principal.;
+    // }
 
 }

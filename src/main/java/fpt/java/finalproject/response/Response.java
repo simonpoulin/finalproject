@@ -8,10 +8,10 @@ public class Response {
     }
 
     public void setNewResponse(Response res) {
-        this.setIsError(res.getIsError());
-        this.setMessage(res.getMessage());
+        this.message = res.getMessage();
+        this.title = res.getTitle();
     }
-
+    
     public String getTitle() {
         return title;
     }

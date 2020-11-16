@@ -1,21 +1,25 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.EmployeeRoleService;
 import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/employees")
@@ -24,6 +28,31 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    EmployeeRoleService employeeRoleService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @ModelAttribute(name = "employeeRoles")
+    public List<EmployeeRole> getEmployeeRoles() {
+        return employeeRoleService.findAll();
+    }
+
+    public String response(ModelMap m, String routing, AdminListResponse<Employee> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Employee> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
 
     // Direct to add page
     @GetMapping("/add")
@@ -34,10 +63,9 @@ public class EmployeeController {
         res.setTitle("Thêm nhân viên");
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", e);
 
-        return "admin/employees/add_or_edit";
+        return response(m, "admin/employees/add_or_edit", res);
     }
 
     // Save new
@@ -45,7 +73,8 @@ public class EmployeeController {
     public String save(Employee e, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
-
+        e.setCreatedAt(new Date(new Date().getTime()));
+        e.setPassword(passwordEncoder.encode(e.getPassword()));
         // Save employee
         try {
             employeeService.save(e);
@@ -90,10 +119,9 @@ public class EmployeeController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
         m.addAttribute("object", e);
 
-        return "admin/employees/add_or_edit";
+        return response(m, "admin/employees/add_or_edit", res);
     }
 
     // List
@@ -108,17 +136,6 @@ public class EmployeeController {
             res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
-        }
-
-        List<Employee> l;
-        try {
-            l = employeeService.findAll();
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
         }
 
         // Set paging string
@@ -139,8 +156,10 @@ public class EmployeeController {
             pagingStr += "role=" + role;
         }
 
-        // Set response
+        // Get list
+        List<Employee> l;
         try {
+            l = employeeService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             // Return error on fail
@@ -150,10 +169,10 @@ public class EmployeeController {
             return "module/error";
         }
         res.setTitle("Danh sách nhân viên");
-
+        
         // Send response
-        m.addAttribute("res", res);
-        return "admin/employees/list";
+        return response(m, "admin/employees/list", res);
+
     }
 
     // Detail
@@ -179,13 +198,12 @@ public class EmployeeController {
         res.setTitle("Thông tin nhân viên");
 
         // Send response
-        m.addAttribute("res", res);
 
-        return "admin/employees/detail";
+        return response(m, "admin/employees/detail", res);
     }
 
     // Delete
-    @DeleteMapping("/{id}")
+    @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
@@ -209,4 +227,5 @@ public class EmployeeController {
 
         return "redirect:/admin/employees";
     }
+
 }
