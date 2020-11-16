@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/add_or_edit.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -11,7 +10,7 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/brands/save}" method="POST" th:object="${object}">
+        <form class="form-group" th:action="@{/admin/categories/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
                 <input id="my-input" class="form-control" disabled type="text" th:value="*{id}">

@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/add_or_edit.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -16,7 +15,7 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/products/save}" method="POST" th:object="${object}">
+        <form class="form-group" th:action="@{/admin/products/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">Mã sản phẩm</label>
                 <input id="my-input" class="form-control" type="text" th:value="*{id}" disabled>
@@ -24,13 +23,15 @@
             </div>
             <label for="my-input">Tên sản phẩm</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
+
             <label for="my-input">Danh mục</label>
             <select id="my-input" class="form-control" th:field="*{category.id}">
                 <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.categoryName}"></option>
             </select>
+
             <label for="my-input">Nhãn hiệu</label>
             <select id="my-input" class="form-control" th:field="*{brand.id}">
-                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${c.brandName}"></option>
+                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.brandName}"></option>
             </select>
             <label for="my-textarea">Mô tả</label>
             <textarea id="my-textarea" class="form-control" th:field="*{des}" rows="5"></textarea>

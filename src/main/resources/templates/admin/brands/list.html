@@ -20,8 +20,7 @@
                     <td th:text="${b.id}"></td>
                     <td th:text="${b.brandName}"></td>
                     <td>
-                        <a th:href="@{'/admin/brands/edit/' + ${res.object.id}}"
-                            style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
+                        <a th:href="@{'/admin/brands/edit/' + ${b.id}}" style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
                         <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             Xóa
@@ -34,11 +33,8 @@
                                         Bạn có chắc muốn xóa
                                     </div>
                                     <div class="modal-footer">
-                                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Hủy</button>
-                                        <a th:href="@{'/admin/brands/delete/' + ${res.object.id}}"
-                                            style="border-radius: 10px; color: white;" type="button"
-                                            class="btn btn-danger">Xóa</a>
+                                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                        <a th:href="@{'/admin/brands/delete/' + ${b.id}}" style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>
                             </div>

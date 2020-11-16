@@ -65,6 +65,7 @@ public class ShopController{
 
         // Send new response bean
         m.addAttribute("object", s);
+        m.addAttribute("res", res);
 
         return response(m, "admin/shops/add_or_edit", res);
 
@@ -106,7 +107,7 @@ public class ShopController{
         m.addAttribute("object", s);
 
         // Redirect to list
-        return "test/test_add_or_edit";
+        return "redirect:/admin/shops";
     }
 
     // Direct to edit page

@@ -1,66 +1,61 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{admin/layouts/detail.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/detail.html}">
 
 <head>
-	<title>Title</title>
+    <title>Title</title>
 </head>
 
 <body>
 
-	<!-- Add division to detail form fragment -->
-	<div layout:fragment="detail_form">
-		<table class="table table-light" th:object="${res.object}">
-			<tbody>
-				<th>ID</th>
-				<td th:text="*{id}"></td>
-			</tbody>
-			<tbody>
-				<th>Tên cửa hàng</th>
-				<td th:text="*{shop.name}"></td>
-			</tbody>
-			<tbody>
-				<th>Tiêu đề</th>
-				<td th:text="*{title}"></td>
-			</tbody>
-			<tbody>
-				<th>Miêu tả</th>
-				<td th:text="*{des}"></td>
-			</tbody>
-			<tbody>
-				<th>Giá bán</th>
-				<td th:text="*{price}"></td>
-			</tbody>
-			<tbody>
-				<th>Định lượng</th>
-				<td th:text="*{quantity}"></td>
-			</tbody>
-		</table>
-		<!-- Button trigger modal -->
-		<a th:href="@{'/admin/items/edit/' + ${i.id}}" style="border-radius: 10px; color: white;"
-			class="btn btn-primary">Sửa</a>
-		<a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal"
-			data-target="#exampleModal">
+    <!-- Add division to detail form fragment -->
+    <div layout:fragment="detail_form">
+        <table class="table table-light" th:object="${res.object}">
+            <tbody>
+                <th>ID</th>
+                <td th:text="*{id}"></td>
+            </tbody>
+            <tbody>
+                <th>Tên cửa hàng</th>
+                <td th:text="*{shop.name}"></td>
+            </tbody>
+            <tbody>
+                <th>Tiêu đề</th>
+                <td th:text="*{title}"></td>
+            </tbody>
+            <tbody>
+                <th>Miêu tả</th>
+                <td th:text="*{des}"></td>
+            </tbody>
+            <tbody>
+                <th>Giá bán</th>
+                <td th:text="*{price}"></td>
+            </tbody>
+            <tbody>
+                <th>Định lượng</th>
+                <td th:text="*{quantity}"></td>
+            </tbody>
+        </table>
+        <!-- Button trigger modal -->
+        <a th:href="@{'/admin/items/edit/' + ${i.id}}" style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
+        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 			Xóa
 		</a>
 
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-						Bạn có chắc muốn xóa
-					</div>
-					<div class="modal-footer">
-						<button style="border-radius: 10px;" type="button" class="btn btn-secondary"
-							data-dismiss="modal">Hủy</button>
-						<a th:href="@{'/admin/items/delete/' + ${i.id}}" style="border-radius: 10px; color: white;"
-							type="button" class="btn btn-danger">Xóa</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn có chắc muốn xóa
+                    </div>
+                    <div class="modal-footer">
+                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <a th:href="@{'/admin/items/delete/' + ${i.id}}" style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

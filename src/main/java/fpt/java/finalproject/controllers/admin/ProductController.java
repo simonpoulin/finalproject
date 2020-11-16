@@ -86,7 +86,7 @@ public class ProductController {
         // Send new response bean
         m.addAttribute("object", p);
 
-        return response(m, "admin/products/add", res);
+        return response(m, "admin/products/add_or_edit", res);
     }
     // end function add
 
@@ -148,7 +148,7 @@ public class ProductController {
         // Send response
         m.addAttribute("object", p);
 
-        return response(m, "admin/products/add", res);
+        return response(m, "admin/products/add_or_edit", res);
     }
     // end function edit
 
