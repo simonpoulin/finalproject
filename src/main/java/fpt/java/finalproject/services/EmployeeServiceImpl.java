@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import fpt.java.finalproject.models.Employee;
@@ -14,6 +15,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Override
+    public Employee getAuthEmployee() {
+        return employeeRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
 
     @Override
     public void save(Employee entity) throws Exception {

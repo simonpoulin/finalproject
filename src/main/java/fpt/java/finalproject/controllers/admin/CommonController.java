@@ -3,8 +3,6 @@ package fpt.java.finalproject.controllers.admin;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.repositories.EmployeeRepository;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeRoleService;
@@ -30,9 +27,6 @@ public class CommonController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     // Direct to add page
     @GetMapping("/register")
@@ -82,7 +76,7 @@ public class CommonController {
 
     @GetMapping("/dashboard")
     public String dashboard(ModelMap m) {
-        return adminResponse(m, "admin/dashboard");
+        return response(m, "admin/dashboard");
     }
 
     @GetMapping("")
@@ -105,14 +99,20 @@ public class CommonController {
         return "module/error";
     }
     
-    public String adminResponse(ModelMap m, String routing) {
-        if (m.getAttribute("authEmployee") == null) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String currentPrincipalName = authentication.getName();
-            Employee authEmployee = employeeRepository.findByUsername(currentPrincipalName);
-            m.addAttribute("authEmployee", authEmployee);
-        }
+    public String response(ModelMap m, String routing) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        AdminResponse res = new AdminResponse();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
         return routing;
     }
+
+    // @GetMapping(value = "/authUser")
+    // @ResponseBody
+    // public String currentUserNameSimple(HttpServletRequest request) {
+    //     String currentPrincipalName = request.getUserPrincipal()getName();
+
+    //     return principal.;
+    // }
 
 }

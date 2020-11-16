@@ -37,6 +37,20 @@ public class EmployeeController {
         return employeeRoleService.findAll();
     }
 
+    public String response(ModelMap m, String routing, AdminListResponse<Employee> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Employee> listResponse) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
+        return routing;
+    }
+
     // Direct to add page
     @GetMapping("/add")
     public String add(ModelMap m) {
@@ -46,10 +60,9 @@ public class EmployeeController {
         res.setTitle("Thêm nhân viên");
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", e);
 
-        return "admin/employees/add_or_edit";
+        return response(m, "admin/employees/add_or_edit", res);
     }
 
     // Save new
@@ -103,10 +116,9 @@ public class EmployeeController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
         m.addAttribute("object", e);
 
-        return "admin/employees/add_or_edit";
+          return response(m, "admin/employees/add_or_edit", res);
     }
 
     // List
@@ -165,8 +177,8 @@ public class EmployeeController {
         res.setTitle("Danh sách nhân viên");
 
         // Send response
-        m.addAttribute("res", res);
-        return "admin/employees/list";
+        return response(m, "admin/employees/list", res);
+        
     }
 
     // Detail
@@ -192,9 +204,8 @@ public class EmployeeController {
         res.setTitle("Thông tin nhân viên");
 
         // Send response
-        m.addAttribute("res", res);
 
-        return "admin/employees/detail";
+        return response(m, "admin/employees/detail", res);
     }
 
     // Delete

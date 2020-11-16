@@ -6,7 +6,6 @@ public class AdminObjectResponse<E> extends AdminResponse {
     private boolean isEdit;
 
     public AdminObjectResponse() {
-        super();
     }
 
     public boolean getIsEdit() {
