@@ -49,7 +49,7 @@ public class ShopPackController {
 
         AdminObjectResponse<ShopPack> res = new AdminObjectResponse<>();
         ShopPack c = new ShopPack();
-        res.setTitle("Thêm danh mục");
+        res.setTitle("Thêm gói cửa hàng");
 
         // Send new response bean
         m.addAttribute("object", c);
@@ -141,7 +141,7 @@ public class ShopPackController {
                 return "module/error";
             }
         }
-        res.setTitle("Danh sách danh mục");
+        res.setTitle("Danh sách gói cửa hàng");
 
         // Send response
         return response(m, "admin/shoppacks/list", res);
@@ -165,7 +165,7 @@ public class ShopPackController {
         }
 
         // Set response
-        res.setTitle("Xóa danh mục thành công");
+        res.setTitle("Xóa gói cửa hàng thành công");
 
         // Send response
         m.addAttribute("res", res);
