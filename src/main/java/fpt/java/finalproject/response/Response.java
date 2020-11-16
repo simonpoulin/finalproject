@@ -7,6 +7,11 @@ public class Response {
     public Response() {
     }
 
+    public void setNewResponse(Response res) {
+        this.message = res.getMessage();
+        this.title = res.getTitle();
+    }
+    
     public String getTitle() {
         return title;
     }

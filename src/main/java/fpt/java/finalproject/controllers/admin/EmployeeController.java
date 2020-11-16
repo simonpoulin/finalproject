@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +31,9 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRoleService employeeRoleService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @ModelAttribute(name = "employeeRoles")
     public List<EmployeeRole> getEmployeeRoles() {
@@ -71,7 +74,7 @@ public class EmployeeController {
 
         AdminResponse res = new AdminResponse();
         e.setCreatedAt(new Date(new Date().getTime()));
-        e.setPassword(new BCryptPasswordEncoder().encode(e.getPassword()));
+        e.setPassword(passwordEncoder.encode(e.getPassword()));
         // Save employee
         try {
             employeeService.save(e);
@@ -118,7 +121,7 @@ public class EmployeeController {
         // Send response
         m.addAttribute("object", e);
 
-          return response(m, "admin/employees/add_or_edit", res);
+        return response(m, "admin/employees/add_or_edit", res);
     }
 
     // List
@@ -133,17 +136,6 @@ public class EmployeeController {
             res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
-        }
-
-        List<Employee> l;
-        try {
-            l = employeeService.findAll();
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
         }
 
         // Set paging string
@@ -164,8 +156,10 @@ public class EmployeeController {
             pagingStr += "role=" + role;
         }
 
-        // Set response
+        // Get list
+        List<Employee> l;
         try {
+            l = employeeService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             // Return error on fail
@@ -175,10 +169,10 @@ public class EmployeeController {
             return "module/error";
         }
         res.setTitle("Danh sách nhân viên");
-
+        
         // Send response
         return response(m, "admin/employees/list", res);
-        
+
     }
 
     // Detail
