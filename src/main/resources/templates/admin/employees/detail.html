@@ -53,7 +53,8 @@
 				<td th:text="*{avatarUrl}"></td>
 			</tbody>
 		</table>
-		<a th:href="@{/admin/employees}" class="btn btn-primary">Danh sách nhân viên</a>
+		<a th:href="@{'/admin/employees/edit/' + ${res.object.id}}" class="btn btn-primary">Cập nhật nhân viên</a>
+		<a th:href="@{'/admin/employees/delete/' + ${res.object.id}}" class="btn btn-primary">Xóa nhân viên</a>
 	</div>
 
 </body>

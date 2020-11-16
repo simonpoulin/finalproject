@@ -4,7 +4,7 @@ import fpt.java.finalproject.models.Employee;
 
 public class AdminResponse extends Response {
     
-    Employee authEmployee;
+    private Employee authEmployee;
 
     public AdminResponse() {
     }
