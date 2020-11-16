@@ -16,19 +16,27 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/products/save}" method="POST" th:object="${res.object}">
+        <form class="form-group" th:action="@{admin/products/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">Mã sản phẩm</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+                <input id="my-input" class="form-control" type="text" th:field="*{id}" disabled>
             </div>
             <label for="my-input">Tên sản phẩm</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
             <label for="my-input">Danh mục</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{category.categoryName}">
+            <select id="my-input" class="form-control" th:field="*{category.id}">
+                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.categoryName}"></option>
+            </select>
             <label for="my-input">Nhãn hiệu</label>
-            <input id="my-input" class="form-control" type="text" th:field="*{brand.brandName}">
+            <select id="my-input" class="form-control" th:field="*{brand.id}">
+                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${c.brandName}"></option>
+            </select>
             <label for="my-textarea">Mô tả</label>
             <textarea id="my-textarea" class="form-control" th:field="*{des}" rows="5"></textarea>
+            <label for="my-input">Trạng thái</label>
+            <select id="my-input" class="form-control" th:field="*{status}">
+                <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></option>
+            </select>
             <hr>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

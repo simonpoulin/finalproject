@@ -13,7 +13,7 @@
         <form class="form-group" th:action="@{/admin/employees/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+                <input id="my-input" class="form-control" type="text" th:field="*{id}" disabled>
             </div>
             <label for="my-input">Tên nhân viên</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
@@ -21,12 +21,11 @@
             <select id="my-input" class="form-control" th:field="*{employeeRole.id}">
                 <option th:each="er : ${employeeRoles}" th:value="${er.id}" th:text="${er.roleName}"></option>
             </select>
+            <label for="my-input">Username</label>
             <div th:if="${res.isEdit}">
-                <label for="my-input">Username</label>
                 <input id="my-input" class="form-control" type="text" th:field="*{username}" disabled>
             </div>
             <div th:unless="${res.isEdit}">
-                <label for="my-input">Username</label>
                 <input id="my-input" class="form-control" type="text" th:field="*{username}">
             </div>
             <label for="my-input">Password</label>

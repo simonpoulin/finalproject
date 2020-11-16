@@ -1,5 +1,6 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,15 @@ public class ProductController {
         return brandService.findAll();
     }
 
+    @ModelAttribute(name = "statuses")
+    public List<String> getStatuses() {
+        List<String> l = new ArrayList<>();
+        l.add("Confirming");
+        l.add("Confirmed");
+        l.add("Denied");
+        return l;
+    }
+
     public String response(ModelMap m, String routing, AdminListResponse<Product> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
         res.setAuthEmployee(authEmployee);
@@ -86,9 +96,9 @@ public class ProductController {
     public String save(ModelMap m, Product p) {
 
         AdminResponse res = new AdminResponse();
-        
+
         p.setEmpolyee(employeeService.getAuthEmployee());
-        
+
         // save new product
         try {
             productService.save(p);
@@ -164,11 +174,13 @@ public class ProductController {
             l = productService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // return fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // return fail
+                res.setIsError(true);
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
 
         res.setTitle("Danh sách sản phẩm");
