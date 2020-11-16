@@ -91,6 +91,18 @@ public class TestComponent implements ApplicationListener<ContextRefreshedEvent>
             employee.setEmployeeRole(employeeRole);
             employeeRepository.save(employee);
         }
+        if (employeeRepository.findByUsername("HongDuc") == null) {
+            Employee manager = new Employee();
+            manager.setUsername("HongDuc");
+            manager.setPassword(passwordEncoder.encode("123456"));
+            manager.setAddress("Quảng Nam");
+            manager.setCreatedAt(new Date(new Date().getTime()));
+            manager.setEmail("duc@gmail.com");
+            manager.setName("Le Hong Duc");
+            manager.setPhone("1234567890");
+            EmployeeRole employeeRole = employeeRoleRepository.findById(1).get();
+            manager.setEmployeeRole(employeeRole);
+            employeeRepository.save(manager);
+        }
     }
-
 }

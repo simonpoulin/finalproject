@@ -113,7 +113,6 @@ public class BrandController {
         List<Brand> l;
         try {
             l = brandService.findAll();
-            
         } catch (Exception ex) {
             // Return error on fail
             res.setIsError(true);
@@ -158,7 +157,7 @@ public class BrandController {
     }
 
     // Delete
-    @DeleteMapping("/{id}")
+    @RequestMapping("/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();

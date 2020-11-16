@@ -11,7 +11,7 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/employees/save}" method="POST" th:object="${res.object}">
+        <form class="form-group" th:action="@{admin/employees/save}" method="POST" th:object="${object}">
             <label for="my-input">Vai trò</label>
             <div class="form-check">
                 <label class="form-check-label">
@@ -37,8 +37,6 @@
             </div>
             <label for="my-input">Password</label>
             <input id="my-input" class="form-control" type="password" th:field="*{password}">
-            <label for="my-input">Created At</label>
-            <input id="my-input" class="form-control" data-date-format="mm/dd/yyyy" type="date" th:field="*{createdAt}">
             <label for="my-input">Số điện thoại</label>
             <input id="my-input" class="form-control" type="text" th:field="*{phone}">
             <label for="my-input">Địa chỉ</label>

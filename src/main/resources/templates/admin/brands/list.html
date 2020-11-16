@@ -9,17 +9,18 @@
     <div layout:fragment="list_form">
 
         <table class="table table-bordered">
+            <a th:href="@{/admin/brands/add}" type="button" class="btn btn-primary">Thêm Mới</a>
             <tbody>
                 <th>ID</th>
                 <th>Tên nhãn hàng</th>
                 <th>Hành động</th>
             </tbody>
             <tbody th:each="b : ${res.pagedList}">
-                <td th:text="${id}"></td>
-                <td th:text="${brandName}"></td>
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.brandName}"></td>
                 <td>
-                    <button type="button" class="btn btn-primary">Sửa</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <a th:href="@{'/admin/brands/edit/' + ${b.id}}" type="button" class="btn btn-primary">Sửa</a>
+                    <a th:href="@{'/admin/brands/' + ${b.id}}" type="button" class="btn btn-danger">Xóa</a>
                 </td>
             </tbody>
         </table>
