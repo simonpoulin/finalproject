@@ -131,7 +131,7 @@ public class UserController {
 
          // Set paging string
          boolean isFirst = true;
-         String pagingStr = "/admin/user";
+         String pagingStr = "/admin/users";
  
          if (!name.equals("")) {
              pagingStr += "?name=" + name;
