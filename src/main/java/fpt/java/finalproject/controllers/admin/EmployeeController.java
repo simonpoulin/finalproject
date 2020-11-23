@@ -27,10 +27,10 @@ import fpt.java.finalproject.services.EmployeeService;
 public class EmployeeController {
 
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @Autowired
-    EmployeeRoleService employeeRoleService;
+    private EmployeeRoleService employeeRoleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -40,17 +40,17 @@ public class EmployeeController {
         return employeeRoleService.findAll();
     }
 
-    public String response(ModelMap m, String routing, AdminListResponse<Employee> listResponse) {
+    public String response(ModelMap m, String routing, AdminListResponse<Employee> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        listResponse.setAuthEmployee(authEmployee);
-        m.addAttribute("res", listResponse);
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
         return routing;
     }
 
-    public String response(ModelMap m, String routing, AdminObjectResponse<Employee> listResponse) {
+    public String response(ModelMap m, String routing, AdminObjectResponse<Employee> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        listResponse.setAuthEmployee(authEmployee);
-        m.addAttribute("res", listResponse);
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
         return routing;
     }
 
@@ -80,7 +80,7 @@ public class EmployeeController {
             employeeService.save(e);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -108,7 +108,7 @@ public class EmployeeController {
             e = employeeService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -126,9 +126,7 @@ public class EmployeeController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
-            @RequestParam(required = false, defaultValue = "") String name,
-            @RequestParam(required = false, defaultValue = "0") Integer role) {
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Employee> res = new AdminListResponse<>();
@@ -139,37 +137,24 @@ public class EmployeeController {
         }
 
         // Set paging string
-        boolean isFirst = true;
         String pagingStr = "/admin/employees";
 
-        if (!name.equals("")) {
-            pagingStr += "?name=" + name;
-            isFirst = false;
-        }
-
-        if (role != 0) {
-            if (isFirst) {
-                pagingStr += "?";
-            } else {
-                pagingStr += "&";
-            }
-            pagingStr += "role=" + role;
-        }
-
-        // Get list
+        // Set list
         List<Employee> l;
         try {
             l = employeeService.findAll();
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // Return error on fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         res.setTitle("Danh sách nhân viên");
-        
+
         // Send response
         return response(m, "admin/employees/list", res);
 
@@ -187,7 +172,7 @@ public class EmployeeController {
             e = employeeService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -213,7 +198,7 @@ public class EmployeeController {
             employeeService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

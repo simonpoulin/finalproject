@@ -17,14 +17,14 @@
                     </tr>
                 </thead>
                 <tbody th:each="b : ${res.pagedList}">
-                    <td th:text="${id}"></td>
-                    <td th:text="${brandName}"></td>
+                    <td th:text="${b.id}"></td>
+                    <td th:text="${b.brandName}"></td>
                     <td>
+                        <a th:href="@{'/admin/brands/edit/' + ${b.id}}" style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
                         <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             Xóa
                         </a>
-
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -34,12 +34,15 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button style="border-radius: 10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+<<<<<<< HEAD
                                         <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
+=======
+                                        <a th:href="@{'/admin/brands/delete/' + ${b.id}}" style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
+>>>>>>> origin/master
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                     </td>
                 </tbody>
             </table>

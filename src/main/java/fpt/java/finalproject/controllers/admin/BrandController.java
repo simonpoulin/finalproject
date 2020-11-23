@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fpt.java.finalproject.models.Brand;
+import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
+import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/brands")
 @Controller
@@ -24,6 +25,23 @@ public class BrandController {
 
     @Autowired
     BrandService brandService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    public String response(ModelMap m, String routing, AdminListResponse<Brand> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Brand> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
 
     // Direct to add page
     @GetMapping("/add")
@@ -36,9 +54,8 @@ public class BrandController {
 
         // Send new response bean
         m.addAttribute("object", b);
-        m.addAttribute("res", res);
 
-        return "admin/brands/add_or_edit";
+        return response(m, "admin/brands/add_or_edit", res);
     }
 
     // Save new
@@ -52,7 +69,7 @@ public class BrandController {
             brandService.save(b);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -80,7 +97,7 @@ public class BrandController {
             b = brandService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -91,9 +108,8 @@ public class BrandController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
         m.addAttribute("object", b);
-        return "admin/brands/add_or_edit";
+        return response(m, "admin/brands/add_or_edit", res);
     }
 
     // List
@@ -115,7 +131,7 @@ public class BrandController {
             l = brandService.findAll();
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -143,17 +159,18 @@ public class BrandController {
         try {
             res.generateResponse(l, 1, page, pagingStr);
         } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // Return error on fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         res.setTitle("Danh sách nhãn hàng");
 
         // Send response
-        m.addAttribute("res", res);
-        return "admin/brands/list";
+        return response(m, "admin/brands/list", res);
     }
 
     // Delete
@@ -167,7 +184,7 @@ public class BrandController {
             brandService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

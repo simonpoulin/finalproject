@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Add division to head fragment -->
+    <div layout:fragment="head">
+
+        <title>Đăng nhập</title>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userLogin.css}">
+</head>
+
+<body>
+
+    <!-- Add division to body fragment -->
+    <div layout:fragment="body">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Đăng kí cửa hàng</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>Đăng kí với tài khoản username</span>
+                    <input type="text" placeholder="Tên tài khoản" />
+                    <input type="text" placeholder="Số Điện Thoại" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Mật khẩu" />
+                    <button>Đăng kí</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <img class="image" th:src="@{/icons/hand.jpg}">
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Chào mừng bạn tới SurfnShop!</h1>
+                        <p>Để trở thành đối tác bên chúng tôi - vui lòng nhập đầy đủ thông tin </p>
+                        <button class="ghost" id="signIn">Đăng nhập</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Xin chào!</h1>
+                        <p>Bạn muốn trở thành đối tác với chúng tôi? Hãy đăng kí ngay nhé!</p>
+                        <button class="ghost" id="signUp">Đăng kí cửa hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+        </footer>
+    </div>
+
+</body>
+
+</html>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>

@@ -19,17 +19,19 @@
             <h5 class="card-title" th:text="${res.title}"></h5>
             <div style="border-radius: 10px;" class="card">
                 <div class="card-body">
-                    
-                    <!-- <button type="button" class="btn btn-primary">Tạo Mới</button><hr> -->
-                    <!-- list form fragment -->
-                    <div layout:fragment="list_form">
+                    <div class="table table-light">
+                        <!-- <button type="button" class="btn btn-primary">Tạo Mới</button><hr> -->
+                        <!-- list form fragment -->
+                        <div layout:fragment="list_form">
+                        </div>
+                        
                     </div>
                 </div>
             </div>
             <div style="margin-top: 20px; float: right; padding-right: 40px;" th:if="${res.totalPage > 0}">
                 <nav aria-label="...">
                     <ul class="pagination pagination-lg" th:if="${res.page < 7}">
-                        <li th:if="${res.totalPage > 0}" class="page-item">
+                        <li th:if="${res.totalPage > 1}" class="page-item">
                             <a class="page-link" th:href="@{'' + ${res.pagingStr} + '0'}">1</a>
                         </li>
                         <li th:if="${res.totalPage > 1}" class="page-item">

@@ -10,7 +10,7 @@ public interface BrandService {
 
     public Brand findById(Integer id) throws Exception;
 
-    public List<Brand> findAll() throws Exception;
+    public List<Brand> findAll();
 
     public void deleteById(Integer id) throws Exception;
 

@@ -12,7 +12,8 @@
         <form class="form-group" th:action="@{/admin/employees/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+                <input id="my-input" class="form-control" type="text" th:value="*{id}" disabled>
+                <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tên nhân viên</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
@@ -20,12 +21,12 @@
             <select id="my-input" class="form-control" th:field="*{employeeRole.id}">
                 <option th:each="er : ${employeeRoles}" th:value="${er.id}" th:text="${er.roleName}"></option>
             </select>
+            <label for="my-input">Username</label>
             <div th:if="${res.isEdit}">
-                <label for="my-input">Username</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{username}" disabled>
+                <input id="my-input" class="form-control" type="text" th:value="*{username}" disabled>
+                <input type="hidden" th:field="*{username}">
             </div>
             <div th:unless="${res.isEdit}">
-                <label for="my-input">Username</label>
                 <input id="my-input" class="form-control" type="text" th:field="*{username}">
             </div>
             <label for="my-input">Password</label>
@@ -37,7 +38,7 @@
             <label for="my-input">Email</label>
             <input id="my-input" class="form-control" type="email" th:field="*{email}">
             <hr>
-            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button style="border-radius: 10px;" type="submit" class="btn btn-primary">Lưu</button>
         </form>
 
     </div>

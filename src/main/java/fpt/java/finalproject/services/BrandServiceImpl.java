@@ -47,7 +47,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<Brand> findAll() throws Exception {
+    public List<Brand> findAll() {
         return (List<Brand>) brandRepository.findAll();
     }
 

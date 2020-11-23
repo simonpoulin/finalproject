@@ -1,7 +1,6 @@
 <!doctype html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{module/blank_layout.html}">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Add division to head fragment -->
@@ -10,46 +9,80 @@
         <title>Đăng nhập</title>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userLogin.css}">
 </head>
 
 <body>
 
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
-        
-        <div class="row">
-            <div class="col-sm-6 offset-3">
-                <div class="card" style="margin-top: 50px;">
-                    <div class="card-body" style="height: 500px;">
-                        <h5 class="card-title">
-                            <p style="text-align: center; font-size: 30px;">ĐĂNG NHẬP</p>
-                        </h5>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="card" style="height: 420px;">
-                                    <img class="card-img-top" src="" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">LOGO</h5>
-                                    </div>
-                                    <img class="card-img-bottom" src="" alt="">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="my-input">Tài khoảng</label>
-                                    <input id="my-input" class="form-control" type="text" name="">
-                                    <label for="my-input">Mật Khẩu</label>
-                                    <input id="my-input" class="form-control" type="text" name=""><br>
-                                    <button class="btn btn-primary" type="button">Đăng Nhập</button>
-                                </div>
-                            </div>
-                        </div>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Đăng kí</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>Đăng kí với tài khoản username</span>
+                    <input type="text" placeholder="Tên tài khoản" />
+                    <input type="text" placeholder="Số Điện Thoại" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Mật khẩu" />
+                    <button>Đăng kí</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Đăng Nhập</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>Đăng nhập tài khoản</span>
+                    <input type="text" placeholder="Tên tài khoản" />
+                    <input type="password" placeholder="Mật khẩu" />
+                    <a href="#">Quên mật khẩu</a>
+                    <button>Đăng nhập</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Chào mừng bạn tới SurfnShop!</h1>
+                        <p>Để kết nối với chúng tôi - vui lòng đăng kí bằng thông tin tài khoản</p>
+                        <button class="ghost" id="signIn">Đăng nhập</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Xin chào!</h1>
+                        <p>Nhập thông tin của bạn để bắt đầu trải nghiệm tuyệt với nhé!</p>
+                        <button class="ghost" id="signUp">Đăng kí</button>
+                    </div>
                 </div>
             </div>
         </div>
-          
+
+        <footer>
+        </footer>
     </div>
-    
+
 </body>
 
 </html>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>

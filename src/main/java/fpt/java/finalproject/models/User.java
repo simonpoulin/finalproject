@@ -29,7 +29,7 @@ public class User implements Serializable {
     @Column(columnDefinition = "nvarchar(50) not null")
     private String username;
 
-    @Column(columnDefinition = "nvarchar(50) not null")
+    @Column(columnDefinition = "nvarchar(500) not null")
     private String password;
 
     @Column(columnDefinition = "nvarchar(10) not null")

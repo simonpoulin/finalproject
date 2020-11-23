@@ -38,12 +38,31 @@
                 <th>Email</th>
                 <td th:text="*{email}"></td>
             </tbody>
-            <tbody>
-                <th>Avatar</th>
-                <td th:text="*{avatarUrl}"></td>
-            </tbody>
         </table>
-        <a th:href="@{/admin/users}" class="btn btn-primary">Danh sách người dùng</a>
+        <!-- Button trigger modal -->
+        <a th:href="@{'/admin/users/edit/' + ${res.object.id}}" style="border-radius: 10px; color: white;"
+            class="btn btn-primary">Sửa</a>
+        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="#exampleModal">
+            Xóa
+        </a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Bạn có chắc muốn xóa
+                    </div>
+                    <div class="modal-footer">
+                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Hủy</button>
+                        <a th:href="@{'/admin/users/delete/' + ${res.object.id}}"
+                            style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </html>

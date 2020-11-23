@@ -5,17 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fpt.java.finalproject.models.Category;
+import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.CategoryService;
+import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/categories")
 @Controller
@@ -23,6 +25,23 @@ public class CategoryController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    public String response(ModelMap m, String routing, AdminListResponse<Category> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Category> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
 
     // Direct to add page
     @GetMapping("/add")
@@ -33,11 +52,9 @@ public class CategoryController {
         res.setTitle("Thêm danh mục");
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", c);
 
-
-        return "admin/categories/add_or_edit";
+        return response(m, "admin/categories/add_or_edit", res);
     }
 
     // Save new
@@ -51,7 +68,7 @@ public class CategoryController {
             categoryService.save(c);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -79,7 +96,7 @@ public class CategoryController {
             c = categoryService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
@@ -90,15 +107,14 @@ public class CategoryController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
         m.addAttribute("object", c);
 
-        return "admin/categories/add_or_edit";
+        return response(m, "admin/categories/add_or_edit", res);
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m) {
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Category> res = new AdminListResponse<>();
@@ -108,36 +124,31 @@ public class CategoryController {
             res.setNewResponse(obj);
         }
 
+        // Set paging string
+        String pagingStr = "/admin/categories";
+
+        // Set list
         List<Category> l;
         try {
             l = categoryService.findAll();
+            res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
-
-        // Set response
-        try {
-            // res.generateResponse(l, 0, 0);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
+            if (!res.getIsEmpty()) {
+                // Return error on fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
         res.setTitle("Danh sách danh mục");
 
         // Send response
-        m.addAttribute("res", res);
-        return "admin/categories/list";
+        return response(m, "admin/categories/list", res);
     }
 
     // Delete
-    @DeleteMapping("/{id}")
+    @RequestMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
@@ -147,7 +158,7 @@ public class CategoryController {
             categoryService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
-            res.setIsError(true);
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";

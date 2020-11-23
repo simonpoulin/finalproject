@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/add_or_edit.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -14,11 +13,11 @@
         <form class="form-group" th:action="@{/admin/brands/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+                <input id="my-input" class="form-control" disabled type="text" th:value="*{id}">
+                <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tên nhãn hàng</label>
             <input id="my-input" class="form-control" type="text" th:field="*{brandName}">
-            
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
 

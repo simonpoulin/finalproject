@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin/layouts/add_or_edit.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -16,10 +15,11 @@
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
 
-        <form class="form-group" th:action="@{admin/items/save}" method="POST" th:object="${res.object}">
+        <form class="form-group" th:action="@{/admin/shops/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID cửa hàng</label>
-                <input id="my-input" class="form-control" type="text" th:field="*{id}">
+                <input disabled id="my-input" class="form-control" type="text" th:value="*{id}">
+                <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tên cửa hàng</label>
             <input id="my-input" class="form-control" type="text" th:field="*{name}">
@@ -29,13 +29,10 @@
             <input id="my-input" class="form-control" type="text" th:field="*{address}">
             <label for="my-input">Email</label>
             <input id="my-input" class="form-control" type="email" th:field="*{email}">
-            <div class="form-group">
-                <label for="my-input">Avatar</label>
-                <input id="my-input" class="form-control-file" type="file">
-            </div>
+            <label for="my-input">Trạng thái</label>
+            <input id="my-input" class="form-control" type="text" th:field="*{status}">
             <hr>
             <button type="submit" class="btn btn-primary">Lưu</button>
-            <button type="reset" class="btn btn-danger">Xóa trắng</button>
         </form>
 
     </div>

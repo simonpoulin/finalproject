@@ -1,31 +1,81 @@
 package fpt.java.finalproject.controllers.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import fpt.java.finalproject.models.Brand;
+import fpt.java.finalproject.models.Category;
+import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.BrandService;
+import fpt.java.finalproject.services.CategoryService;
+import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ProductService;
 
 @Controller
 @RequestMapping("/admin/products")
 public class ProductController {
-    
+
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private BrandService brandService;
+
+    @ModelAttribute(name = "categories")
+    public List<Category> getCategories() {
+        return categoryService.findAll();
+    }
+
+    @ModelAttribute(name = "brands")
+    public List<Brand> getBrands() {
+        return brandService.findAll();
+    }
+
+    @ModelAttribute(name = "statuses")
+    public List<String> getStatuses() {
+        List<String> l = new ArrayList<>();
+        l.add("Confirming");
+        l.add("Confirmed");
+        l.add("Denied");
+        return l;
+    }
+
+    public String response(ModelMap m, String routing, AdminListResponse<Product> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
+
+    public String response(ModelMap m, String routing, AdminObjectResponse<Product> res) {
+        Employee authEmployee = employeeService.getAuthEmployee();
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
+        return routing;
+    }
+
     @GetMapping("/add")
-    public String add(ModelMap m){
+    public String add(ModelMap m) {
 
         AdminObjectResponse<Product> res = new AdminObjectResponse<Product>();
         Product p = new Product();
@@ -34,36 +84,37 @@ public class ProductController {
         res.setIsEdit(false);
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", p);
 
-        return "admin/products/add";
+        return response(m, "admin/products/add_or_edit", res);
     }
-    //end function add
+    // end function add
 
     // save new
     @PostMapping("/save")
-    public String save(ModelMap m, Product p){
+    public String save(ModelMap m, Product p) {
 
         AdminResponse res = new AdminResponse();
 
-        //save new product
-        try{
-            productService.save(p);
-        }catch(Exception ex){
+        p.setEmpolyee(employeeService.getAuthEmployee());
 
-            //return fail
-            res.setIsError(true);
+        // save new product
+        try {
+            productService.save(p);
+        } catch (Exception ex) {
+
+            // return fail
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
-        //Set response
+        // Set response
         res.setMessage("Lưu thành công");
 
-        //send response
+        // send response
         m.addAttribute("res", res);
 
         // Redirect to list
@@ -73,110 +124,104 @@ public class ProductController {
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") Integer id, ModelMap m){
+    public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminObjectResponse<Product> res = new AdminObjectResponse<>();
         Product p = new Product();
 
         // Find by id product
-        try{
+        try {
             p = productService.findById(id);
-        }catch(Exception ex){
-             //return fail
-             res.setIsError(true);
-             res.setMessage(ex.getMessage());
-             m.addAttribute("res", p);
-             return "module/error";
+        } catch (Exception ex) {
+            // return fail
+            res.setErrorCode("404");
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", p);
+            return "module/error";
         }
         // end try catch
-        
+
         // Set response
         res.setIsEdit(true);
         res.setTitle("cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
         m.addAttribute("object", p);
 
-        return "admin/products/add";
+        return response(m, "admin/products/add_or_edit", res);
     }
     // end function edit
 
     // List
     @GetMapping("")
-    public String list(ModelMap m){
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
 
-        Object obj = m.addAttribute("res");
+        AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Product> res = new AdminListResponse<>();
-        List<Product> l;
-        if(obj == null){
+        if (obj == null) {
             res = new AdminListResponse<>();
-        }else{
+        } else {
             res.setNewResponse(res);
         }
-        // end if else
 
+        // Set paging string
+        String pagingStr = "/admin/products";
+
+        // Set list
+        List<Product> l;
         try {
             l = productService.findAll();
+            res.generateResponse(l, 3, page, pagingStr);
         } catch (Exception ex) {
-           //return fail
-           res.setIsError(true);
-           res.setMessage(ex.getMessage());
-           m.addAttribute("res", res);
-           return "module/error";
+            if (!res.getIsEmpty()) {
+                // return fail
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                m.addAttribute("res", res);
+                return "module/error";
+            }
         }
-        // end try catch
 
-        // Set response
-        try {
-            // res.generateResponse(l, 0, 0);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setIsError(true);
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
         res.setTitle("Danh sách sản phẩm");
 
         // Send response
         m.addAttribute("res", res);
-        return "test/testList";
+        return response(m, "admin/products/list", res);
     }
-    //end function list
+    // end function list
 
     // Detail
     @GetMapping("/{id}")
-    public String detail (@PathVariable(name ="id") Integer id, ModelMap m){
+    public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         Product p = new Product();
         AdminObjectResponse<Product> res = new AdminObjectResponse<>();
 
         // Find by id
-      try {
+        try {
             p = productService.findById(id);
         } catch (Exception ex) {
-            //return fail
-            res.setIsError(true);
+            // return fail
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
         // end function try catch
 
-        //Set response
+        // Set response
         res.setObject(p);
         res.setTitle("Thông tin sản phẩm");
 
-        //Send response
+        // Send response
         m.addAttribute("res", res);
         return "admin/products/edit";
     }
-    //end funcition detail
+    // end funcition detail
 
-    //del
-    @DeleteMapping("/{id}")
-    public String del(@PathVariable(name = "id") Integer id,  ModelMap m){
+    // del
+    @RequestMapping("/delete/{id}")
+    public String del(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
 
@@ -184,14 +229,14 @@ public class ProductController {
         try {
             productService.deleteById(id);
         } catch (Exception ex) {
-            //return fail
-            res.setIsError(true);
+            // return fail
+            res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
             return "module/error";
         }
-        
-        //Set AdminResponse
+
+        // Set AdminResponse
         res.setTitle("Xóa sản phẩm");
 
         // send AdminResponse

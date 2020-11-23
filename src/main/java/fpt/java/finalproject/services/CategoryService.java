@@ -10,7 +10,7 @@ public interface CategoryService {
 
     public Category findById(Integer id) throws Exception;
 
-    public List<Category> findAll() throws Exception;
+    public List<Category> findAll();
 
     public void deleteById(Integer id) throws Exception;
 

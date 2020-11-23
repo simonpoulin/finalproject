@@ -6,15 +6,22 @@ import fpt.java.finalproject.utils.Config;
 
 public class AdminListResponse<E> extends AdminResponse {
 
-    private List<E> list, pagedList;
+    private List<E> pagedList;
     private Integer page, totalPage, limit;
     private String pagingStr;
+    private boolean isEmpty;
 
     public AdminListResponse() {
         super();
     }
 
     public void generateResponse(List<E> list, int limit, int page, String pagingStr) throws Exception {
+
+        // Check list size
+        if (list.isEmpty()) {
+            this.isEmpty = true;
+            throw new Exception("blank list");
+        }
 
         // Set limit
         if (limit > 0) {
@@ -23,19 +30,20 @@ public class AdminListResponse<E> extends AdminResponse {
             limit = this.limit = new Config().PAGE_LIMIT;
         }
 
-        // Set list
-        if (list != null) {
-            this.list = list;
-        } else {
-            list = this.list;
-        }
-
         // Set page
         if (page < 0) {
             this.page = page = 0;
         } else {
             this.page = page;
         }
+
+        // Set pagingStr
+        if (pagingStr.contains("?")) {
+            pagingStr += "&";
+        } else {
+            pagingStr += "?";
+        }
+        this.pagingStr = pagingStr + "page=";
 
         // Set totalPage
         this.totalPage = (int) Math.ceil(((double) list.size()) / ((double) limit));
@@ -54,22 +62,8 @@ public class AdminListResponse<E> extends AdminResponse {
 
         this.pagedList = list.subList(fromIndex, toIndex);
 
-        // Set pagingStr
-        if (pagingStr.contains("?")) {
-            pagingStr += "&";
-        } else {
-            pagingStr += "?";
-        }
-        this.pagingStr = pagingStr + "page=";
         
-    }
-
-    public List<E> getList() {
-        return list;
-    }
-
-    public void setList(List<E> list) {
-        this.list = list;
+        
     }
 
     public List<E> getPagedList() {
@@ -110,6 +104,14 @@ public class AdminListResponse<E> extends AdminResponse {
 
     public void setPagingStr(String pagingStr) {
         this.pagingStr = pagingStr;
+    }
+
+    public boolean getIsEmpty() {
+        return isEmpty;
+    }
+
+    public void setIsEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 
 }

@@ -20,7 +20,7 @@ public class ShopPack implements Serializable {
     private Integer id;
 
     @Column(columnDefinition = "nvarchar(50) not null")
-    private String name;
+    private String shopPackName;
 
     @Column(columnDefinition = "float not null")
     private Float price;
@@ -40,11 +40,11 @@ public class ShopPack implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return shopPackName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String shopPackName) {
+        this.shopPackName = shopPackName;
     }
 
     public Float getPrice() {
