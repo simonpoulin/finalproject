@@ -175,8 +175,24 @@ public class AdminController {
     public String dashboard(){
         return "admin/dashboard";
     }
-    @RequestMapping("/shoppack")
-    public String shoppack(){
-        return "admin/shopPack/add_or_edit";
+    @RequestMapping("/home")
+    public String home(){
+        return "user/home";
+    }
+    @RequestMapping("/contact")
+    public String contact(){
+        return "user/contact";
+    }
+    @RequestMapping("/policy")
+    public String policy(){
+        return "user/policy";
+    }
+    @RequestMapping("/iteamdetail")
+    public String iteamdetail(){
+        return "user/items/detail";
+    }
+    @RequestMapping("/addemployees")
+    public String addemployees(){
+        return "user/shops/employees/add_or_edit";
     }
 }
