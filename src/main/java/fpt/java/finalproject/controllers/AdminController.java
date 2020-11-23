@@ -179,4 +179,37 @@ public class AdminController {
     public String shoppack(){
         return "admin/shopPack/add_or_edit";
     }
+
+    @RequestMapping("/login")
+    public String loginUser(){
+        return "user/login";
+    }
+
+    @RequestMapping("/reshop")
+    public String regShop(){
+        return "user/RegistrationShop";
+    }
+
+    @RequestMapping("/home2")
+    public String home2(){
+        return "user/index";
+    }
+
+    @RequestMapping("/header")
+    public String header(){
+        return "user/layouts/header";
+    }
+    @RequestMapping("/main")
+    public String main(){
+        return "user/layouts/main";
+    }
+    @RequestMapping("/slider")
+    public String slider(){
+        return "user/layouts/slider";
+    }
+
+    @RequestMapping("/index")
+    public String product(){
+        return "user/layouts/item_list";
+    }
 }

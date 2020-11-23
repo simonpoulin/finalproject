@@ -171,7 +171,7 @@ public class ProductController {
         List<Product> l;
         try {
             l = productService.findAll();
-            res.generateResponse(l, 0, page, pagingStr);
+            res.generateResponse(l, 3, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
                 // return fail
