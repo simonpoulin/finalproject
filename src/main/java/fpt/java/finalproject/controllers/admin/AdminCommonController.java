@@ -18,7 +18,7 @@ import fpt.java.finalproject.services.EmployeeService;
 
 @Controller
 @RequestMapping("/admin")
-public class CommonController {
+public class AdminCommonController {
     @Autowired
     EmployeeService employeeService;
 
@@ -46,23 +46,34 @@ public class CommonController {
     // Save new
     @PostMapping("/register/save")
     public String save(Employee e, ModelMap m) {
-        // ở đây còn chưa check username đã tồn tại, email số điện thoại có trùng k ,
-        // ....
+
         AdminResponse res = new AdminResponse();
+        
+        try {
+
+            // Check username is existed
+            Employee check = new Employee();
+            check = employeeService.findByUsername(e.getUsername());
+            if (check != null) {
+                throw new Exception("Tên đăng nhập đã tồn tại!");
+            }
+
+            // Save employee
+            employeeService.save(e);
+
+        } catch (Exception ex) {
+            if (!ex.getMessage().equals("Employee not found")) {
+                res.setErrorCode("404");
+                res.setMessage(ex.getMessage());
+                res.setTitle("Đăng ký nhân viên");
+                m.addAttribute("res", res);
+                return "admin/signup";
+            }
+        }
+        
         e.setCreatedAt(new Date(new Date().getTime()));
         e.setPassword(passwordEncoder.encode(e.getPassword()));
         e.setEmployeeRole(employeeRoleService.findById(1));
-
-        // Save employee
-        try {
-            employeeService.save(e);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setErrorCode("404");
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
 
         // Set response
         res.setMessage("Đăng ký thành công!");
@@ -102,7 +113,7 @@ public class CommonController {
         m.addAttribute("res", res);
         return "module/error";
     }
-    
+
     public String response(ModelMap m, String routing) {
         Employee authEmployee = employeeService.getAuthEmployee();
         AdminResponse res = new AdminResponse();
@@ -110,13 +121,5 @@ public class CommonController {
         m.addAttribute("res", res);
         return routing;
     }
-
-    // @GetMapping(value = "/authUser")
-    // @ResponseBody
-    // public String currentUserNameSimple(HttpServletRequest request) {
-    //     String currentPrincipalName = request.getUserPrincipal()getName();
-
-    //     return principal.;
-    // }
 
 }

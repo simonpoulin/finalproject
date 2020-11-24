@@ -8,13 +8,17 @@ public interface EmployeeService {
 
     public Employee getAuthEmployee();
 
+    public Employee findByPhone(String phone) throws Exception;
+
+    public Employee findByUsername(String username) throws Exception;
+
     public void save(Employee entity) throws Exception;
 
     public List<Employee> findAll() throws Exception;
 
     public Employee findById(Integer id) throws Exception;
 
-    public void deleteById(Integer id)  throws Exception;
+    public void deleteById(Integer id) throws Exception;
 
     public List<Employee> saveAll(List<Employee> entities);
 

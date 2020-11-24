@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import fpt.java.finalproject.models.User;
@@ -14,6 +15,35 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public User findByUsername(String username) throws Exception {
+        User u = new User();
+
+        // Find employee
+        Optional<User> opts = userRepository.findByUsername(username);
+
+        // Set employee
+        if (opts.isPresent()) {
+            u = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("User not found");
+        }
+
+        return u;
+    }
+
+    @Override
+    public User getAuthUser() {
+        User u = new User();
+        try {
+            u = findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        } catch (Exception ex) {
+            u = null;
+        }
+        return u;
+    }
 
     @Override
     public void save(User entity) throws Exception {

@@ -43,9 +43,6 @@ import fpt.java.finalproject.repositories.ShopPackRepository;
 import fpt.java.finalproject.repositories.ShopRepository;
 import fpt.java.finalproject.repositories.ShopRoleRepository;
 import fpt.java.finalproject.repositories.UserRepository;
-import fpt.java.finalproject.services.BrandService;
-import fpt.java.finalproject.services.EmployeeRoleService;
-import fpt.java.finalproject.services.ShopService;
 
 @Component
 public class MockDataComponent implements ApplicationListener<ContextRefreshedEvent> {
