@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{module/blank_layout.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{module/blank_layout.html}">
 
 <head>
 
@@ -9,6 +8,7 @@
 
         <!-- Title fragment -->
         <div layout:fragment="title"></div>
+
 
     </div>
 
@@ -26,7 +26,7 @@
                 <nav id="sidebar">
                     <div class="sidebar-header">
                         <a style="text-decoration: none; color: white;" href="#">
-                            <h3 style="margin-left: 22px; ">SURFNSHOP</h3>
+                            <h3 style="margin-left: 22px;">SURFNSHOP</h3>
                         </a>
                     </div>
                     <ul class="list-unstyled components">
@@ -38,8 +38,7 @@
                                 </a>
                         </li>
                         <li class="active">
-                            <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse"
-                                aria-expanded="false" class="dropdown-toggle">
+                            <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <i class="fas fa-home"></i>
                                 <b>Product Management</b>
                             </a>
@@ -65,8 +64,7 @@
                             </ul>
                         </li>
                         <li class="active">
-                            <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse"
-                                class="dropdown-toggle">
+                            <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse" class="dropdown-toggle">
                                 <i class="fas fa-copy"></i>
                                 <b>Account Management</b>
                             </a>
@@ -86,8 +84,7 @@
                             </ul>
                         </li>
                         <li class="active">
-                            <a style="text-decoration: none;" href="#shopManagementsubmenu" data-toggle="collapse"
-                                class="dropdown-toggle">
+                            <a style="text-decoration: none;" href="#shopManagementsubmenu" data-toggle="collapse" class="dropdown-toggle">
                                 <i class="fas fa-copy"></i>
                                 <b>Shop Management</b>
                             </a>
@@ -111,22 +108,29 @@
 
                 <!-- Page Content  -->
                 <div id="content">
-                    <nav style="border-radius: 20px;" class="navbar navbar-expand-lg navbar-light bg-light">
+                    <nav style="border-radius: 20px;" class="navbar
+                                navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <div style="float: left;" class="collapse navbar-collapse">
+                            <div style="float: left;" class="collapse
+                                        navbar-collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="nav-item">
-                                        <div style="padding-right: 30px;" class="dropdown">
-                                            <a style="margin-right: 5px;" href="#"><img
-                                                    th:src="@{'/icons/male_user_48px.png'}" alt=""></a>
-                                            <btn style="cursor: pointer;" data-toggle="dropdown">
-                                                <b>Hi, <span th:text="${res.authEmployee.name}"></span>!</b>
+                                        <div style="padding-right:
+                                                    30px;" class="dropdown">
+                                            <a style="margin-right:
+                                                        5px;" href="#"><img th:src="@{'/icons/male_user_48px.png'}" alt=""></a>
+                                            <btn style="cursor:
+                                                        pointer;" data-toggle="dropdown">
+                                                <b>Hi, <span
+                                                                th:text="${res.authEmployee.name}"></span>!</b>
                                             </btn>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Chỉnh sửa tài khoản</a>
+                                                <a class="dropdown-item" href="#">Chỉnh sửa
+                                                            tài khoản</a>
                                                 <hr>
                                                 <form th:action="@{/admin/logout}" method="post">
-                                                    <button class="dropdown-item" type="submit">Đăng xuất</button>
+                                                    <button class="dropdown-item" type="submit">Đăng
+                                                                xuất</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -135,10 +139,11 @@
                             </div>
                         </div>
                     </nav>
-                    <div layout:fragment="dashboard"></div>
-                    <!-- Section fragment -->
-                    <div layout:fragment="section"></div>
+
                 </div>
+                <div layout:fragment="dashboard"></div>
+                <!-- Section fragment -->
+                <div layout:fragment="section"></div>
             </div>
         </div>
     </div>
