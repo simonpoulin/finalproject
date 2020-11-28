@@ -17,6 +17,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     
     @Override
+    public List<Employee> customFind(String clause) throws Exception {
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" + clause);
+        return employeeRepository.customFind(clause);
+    }
+
+    @Override
     public Employee findByPhone(String phone) throws Exception {
         Employee e = new Employee();
 

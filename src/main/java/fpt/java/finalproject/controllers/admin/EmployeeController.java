@@ -18,6 +18,7 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.EmployeeRole;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeRoleService;
 import fpt.java.finalproject.services.EmployeeService;
@@ -126,7 +127,10 @@ public class EmployeeController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
+    public String list(ModelMap m, 
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "0") String name
+    ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Employee> res = new AdminListResponse<>();
@@ -138,14 +142,18 @@ public class EmployeeController {
 
         // Set paging string
         String pagingStr = "/admin/employees";
+        AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
+        String sqlClause = query.generateSQLQuery();
 
         // Set list
         List<Employee> l;
         try {
-            l = employeeService.findAll();
+            l = employeeService.customFind(sqlClause);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
+                ex.printStackTrace();
                 // Return error on fail
                 res.setErrorCode("404");
                 res.setMessage(ex.getMessage());

@@ -127,7 +127,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("admin1") == null) {
+        if (!employeeRepository.findByUsername("admin1").isPresent()) {
             Employee admin = new Employee();
             admin.setUsername("admin1");
             admin.setPassword(passwordEncoder.encode("123456"));
@@ -142,7 +142,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Manager account
-        if (employeeRepository.findByUsername("admin2") == null) {
+        if (!employeeRepository.findByUsername("admin2").isPresent()) {
             Employee manager = new Employee();
             manager.setUsername("admin2");
             manager.setPassword(passwordEncoder.encode("admin123"));
@@ -157,7 +157,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("admin3") == null) {
+        if (!employeeRepository.findByUsername("admin3").isPresent()) {
             Employee employee = new Employee();
             employee.setUsername("admin3");
             employee.setPassword(passwordEncoder.encode("admin123"));
@@ -170,7 +170,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             employee.setEmployeeRole(employeeRole);
             employeeRepository.save(employee);
         }
-        if (employeeRepository.findByUsername("hongduc") == null) {
+        if (!employeeRepository.findByUsername("hongduc").isPresent()) {
             Employee manager = new Employee();
             manager.setUsername("HongDuc");
             manager.setPassword(passwordEncoder.encode("123456"));
@@ -183,7 +183,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             manager.setEmployeeRole(employeeRole);
             employeeRepository.save(manager);
         }
-        if (employeeRepository.findByUsername("thanhson") == null) {
+        if (!employeeRepository.findByUsername("thanhson").isPresent()) {
             Employee manager = new Employee();
             manager.setUsername("thanhson");
             manager.setPassword(passwordEncoder.encode("123456"));
@@ -201,37 +201,37 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         if (brandRepository.findById(1).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(1);
-            brand.setBrandName("SamSum");
+            brand.setName("SamSum");
             brandRepository.save(brand);
         }
         if (brandRepository.findById(2).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(2);
-            brand.setBrandName("Casino");
+            brand.setName("Casino");
             brandRepository.save(brand);
         }
         if (brandRepository.findById(3).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(3);
-            brand.setBrandName("Oppo");
+            brand.setName("Oppo");
             brandRepository.save(brand);
         }
         if (brandRepository.findById(4).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(4);
-            brand.setBrandName("Adidas");
+            brand.setName("Adidas");
             brandRepository.save(brand);
         }
         if (brandRepository.findById(5).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(5);
-            brand.setBrandName("Men");
+            brand.setName("Men");
             brandRepository.save(brand);
         }
         if (brandRepository.findById(6).isEmpty()) {
             Brand brand = new Brand();
             brand.setId(6);
-            brand.setBrandName("Sony");
+            brand.setName("Sony");
             brandRepository.save(brand);
         }
 
@@ -239,31 +239,31 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         if (categoryRepository.findById(1).isEmpty()) {
             Category category = new Category();
             category.setId(1);
-            category.setCategoryName("Điện thoại và phụ kiện");
+            category.setName("Điện thoại và phụ kiện");
             categoryRepository.save(category);
         }
         if (categoryRepository.findById(2).isEmpty()) {
             Category category = new Category();
             category.setId(2);
-            category.setCategoryName("Thời trang nam");
+            category.setName("Thời trang nam");
             categoryRepository.save(category);
         }
         if (categoryRepository.findById(3).isEmpty()) {
             Category category = new Category();
             category.setId(3);
-            category.setCategoryName("Thiết bị điện tử");
+            category.setName("Thiết bị điện tử");
             categoryRepository.save(category);
         }
         if (categoryRepository.findById(4).isEmpty()) {
             Category category = new Category();
             category.setId(4);
-            category.setCategoryName("Ðồng hồ");
+            category.setName("Ðồng hồ");
             categoryRepository.save(category);
         }
         if (categoryRepository.findById(5).isEmpty()) {
             Category category = new Category();
             category.setId(5);
-            category.setCategoryName("Giày dép");
+            category.setName("Giày dép");
             categoryRepository.save(category);
         }
 

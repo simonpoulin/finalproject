@@ -16,6 +16,11 @@ public class BrandServiceImpl implements BrandService {
     private BrandRepository brandRepository;
 
     @Override
+    public List<Brand> customFind(String clause) throws Exception {
+        return brandRepository.customFind(clause);
+    }
+
+    @Override
     public void save(Brand entity) throws Exception {
 
         Brand b = brandRepository.save(entity);

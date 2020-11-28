@@ -16,6 +16,11 @@ public class ShopItemServiceImpl implements ShopItemService {
     private ShopItemRepository shopItemRepository;
 
     @Override
+    public List<ShopItem> customFind(String clause) {
+        return shopItemRepository.customFind(clause);
+    }
+
+    @Override
     public void  save (ShopItem entity) throws Exception {
         ShopItem shopItem = shopItemRepository.save(entity);
 

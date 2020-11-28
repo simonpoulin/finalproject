@@ -18,6 +18,7 @@ import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ShopPackService;
@@ -140,9 +141,10 @@ public class ShopController{
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "") String name,
-    @RequestParam(required = false, defaultValue = "0") Integer role){
+    public String list(ModelMap m,
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name
+    ){
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Shop> res = new AdminListResponse<>();
@@ -154,26 +156,14 @@ public class ShopController{
         // end if else
         
         // Set paging string
-        boolean isFirst = true;
         String pagingStr = "/admin/shops";
-
-        if (!name.equals("")) {
-            pagingStr += "?name=" + name;
-            isFirst = false;
-        }
-
-        if (role != 0) {
-            if (isFirst) {
-                pagingStr += "?";
-            } else {
-                pagingStr += "&";
-            }
-            pagingStr += "role=" + role;
-        }
+        AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
+        String sqlClause = query.generateSQLQuery();
 
         List<Shop> l;
         try{
-            l = shopService.findAll();
+            l = shopService.customFind(sqlClause);
             res.generateResponse(l, 0, page, pagingStr);
         }catch(Exception ex){
             if (!res.getIsEmpty()) {

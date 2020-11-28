@@ -19,6 +19,7 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
 import fpt.java.finalproject.services.CategoryService;
@@ -154,7 +155,12 @@ public class ProductController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
+    public String list( ModelMap m, 
+                        @RequestParam(required = false, defaultValue = "0") Integer page,
+                        @RequestParam(required = false, defaultValue = "0") Integer categoryId,
+                        @RequestParam(required = false, defaultValue = "0") Integer brandId,
+                        @RequestParam(required = false, defaultValue = "") String name
+    ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Product> res = new AdminListResponse<>();
@@ -166,11 +172,14 @@ public class ProductController {
 
         // Set paging string
         String pagingStr = "/admin/products";
+        AdminQuery query = new AdminQuery(name, categoryId, brandId, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
+        String sqlClause = query.generateSQLQuery();
 
         // Set list
         List<Product> l;
         try {
-            l = productService.findAll();
+            l = productService.customFind(sqlClause);
             res.generateResponse(l, 3, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

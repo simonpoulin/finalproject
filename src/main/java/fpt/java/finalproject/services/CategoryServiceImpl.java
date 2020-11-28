@@ -16,6 +16,11 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
+    public List<Category> customFind(String clause) throws Exception {
+        return categoryRepository.customFind(clause);
+    }
+
+    @Override
     public void save(Category entity) throws Exception {
 
         Category c = categoryRepository.save(entity);

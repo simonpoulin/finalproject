@@ -6,6 +6,8 @@ import fpt.java.finalproject.models.Brand;
 
 public interface BrandService {
 
+    public List<Brand> customFind(String clause) throws Exception;
+    
     public void save(Brand entity) throws Exception;
 
     public Brand findById(Integer id) throws Exception;

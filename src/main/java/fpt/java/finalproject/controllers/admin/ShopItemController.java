@@ -15,6 +15,7 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ShopItemService;
@@ -116,9 +117,13 @@ public class ShopItemController {
 
     //List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "") String name,
-    @RequestParam(required = false, defaultValue = "0") Integer role){
+    public String list(ModelMap m, 
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "0") Integer productId,
+    @RequestParam(required = false, defaultValue = "0") Integer categoryId,
+    @RequestParam(required = false, defaultValue = "") Integer shopId,
+    @RequestParam(required = false, defaultValue = "0") Integer brandId
+    ){
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         List<ShopItem> l;
@@ -131,27 +136,15 @@ public class ShopItemController {
         }
 
         // Set paging string
-        boolean isFirst = true;
         String pagingStr = "/admin/items";
-
-        if (!name.equals("")) {
-            pagingStr += "?name=" + name;
-            isFirst = false;
-        }
-
-        if (role != 0) {
-            if (isFirst) {
-                pagingStr += "?";
-            } else {
-                pagingStr += "&";
-            }
-            pagingStr += "role=" + role;
-        }
+        AdminQuery query = new AdminQuery("", categoryId, brandId, shopId, productId);
+        pagingStr = query.generateResponseQuery(pagingStr);
+        String sqlClause = query.generateSQLQuery();
 
         // end if else
 
         try {
-            l = shopItemService.findAll();
+            l = shopItemService.customFind(sqlClause);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

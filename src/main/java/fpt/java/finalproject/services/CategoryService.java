@@ -6,6 +6,8 @@ import fpt.java.finalproject.models.Category;
 
 public interface CategoryService {
 
+    public List<Category> customFind(String clause) throws Exception;
+    
     public void save(Category entity) throws Exception;
 
     public Category findById(Integer id) throws Exception;

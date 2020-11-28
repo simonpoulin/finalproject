@@ -15,6 +15,7 @@ import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
 import fpt.java.finalproject.services.EmployeeService;
@@ -114,9 +115,13 @@ public class BrandController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
+    public String list(ModelMap m, 
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name
+    ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        List<Brand> l;
         AdminListResponse<Brand> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
@@ -126,11 +131,14 @@ public class BrandController {
 
         // Set paging string
         String pagingStr = "/admin/brands";
+        AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
+        String sqlClause = query.generateSQLQuery();
 
         // Set response
-        List<Brand> l;
+        
         try {
-            l = brandService.findAll();
+            l = brandService.customFind(sqlClause);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
