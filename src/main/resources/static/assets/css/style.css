@@ -477,18 +477,19 @@ Version:1.0
     display: inline-block;
     margin-right: 4px;
     font-size: 15px;
-    color: #F7941D;
+    color: #ffffff;
     position: relative;
     top: 3px;
 }
 
 .header.shop .right-content {
     float: right;
+    margin-right: 200px;
 }
 
 .header.shop .list-main li {
     display: inline-block;
-    color: #333;
+    color: #f1f1f1;
     font-size: 13px;
     font-weight: 500;
     border-right: 1px solid #f0f0f0;
@@ -499,7 +500,7 @@ Version:1.0
     display: inline-block;
     margin-right: 4px;
     font-size: 15px;
-    color: #F7941D;
+    color: #dedfff;
     position: relative;
     top: 1px;
 }
@@ -510,7 +511,10 @@ Version:1.0
 }
 
 .header.shop .list-main li a {
-    color: #333;
+    color: #f1f1f1;
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .header.shop .list-main li a:hover {
@@ -728,7 +732,11 @@ Version:1.0
 }
 
 .header.shop {
-    background: #fff;
+    background: #bbb3b3;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0px;
 }
 
 .header.shop .nav-inner {
@@ -737,7 +745,7 @@ Version:1.0
 }
 
 .header.shop .topbar {
-    background-color: #fff;
+    background-color: #ec6060;
     border: none;
 }
 
@@ -756,7 +764,7 @@ Version:1.0
 
 .header.shop .logo {
     float: left;
-    margin: 19px 0 0;
+    margin: 0px 0px 36px -50px;
 }
 
 .header.shop .top-contact {
@@ -768,7 +776,8 @@ Version:1.0
 
 .header.shop .search-bar-top {
     text-align: center;
-    margin-top: 10px;
+    top: -17px;
+    position: relative;
 }
 
 .header.shop .search-bar {
@@ -890,8 +899,9 @@ Version:1.0
 
 .header.shop .middle-inner {
     padding: 20px 0;
-    background: #fff;
+    background: #dcdcdc;
     border-top: 1px solid #eee;
+    height: 59px;
 }
 
 .header.shop.v3 .middle-inner {
@@ -899,7 +909,7 @@ Version:1.0
 }
 
 .header.shop .header-inner {
-    background: #de720d;
+    background: #c5b5a6;
 }
 
 .header.shop.v3 .header-inner {
@@ -1274,6 +1284,7 @@ Version:1.0
 
 .header.shop .right-bar .sinlge-bar:last-child {
     margin-right: 0px;
+    display: flex;
 }
 
 .header.shop .right-bar .sinlge-bar li a:hover {
@@ -2217,6 +2228,7 @@ Version:1.0
 
 .single-product .product-img .product-action a i {
     line-height: 40px;
+    color: white;
 }
 
 .single-product .product-img .product-action a span {
@@ -2293,7 +2305,7 @@ Version:1.0
 .single-product .product-img .product-action-2 a {
     display: block;
     background-color: transparent;
-    color: #333;
+    color: #fffefe;
     text-align: left;
     font-size: 12px;
     font-weight: 600;
@@ -2307,7 +2319,7 @@ Version:1.0
 }
 
 .single-product .button-head {
-    background: #fff;
+    background: #ec6060;
     display: inline-block;
     height: 40px;
     width: 100%;
@@ -2410,8 +2422,9 @@ Version:1.0
 }
 
 .single-product .product-content .product-price span {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: bold;
+    color: coral;
 }
 
 .single-product .product-content .product-price span.old {
@@ -3410,9 +3423,11 @@ Version:1.0
 .shop-home-list .single-list {
     overflow: hidden;
     position: relative;
-    margin-top: 30px;
+    margin-top: 5px;
     border: 1px solid #eee;
     padding: 10px;
+    background: #f3f1f1;
+    margin-bottom: 10px;
 }
 
 .shop-home-list .single-list .list-image {
@@ -3524,25 +3539,22 @@ Version:1.0
     background: #fff;
 }
 
-.shopping-cart {
-    background: #f6f6f6;
-    padding: 50px 0;
-}
-
 .shopping-summery thead .main-hading {
     padding: 0px 50px;
 }
 
 .shopping-summery thead {
-    background: #F7941D;
+    background: #ec6060;
     color: #fff;
 }
 
 .shopping-summery thead tr th {
-    border: none;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
+    border: none !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-size: 22px !important;
+    font-family: Calibri !important;
 }
 
 .shopping-summery tbody tr {
@@ -3564,12 +3576,17 @@ Version:1.0
     font-weight: 600;
     color: #282828;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 21px;
+    font-family: Calibri;
 }
 
 .shopping-cart .table p {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
+    width: 265px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .shopping-summery tbody .product-name a:hover {
@@ -3607,7 +3624,10 @@ Version:1.0
     text-align: center;
 }
 
-.shopping-summery tbody .price span {}
+.shopping-summery tbody .price span {
+    font-size: 20px;
+    font-family: Calibri;
+}
 
 .shopping-cart tbody .qty .input-group {
     width: 175px;
@@ -3624,6 +3644,7 @@ Version:1.0
     left: 0;
     border-radius: 0;
     overflow: hidden;
+    position: absolute;
 }
 
 .shopping-cart .qty .button.plus {
@@ -3635,13 +3656,15 @@ Version:1.0
 .shopping-cart .qty .button .btn {
     padding: 0;
     width: 44px;
-    height: 47px;
     line-height: 50px;
     border-radius: 0px;
     background: transparent;
     color: #282828;
     border: none;
     font-size: 12px;
+    height: 40px;
+    border-radius: 13px;
+    background-color: white;
 }
 
 .shopping-cart .qty .button .btn:hover {
@@ -3662,7 +3685,10 @@ Version:1.0
     text-align: center;
 }
 
-.shopping-summery tbody .total-amount span {}
+.shopping-summery tbody .total-amount span {
+    font-size: 20px;
+    font-family: Calibri;
+}
 
 .shopping-summery tbody .action {
     text-align: center;
@@ -5830,6 +5856,7 @@ Version:1.0
 
 .footer .about {
     padding-right: 50px;
+    margin-left: 10px;
 }
 
 .footer .single-footer h4 {
@@ -5862,7 +5889,7 @@ Version:1.0
 }
 
 .footer .about .call a {
-    color: #f7941d;
+    color: #222222;
     font-size: 20px;
     font-weight: 600;
 }
@@ -5951,6 +5978,21 @@ Version:1.0
 .footer .copyright p a {
     color: #fff;
     text-decoration: underline;
+}
+
+#imgsetting {
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 100%;
+    background-size: contain;
+}
+
+.col-xl-3 {
+    background: #f1f1f1;
+    border: 1px solid;
+    border-color: #fff9f1;
+    border-radius: 20px;
+    margin: 12px 0px 0px 0px;
 }
 
 

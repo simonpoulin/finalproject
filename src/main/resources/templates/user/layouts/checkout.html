@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{user/layouts/main.html}">
+<header>
+
+</header>
+
+<body>
+
+    <div layout:fragment="checkout">
+        <div class="container">
+            <!-- Start Checkout -->
+            <section class="shop checkout section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-12">
+                            <div class="checkout-form">
+                                <h2>Xác nhận thông tin</h2>
+                                <p>vui lòng nhập đầy đủ thông tin nhận hàng</p>
+                                <!-- Form -->
+                                <form class="form" method="post" action="#">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Họ Tên<span>*</span></label>
+                                                <input type="text" name="name" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Địa chỉ email<span>*</span></label>
+                                                <input type="email" name="email" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Số điện thoại<span>*</span></label>
+                                                <input type="number" name="number" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Địa chỉ nhận hàng<span>*</span></label>
+                                                <input type="text" name="address" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Địa chỉ nhận hàng bổ sung<span>*</span></label>
+                                                <input type="text" name="address" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Bổ sung thông tin<span>*</span></label>
+                                                <input type="" name="post" placeholder="" required="required">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!--/ End Form -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="order-details">
+                                <!-- Order Widget -->
+                                <div class="single-widget">
+                                    <h2>Tổng thanh toán</h2>
+                                    <div class="content">
+                                        <ul>
+                                            <li>Tổng tiền hàng<span>490.000</span></li>
+                                            <li>(+) Shipping<span>10.000</span></li>
+                                            <li class="last">Tổng<span>500.000</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--/ End Order Widget -->
+                                <!-- Order Widget -->
+                                <div class="single-widget">
+                                    <h2>Thanh toán qua</h2>
+                                    <div class="content">
+                                        <div class="checkbox">
+                                            <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox">Thanh toán sau khi nhận hàng</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ End Order Widget -->
+                                <!-- Payment Method Widget -->
+                                <!--/ End Payment Method Widget -->
+                                <!-- Button Widget -->
+                                <div class="single-widget get-button">
+                                    <div class="content">
+                                        <div class="button">
+                                            <a href="#" class="btn">Xác nhận thanh toán</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ End Button Widget -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--/ End Checkout -->
+    </div>
+</body>
+
+</html>

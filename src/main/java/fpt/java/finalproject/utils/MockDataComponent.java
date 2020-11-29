@@ -43,9 +43,6 @@ import fpt.java.finalproject.repositories.ShopPackRepository;
 import fpt.java.finalproject.repositories.ShopRepository;
 import fpt.java.finalproject.repositories.ShopRoleRepository;
 import fpt.java.finalproject.repositories.UserRepository;
-import fpt.java.finalproject.services.BrandService;
-import fpt.java.finalproject.services.EmployeeRoleService;
-import fpt.java.finalproject.services.ShopService;
 
 @Component
 public class MockDataComponent implements ApplicationListener<ContextRefreshedEvent> {
@@ -130,14 +127,14 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("admin1") == null) {
+        if (employeeRepository.findByUsername("vunam") == null) {
             Employee admin = new Employee();
-            admin.setUsername("admin1");
+            admin.setUsername("vunam");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setAddress("Đà Nẵng");
             admin.setCreatedAt(new Date(new Date().getTime()));
-            admin.setEmail("admin1@gmail.com");
-            admin.setName("Duy");
+            admin.setEmail("vunam@gmail.com");
+            admin.setName("Hà Nam");
             admin.setPhone("0868741852");
             EmployeeRole employeeRole = employeeRoleRepository.findById(3).get();
             admin.setEmployeeRole(employeeRole);
@@ -145,14 +142,14 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Manager account
-        if (employeeRepository.findByUsername("admin2") == null) {
+        if (employeeRepository.findByUsername("callmerey") == null) {
             Employee manager = new Employee();
-            manager.setUsername("admin2");
+            manager.setUsername("callmerey");
             manager.setPassword(passwordEncoder.encode("admin123"));
             manager.setAddress("Huế");
             manager.setCreatedAt(new Date(new Date().getTime()));
-            manager.setEmail("admin2@gmail.com");
-            manager.setName("Nam");
+            manager.setEmail("thanhson@gmail.com");
+            manager.setName("Thanh Sơn");
             manager.setPhone("0868748574");
             EmployeeRole employeeRole = employeeRoleRepository.findById(2).get();
             manager.setEmployeeRole(employeeRole);
@@ -160,14 +157,14 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("admin3") == null) {
+        if (employeeRepository.findByUsername("ngoctung") == null) {
             Employee employee = new Employee();
-            employee.setUsername("admin3");
+            employee.setUsername("ngoctung");
             employee.setPassword(passwordEncoder.encode("admin123"));
             employee.setAddress("Quảng Nam");
             employee.setCreatedAt(new Date(new Date().getTime()));
-            employee.setEmail("admin3@gmail.com");
-            employee.setName("Hoa");
+            employee.setEmail("ngoctung@gmail.com");
+            employee.setName("Ngọc Tùng");
             employee.setPhone("0905147523");
             EmployeeRole employeeRole = employeeRoleRepository.findById(1).get();
             employee.setEmployeeRole(employeeRole);
@@ -179,27 +176,13 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             manager.setPassword(passwordEncoder.encode("123456"));
             manager.setAddress("Quảng Nam");
             manager.setCreatedAt(new Date(new Date().getTime()));
-            manager.setEmail("duc@gmail.com");
+            manager.setEmail("hongduc@gmail.com");
             manager.setName("Le Hong Duc");
             manager.setPhone("0934567890");
             EmployeeRole employeeRole = employeeRoleRepository.findById(3).get();
             manager.setEmployeeRole(employeeRole);
             employeeRepository.save(manager);
         }
-        if (employeeRepository.findByUsername("thanhson") == null) {
-            Employee manager = new Employee();
-            manager.setUsername("thanhson");
-            manager.setPassword(passwordEncoder.encode("123456"));
-            manager.setAddress("Quảng Nam");
-            manager.setCreatedAt(new Date(new Date().getTime()));
-            manager.setEmail("thanhson@gmail.com");
-            manager.setName("Thanh Son");
-            manager.setPhone("0834567890");
-            EmployeeRole employeeRole = employeeRoleRepository.findById(2).get();
-            manager.setEmployeeRole(employeeRole);
-            employeeRepository.save(manager);
-        }
-
         // create new brand
         if (brandRepository.findById(1).isEmpty()) {
             Brand brand = new Brand();
@@ -761,6 +744,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItem.setShop(shop);
             shopItemRepository.save(shopItem);
         }
+        
         if (shopItemRepository.findById(2).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(2);
@@ -904,6 +888,395 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItem.setShop(shop);
             shopItemRepository.save(shopItem);
         }
+        if (shopItemRepository.findById(13).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(13);
+            shopItem.setDes("Áo Hoodies Thời Trang Dành Cho Nam");
+            shopItem.setPrice(Float.valueOf(290000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Hoodies Thời Trang Dành Cho Nam");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(14).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(14);
+            shopItem.setDes("Áo Hoodies Có Nón Dài Tay Thời Trang Nam");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Hoodies Có Nón Dài Tay Thời Trang Nam");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(15).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(15);
+            shopItem.setDes("Giầy Chạy bộ Adidas Runfalcon Shoes F36199 Sale Sốc [Rẻ Vô Địch]");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Giầy Chạy bộ Adidas Runfalcon Shoes F36199 Sale Sốc [Rẻ Vô Địch]");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(16).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(16);
+            shopItem.setDes("Giày thể thao nam - MS7 giày sneaker cổ thấp đế cao fom chuẩn mẫu mới nhất");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Giày thể thao nam - MS7 giày sneaker cổ thấp đế cao fom chuẩn mẫu mới nhất");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(2).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(17).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(17);
+            shopItem.setDes("Áo giữ nhiệt nữ - Áo giữ nhiệt nữ lót lông hàng đẹp");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo giữ nhiệt nữ - Áo giữ nhiệt nữ lót lông hàng đẹp");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(5).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(18).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(18);
+            shopItem.setDes("Đồ Bộ Pijama - Bộ lụa satin dài tay hoạ tiết Cao cấp [FREE SHIP]");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Đồ Bộ Pijama - Bộ lụa satin dài tay hoạ tiết Cao cấp [FREE SHIP]");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(5).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(19).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(19);
+            shopItem.setDes("Túi Đeo Chéo Canvas Cỡ Lớn Thời Trang Hàn Quốc Học Sinh Sinh Viên Đi Học , Đi Chơi");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Túi Đeo Chéo Canvas Cỡ Lớn Thời Trang Hàn Quốc Học Sinh Sinh Viên Đi Học , Đi Chơi");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        if (shopItemRepository.findById(20).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(20);
+            shopItem.setDes("Quần Dài Mỏng Dáng Rộng Kẻ Sọc Thời Trang Mùa Hè Năng Động");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Quần Dài Mỏng Dáng Rộng Kẻ Sọc Thời Trang Mùa Hè Năng Động");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(21).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(21);
+            shopItem.setDes("Áo dài tay DSQ Phản Quang");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo dài tay DSQ Phản Quang");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(2).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(22).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(22);
+            shopItem.setDes("Mắt Kính Gọng Tròn Phong Cách Retro Cho Nữ");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Mắt Kính Gọng Tròn Phong Cách Retro Cho Nữ");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(2).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(23).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(23);
+            shopItem.setDes("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        
+        if (shopItemRepository.findById(24).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(24);
+            shopItem.setDes("Phao Gile Hình Cho Bé");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Phao Gile Hình Cho Bé");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(25).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(25);
+            shopItem.setDes("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+        
+        if (shopItemRepository.findById(26).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(26);
+            shopItem.setDes("KHUNG LƯỚI SẮT TRANG TRÍ SIZE");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("KHUNG LƯỚI SẮT TRANG TRÍ SIZE");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(27).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(27);
+            shopItem.setDes("Giày Bốt Martin Gót Vuông Dày Phong Cách Hàn Quốc Cho Nữ");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Giày Bốt Martin Gót Vuông Dày Phong Cách Hàn Quốc Cho Nữ");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(3).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(28).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(28);
+            shopItem.setDes("Quần thể thao nam nỉ dày dặn 3 sọc THE 1992 Jogger 3 lines 508");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Quần thể thao nam nỉ dày dặn 3 sọc THE 1992 Jogger 3 lines 508");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(29).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(29);
+            shopItem.setDes("Áo Sweater Nam Nữ Basic. Áo Nỉ Nam Trơn Unisex Form Rộng Vải Cotton Da Cá Giữ Nhiệt STT1");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Sweater Nam Nữ Basic. Áo Nỉ Nam Trơn Unisex Form Rộng Vải Cotton Da Cá Giữ Nhiệt STT1");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(30).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(30);
+            shopItem.setDes("Áo Len Nam Cổ Cao Hàng Quảng Châu Chất Dày Dặn - AL04");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Len Nam Cổ Cao Hàng Quảng Châu Chất Dày Dặn - AL04");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(4).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        
+        if (shopItemRepository.findById(31).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(31);
+            shopItem.setDes("Áo Thun Số 10 Baernardo Game Kích Thước S-2Xl Chất Lượng Cao Cho Nam");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Thun Số 10 Baernardo Game Kích Thước S-2Xl Chất Lượng Cao Cho Nam");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(5).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(32).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(32);
+            shopItem.setDes("Set quần áo tập thể dục hỗ trợ giảm cân");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Set quần áo tập thể dục hỗ trợ giảm cân");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(5).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(33).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(33);
+            shopItem.setDes("Quần ống rộng lưng cao kiều Hàn Quốc");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Quần ống rộng lưng cao kiều Hàn Quốc");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        
+        if (shopItemRepository.findById(34).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(34);
+            shopItem.setDes("Áo Thun Nam VNXK Đẹp,Hình Thật Chuẩn Tem Tag.TMoi");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo Thun Nam VNXK Đẹp,Hình Thật Chuẩn Tem Tag.TMoi");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(35).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(35);
+            shopItem.setDes("Quần ống rộng lưng cao vải mềm");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Quần ống rộng lưng cao vải mềm");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(36).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(36);
+            shopItem.setDes("Bộ adidas gió");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Bộ adidas gió");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(37).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(37);
+            shopItem.setDes("Quần dài kẻ sọc thời trang QATE302 cho bé trai và bé gái");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Quần dài kẻ sọc thời trang QATE302 cho bé trai và bé gái");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(38).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(38);
+            shopItem.setDes(" ÁO KHOÁC KAKI JEAN NAM ĐẸP THỜI TRANG MỚI NHẤT 2019 KKN01");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle(" ÁO KHOÁC KAKI JEAN NAM ĐẸP THỜI TRANG MỚI NHẤT 2019 KKN01");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(1).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(39).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(39);
+            shopItem.setDes(" Son kem lì Merzy The First Velvet Tint");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle(" Son kem lì Merzy The First Velvet Tint");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(2).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
+        if (shopItemRepository.findById(40).isEmpty()) {
+            ShopItem shopItem = new ShopItem();
+            shopItem.setId(40);
+            shopItem.setDes(" Áo giữ nhiệt nam thể thao dài tay nhiều màu size từ 45 đến 90kg AT28");
+            shopItem.setPrice(Float.valueOf(390000));
+            shopItem.setQuantity(12);
+            shopItem.setTitle("Áo giữ nhiệt nam thể thao dài tay nhiều màu size từ 45 đến 90kg AT28");
+            Product product = productRepository.findById(4).get();
+            shopItem.setProduct(product);
+            Shop shop = shopRepository.findById(2).get();
+            shopItem.setShop(shop);
+            shopItemRepository.save(shopItem);
+        }
+
 
           // create new shopItemImage
           if (shopItemImageRepository.findById(1).isEmpty()) {

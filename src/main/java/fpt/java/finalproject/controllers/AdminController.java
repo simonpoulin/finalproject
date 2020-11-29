@@ -212,4 +212,21 @@ public class AdminController {
     public String product(){
         return "user/layouts/item_list";
     }
+    
+    @RequestMapping("/detail")
+    public String detail(){
+        return "user/layouts/item_details";
+    }
+    @RequestMapping("/cart")
+    public String cart(){
+        return "user/layouts/cart";
+    }
+    @RequestMapping("/checkout")
+    public String checkout(){
+        return "user/layouts/checkout";
+    }
+    @RequestMapping("/combo")
+    public String combo(){
+        return "user/selectCombo";
+    }
 }

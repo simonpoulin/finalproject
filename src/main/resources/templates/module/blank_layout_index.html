@@ -2,12 +2,301 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/slider.css}">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" th:href="@{css/mdb-pro.min.css}">
+    <!-- Material Design Bootstrap Ecommerce -->
+    <link rel="stylesheet" th:href="@{css/mdb.ecommerce.min.css}">
+    <!-- Your custom styles (optional) -->
 </head>
 
-<body>
-    <div layout:fragment="body">
+<body style="background: #f1f1f1;">
+    <!-- Header -->
+    <header class="header shop">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- Top Left -->
+                    <div class="top-left" style="position: relative;
+                    left: 50px;">
+                        <ul class="list-main">
+                            <li><i class="ti-headphone-alt"></i>19001010</li>
+                            <li><i class="ti-email"></i>sunfnshop@support.vn</li>
+                        </ul>
+                    </div>
+                    <!--/ End Top Left -->
+                </div>
+                <div class="col-lg-8 col-md-12 col-12">
+                    <!-- Top Right -->
+                    <div class="right-content">
+                        <ul class="list-main">
+                            <li><i class="ti-truck"></i> <a href="#">Kênh người bán</a></li>
+                            <li><i class="ti-alarm-clock"></i> <a href="#">Lịch sử mua hàng</a></li>
+                            <li><i class="ti-user"></i> <a href="#">Tài
+                                    khoản</a></li>
+                            <li><i class="ti-power-off"></i><a href="login.html#">Đăng nhập</a></li>
+                        </ul>
+                    </div>
+                    <!-- End Top Right -->
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+        <!-- Header Inner -->
+        <div class="header-inner">
+            <div class="middle-inner">
+                <div class="container1">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-12">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="index.html">
+                                    <h2 style="
+                                top: -29px;
+                                position: absolute;
+                            "><img th:src="@{/icons/logo.png}"> </h2>
+                                </a>
+                            </div>
+                            <!--/ End Logo -->
+                            <!-- Search Form -->
+                            <div class="search-top">
+                                <div class="top-search"><a href="#0"><i
+                                        class="ti-search"></i></a></div>
+                                <!-- Search Form -->
+                                <div class="search-top">
+                                    <form class="search-form">
+                                        <input type="text" placeholder="Search here..." name="search">
+                                        <button value="search" type="submit"><i
+                                            class="ti-search"></i></button>
+                                    </form>
+                                </div>
+                                <!--/ End Search Form -->
+                            </div>
+                            <!--/ End Search Form -->
+                            <div class="mobile-nav"></div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-12">
+                            <div class="search-bar-top">
+                                <div class="search-bar">
+                                    <form>
+                                        <input name="search" placeholder="Tìm kiếm....." type="search">
+                                        <button class="btnn"><i
+                                            class="ti-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-12" style="top: -22px;">
+                            <div class="right-bar">
+                                <!-- Search Form -->
+                                <div class="sinlge-bar shopping">
+                                    <h4 style="
+                                font-size: 19px;
+                                position: relative;
+                                right: 17px;
+                                font-family: Calibri;
+                                color: black;
+                            ">Giỏ hàng</h4>
+                                    <a href="#" class="single-icon"><i
+                                        class="ti-shopping-cart"></i> <span
+                                        class="total-count">2</span></a>
+                                    <!-- Shopping Item -->
+                                    <div class="shopping-item">
+                                        <div class="dropdown-cart-header">
+                                            <span>2 Items</span>
+                                            <a href="#">View Cart</a>
+                                        </div>
+                                        <ul class="shopping-list">
+                                            <li>
+                                                <a href="#" class="remove" title="Remove this
+                                                item"><i class="fa
+                                                    fa-remove"></i></a>
+                                                <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                                                <h4><a href="#">Woman Ring</a></h4>
+                                                <p class="quantity">1x -
+                                                    <span class="amount">$99.00</span></p>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="remove" title="Remove this
+                                                item"><i class="fa
+                                                    fa-remove"></i></a>
+                                                <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                                                <h4><a href="#">Woman
+                                                    Necklace</a></h4>
+                                                <p class="quantity">1x -
+                                                    <span class="amount">$35.00</span></p>
+                                            </li>
+                                        </ul>
+                                        <div class="bottom">
+                                            <div class="total">
+                                                <span>Total</span>
+                                                <span class="total-amount">$134.00</span>
+                                            </div>
+                                            <a href="checkout.html" class="btn animate">Checkout</a>
+                                        </div>
+                                    </div>
+                                    <!--/ End Shopping Item -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Header Inner -->
+    </header>
+    <!--/ End Header -->
+
+    <div class="container">
+        <div class="container2">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 10px; margin-bottom: 10px;">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img th:src=@{images/banner1.png} width="100%">
+                    </div>
+                    <div class="item">
+                        <img th:src=@{images/banner2.png} width="100%">
+                    </div>
+                    <div class="item">
+                        <img th:src=@{images/banner3.png} width="100%">
+                    </div>
+                    <div class="item">
+                        <img th:src=@{images/banner4.png} width="100%">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
+
+    <div layout:fragment="body"></div>
+
 </body>
+<script>
+    $(document).ready(function() {
+        $('.customer-logos').slick({
+            dots: true,
+            slidesToShow: 8,
+            slidesToScroll: 10,
+            lazyLoad: 'ondemand',
+            autoplaySpeed: 1500,
+            arrows: false,
+            infinite: false,
+            pauseOnHover: false,
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 4
+                }
+            }, {
+                breakpoint: 520,
+                settings: {
+                    slidesToShow: 3
+                }
+            }]
+        });
+    });
+    $(".carousel").swipe({
+        swipe: function(
+            event,
+            direction,
+            distance,
+            duration,
+            fingerCount,
+            fingerData
+        ) {
+            if (direction == "left") $(this).carousel("next");
+            if (direction == "right") $(this).carousel("prev");
+        },
+        allowPageScroll: "vertical"
+    });
+
+    $(".carousel").swipe({
+        swipe: function(
+            event,
+            direction,
+            distance,
+            duration,
+            fingerCount,
+            fingerData
+        ) {
+            if (direction == "left") $(this).carousel("next");
+            if (direction == "right") $(this).carousel("prev");
+        },
+        allowPageScroll: "vertical"
+    });
+</script>
+<!-- Jquery -->
+<!-- Popper JS -->
+<script th:src="@{/js/popper.min.js}"></script>
+<!-- Bootstrap JS -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Slicknav JS -->
+<script th:src="@{/js/slicknav.min.js}"></script>
+<!-- Owl Carousel JS -->
+<script th:src="@{/js/owl-carousel.js}"></script>
+<!-- Magnific Popup JS -->
+<script th:src="@{/js/magnific-popup.js}"></script>
+<!-- Waypoints JS -->
+<script th:src="@{/js/waypoints.min.js}"></script>
+<!-- Countdown JS -->
+<script th:src="@{/js/finalcountdown.min.js}"></script>
+<!-- Nice Select JS -->
+<script th:src="@{/js/nicesellect.js}"></script>
+<!-- Flex Slider JS -->
+<script th:src="@{/js/flex-slider.js}"></script>
+<!-- ScrollUp JS -->
+<script th:src="@{/js/scrollup.js}"></script>
+<!-- Onepage Nav JS -->
+<script th:src="@{/js/onepage-nav.min.js}"></script>
+<!-- Easing JS -->
+<script th:src="@{/js/easing.js}"></script>
+<!-- Active JS -->
+<script th:src="@{/js/active.js}"></script>
+
+<!-- <script th:src="@{js/jquery-3.4.1.min.js}"></script> -->
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" th:src="@{js/popper.min.js}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" th:src="@{js/bootstrap.js}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" th:src="@{js/mdb.min.js}"></script>
+<!-- MDB Ecommerce JavaScript -->
+<script type="text/javascript" th:src="@{js/mdb.ecommerce.min.js}"></script>
 
 </html>
