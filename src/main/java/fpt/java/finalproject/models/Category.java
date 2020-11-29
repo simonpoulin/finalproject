@@ -20,7 +20,7 @@ public class Category implements Serializable {
     private Integer id;
 
     @Column(columnDefinition = "nvarchar(50) not null")
-    private String categoryName;
+    private String name;
 
     @OneToMany(mappedBy = "category")
     private Collection<Product> products;
@@ -36,12 +36,12 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Collection<Product> getProducts() {

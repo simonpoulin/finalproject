@@ -20,7 +20,7 @@ public class Brand implements Serializable {
     private Integer id;
 
     @Column(columnDefinition = "nvarchar(500) not null")
-    private String brandName;
+    private String name;
 
     @OneToMany(mappedBy = "brand")
     private Collection<Product> products;
@@ -36,12 +36,12 @@ public class Brand implements Serializable {
         this.id = id;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getName() {
+        return name;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Collection<Product> getProducts() {

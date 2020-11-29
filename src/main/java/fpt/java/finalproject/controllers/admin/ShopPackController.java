@@ -15,6 +15,7 @@ import fpt.java.finalproject.models.ShopPack;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.ShopPackService;
 import fpt.java.finalproject.services.EmployeeService;
@@ -114,7 +115,10 @@ public class ShopPackController {
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page) {
+    public String list(ModelMap m, 
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name
+    ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<ShopPack> res = new AdminListResponse<>();
@@ -126,11 +130,13 @@ public class ShopPackController {
 
         // Set paging string
         String pagingStr = "/admin/shoppacks";
+        AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
 
         // Set list
         List<ShopPack> l;
         try {
-            l = shopPackService.findAll();
+            l = shopPackService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

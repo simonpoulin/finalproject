@@ -18,7 +18,7 @@
                 </thead>
                 <tbody th:each="b : ${res.pagedList}">
                     <td th:text="${b.id}"></td>
-                    <td th:text="${b.brandName}"></td>
+                    <td th:text="${b.name}"></td>
                     <td>
                         <a th:href="@{'/admin/brands/edit/' + ${b.id}}" style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->

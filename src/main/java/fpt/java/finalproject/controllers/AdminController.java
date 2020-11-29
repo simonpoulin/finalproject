@@ -106,7 +106,7 @@ public class AdminController {
         // Set new Brand
         Brand b = new Brand();
         b.setId(1);
-        b.setBrandName("brandName");
+        b.setName("name");
 
         // Set new ObjectResponse
         AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
@@ -127,16 +127,16 @@ public class AdminController {
         // Set new Brand
         Brand b1 = new Brand();
         b1.setId(1);
-        b1.setBrandName("abc");
+        b1.setName("abc");
         Brand b2 = new Brand();
         b2.setId(2);
-        b2.setBrandName("ghi");
+        b2.setName("ghi");
         Brand b3 = new Brand();
         b3.setId(3);
-        b3.setBrandName("mno");
+        b3.setName("mno");
         Brand b4 = new Brand();
         b4.setId(4);
-        b4.setBrandName("xyz");
+        b4.setName("xyz");
 
         // Set new List
         List<Brand> l = new ArrayList<>();

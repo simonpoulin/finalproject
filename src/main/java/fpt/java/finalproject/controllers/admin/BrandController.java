@@ -15,6 +15,7 @@ import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.models.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
 import fpt.java.finalproject.services.EmployeeService;
@@ -119,14 +120,13 @@ public class BrandController {
     @RequestParam(required = false, defaultValue = "0") Integer role) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        List<Brand> l;
         AdminListResponse<Brand> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
         } else {
             res.setNewResponse(obj);
         }
-
-        List<Brand> l;
         try {
             l = brandService.findAll();
         } catch (Exception ex) {
@@ -138,26 +138,13 @@ public class BrandController {
         }
 
         // Set paging string
-        boolean isFirst = true;
         String pagingStr = "/admin/brands";
-
-        if (!name.equals("")) {
-            pagingStr += "?name=" + name;
-            isFirst = false;
-        }
-
-        if (role != 0) {
-            if (isFirst) {
-                pagingStr += "?";
-            } else {
-                pagingStr += "&";
-            }
-            pagingStr += "role=" + role;
-        }
+        AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
+        pagingStr = query.generateResponseQuery(pagingStr);
 
         // Set response
         try {
-            res.generateResponse(l, 1, page, pagingStr);
+            res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
                 // Return error on fail

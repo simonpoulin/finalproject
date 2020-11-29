@@ -25,12 +25,12 @@
 
             <label for="my-input">Danh mục</label>
             <select id="my-input" class="form-control" th:field="*{category.id}">
-                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.categoryName}"></option>
+                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
             </select>
 
             <label for="my-input">Nhãn hiệu</label>
             <select id="my-input" class="form-control" th:field="*{brand.id}">
-                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.brandName}"></option>
+                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.name}"></option>
             </select>
             <label for="my-textarea">Mô tả</label>
             <textarea id="my-textarea" class="form-control" th:field="*{des}" rows="5"></textarea>
