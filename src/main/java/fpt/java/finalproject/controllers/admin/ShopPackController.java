@@ -117,7 +117,7 @@ public class ShopPackController {
     @GetMapping("")
     public String list(ModelMap m, 
     @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "0") String name
+    @RequestParam(required = false, defaultValue = "") String name
     ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
@@ -132,12 +132,11 @@ public class ShopPackController {
         String pagingStr = "/admin/shoppacks";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // Set list
         List<ShopPack> l;
         try {
-            l = shopPackService.customFind(sqlClause);
+            l = shopPackService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

@@ -16,8 +16,8 @@ public class ShopPackServiceImpl implements ShopPackService {
     private ShopPackRepository shopPackRepository;
 
     @Override
-    public List<ShopPack> customFind(String clause) throws Exception {
-        return shopPackRepository.customFind(clause);
+    public List<ShopPack> customFind(String name) throws Exception {
+        return shopPackRepository.customFind(name);
     }
 
     @Override

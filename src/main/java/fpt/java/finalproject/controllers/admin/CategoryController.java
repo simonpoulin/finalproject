@@ -132,12 +132,11 @@ public class CategoryController {
         String pagingStr = "/admin/categories";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // Set list
         List<Category> l;
         try {
-            l = categoryService.customFind(sqlClause);
+            l = categoryService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

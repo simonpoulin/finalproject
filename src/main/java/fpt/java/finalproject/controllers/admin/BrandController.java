@@ -133,12 +133,11 @@ public class BrandController {
         String pagingStr = "/admin/brands";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // Set response
         
         try {
-            l = brandService.customFind(sqlClause);
+            l = brandService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

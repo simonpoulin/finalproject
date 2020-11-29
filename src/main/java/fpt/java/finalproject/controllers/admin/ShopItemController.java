@@ -121,7 +121,7 @@ public class ShopItemController {
     @RequestParam(required = false, defaultValue = "0") Integer page,
     @RequestParam(required = false, defaultValue = "0") Integer productId,
     @RequestParam(required = false, defaultValue = "0") Integer categoryId,
-    @RequestParam(required = false, defaultValue = "") Integer shopId,
+    @RequestParam(required = false, defaultValue = "0") Integer shopId,
     @RequestParam(required = false, defaultValue = "0") Integer brandId
     ){
 
@@ -139,12 +139,11 @@ public class ShopItemController {
         String pagingStr = "/admin/items";
         AdminQuery query = new AdminQuery("", categoryId, brandId, shopId, productId);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // end if else
 
         try {
-            l = shopItemService.customFind(sqlClause);
+            l = shopItemService.customFind(categoryId, brandId, shopId, productId);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

@@ -134,11 +134,10 @@ public class UserController {
         String pagingStr = "/admin/users";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         List<User> l;
         try {
-            l = userService.customFind(sqlClause);
+            l = userService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

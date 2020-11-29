@@ -16,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> customFind(String clause) {
-        return productRepository.customFind(clause);
+    public List<Product> customFind(String name, Integer categoryId, Integer brandId) throws Exception {
+        return productRepository.customFind(name, categoryId, brandId);
     }
     
     @Override

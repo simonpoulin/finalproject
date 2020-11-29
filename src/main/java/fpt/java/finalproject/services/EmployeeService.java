@@ -6,7 +6,7 @@ import fpt.java.finalproject.models.Employee;
 
 public interface EmployeeService {
 
-    public List<Employee> customFind(String clause) throws Exception;
+    public List<Employee> customFind(String name) throws Exception;
     
     public Employee getAuthEmployee();
 

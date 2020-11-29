@@ -16,8 +16,8 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> customFind(String clause) throws Exception {
-        return categoryRepository.customFind(clause);
+    public List<Category> customFind(String name) throws Exception {
+        return categoryRepository.customFind(name);
     }
 
     @Override

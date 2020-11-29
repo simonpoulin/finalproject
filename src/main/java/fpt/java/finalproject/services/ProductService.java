@@ -6,7 +6,7 @@ import fpt.java.finalproject.models.Product;
 
 public interface ProductService {
 
-    public List<Product> customFind(String clause) throws Exception;
+    public List<Product> customFind(String name, Integer categoryId, Integer brandId) throws Exception;
 
     public void save(Product entity) throws Exception;
 

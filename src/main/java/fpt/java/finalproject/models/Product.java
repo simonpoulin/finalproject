@@ -31,7 +31,7 @@ public class Product implements Serializable {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "categoty_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne

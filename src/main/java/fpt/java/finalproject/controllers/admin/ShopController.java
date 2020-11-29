@@ -159,11 +159,10 @@ public class ShopController{
         String pagingStr = "/admin/shops";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         List<Shop> l;
         try{
-            l = shopService.customFind(sqlClause);
+            l = shopService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         }catch(Exception ex){
             if (!res.getIsEmpty()) {

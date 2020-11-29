@@ -174,12 +174,11 @@ public class ProductController {
         String pagingStr = "/admin/products";
         AdminQuery query = new AdminQuery(name, categoryId, brandId, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // Set list
         List<Product> l;
         try {
-            l = productService.customFind(sqlClause);
+            l = productService.customFind(name, categoryId, brandId);
             res.generateResponse(l, 3, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

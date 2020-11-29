@@ -16,8 +16,8 @@ public class ShopItemServiceImpl implements ShopItemService {
     private ShopItemRepository shopItemRepository;
 
     @Override
-    public List<ShopItem> customFind(String clause) {
-        return shopItemRepository.customFind(clause);
+    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId) throws Exception {
+        return shopItemRepository.customFind(categoryId, brandId, shopId, productId);
     }
 
     @Override

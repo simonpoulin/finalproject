@@ -16,8 +16,8 @@ public class BrandServiceImpl implements BrandService {
     private BrandRepository brandRepository;
 
     @Override
-    public List<Brand> customFind(String clause) throws Exception {
-        return brandRepository.customFind(clause);
+    public List<Brand> customFind(String name) throws Exception {
+        return brandRepository.customFind(name);
     }
 
     @Override

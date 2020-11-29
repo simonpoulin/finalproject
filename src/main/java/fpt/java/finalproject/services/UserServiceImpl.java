@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> customFind(String clause) throws Exception {
-        return userRepository.customFind(clause);
+    public List<User> customFind(String name) throws Exception {
+        return userRepository.customFind(name);
     }
 
     @Override

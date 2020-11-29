@@ -129,10 +129,11 @@ public class EmployeeController {
     @GetMapping("")
     public String list(ModelMap m, 
     @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "0") String name
+    @RequestParam(required = false, defaultValue = "") String name
     ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
+        List<Employee> l;
         AdminListResponse<Employee> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
@@ -144,16 +145,15 @@ public class EmployeeController {
         String pagingStr = "/admin/employees";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
-        String sqlClause = query.generateSQLQuery();
 
         // Set list
-        List<Employee> l;
+        
         try {
-            l = employeeService.customFind(sqlClause);
+            l = employeeService.customFind(name);
+            System.out.println(l);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
-                ex.printStackTrace();
                 // Return error on fail
                 res.setErrorCode("404");
                 res.setMessage(ex.getMessage());

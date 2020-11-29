@@ -6,7 +6,7 @@ import fpt.java.finalproject.models.ShopPack;
 
 public interface ShopPackService {
 
-    public List<ShopPack> customFind(String clause) throws Exception;
+    public List<ShopPack> customFind(String name) throws Exception;
     
     public ShopPack save(ShopPack entity);
 
