@@ -6,7 +6,13 @@ import fpt.java.finalproject.models.Employee;
 
 public interface EmployeeService {
 
+    public List<Employee> customFind(String name) throws Exception;
+    
     public Employee getAuthEmployee();
+
+    public Employee findByPhone(String phone) throws Exception;
+
+    public Employee findByUsername(String username) throws Exception;
 
     public void save(Employee entity) throws Exception;
 
@@ -14,7 +20,7 @@ public interface EmployeeService {
 
     public Employee findById(Integer id) throws Exception;
 
-    public void deleteById(Integer id)  throws Exception;
+    public void deleteById(Integer id) throws Exception;
 
     public List<Employee> saveAll(List<Employee> entities);
 

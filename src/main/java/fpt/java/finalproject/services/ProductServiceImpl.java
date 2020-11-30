@@ -16,6 +16,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
+    public List<Product> customFind(String name, Integer categoryId, Integer brandId) throws Exception {
+        return productRepository.customFind(name, categoryId, brandId);
+    }
+    
+    @Override
     public void save(Product entity)  throws Exception{
        Product product = productRepository.save(entity);
 

@@ -15,10 +15,57 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    
+    @Override
+    public List<Employee> customFind(String name) throws Exception {
+        return employeeRepository.customFind(name);
+    }
+
+    @Override
+    public Employee findByPhone(String phone) throws Exception {
+        Employee e = new Employee();
+
+        // Find employee
+        Optional<Employee> opts = employeeRepository.findByPhone(phone);
+
+        // Set employee
+        if (opts.isPresent()) {
+            e = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("Employee not found");
+        }
+
+        return e;
+    }
+
+    @Override
+    public Employee findByUsername(String username) throws Exception {
+        Employee e = new Employee();
+
+        // Find employee
+        Optional<Employee> opts = employeeRepository.findByUsername(username);
+
+        // Set employee
+        if (opts.isPresent()) {
+            e = opts.get();
+        } else {
+            // Send error on fail
+            throw new Exception("Employee not found");
+        }
+
+        return e;
+    }
 
     @Override
     public Employee getAuthEmployee() {
-        return employeeRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Employee e = new Employee();
+        try {
+            e = findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        } catch (Exception ex) {
+
+        }
+        return e;
     }
 
     @Override

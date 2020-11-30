@@ -6,6 +6,12 @@ import fpt.java.finalproject.models.User;
 
 public interface UserService {
 
+    public List<User> customFind(String name) throws Exception;
+    
+    public User getAuthUser();
+
+    public User findByUsername(String username) throws Exception;
+
     public void save(User entity) throws Exception;
 
     public List<User> findAll();

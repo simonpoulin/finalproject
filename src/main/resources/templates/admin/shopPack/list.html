@@ -18,7 +18,7 @@
             </tbody>
             <tbody th:each="sp : ${res.pagedList}">
                 <td th:text="${sp.id}"></td>
-                <td th:text="${sp.shopPackName}"></td>
+                <td th:text="${sp.name}"></td>
                 <td th:text="${sp.price}"></td>
                 <td>
                     <a th:href="@{'/admin/shoppacks/edit/' + ${sp.id}}" style="border-radius: 10px; color: white;"

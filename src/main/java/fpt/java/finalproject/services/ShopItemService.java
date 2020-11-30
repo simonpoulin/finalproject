@@ -6,6 +6,8 @@ import fpt.java.finalproject.models.ShopItem;
 
 public interface ShopItemService {
     
+    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId) throws Exception;
+    
     public void  save (ShopItem entity) throws Exception;
 
     public List<ShopItem> saveAll(List<ShopItem> entities);

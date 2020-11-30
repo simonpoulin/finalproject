@@ -14,19 +14,25 @@ import org.springframework.stereotype.Service;
 import fpt.java.finalproject.auth.EmployeeAuth;
 import fpt.java.finalproject.auth.EmployeeDetails;
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeDetailsServiceImpl implements EmployeeDetailsService {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     @Override
     @Transactional
     public EmployeeAuth loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Employee employee = employeeRepository.findByUsername(username);
+        Employee employee = new Employee();
+
+        try {
+            employee = employeeService.findByUsername(username);
+        } catch (Exception e) {
+
+        }
+
         if (employee == null) {
             throw new UsernameNotFoundException("User not found");
         }
