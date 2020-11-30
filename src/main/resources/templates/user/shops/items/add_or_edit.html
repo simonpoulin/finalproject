@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/shops/layouts/add_or_edit.html}">
+
+<head>
+
+    <!-- Add division to add-or-edit title fragment -->
+    <div layout:fragment="addOrEdit_title">
+        <title>Title</title>
+    </div>
+
+</head>
+
+<body>
+
+    <!-- Add division to add-or-edit form fragment -->
+    <div layout:fragment="addOrEdit_form">
+        <h5>Thêm mặt hàng</h5>
+        <form class="form-group" method="POST">
+            <div>
+                <label for="my-input">Mã Mặt hàng</label>
+                <input disabled id="my-input" class="form-control" type="text">
+                <input type="hidden">
+            </div>
+            <label for="my-input">Tiêu đề</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Miêu tả</label>
+            <input id="my-input" class="form-control" type="text">
+            <label for="my-input">Giá bán</label>
+            <input id="my-input" class="form-control" type="number">
+            <label for="my-input">Số lượng</label>
+            <input id="my-input" class="form-control" type="number">
+            <hr>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{module/blank_layout_index.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{module/blank_layout_index.html}">
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +13,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Web Font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
 
     <!-- StyleSheet -->
 
@@ -36,7 +39,7 @@
     <link rel="stylesheet" th:href="@{/css/owl-carousel.css}">
     <!-- Slicknav -->
     <link rel="stylesheet" th:href="@{/css/slicknav.min.css}">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
     <!-- Eshop StyleSheet -->
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -45,7 +48,6 @@
 
 <body>
     <div layout:fragment="body">
-
         <!-- Header -->
         <header class="header shop">
             <!-- Topbar -->
@@ -89,14 +91,12 @@
                                 <!--/ End Logo -->
                                 <!-- Search Form -->
                                 <div class="search-top">
-                                    <div class="top-search"><a href="#0"><i
-                                                class="ti-search"></i></a></div>
+                                    <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                                     <!-- Search Form -->
                                     <div class="search-top">
                                         <form class="search-form">
                                             <input type="text" placeholder="Search here..." name="search">
-                                            <button value="search" type="submit"><i
-                                                    class="ti-search"></i></button>
+                                            <button value="search" type="submit"><i class="ti-search"></i></button>
                                         </form>
                                     </div>
                                     <!--/ End Search Form -->
@@ -109,8 +109,7 @@
                                     <div class="search-bar">
                                         <form>
                                             <input name="search" placeholder="Tìm kiếm....." type="search">
-                                            <button class="btnn"><i
-                                                    class="ti-search"></i></button>
+                                            <button class="btnn"><i class="ti-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -119,8 +118,7 @@
                                 <div class="right-bar">
                                     <!-- Search Form -->
                                     <div class="sinlge-bar shopping">
-                                        <a href="#" class="single-icon"><i
-                                                class="ti-bag"></i> <span
+                                        <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                                 class="total-count">2</span></a>
                                         <!-- Shopping Item -->
                                         <div class="shopping-item">
@@ -133,7 +131,8 @@
                                                     <a href="#" class="remove" title="Remove this
                                                         item"><i class="fa
                                                             fa-remove"></i></a>
-                                                    <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                                                    <a class="cart-img" href="#"><img
+                                                            src="https://via.placeholder.com/70x70" alt="#"></a>
                                                     <h4><a href="#">Woman Ring</a></h4>
                                                     <p class="quantity">1x -
                                                         <span class="amount">$99.00</span></p>
@@ -142,7 +141,8 @@
                                                     <a href="#" class="remove" title="Remove this
                                                         item"><i class="fa
                                                             fa-remove"></i></a>
-                                                    <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                                                    <a class="cart-img" href="#"><img
+                                                            src="https://via.placeholder.com/70x70" alt="#"></a>
                                                     <h4><a href="#">Woman
                                                             Necklace</a></h4>
                                                     <p class="quantity">1x -
@@ -164,60 +164,89 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="container">
-                    <div class="cat-nav-head">
-                        <div class="row">
-                            <div class="col-lg-9 col-12">
-                                <div class="menu-area">
-                                    <!-- Main Menu -->
-                                    <nav class="navbar navbar-expand-lg">
-                                        <div class="navbar-collapse">
-                                            <div class="nav-inner">
-                                                <ul class="nav main-menu menu
-                                                    navbar-nav">
-                                                    <li class="active"><a href="#">Trang chủ</a></li>
-                                                    <li><a href="#">Mặt hàng</a></li>
-                                                    <li><a href="#">Dịch vụ</a></li>
-                                                    <li><a href="#">Cửa hàng<i
-                                                                class="ti-angle-down"></i><span
-                                                                class="new">New</span></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="shop-grid.html">Shop
-                                                                    Grid</a></li>
-                                                            <li><a href="cart.html">Cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Pages</a></li>
-                                                    <li><a href="#">Blog<i
-                                                                class="ti-angle-down"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="blog-single-sidebar.html">Blog
-                                                                    Single
-                                                                    Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="contact.html">Contact
-                                                            Us</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </nav>
-                                    <!--/ End Main Menu -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!--/ End Header Inner -->
         </header>
         <!--/ End Header -->
+        <div class="wrapper">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <a style="text-decoration: none; color: white;" href="#">
+                    </a>
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse"
+                            aria-expanded="false" class="dropdown-toggle">
+                            <b>Product Management</b>
+                        </a>
+                        <ul class="collapse list-unstyled" id="ProductManagementSubmenu">
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Brands</b>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Categories</b>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Products</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse"
+                            class="dropdown-toggle">
+                            <b>Account Management</b>
+                        </a>
+                        <ul class="collapse list-unstyled" id="accountManagementsubmenu">
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Employees</b>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Users</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a style="text-decoration: none;" href="#shopManagementsubmenu" data-toggle="collapse"
+                            class="dropdown-toggle">
 
-        <div layout:fragment="section"></div>
+                            <b>Shop Management</b>
+                        </a>
+                        <ul class="collapse list-unstyled" id="shopManagementsubmenu">
+                            <li class="active">
+                                <a style="text-decoration: none;" th:href="@{/user/shops/items}">
+                                    <b>Items</b>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a style="text-decoration: none;">
+                                    <b>Shops</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
 
+            <!-- Page Content  -->
 
+            <div id="content">
+                <div layout:fragment="section"></div>
+            </div>
+
+            <!-- Section fragment -->
+        </div>
         <!-- Start Footer Area -->
         <footer class="footer">
             <!-- Footer Top -->
@@ -230,8 +259,11 @@
                                 <div class="logo">
                                     <a href="index.html"><img src="images/logo2.png" alt="#"></a>
                                 </div>
-                                <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-                                <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                                <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,
+                                    magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+                                    porttitor, facilisis luctus, metus.</p>
+                                <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
+                                            789</a></span></p>
                             </div>
                             <!-- End Single Widget -->
                         </div>

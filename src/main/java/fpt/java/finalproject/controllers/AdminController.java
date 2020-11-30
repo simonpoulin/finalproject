@@ -217,7 +217,7 @@ public class AdminController {
     }
     @RequestMapping("/main")
     public String main(){
-        return "user/layouts/main";
+        return "user/shops/layouts/main";
     }
     @RequestMapping("/slider")
     public String slider(){
@@ -227,5 +227,30 @@ public class AdminController {
     @RequestMapping("/index")
     public String product(){
         return "user/layouts/item_list";
+    }
+
+    @RequestMapping("/listitem")
+    public String listitem(){
+        return "user/shops/items/list";
+    }
+
+    @RequestMapping("/additem")
+    public String additem(){
+        return "user/shops/items/add_or_edit";
+    }
+
+    @RequestMapping("/addproduct")
+    public String addproduct(){
+        return "user/shops/products/add_or_edit";
+    }
+
+    @RequestMapping("/listproduct")
+    public String listproduct(){
+        return "user/shops/products/list";
+    }
+
+    @RequestMapping("/detailproduct")
+    public String detailproduct(){
+        return "user/shops/products/detail";
     }
 }
