@@ -15,7 +15,7 @@ import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
-import fpt.java.finalproject.models.AdminQuery;
+import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeService;
 import fpt.java.finalproject.services.ShopItemService;
