@@ -12,11 +12,12 @@
         <a th:href="@{'/admin/items/add'}" style="float: right; color: white; margin-right: 70px; border-radius: 10px;"
             class="btn btn-primary">Thêm
             mới</a>
-            <form action="">
-                <input type="text" placeholder="Search . . ." class="search-form__input" />
-                <input style="border-radius: 10px; width: 90px;" class="btn btn-secondary" type="submit" name="" value="Tìm kiếm" />
-            </form>
-            <hr>
+        <form action="">
+            <input type="text" placeholder="Search . . ." class="search-form__input" />
+            <input style="border-radius: 10px; width: 90px;" class="btn btn-secondary" type="submit" name=""
+                value="Tìm kiếm" />
+        </form>
+        <hr>
         <table class="table table-light">
             <tbody>
                 <th>Mã Mặt hàng</th>
@@ -30,7 +31,10 @@
             </tbody>
             <tbody th:each="i : ${res.pagedList}">
                 <td th:text="${i.id}"></td>
-                <td th:text="${i.product.name}"></td>
+                <td>
+                    <a style="text-decoration: none; color: black;" th:href="@{'/admin/items/' + ${i.id}}"
+                        th:text="${i.product.name}"></a>
+                </td>
                 <td th:text="${i.title}"></td>
                 <td th:text="${i.product.des}"></td>
                 <td th:text="${i.price}"></td>

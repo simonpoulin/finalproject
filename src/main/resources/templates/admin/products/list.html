@@ -28,7 +28,10 @@
             </thead>
             <tbody th:each="p : ${res.pagedList}">
                 <td th:text="${p.id}"></td>
-                <td th:text="${p.name}"></td>
+                <td>
+                    <a style="text-decoration: none; color: black;" th:href="@{'/admin/items/' + ${p.id}}"
+                        th:text="${p.name}"></a>
+                </td>
                 <td th:text="${p.category.name}"></td>
                 <td th:text="${p.brand.name}"></td>
                 <td th:text="${p.status}"></td>
