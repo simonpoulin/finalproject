@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/list.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/list.html}">
 
 <head>
 </head>
@@ -8,6 +9,15 @@
     <div layout:fragment="list_form">
 
         <div class="table table-light">
+            <a th:href="@{'/admin/brands/add'}"
+                style="float: right; color: white; margin-right: 370px; border-radius: 10px;"
+                class="btn btn-primary">Thêm
+                mới</a>
+                <form action="">
+                <input type="text" placeholder="Search . . ." class="search-form__input" />
+                <input style="border-radius: 10px; width: 90px;" class="btn btn-secondary" type="submit" name="" value="Tìm kiếm" />
+            </form>
+            <hr>
             <table>
                 <thead>
                     <tr>
@@ -20,21 +30,27 @@
                     <td th:text="${b.id}"></td>
                     <td th:text="${b.name}"></td>
                     <td>
-                        <a th:href="@{'/admin/brands/edit/' + ${b.id}}" style="border-radius: 10px; color: white;" class="btn btn-primary">Sửa</a>
+                        <a th:href="@{'/admin/brands/edit/' + ${b.id}}" style="border-radius: 10px; color: white;"
+                            class="btn btn-primary">Sửa</a>
                         <!-- Button trigger modal -->
-                        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
+                            data-toggle="modal" data-target="#exampleModal">
                             Xóa
                         </a>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         Bạn có chắc muốn xóa
                                     </div>
                                     <div class="modal-footer">
-                                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                        <a th:href="@{'/admin/brands/delete/' + ${b.id}}" style="border-radius: 10px; color: white;" type="button" class="btn btn-danger">Xóa</a>
+                                        <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Hủy</button>
+                                        <a th:href="@{'/admin/brands/delete/' + ${b.id}}"
+                                            style="border-radius: 10px; color: white;" type="button"
+                                            class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>
                             </div>

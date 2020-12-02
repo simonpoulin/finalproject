@@ -7,6 +7,14 @@
 <body>
     <div layout:fragment="list_form">
         <div class="table table-light">
+            <a th:href="@{'/admin/categories/add'}"
+            style="float: right; color: white; margin-right: 290px; border-radius: 10px;" class="btn btn-primary">Thêm
+            mới</a>
+            <form action="">
+                <input type="text" placeholder="Search . . ." class="search-form__input" />
+                <input style="border-radius: 10px; width: 90px;" class="btn btn-secondary" type="submit" name="" value="Tìm kiếm" />
+            </form>
+            <hr>
             <table>
                 <thead>
                     <tr>
