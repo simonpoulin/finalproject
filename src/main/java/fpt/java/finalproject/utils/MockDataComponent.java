@@ -16,7 +16,6 @@ import fpt.java.finalproject.models.Order;
 import fpt.java.finalproject.models.OrderDetail;
 import fpt.java.finalproject.models.OrderStatus;
 import fpt.java.finalproject.models.Product;
-import fpt.java.finalproject.models.ProductImage;
 import fpt.java.finalproject.models.Recipient;
 import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.ShopEmployee;
@@ -33,7 +32,6 @@ import fpt.java.finalproject.repositories.EmployeeRoleRepository;
 import fpt.java.finalproject.repositories.OrderDetailRepostitory;
 import fpt.java.finalproject.repositories.OrderReposirory;
 import fpt.java.finalproject.repositories.OrderStatusRepository;
-import fpt.java.finalproject.repositories.ProductImageRepository;
 import fpt.java.finalproject.repositories.ProductRepository;
 import fpt.java.finalproject.repositories.RecipientRepository;
 import fpt.java.finalproject.repositories.ShopEmployeeRepository;
@@ -100,9 +98,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
 
     @Autowired
     ShopItemImageRepository shopItemImageRepository;
-
-    @Autowired
-    ProductImageRepository productImageRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
@@ -685,47 +680,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             Employee empolyee = employeeRepository.findById(2).get();
             product.setEmpolyee(empolyee);
             productRepository.save(product);
-        }
-         // create new productImage
-         if (productImageRepository.findById(1).isEmpty()) {
-            ProductImage productImage = new ProductImage();
-            productImage.setId(1);
-            productImage.setImageUrl("");
-            Product product = productRepository.findById(1).get();
-            productImage.setProduct(product);
-            productImageRepository.save(productImage);
-        }
-        if (productImageRepository.findById(2).isEmpty()) {
-            ProductImage productImage = new ProductImage();
-            productImage.setId(2);
-            productImage.setImageUrl("");
-            Product product = productRepository.findById(2).get();
-            productImage.setProduct(product);
-            productImageRepository.save(productImage);
-        }
-        if (productImageRepository.findById(3).isEmpty()) {
-            ProductImage productImage = new ProductImage();
-            productImage.setId(3);
-            productImage.setImageUrl("");
-            Product product = productRepository.findById(3).get();
-            productImage.setProduct(product);
-            productImageRepository.save(productImage);
-        }
-        if (productImageRepository.findById(4).isEmpty()) {
-            ProductImage productImage = new ProductImage();
-            productImage.setId(4);
-            productImage.setImageUrl("");
-            Product product = productRepository.findById(4).get();
-            productImage.setProduct(product);
-            productImageRepository.save(productImage);
-        }
-        if (productImageRepository.findById(5).isEmpty()) {
-            ProductImage productImage = new ProductImage();
-            productImage.setId(5);
-            productImage.setImageUrl("");
-            Product product = productRepository.findById(5).get();
-            productImage.setProduct(product);
-            productImageRepository.save(productImage);
         }
         // create new shopItem
         if (shopItemRepository.findById(1).isEmpty()) {

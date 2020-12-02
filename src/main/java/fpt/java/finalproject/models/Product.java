@@ -30,6 +30,9 @@ public class Product implements Serializable {
     @Column(columnDefinition = "nvarchar(50) not null")
     private String status;
 
+    @Column(columnDefinition = "nvarchar(max)")
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -41,9 +44,6 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
-
-    @OneToMany(mappedBy = "product")
-    private Collection<ProductImage> productImages;
 
     @OneToMany(mappedBy = "product")
     private Collection<ShopItem> shopItems;
@@ -107,20 +107,20 @@ public class Product implements Serializable {
         this.brand = brand;
     }
 
-    public Collection<ProductImage> getProductImages() {
-        return productImages;
-    }
-
-    public void setProductImages(Collection<ProductImage> productImages) {
-        this.productImages = productImages;
-    }
-
     public Collection<ShopItem> getShopItems() {
         return shopItems;
     }
 
     public void setShopItems(Collection<ShopItem> shopItems) {
         this.shopItems = shopItems;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

@@ -1,4 +1,4 @@
-package fpt.java.finalproject.models;
+package fpt.java.finalproject.utils;
 
 public class AdminQuery {
     private String name;

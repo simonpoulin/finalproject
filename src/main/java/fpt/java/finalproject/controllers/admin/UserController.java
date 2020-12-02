@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.models.AdminQuery;
+import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
