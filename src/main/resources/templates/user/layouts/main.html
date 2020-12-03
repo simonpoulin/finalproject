@@ -8,7 +8,7 @@
     <!-- Title Tag  -->
     <title>SurfnShop</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" th:href="@{images/fav.png}">
+    <link rel="icon" type="image/png" th:href="@{/images/fav.png}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css">
 
@@ -46,10 +46,9 @@
     <div layout:fragment="body">
 
         <div layout:fragment="section"></div>
-
         <div layout:fragment="cart"></div>
-
         <div layout:fragment="checkout"></div>
+
         <!-- Start Footer Area -->
         <footer class="footer">
             <!-- Footer Top -->
@@ -61,7 +60,7 @@
                                 <!-- Single Widget -->
                                 <div class="single-footer about">
                                     <div class="logo">
-                                        <a href="index.html"><img th:src=@{icons/logo.png} style="width: 300px; height: 100px;" alt="#"></a>
+                                        <a href="index.html"><img th:src=@{/icons/logo.png} style="width: 300px; height: 100px;" alt="#"></a>
                                     </div>
                                     <p class="text">Chuỗi cửa hàng online hợp tác và phát triển</p>
                                     <p class="call">Bạn cần tư vấn ?? hãy gọi tới hotline 24/7<span><a href="tel:123456789">+19001010</a></span></p>
@@ -132,7 +131,7 @@
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="right">
-                                    <img src="images/payments.png" alt="#">
+                                    <img th:src="@{/images/payments.png}" alt="#">
                                 </div>
                             </div>
                         </div>

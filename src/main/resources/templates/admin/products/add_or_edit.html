@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
         <form class="form-group" th:action="@{/admin/products/save}" method="POST" th:object="${object}">
@@ -41,9 +40,7 @@
             <hr>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
-
     </div>
-
 </body>
 
 </html>

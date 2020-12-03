@@ -207,17 +207,12 @@ public class AdminController {
     public String slider(){
         return "user/layouts/slider";
     }
-
-    @RequestMapping("/index")
-    public String product(){
-        return "user/layouts/item_list";
-    }
     
     @RequestMapping("/detail")
     public String detail(){
         return "user/layouts/item_details";
     }
-    @RequestMapping("/cart")
+    @RequestMapping("/cart1")
     public String cart(){
         return "user/layouts/cart";
     }

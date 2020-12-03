@@ -13,7 +13,7 @@
         <form class="form-group" th:action="@{/admin/brands/save}" method="POST" th:object="${object}">
             <div th:if="${res.isEdit}">
                 <label for="my-input">ID</label>
-                <input id="my-input" class="form-control" disabled type="text" th:value="*{id}">
+                <input id="my-input" class="form-control" disabled type="text" th:field="*{id}">
                 <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tên nhãn hàng</label>

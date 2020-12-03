@@ -43,6 +43,7 @@ import fpt.java.finalproject.repositories.ShopPackRepository;
 import fpt.java.finalproject.repositories.ShopRepository;
 import fpt.java.finalproject.repositories.ShopRoleRepository;
 import fpt.java.finalproject.repositories.UserRepository;
+import net.bytebuddy.utility.RandomString;
 
 @Component
 public class MockDataComponent implements ApplicationListener<ContextRefreshedEvent> {
@@ -127,48 +128,31 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         }
 
         // Admin account
-        if (employeeRepository.findByUsername("vunam") == null) {
-            Employee admin = new Employee();
-            admin.setUsername("vunam");
-            admin.setPassword(passwordEncoder.encode("123456"));
-            admin.setAddress("Đà Nẵng");
-            admin.setCreatedAt(new Date(new Date().getTime()));
-            admin.setEmail("vunam@gmail.com");
-            admin.setName("Hà Nam");
-            admin.setPhone("0868741852");
-            EmployeeRole employeeRole = employeeRoleRepository.findById(3).get();
-            admin.setEmployeeRole(employeeRole);
-            employeeRepository.save(admin);
-        }
-
-        // Manager account
-        if (employeeRepository.findByUsername("callmerey") == null) {
+        if (!employeeRepository.findByUsername("vunam").isPresent()) {
             Employee manager = new Employee();
-            manager.setUsername("callmerey");
-            manager.setPassword(passwordEncoder.encode("admin123"));
-            manager.setAddress("Huế");
+            manager.setUsername("vunam");
+            manager.setPassword(passwordEncoder.encode("123456"));
+            manager.setAddress("Quảng Nam");
             manager.setCreatedAt(new Date(new Date().getTime()));
-            manager.setEmail("thanhson@gmail.com");
-            manager.setName("Thanh Sơn");
-            manager.setPhone("0868748574");
-            EmployeeRole employeeRole = employeeRoleRepository.findById(2).get();
+            manager.setEmail("Vunam@gmail.com");
+            manager.setName("Vũ Nam");
+            manager.setPhone("0934567890");
+            EmployeeRole employeeRole = employeeRoleRepository.findById(3).get();
             manager.setEmployeeRole(employeeRole);
             employeeRepository.save(manager);
         }
-
-        // Admin account
-        if (employeeRepository.findByUsername("ngoctung") == null) {
-            Employee employee = new Employee();
-            employee.setUsername("ngoctung");
-            employee.setPassword(passwordEncoder.encode("admin123"));
-            employee.setAddress("Quảng Nam");
-            employee.setCreatedAt(new Date(new Date().getTime()));
-            employee.setEmail("ngoctung@gmail.com");
-            employee.setName("Ngọc Tùng");
-            employee.setPhone("0905147523");
-            EmployeeRole employeeRole = employeeRoleRepository.findById(1).get();
-            employee.setEmployeeRole(employeeRole);
-            employeeRepository.save(employee);
+        if (!employeeRepository.findByUsername("Callmerey").isPresent()) {
+            Employee manager = new Employee();
+            manager.setUsername("Callmerey");
+            manager.setPassword(passwordEncoder.encode("123456"));
+            manager.setAddress("Quảng Nam");
+            manager.setCreatedAt(new Date(new Date().getTime()));
+            manager.setEmail("callmery@gmail.com");
+            manager.setName("Thanh Son");
+            manager.setPhone("0834567890");
+            EmployeeRole employeeRole = employeeRoleRepository.findById(3).get();
+            manager.setEmployeeRole(employeeRole);
+            employeeRepository.save(manager);
         }
         if (!employeeRepository.findByUsername("hongduc").isPresent()) {
             Employee manager = new Employee();
@@ -183,14 +167,14 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             manager.setEmployeeRole(employeeRole);
             employeeRepository.save(manager);
         }
-        if (!employeeRepository.findByUsername("thanhson").isPresent()) {
+        if (!employeeRepository.findByUsername("ngoctung").isPresent()) {
             Employee manager = new Employee();
-            manager.setUsername("thanhson");
+            manager.setUsername("ngoctung");
             manager.setPassword(passwordEncoder.encode("123456"));
             manager.setAddress("Quảng Nam");
             manager.setCreatedAt(new Date(new Date().getTime()));
             manager.setEmail("thanhson@gmail.com");
-            manager.setName("Thanh Son");
+            manager.setName("Ngọc Tùng");
             manager.setPhone("0834567890");
             EmployeeRole employeeRole = employeeRoleRepository.findById(2).get();
             manager.setEmployeeRole(employeeRole);
@@ -351,22 +335,30 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         if (recipientRepository.findById(1).isEmpty()) {
             Recipient recipient = new Recipient();
             recipient.setId(1);
-            recipient.setAddress("Đà Nẵng");
-            recipient.setEmail("ABC@gmail.com");
-            recipient.setName("Nam");
-            recipient.setPhone("0868783254");
-            User user = userRepository.findById(1).get();
+            recipient.setAddress("Huế");
+            recipient.setEmail("user2@gmail.com");
+            recipient.setName("Duy");
+            recipient.setPhone("0868975578");
+            RandomString.make(64);
+            String random_code = RandomString.make(64);
+            recipient.setVerification_code(random_code);
+            User user = userRepository.findById(3).get();
+            recipient.setAppro(false);
             recipient.setUser(user);
             recipientRepository.save(recipient);
         }
         if (recipientRepository.findById(2).isEmpty()) {
             Recipient recipient = new Recipient();
             recipient.setId(2);
-            recipient.setAddress("Quảng Nam");
-            recipient.setEmail("user1@gmail.com");
-            recipient.setName("Hà");
-            recipient.setPhone("0866763254");
-            User user = userRepository.findById(2).get();
+            recipient.setAddress("Hà Nội");
+            recipient.setEmail("user4@gmail.com");
+            recipient.setName("Hoa");
+            recipient.setPhone("0868974478");
+            recipient.setAppro(false);
+            RandomString.make(64);
+            String random_code = RandomString.make(64);
+            recipient.setVerification_code(random_code);
+            User user = userRepository.findById(4).get();
             recipient.setUser(user);
             recipientRepository.save(recipient);
         }
@@ -377,6 +369,10 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             recipient.setEmail("user2@gmail.com");
             recipient.setName("Duy");
             recipient.setPhone("0868975578");
+            recipient.setAppro(false);
+            RandomString.make(64);
+            String random_code = RandomString.make(64);
+            recipient.setVerification_code(random_code);
             User user = userRepository.findById(3).get();
             recipient.setUser(user);
             recipientRepository.save(recipient);
@@ -388,6 +384,10 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             recipient.setEmail("user4@gmail.com");
             recipient.setName("Hoa");
             recipient.setPhone("0868974478");
+            recipient.setAppro(false);
+            RandomString.make(64);
+            String random_code = RandomString.make(64);
+            recipient.setVerification_code(random_code);
             User user = userRepository.findById(4).get();
             recipient.setUser(user);
             recipientRepository.save(recipient);
@@ -399,6 +399,10 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             recipient.setEmail("user5@gmail.com");
             recipient.setName("Đào");
             recipient.setPhone("0868975222");
+            recipient.setAppro(false);
+            RandomString.make(64);
+            String random_code = RandomString.make(64);
+            recipient.setVerification_code(random_code);
             User user = userRepository.findById(5).get();
             recipient.setUser(user);
             recipientRepository.save(recipient);
@@ -585,9 +589,9 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             product.setDes("Điện thoại oppo chính hãng");
             Brand brand = brandRepository.findById(2).get();
             product.setBrand(brand);
-            Category category = categoryRepository.findById(4).get();
+            Category category = categoryRepository.findById(3).get();
             product.setCategory(category);
-            Employee empolyee = employeeRepository.findById(4).get();
+            Employee empolyee = employeeRepository.findById(1).get();
             product.setEmpolyee(empolyee);
             productRepository.save(product);
         }
@@ -601,7 +605,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             product.setBrand(brand);
             Category category = categoryRepository.findById(1).get();
             product.setCategory(category);
-            Employee empolyee = employeeRepository.findById(2).get();
+            Employee empolyee = employeeRepository.findById(1).get();
             product.setEmpolyee(empolyee);
             productRepository.save(product);
         }
@@ -629,7 +633,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             product.setBrand(brand);
             Category category = categoryRepository.findById(1).get();
             product.setCategory(category);
-            Employee empolyee = employeeRepository.findById(3).get();
+            Employee empolyee = employeeRepository.findById(1).get();
             product.setEmpolyee(empolyee);
             productRepository.save(product);
         }
@@ -643,7 +647,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             product.setBrand(brand);
             Category category = categoryRepository.findById(3).get();
             product.setCategory(category);
-            Employee empolyee = employeeRepository.findById(3).get();
+            Employee empolyee = employeeRepository.findById(1).get();
             product.setEmpolyee(empolyee);
             productRepository.save(product);
         }
@@ -1394,7 +1398,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             order.setUser(user);
             OrderStatus orderStatus = orderStatusRepository.findById(1).get();
             order.setOrderStatus(orderStatus);
-            Recipient recipient = recipientRepository.findById(1).get();
+            Recipient recipient = recipientRepository.findById(2).get();
             order.setRecipient(recipient);
             orderRepostitory.save(order);
         }
@@ -1406,7 +1410,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             order.setUser(user);
             OrderStatus orderStatus = orderStatusRepository.findById(2).get();
             order.setOrderStatus(orderStatus);
-            Recipient recipient = recipientRepository.findById(2).get();
+            Recipient recipient = recipientRepository.findById(3).get();
             order.setRecipient(recipient);
             orderRepostitory.save(order);
         }

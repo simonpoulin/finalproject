@@ -1,0 +1,268 @@
+svg {
+    width: 100px;
+    display: block;
+    margin: 40px auto 0;
+}
+
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+}
+
+.path.circle {
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+}
+
+.path.line {
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash .9s .35s ease-in-out forwards;
+    animation: dash .9s .35s ease-in-out forwards;
+}
+
+.path.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+}
+
+p {
+    text-align: center;
+    margin: 20px 0 60px;
+    font-size: 1.25em;
+}
+
+p.success {
+    color: #73AF55;
+}
+
+p.error {
+    color: #D06079;
+}
+
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@-webkit-keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}
+
+body {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/T1pxDim.jpg");
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+@keyframes shadow {
+    from {
+        text-shadow: 0 3px 10px rgba(255, 255, 255, .3);
+    }
+    to {
+        text-shadow: 0 3px 13px rgba(255, 255, 255, .9);
+    }
+}
+
+h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    animation-name: shadow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.ws-contact {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px 30px 10px 0;
+    z-index: 9999;
+}
+
+.ws-contact-icon {
+    display: block;
+    margin: 10px 0;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    line-height: 70px;
+    text-align: center;
+    background: #6bb31e;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.ws-contact-icon:not(:last-child) {
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.ws-contact-icon:not(:last-child).is-active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.ws-contact-icon::before {
+    content: "";
+    background: url("https://www.upsieutoc.com/images/2018/12/29/ZFUFPff.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.ws-contact-icon::after {
+    content: attr(tooltip);
+    background: #fff;
+    color: #000;
+    border-radius: 50px;
+    padding: 10px;
+    position: absolute;
+    right: 100%;
+    line-height: 1;
+    min-width: 150px;
+    display: inline-block;
+    top: 8px;
+    margin-right: 10px;
+    font-size: 15px;
+    transition: 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+}
+
+.ws-contact-icon.is-active::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/0vsz83V.png") no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+}
+
+.ws-contact-icon.call {
+    background: #f01f46;
+    transition-delay: 250ms;
+}
+
+.ws-contact-icon.call::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/i3Qvln3.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.ws-contact-icon.mail {
+    background: #691ff0;
+    transition-delay: 200ms;
+}
+
+.ws-contact-icon.mail::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/K34s4SN.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.ws-contact-icon.facebook {
+    background: #231ff0;
+    transition-delay: 150ms;
+}
+
+.ws-contact-icon.facebook::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/0FgYLEn.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.ws-contact-icon.message {
+    background: #1f7af0;
+    transition-delay: 100ms;
+}
+
+.ws-contact-icon.message::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/I6NY3Mi.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.ws-contact-icon.zalo {
+    background: #f1f1f1;
+    transition-delay: 50ms;
+}
+
+.ws-contact-icon.zalo::before {
+    background: url("https://www.upsieutoc.com/images/2018/12/29/Ph1kn8Y.png") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.ws-contact-icon:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ws-contact-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+p {
+    color: #fff;
+    font-size: 14px;
+    font-family: sans-serif;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+p i[class~="fa-coffee"] {
+    color: #966842;
+}
+
+p i[class~="fa-heart"] {
+    color: #fe0002;
+}

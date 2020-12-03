@@ -14,4 +14,9 @@ public interface ShopItemRepository extends CrudRepository<ShopItem, Integer> {
     @Query(value = "exec search_item :categoryId, :brandId, :shopId, :productId", nativeQuery = true)
     List<ShopItem> customFind(@Param("categoryId") Integer categoryId, @Param("brandId") Integer brandId,
             @Param("shopId") Integer shopId, @Param("productId") Integer productId);
+
+    // @Query(value = "SELECT s FROM ShopItems WHERE s.product_id= ?1 ORDER BY s.id DESC ")
+    // List<ShopItem> findByidShopItem(Integer idShop);
+
+    
 }

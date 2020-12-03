@@ -16,7 +16,7 @@ public interface ShopItemService {
 
     public boolean existsById(Integer id);
 
-    public List<ShopItem> findAll() throws Exception;
+    public List<ShopItem> findAll();
 
     public List<ShopItem> findAllById(List<Integer> ids);
 
