@@ -39,6 +39,27 @@
                                 </a>
                         </li>
                         <li class="active">
+                            <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse"
+                                class="dropdown-toggle">
+                                <i class="fas fa-copy"></i>
+                                <b>Account Management</b>
+                            </a>
+                            <ul class="collapse list-unstyled" id="accountManagementsubmenu">
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/employees}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Employees</b>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a style="text-decoration: none;" th:href="@{/admin/users}">
+                                        <i class="fas fa-home"></i>
+                                        <b>Users</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
                             <a style="text-decoration: none;" href="#ProductManagementSubmenu" data-toggle="collapse"
                                 aria-expanded="false" class="dropdown-toggle">
                                 <i class="fas fa-home"></i>
@@ -61,27 +82,6 @@
                                     <a style="text-decoration: none;" th:href="@{/admin/products}">
                                         <i class="fas fa-home"></i>
                                         <b>Products</b>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="active">
-                            <a style="text-decoration: none;" href="#accountManagementsubmenu" data-toggle="collapse"
-                                class="dropdown-toggle">
-                                <i class="fas fa-copy"></i>
-                                <b>Account Management</b>
-                            </a>
-                            <ul class="collapse list-unstyled" id="accountManagementsubmenu">
-                                <li class="active">
-                                    <a style="text-decoration: none;" th:href="@{/admin/employees}">
-                                        <i class="fas fa-home"></i>
-                                        <b>Employees</b>
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a style="text-decoration: none;" th:href="@{/admin/users}">
-                                        <i class="fas fa-home"></i>
-                                        <b>Users</b>
                                     </a>
                                 </li>
                             </ul>

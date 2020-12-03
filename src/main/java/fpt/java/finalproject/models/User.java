@@ -41,8 +41,8 @@ public class User implements Serializable {
     @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
-    @Column(columnDefinition = "nvarchar(500)")
-    private String avatarUrl;
+    @Column(columnDefinition = "nvarchar(max)")
+    private String image;
 
     @Column
     private Date createdAt;
@@ -51,16 +51,16 @@ public class User implements Serializable {
     @PrimaryKeyJoinColumn
     private Shop shop;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<CartDetail> cartDetails;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<ShopEmployee> shopEmployees;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Recipient> recipients;
 
     public User() {
@@ -104,14 +104,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
     }
 
     public Shop getShop() {
@@ -176,6 +168,14 @@ public class User implements Serializable {
 
     public void setCartDetails(Collection<CartDetail> cartDetails) {
         this.cartDetails = cartDetails;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

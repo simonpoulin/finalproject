@@ -3,6 +3,8 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +38,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "recipient_id")
     private Recipient recipient;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
     public Order() {

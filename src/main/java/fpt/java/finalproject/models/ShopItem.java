@@ -3,6 +3,7 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,9 @@ public class ShopItem implements Serializable {
     @Column(columnDefinition = "int not null")
     Integer quantity;
 
+    @Column(columnDefinition = "nvarchar(max)")
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -41,13 +45,10 @@ public class ShopItem implements Serializable {
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    @OneToMany(mappedBy = "shopItem")
-    private Collection<ShopItemImage> shopItemImages;
-
-    @OneToMany(mappedBy = "shopItem")
+    @OneToMany(mappedBy = "shopItem", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
-    @OneToMany(mappedBy = "shopItem")
+    @OneToMany(mappedBy = "shopItem", cascade = CascadeType.ALL)
     private Collection<CartDetail> cartDetails;
 
     public ShopItem() {
@@ -109,14 +110,6 @@ public class ShopItem implements Serializable {
         this.shop = shop;
     }
 
-    public Collection<ShopItemImage> getShopItemImages() {
-        return shopItemImages;
-    }
-
-    public void setShopItemImages(Collection<ShopItemImage> shopItemImages) {
-        this.shopItemImages = shopItemImages;
-    }
-
     public Collection<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
@@ -131,6 +124,14 @@ public class ShopItem implements Serializable {
 
     public void setCartDetails(Collection<CartDetail> cartDetails) {
         this.cartDetails = cartDetails;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

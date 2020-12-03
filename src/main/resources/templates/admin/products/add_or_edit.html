@@ -39,7 +39,7 @@
                 <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.name}"></option>
             </select>
 
-            <img th:src="@{'https://res.cloudinary.com/surfnshop/image/upload/c_lpad,h_200/' + *{imageName}}" style="padding: 20px">
+            <img for="my-input" th:src="@{'https://res.cloudinary.com/surfnshop/image/upload/c_lpad,h_200/' + *{imageName}}" style="padding: 20px">
             <input id="my-input" class="form-control" type="file" th:field="*{image}">
             <input type = "hidden" th:field="*{imageName}">
 

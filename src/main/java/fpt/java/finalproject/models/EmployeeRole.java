@@ -3,6 +3,7 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class EmployeeRole implements Serializable {
     @Column(columnDefinition = "nvarchar(100) not null")
     private String roleName;
 
-    @OneToMany(mappedBy = "employeeRole")
+    @OneToMany(mappedBy = "employeeRole", cascade = CascadeType.ALL)
     private Collection<Employee> employees;
 
     public EmployeeRole() {

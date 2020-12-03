@@ -20,7 +20,6 @@ import fpt.java.finalproject.models.Recipient;
 import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.ShopEmployee;
 import fpt.java.finalproject.models.ShopItem;
-import fpt.java.finalproject.models.ShopItemImage;
 import fpt.java.finalproject.models.ShopPack;
 import fpt.java.finalproject.models.ShopRole;
 import fpt.java.finalproject.models.User;
@@ -35,7 +34,6 @@ import fpt.java.finalproject.repositories.OrderStatusRepository;
 import fpt.java.finalproject.repositories.ProductRepository;
 import fpt.java.finalproject.repositories.RecipientRepository;
 import fpt.java.finalproject.repositories.ShopEmployeeRepository;
-import fpt.java.finalproject.repositories.ShopItemImageRepository;
 import fpt.java.finalproject.repositories.ShopItemRepository;
 import fpt.java.finalproject.repositories.ShopPackRepository;
 import fpt.java.finalproject.repositories.ShopRepository;
@@ -95,9 +93,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
 
     @Autowired
     ShopEmployeeRepository shopEmployeeRepository;
-
-    @Autowired
-    ShopItemImageRepository shopItemImageRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
@@ -484,8 +479,8 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             }
 
         }
-         // create new shopEmployee
-         if (shopEmployeeRepository.findById(1).isEmpty()) {
+        // create new shopEmployee
+        if (shopEmployeeRepository.findById(1).isEmpty()) {
             ShopEmployee shopEmployee = new ShopEmployee();
             shopEmployee.setId(1);
             Shop shop = shopRepository.findById(1).get();
@@ -540,8 +535,8 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopEmployee.setUser(user);
             shopEmployeeRepository.save(shopEmployee);
         }
-         // create new product
-         if (productRepository.findById(1).isEmpty()) {
+        // create new product
+        if (productRepository.findById(1).isEmpty()) {
             Product product = new Product();
             product.setId(1);
             product.setName("Điện thoại SamSum");
@@ -695,7 +690,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItem.setShop(shop);
             shopItemRepository.save(shopItem);
         }
-        
+
         if (shopItemRepository.findById(2).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(2);
@@ -976,10 +971,12 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         if (shopItemRepository.findById(23).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(23);
-            shopItem.setDes("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setDes(
+                    "Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
             shopItem.setPrice(Float.valueOf(390000));
             shopItem.setQuantity(12);
-            shopItem.setTitle("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setTitle(
+                    "Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
             Product product = productRepository.findById(4).get();
             shopItem.setProduct(product);
             Shop shop = shopRepository.findById(3).get();
@@ -987,7 +984,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItemRepository.save(shopItem);
         }
 
-        
         if (shopItemRepository.findById(24).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(24);
@@ -1005,17 +1001,19 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
         if (shopItemRepository.findById(25).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(25);
-            shopItem.setDes("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setDes(
+                    "Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
             shopItem.setPrice(Float.valueOf(390000));
             shopItem.setQuantity(12);
-            shopItem.setTitle("Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
+            shopItem.setTitle(
+                    "Xả kho để chuẩn bị nhập hàng tết_ Áo sơ mi cao cấp kate lụa dài tay Hàn Quốc _ CỰC CHẤT, số lượng có hạn");
             Product product = productRepository.findById(4).get();
             shopItem.setProduct(product);
             Shop shop = shopRepository.findById(3).get();
             shopItem.setShop(shop);
             shopItemRepository.save(shopItem);
         }
-        
+
         if (shopItemRepository.findById(26).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(26);
@@ -1064,7 +1062,8 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItem.setDes("Áo Sweater Nam Nữ Basic. Áo Nỉ Nam Trơn Unisex Form Rộng Vải Cotton Da Cá Giữ Nhiệt STT1");
             shopItem.setPrice(Float.valueOf(390000));
             shopItem.setQuantity(12);
-            shopItem.setTitle("Áo Sweater Nam Nữ Basic. Áo Nỉ Nam Trơn Unisex Form Rộng Vải Cotton Da Cá Giữ Nhiệt STT1");
+            shopItem.setTitle(
+                    "Áo Sweater Nam Nữ Basic. Áo Nỉ Nam Trơn Unisex Form Rộng Vải Cotton Da Cá Giữ Nhiệt STT1");
             Product product = productRepository.findById(4).get();
             shopItem.setProduct(product);
             Shop shop = shopRepository.findById(4).get();
@@ -1086,7 +1085,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItemRepository.save(shopItem);
         }
 
-        
         if (shopItemRepository.findById(31).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(31);
@@ -1129,7 +1127,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItemRepository.save(shopItem);
         }
 
-        
         if (shopItemRepository.findById(34).isEmpty()) {
             ShopItem shopItem = new ShopItem();
             shopItem.setId(34);
@@ -1228,16 +1225,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             shopItemRepository.save(shopItem);
         }
 
-
-          // create new shopItemImage
-          if (shopItemImageRepository.findById(1).isEmpty()) {
-            ShopItemImage shopItemImage = new ShopItemImage();
-            shopItemImage.setId(1);
-            shopItemImage.setImageUrl("s");
-            ShopItem shopItem = shopItemRepository.findById(1).get();
-            shopItemImage.setShopItem(shopItem);
-            shopItemImageRepository.save(shopItemImage);
-        }
         // create new cartDetail
         if (cartDetailRepository.findById(1).isEmpty()) {
             CartDetail cartDetail = new CartDetail();
@@ -1321,7 +1308,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             orderStatus.setStatusName("Đã hủy");
             orderStatusRepository.save(orderStatus);
         }
-        
+
         // create new order
         if (orderRepostitory.findById(1).isEmpty()) {
             Order order = new Order();
@@ -1383,7 +1370,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             order.setRecipient(recipient);
             orderRepostitory.save(order);
         }
-        
+
         // create new orderDetail
         if (orderDetailRepostitory.findById(1).isEmpty()) {
             OrderDetail orderDetail = new OrderDetail();
@@ -1440,7 +1427,6 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             orderDetail.setOrder(order);
             orderDetailRepostitory.save(orderDetail);
         }
-
 
     }
 

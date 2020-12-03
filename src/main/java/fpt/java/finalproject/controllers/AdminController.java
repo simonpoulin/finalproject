@@ -47,7 +47,7 @@ public class AdminController {
         e.setPhone("0775352970");
         e.setAddress("address");
         e.setEmail("email");
-        e.setAvatarUrl("avatarUrl");
+        e.setImage("avatarUrl");
         e.setEmployeeRole(r);
 
         // Set response

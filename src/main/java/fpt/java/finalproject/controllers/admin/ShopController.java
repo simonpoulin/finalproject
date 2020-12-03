@@ -214,7 +214,30 @@ public class ShopController{
     //Del
     @RequestMapping("/delete/{id}")
     public String del(@PathVariable(name = "id") Integer id, ModelMap m){
-
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         AdminResponse res = new AdminResponse();
 
         // find shop by id
@@ -226,9 +249,6 @@ public class ShopController{
             m.addAttribute("res", res);
             return "module/error";
         }
-        // Set AdminResponse
-
-        res.setTitle("Xóa cửa hàng");
 
         // send AdminResponse
         m.addAttribute("res", res);

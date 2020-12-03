@@ -17,7 +17,7 @@ public interface ProductService {
 
     public boolean existsById(Integer id);
 
-    public List<Product> findAll() throws Exception;
+    public List<Product> findAll();
 
     public List<Product> findAllById(List<Integer> ids);
 

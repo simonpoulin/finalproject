@@ -117,7 +117,7 @@ public class ShopPackController {
     @GetMapping("")
     public String list(ModelMap m, 
     @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "0") String name
+    @RequestParam(required = false, defaultValue = "") String name
     ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");

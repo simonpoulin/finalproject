@@ -154,7 +154,7 @@ public class ProductController {
             // return fail
             res.setErrorCode("404");
             res.setMessage(ex.getMessage());
-            m.addAttribute("res", product);
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch

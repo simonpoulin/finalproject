@@ -21,7 +21,6 @@ public class ProductDto implements Serializable {
 
     private String status;
 
-    @NotNull
     private MultipartFile image;
 
     private String imageName;

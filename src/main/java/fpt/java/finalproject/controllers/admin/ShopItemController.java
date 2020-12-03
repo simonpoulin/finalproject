@@ -5,20 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fpt.java.finalproject.dtos.ShopItemDto;
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.Product;
+import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.EmployeeService;
+import fpt.java.finalproject.services.ProductService;
 import fpt.java.finalproject.services.ShopItemService;
+import fpt.java.finalproject.services.ShopService;
 
 @Controller
 @RequestMapping("/admin/items")
@@ -28,7 +36,23 @@ public class ShopItemController {
     private ShopItemService shopItemService;
 
     @Autowired
+    private ShopService shopService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
     EmployeeService employeeService;
+
+    @ModelAttribute(name = "shops")
+    public List<Shop> getShops() {
+        return shopService.findAll();
+    }
+
+    @ModelAttribute(name = "products")
+    public List<Product> getProducts() {
+        return productService.findAll();
+    }
 
     public String response(ModelMap m, String routing, AdminListResponse<ShopItem> listResponse) {
         Employee authEmployee = employeeService.getAuthEmployee();
@@ -48,12 +72,11 @@ public class ShopItemController {
     public String add(ModelMap m){
         
         AdminObjectResponse<ShopItem> res = new AdminObjectResponse<ShopItem>();
-        ShopItem sI = new ShopItem();
+        ShopItemDto sI = new ShopItemDto();
 
-        res.setTitle("Thêm Mặt Hàng");
+        res.setTitle("Thêm mặt hàng");
 
         // Send new response bean
-        m.addAttribute("res", res);
         m.addAttribute("object", sI);
 
         return response(m, "admin/items/add_or_edit", res);
@@ -62,12 +85,26 @@ public class ShopItemController {
 
     // save new
     @PostMapping("/save")
-    public String save(ModelMap m, ShopItem sI){
+    public String save(ModelMap m, @Validated ShopItemDto s, BindingResult r){
 
         AdminResponse res = new AdminResponse();
         // save new shopitem
+        if (r.hasErrors()) {
+            AdminObjectResponse<ShopItem> oRes = new AdminObjectResponse<ShopItem>();
+            if (s.getId() != null || s.getId() > 0) {
+                oRes.setTitle("Cập nhật thông tin");
+                oRes.setIsEdit(true);
+            } else {
+                oRes.setTitle("Thêm mặt hàng");
+                oRes.setIsEdit(false);
+            }
+            oRes.setTitle("Please input all forms");
+            m.addAttribute("object", s);
+            return response(m, "admin/items/add_or_edit", oRes);
+        }
+
         try {
-            shopItemService.save(sI);
+            shopItemService.save(s);
         } catch (Exception ex) {
            
             // Return fail
@@ -108,8 +145,10 @@ public class ShopItemController {
         }
         // end try catch
         // Send response
-        m.addAttribute("res", res);
-        m.addAttribute("object", sI);
+        ShopItemDto s = new ShopItemDto(sI);
+        res.setIsEdit(true);
+        res.setTitle("Cập nhật thông tin");
+        m.addAttribute("object", s);
 
         return response(m, "admin/items/add_or_edit", res);
     }
@@ -120,9 +159,7 @@ public class ShopItemController {
     public String list(ModelMap m, 
     @RequestParam(required = false, defaultValue = "0") Integer page,
     @RequestParam(required = false, defaultValue = "0") Integer productId,
-    @RequestParam(required = false, defaultValue = "0") Integer categoryId,
-    @RequestParam(required = false, defaultValue = "0") Integer shopId,
-    @RequestParam(required = false, defaultValue = "0") Integer brandId
+    @RequestParam(required = false, defaultValue = "0") Integer shopId
     ){
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
@@ -137,13 +174,13 @@ public class ShopItemController {
 
         // Set paging string
         String pagingStr = "/admin/items";
-        AdminQuery query = new AdminQuery("", categoryId, brandId, shopId, productId);
+        AdminQuery query = new AdminQuery("", 0, 0, shopId, productId);
         pagingStr = query.generateResponseQuery(pagingStr);
 
         // end if else
 
         try {
-            l = shopItemService.customFind(categoryId, brandId, shopId, productId);
+            l = shopItemService.customFind(shopId, productId);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

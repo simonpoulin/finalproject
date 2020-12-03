@@ -3,6 +3,8 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,10 +51,10 @@ public class Shop implements Serializable {
     @JoinColumn(name = "shop_pack_id")
     private ShopPack shopPack;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private Collection<ShopItem> shopItems;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private Collection<ShopEmployee> shopEmployees;
 
     public Shop() {
