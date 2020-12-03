@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/shops/layouts/list.html}">
+
+<head>
+    <title>Title</title>
+</head>
+
+<body>
+
+    <div layout:fragment="list_form">
+        <h5>Danh sách mặt hàng</h5>
+        <a style="float: right; color: white; margin-right: 70px; border-radius: 10px;" class="btn btn-primary">Thêm
+            mới</a>
+        <table class="table table-light">
+            <tbody>
+                <th>Mã Mặt hàng</th>
+                <th>Tên sản phẩm</th>
+                <th>Tiêu đề</th>
+                <th>Miêu tả</th>
+                <th>Giá bán</th>
+                <th>Số lượng</th>
+                <th>Cửa hàng</th>
+                <th>Hành động</th>
+            </tbody>
+            <tbody>
+                <td>MH01</td>
+                <td>Huawei P30 Pro</td>
+                <td>Điện Thoại Huawei</td>
+                <td>6GB/128GB</td>
+                <td>10.990.000 vnd</td>
+                <td>29</td>
+                <td>FPT</td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <a style="border-radius: 10px; color: white;" class="btn btn">Sửa</a>
+                    <a style="border-radius: 10px; color: white;" type="button" class="btn btn-danger"
+                        data-toggle="modal" data-target="#exampleModal">
+                        Xóa
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Bạn có chắc muốn xóa
+                                </div>
+                                <div class="modal-footer">
+                                    <button style="border-radius: 10px;" type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Hủy</button>
+                                    <a style="border-radius: 10px; color: white;" type="button"
+                                        class="btn btn-danger">Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

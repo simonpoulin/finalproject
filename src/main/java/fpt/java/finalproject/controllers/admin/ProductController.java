@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,13 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fpt.java.finalproject.dtos.ProductDto;
 import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Category;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
-import fpt.java.finalproject.models.AdminQuery;
+import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
 import fpt.java.finalproject.services.BrandService;
 import fpt.java.finalproject.services.CategoryService;
@@ -79,7 +82,7 @@ public class ProductController {
     public String add(ModelMap m) {
 
         AdminObjectResponse<Product> res = new AdminObjectResponse<Product>();
-        Product p = new Product();
+        ProductDto p = new ProductDto();
 
         res.setTitle("Thêm sản phẩm");
         res.setIsEdit(false);
@@ -93,18 +96,32 @@ public class ProductController {
 
     // save new
     @PostMapping("/save")
-    public String save(ModelMap m, Product p) {
+    public String save(ModelMap m, @Validated ProductDto p, BindingResult r) {
 
         AdminResponse res = new AdminResponse();
 
-        p.setEmpolyee(employeeService.getAuthEmployee());
+        if (r.hasErrors()) {
+            AdminObjectResponse<Product> oRes = new AdminObjectResponse<Product>();
+            if (p.getId() != null || p.getId() > 0) {
+                oRes.setTitle("Cập nhật thông tin");
+                oRes.setIsEdit(true);
+            } else {
+                oRes.setTitle("Thêm sản phẩm");
+                oRes.setIsEdit(false);
+            }
+            oRes.setTitle("Please input all forms");
+            m.addAttribute("object", p);
+            return response(m, "admin/products/add_or_edit", oRes);
+        }
+
+        p.setEmpolyeeId(employeeService.getAuthEmployee().getId());
 
         // save new product
         try {
             productService.save(p);
         } catch (Exception ex) {
-
             // return fail
+            ex.printStackTrace();
             res.setErrorCode("404");
             res.setMessage(ex.getMessage());
             m.addAttribute("res", res);
@@ -128,23 +145,24 @@ public class ProductController {
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
         AdminObjectResponse<Product> res = new AdminObjectResponse<>();
-        Product p = new Product();
+        Product product = new Product();
 
         // Find by id product
         try {
-            p = productService.findById(id);
+            product = productService.findById(id);
         } catch (Exception ex) {
             // return fail
             res.setErrorCode("404");
             res.setMessage(ex.getMessage());
-            m.addAttribute("res", p);
+            m.addAttribute("res", res);
             return "module/error";
         }
         // end try catch
 
-        // Set response
+        // Set response 
+        ProductDto p = new ProductDto(product);
         res.setIsEdit(true);
-        res.setTitle("cập nhật thông tin");
+        res.setTitle("Cập nhật thông tin");
 
         // Send response
         m.addAttribute("object", p);
@@ -155,12 +173,10 @@ public class ProductController {
 
     // List
     @GetMapping("")
-    public String list( ModelMap m, 
-                        @RequestParam(required = false, defaultValue = "0") Integer page,
-                        @RequestParam(required = false, defaultValue = "0") Integer categoryId,
-                        @RequestParam(required = false, defaultValue = "0") Integer brandId,
-                        @RequestParam(required = false, defaultValue = "") String name
-    ) {
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "0") Integer categoryId,
+            @RequestParam(required = false, defaultValue = "0") Integer brandId,
+            @RequestParam(required = false, defaultValue = "") String name) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
         AdminListResponse<Product> res = new AdminListResponse<>();
@@ -179,7 +195,7 @@ public class ProductController {
         List<Product> l;
         try {
             l = productService.customFind(name, categoryId, brandId);
-            res.generateResponse(l, 3, page, pagingStr);
+            res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
                 // return fail

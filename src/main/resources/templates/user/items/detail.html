@@ -1,0 +1,221 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{user/layouts/main.html}">
+
+<head>
+    <div layout:fragment="title">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/product.css}" />
+        <div layout:fragment="addOrEdit_title"></div>
+    </div>
+</head>
+
+<body>
+    <div layout:fragment="section">
+        <div class="container">
+            <div style="margin-top: 70px;">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <img th:src="@{/icons/iphone.png}" alt="">
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="card-body p-5">
+                            <h3 class="title mb-3">iPhone 11 64GB</h3>
+
+                            <p class="price-detail-wrap">
+                                <span class="price h3 text-warning">
+                                    <span class="currency">VN ₫</span><span class="num">19.990.000</span>
+                                </span>
+                            </p> <!-- price-detail-wrap .// -->
+                            <dl class="item-property">
+                                <dt>Description</dt>
+                                <dd>
+                                    <p>Thông số kỹ thuật <br>
+                                        Màn hình: IPS LCD, 6.1", Liquid Retina
+                                        Hệ điều hành: iOS 13
+                                        Camera sau: 2 camera 12 MP
+                                        Camera trước: 12 MP
+                                        CPU: Apple A13 Bionic 6 nhân
+                                        RAM: 4 GB
+                                        Bộ nhớ trong: 64 GB
+                                        Thẻ SIM:
+                                        1 Nano SIM & 1 eSIM, Hỗ trợ 4G
+                                        HOTSIM VNMB Siêu sim (5GB/ngày)
+                                        Dung lượng pin: 3110 mAh, có sạc nhanh </p>
+                                </dd>
+                            </dl>
+
+                            <dl class="param param-feature">
+                                <dt>Delivery</dt>
+                                <dd>Đà Nẵng</dd>
+                            </dl> <!-- item-property-hor .// -->
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <dl class="param param-inline">
+                                        <dt>Số lượng: </dt>
+                                        <dd>
+                                            <select class="form-control form-control-sm" style="width:70px;">
+                                                <option> 1 </option>
+                                                <option> 2 </option>
+                                                <option> 3 </option>
+                                            </select>
+                                        </dd>
+                                    </dl> <!-- item-property .// -->
+                                </div> <!-- col.// -->
+                                <div class="col-sm-7">
+                                    <dl class="param param-inline">
+                                        <dt>Màu sắc: </dt>
+                                        <dd>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">Vàng</span>
+                                            </label>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">Đỏ</span>
+                                            </label>
+                                            <label class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio2" value="option2">
+                                                <span class="form-check-label">Đen</span>
+                                            </label>
+                                        </dd>
+                                    </dl> <!-- item-property .// -->
+                                </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                            <hr>
+                            <a href="#" class="btn btn-lg btn-primary text-uppercase"> Mua ngay </a>
+                            <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"></i> Thêm vào giỏ hàng
+                            </a>
+                        </div> <!-- card-body.// -->
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- card.// -->
+            <br>
+            <div class="card" style="background-color: rgb(230, 230, 230); ">
+                <div class="row">
+                    <div class="col-sm-4 m-3">
+                        <div class="row ">
+                            <div class="col-sm-3">
+                                <div> <a href="#"><img style="width: 80px; padding-top: 15px;"
+                                            th:src="@{icons/iphone.png}"></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                <H4>FPT Shop </H3>
+                                    </p><br>
+                                    <a href="#" class="btn btn btn-info">Chat </a>
+                                    <a href="#" class="btn btn-light">Xem Shop </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7" style="margin: auto;">
+                        <div class="row">
+                            <div class="col-sm-3"><label>Đánh giá:</label><label>1k</label><br>
+                                <label>Đánh giá:</label><label>1k</label>
+                            </div>
+                            <div class="col-sm-4"><label>Tỉ Lệ Phản Hồi:</label><label>95%</label>
+                                <br>
+                                <label>Đánh giá:</label><label>1k</label></div>
+                            <div class="col-sm-5"><label>Tham gia:</label><label>9 tháng trước</label></div>
+                        </div>
+
+                    </div>
+                </div> <!-- row.// -->
+            </div>
+        </div>
+        <hr>
+
+        <div class="container">
+            <h3 class="h3">Sản phẩm liên quan</h3>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid6">
+                        <div class="product-image6">
+                            <a href="#">
+                                <img th:src="@{/icons/iphone.png}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">Iphone 12</a></h3>
+                            <div class="price">$11.00
+                                <span>$14.00</span>
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid6">
+                        <div class="product-image6">
+                            <a href="#">
+                                <img th:src="@{/icons/iphone.png}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">Women's Red Top</a></h3>
+                            <div class="price">$8.00
+                                <span>$12.00</span>
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid6">
+                        <div class="product-image6">
+                            <a href="#">
+                                <img th:src="@{/icons/iphone.png}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">Iphone 12</a></h3>
+                            <div class="price">$11.00
+                                <span>$14.00</span>
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid6">
+                        <div class="product-image6">
+                            <a href="#">
+                                <img th:src="@{/icons/iphone.png}" alt="">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">Iphone 12</a></h3>
+                            <div class="price">$11.00
+                                <span>$14.00</span>
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

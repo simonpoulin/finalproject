@@ -1,11 +1,17 @@
 package fpt.java.finalproject.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fpt.java.finalproject.dtos.ProductDto;
 import fpt.java.finalproject.models.Product;
 import fpt.java.finalproject.repositories.ProductRepository;
 
@@ -15,19 +21,35 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private Cloudinary cloudinary;
+
     @Override
     public List<Product> customFind(String name, Integer categoryId, Integer brandId) throws Exception {
         return productRepository.customFind(name, categoryId, brandId);
     }
-    
-    @Override
-    public void save(Product entity)  throws Exception{
-       Product product = productRepository.save(entity);
 
-       // Send error
-       if(product == null){
-        throw new Exception("Cannot save");
-       }
+    @Override
+    public void save(ProductDto entity) throws Exception {
+
+        Product p = entity.convertToProduct();
+        try {
+            if (!entity.getImage().getName().equals(entity.getImageName())) {
+                Map<String, String> r = cloudinary.uploader().upload(entity.getImage().getBytes(),
+                        ObjectUtils.asMap("public_id", UUID.randomUUID().toString()));
+                p.setImage(r.get("public_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Cannot save");
+        }
+
+        Product product = productRepository.save(p);
+
+        // Send error
+        if (product == null) {
+            throw new Exception("Cannot save");
+        }
     }
 
     @Override
@@ -37,19 +59,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Integer id) throws Exception {
-       Product product = new Product();
+        Product product = new Product();
 
-       // find by id
-       Optional<Product> optProduct = productRepository.findById(id);
+        // find by id
+        Optional<Product> optProduct = productRepository.findById(id);
 
-       // Set Product
-       if(optProduct.isPresent()){
-           product = optProduct.get();
-       }else{
-           // send mess error
-           throw new Exception("Cannot found");
-       }
-       return product;
+        // Set Product
+        if (optProduct.isPresent()) {
+            product = optProduct.get();
+        } else {
+            // send mess error
+            throw new Exception("Cannot found");
+        }
+        return product;
     }
 
     @Override
@@ -73,7 +95,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteById(Integer id) throws Exception{
+    public void deleteById(Integer id) throws Exception {
         productRepository.deleteById(id);
     }
 

@@ -3,6 +3,8 @@ package fpt.java.finalproject.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,14 +50,14 @@ public class Employee implements Serializable {
     @Column(columnDefinition = "nvarchar(50) not null")
     private String email;
 
-    @Column(columnDefinition = "nvarchar(500)")
-    private String avatarUrl;
+    @Column(columnDefinition = "nvarchar(max)")
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "employee_role_id")
     private EmployeeRole employeeRole;
 
-    @OneToMany(mappedBy = "empolyee")
+    @OneToMany(mappedBy = "empolyee", cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     public Employee() {
@@ -109,14 +111,6 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
     public EmployeeRole getEmployeeRole() {
         return employeeRole;
     }
@@ -149,11 +143,12 @@ public class Employee implements Serializable {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Employee [address=" + address + ", avatarUrl=" + avatarUrl + ", createdAt=" + createdAt + ", email="
-                + email + ", employeeRole=" + employeeRole + ", id=" + id + ", name=" + name + ", password=" + password
-                + ", phone=" + phone + ", products=" + products + ", username=" + username + "]";
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

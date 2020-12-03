@@ -47,7 +47,7 @@ public class AdminController {
         e.setPhone("0775352970");
         e.setAddress("address");
         e.setEmail("email");
-        e.setAvatarUrl("avatarUrl");
+        e.setImage("avatarUrl");
         e.setEmployeeRole(r);
 
         // Set response
@@ -175,9 +175,25 @@ public class AdminController {
     public String dashboard(){
         return "admin/dashboard";
     }
-    @RequestMapping("/shoppack")
-    public String shoppack(){
-        return "admin/shopPack/add_or_edit";
+    @RequestMapping("/home")
+    public String home(){
+        return "user/home";
+    }
+    @RequestMapping("/contact")
+    public String contact(){
+        return "user/contact";
+    }
+    @RequestMapping("/policy")
+    public String policy(){
+        return "user/policy";
+    }
+    @RequestMapping("/iteamdetail")
+    public String iteamdetail(){
+        return "user/items/detail";
+    }
+    @RequestMapping("/addemployees")
+    public String addemployees(){
+        return "user/shops/employees/add_or_edit";
     }
 
     @RequestMapping("/login")
@@ -201,7 +217,7 @@ public class AdminController {
     }
     @RequestMapping("/main")
     public String main(){
-        return "user/layouts/main";
+        return "user/shops/layouts/main";
     }
     @RequestMapping("/slider")
     public String slider(){
@@ -223,5 +239,30 @@ public class AdminController {
     @RequestMapping("/combo")
     public String combo(){
         return "user/selectCombo";
+    }
+
+    @RequestMapping("/listitem")
+    public String listitem(){
+        return "user/shops/items/list";
+    }
+
+    @RequestMapping("/additem")
+    public String additem(){
+        return "user/shops/items/add_or_edit";
+    }
+
+    @RequestMapping("/addproduct")
+    public String addproduct(){
+        return "user/shops/products/add_or_edit";
+    }
+
+    @RequestMapping("/listproduct")
+    public String listproduct(){
+        return "user/shops/products/list";
+    }
+
+    @RequestMapping("/detailproduct")
+    public String detailproduct(){
+        return "user/shops/products/detail";
     }
 }

@@ -29,7 +29,7 @@ public class Config {
             LayoutDialect layout) {
         final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
-        templateEngine.addDialect(sec); // Enable use of "sec"
+        templateEngine.addDialect(sec);
         templateEngine.addDialect(layout);
         return templateEngine;
     }

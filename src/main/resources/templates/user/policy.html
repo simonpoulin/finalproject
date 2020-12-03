@@ -1,0 +1,234 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{user/layouts/main.html}">
+
+<head>
+  <title>Title</title>
+</head>
+
+<body>
+  <div class="container" layout:fragment="section">
+    <div class="jumbotron">
+      <h1>Chính Sách SurnfShop</h1>
+      <p class="lead">Cập nhật lần cuối ngày: 10 tháng 09 năm 2020.</p>
+      <hr class="my-4">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                GIỚI THIỆU
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Surf N’ Shop được xây dựng nhằm cung cấp cho người sử dùng những trải nghiệm dễ dàng, an toàn và nhanh
+              chóng khi mua sắm trực tuyến thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh. Là nơi Người Bán
+              dễ dàng lập tài khoản để bắt đầu kinh doanh và gia tăng doanh số trên sàn thương mại điện tử Surf N’ Shop.
+              Bạn có thể hiểu rằng SurfnShop như một sàn giao dịch hàng hóa (sàn giao dịch thương mại điện tử) để người
+              mua và người bán giao dịch với nhau, Surf N’ Shop sẽ người ở giữa đảm bảo sự an toàn cho giao dịch. Bất kì
+              cá nhân, danh nghiệp, công ty, thương hiệu nào đều có thể tham gia bán hàng với Surf N’ Shop tuy nhiên
+              hàng hóa trên Surf N’ Shop vẫn sẽ đảm bảo chất lượng và uy tín. Ngoài ra Surf N’ Shop không chỉ là sàn
+              giao dịch mà Surf N’ Shop còn cũng bán các sản phẩm, dịch vụ riêng của mình và đường nhiên nếu sản phẩm
+              của Surnhop bán ra thì đảm bảo về chất lượng lẫn an toàn.
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                CÁC CHÍNH SÁCH
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <b>Mua hàng: </b> <br>
+              - Miễn phí đổi trả hàng (7 ngày)<br>
+              - Hỗ trợ khách hàng 24/7<br>
+              - Bảo mật thông tin cá nhân<br>
+              - Bảo mật thanh toán<br>
+              - Giảm giá, voucher<br>
+              - Bảo hành (nếu có)<br>
+              - Vận chuyển toàn quốc<br>
+              <b>Bán hàng</b><br>
+              - Quản lí sản phẩm<br>
+              - Quản lí công việc<br>
+              - Quản lí vận chuyển<br>
+              - Tăng lượt truy cập cho shop<br>
+              - Tăng mức độ hiển thị sản phẩm<br>
+              - Top sản phẩm bán chạy<br>
+              - Tăng doanh số bằng công cụ marketting<br>
+              - Mã giảm giá<br>
+              - Combo khuyến mãi<br>
+              - Quản lí và bảo mật thông tin tài khoản của người bán<br>
+              - Ưu đãi cho người mới<br>
+              - Miễn phí phí ship 10 đơn đầu tiên<br>
+              - Miễn phí bán hàng trong 1 năm
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                CÁC PHƯƠNG THỨC THANH TOÁN
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              - Thanh toán qua ví điện tử <br>
+              - Thẻ ATM nội địa/Internet Banking <br>
+              - Thanh toán tiền mặt khi nhận hàng <br>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                KÊNH NGƯỜI MUA
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <b>1. Chính sách trả hàng và hoàn tiền </b><br>
+              Điều kiện trả hàng <br>
+              Người mua đồng ý rằng cô ấy/anh ấy chỉ có thể yêu cầu trả hàng và hoàn tiền trong các trường hợp sau:<br>
+              - Người mua đã thanh toán nhưng không nhận được sản phẩm;<br>
+              - Sản phẩm bị lỗi hoặc bị hư hại trong quá trình vận chuyển;<br>
+              - Người bán giao sai sản phẩm cho Người mua (VD: sai kích cỡ, sai màu sắc, v.vv...);<br>
+              - Sản phẩm Người mua nhận được khác biệt một cách rõ rệt so với thông tin mà Người bán cung cấp trong mục
+              mô tả sản phẩm;<br>
+              - Người bán đã tự thỏa thuận và đồng ý cho Người mua trả hàng (tuy nhiên Shopee sẽ cần Người bán xác nhận
+              lại những thoả thuận này).<br>
+              - Tất cả các yêu cầu trả hàng-hoàn tiền phải được thực hiện trên Ứng dụng SurfnShop<br>
+              SurfnShop luôn xem xét cẩn thận từng yêu cầu trả hàng/hoàn tiền của Người mua và có quyền đưa ra quyết<br>
+              định cuối cùng đối với yêu cầu đó dựa trên các quy định nêu trên và theo Điều khoản Dịch vụ của SurfnShop.<br>
+
+              <b>2. Chính sách bảo mật thông tin cá nhân</b><br>
+              - Chúng tôi thực hiện các biện pháp bảo mật khác nhau và luôn nỗ lực để đảm bảo sự an toàn của dữ liệu cá
+              nhân của bạn trên các hệ thống của chúng tôi. Dữ liệu cá nhân của người dùng được lưu trữ đằng sau các
+              mạng bảo mật và chỉ có thể được truy cập bởi một số nhân viên có quyền truy cập đặc biệt đến các hệ thống
+              của chúng tôi.<br>
+
+              <b>3. Chính sách bảo mật thanh toán</b><br>
+              - Surf N’ Shop luôn coi trọng việc bảo mật thông tin và sử dụng các biện pháp tốt nhất để bảo vệ thông tin
+              cá nhân của quý khách trong quá trình thanh toán. Quý khách không được sử dụng bất kỳ chương trình, công
+              cụ hay hình thức nào để can thiệp vào hệ thống làm thay đổi cấu trúc dữ liệu.
+              Cá nhân hay tổ chức có hành vi can thiệp, phá hoại hay xâm nhập vào dữ liệu của hệ thống sẽ bị tước bỏ mọi
+              quyền lợi cũng như bị truy tố trước pháp luật nếu cần thiết.<br>
+              - Tất cả thông tin giao dịch đều được bảo mật trừ trường hợp phải thực hiện theo yêu cầu của cơ quan Nhà
+              nước có thẩm quyền.<br>
+
+             <b> 4. Chính sách bảo hành</b><br>
+              - Sản phẩm được bảo hành miễn phí nếu sản phẩm đó hội đủ các điều kiện sau:<br>
+              - Sản phẩm bị lỗi kỹ thuật do nhà sản xuất<br>
+              - Còn trong thời hạn bảo hành (trên phiếu bảo hành hoặc trên hệ thống bảo hành điện tử)<br>
+              Có hóa đơn điện tử (khi Người mua có yêu cầu) hoặc mã đơn hàng (ID đơn hàng)<br>
+              - Đối với các sản phẩm điện gia dụng, phiếu / tem bảo hành (và tem niêm phong) của nhà sản xuất (tùy từng
+              hãng) trên sản phẩm còn nguyên vẹn.<br>
+              - Tất cả các trường hợp khách hàng báo lỗi với thông tin chưa rõ ràng hoặc chưa chắc chắn đều phải chuyển
+              cho Trung Tâm Bảo Hành thẩm định trước khi ra quyết định bảo hành hoặc trả hàng.<br>
+              -  Những trường hợp không được bảo hành hoặc phát sinh phí bảo hành:<br>
+              - Vi phạm một trong những điều kiện bảo hành miễn phí ở mục A.<br>
+              Số series, model sản phẩm không hợp lệ (không khớp với thông tin trên Phiếu bảo hành hoặc trên hệ thống
+              bảo hành điện tử)<br>
+              - Khách hàng tự ý can thiệp sửa chữa sản phẩm hoặc sửa chữa tại những trung tâm bảo hành không được sự ủy
+              nhiệm của Hãng.<br>
+              - Sản phẩm bị hư hỏng do lỗi người sử dụng, và lỗi hư không nằm trong phạm vi bảo hành của nhà sản xuất.<br>
+
+
+
+
+              <b>5. Chính sách hỗ trợ khách hàng</b><br>
+              Chúng tôi tiếp nhận tất cả những thắc mắc của khách hàng về đơn hàng, thanh toán, giao hàng, nhận hàng,
+              chương trình khuyến mãi và những góp ý cho website … Chúng tôi hỗ trợ khách hàng trong mọi tình huống.<br>
+
+              <b>6. Chính sách vận chuyển và giao nhận</b><br>
+              - Khi đặt hàng, Quý khách vui lòng điền đầy đủ và chính xác các thông tin cần thiết theo yêu cầu để tạo điều
+              kiện thuận lợi cho chúng tôi trong việc cung cấp hàng hóa và nhận thanh toán nhanh chóng. Chúng tôi cũng
+              không chịu trách nhiệm đối với những trường hợp giao hàng chậm trễ hay thất lạc vì các thông tin do Quý
+              khách cung cấp không chính xác.<br>
+              - Thời gian giao hàng Từ 2 đến 4 ngày (không tính Chủ Nhật hoặc những ngày Lễ, Tết).. Những đơn hàng đặt vào
+              Chủ nhật, ngày nghỉ Lễ, Tết: thời gian giao hàng được tính từ 16 giờ ngày thứ Hai tuần sau hoặc ngày làm
+              việc đầu tiên sau ngày nghỉ Lễ,Tết.<br>
+              - Quý khách vui lòng kiểm tra kỹ hàng hoá ngay khi nhận hàng từ người chuyển phát hàng hoá, nếu có vấn đề
+              liên quan tới chủng loại, chất lượng, số lượng hàng hoá không đúng như trong đơn đặt hàng, Quý khách vui
+              báo ngay cho chúng tôi để phối hợp với đơn vị chuyển phát hàng hóa xử lý.<br>
+
+              <b>7. Giảm Giá sử dụng Voucher</b><br>
+              Voucher (Phiếu giảm giá) được chúng tôi tặng kèm khi bán hàng hoặc tặng cho khách hàng thân thiết. Bạn có
+              phiếu mua hàng có thể sử dụng nó để được giảm giá trong các lần mua tiếp theo. Dưới đây là các quy định về
+              Voucher hợp lệ được chấp nhận<br>
+              Điều kiện áp dụng<br>
+              - Vouher Không có giá trị quy đổi thành tiền mặt<br>
+              - Chỉ áp dụng dành riêng đối với đơn hàng tiếp theo<br>
+              - VOUCHER chỉ sử dụng một lần cho một hóa đơn<br>
+              - Không trả lại tiền thừa nếu giá trị Voucher lớn hơn giá trị đơn hàng<br>
+              - Voucher chỉ có giá trị trong thời gian được ghi trên thẻ.<br>
+              - Voucher không áp dụng chung với các chương trình khuyến mãi khác, trường hợp quý khách muốn sử dụng
+              voucher để áp dụng mua các sản phẩm đang khuyến mãi thì voucher chỉ áp dụng cho giá gốc chưa khuyến mãi
+              của sản phẩm đó.<br>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                KÊNH NGƯỜI BÁN
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <b>1. Đồng bộ đơn hàng hoàn toàn tự động</b> <br>
+              - Sau khi phát sinh đơn hàng trên Surfn Shop và được Surfn Shop phê duyệt, thông tin đơn hàng sẽ được đồng
+              bộ tự động về database. <br>
+              - Bạn chỉ cần vào Surfn Shop xác nhận đơn hàng, tình trạng đơn hàng cũng sẽ được cập nhật về database giúp
+              bạn theo dõi hành trình đơn hàng từ khi xuất kho đến khi tới tay khách hàng.<br>
+              <b>2. Số lượng tồn kho cập nhật tức thì</b><br>
+              - Số lượng tồn kho sẽ được trừ vào số lượng Có thể bán khi đơn hàng đổ về database, sau khi Xuất kho, số
+              lượng tồn kho sẽ được trừ vào số lượng Tồn kho.<br>
+              - Khi khách trả hàng, số lượng tồn kho sẽ được cộng lại vào Tồn kho<br>
+              <b>3. Marketing</b><br>
+              - Tiếp cận tới nhiều Người mua hơn và quảng bá đến đúng đối tượng thông qua Kênh Marketing. Tại đây, một
+              loạt các công cụ Marketing hỗ trợ Shop quảng bá các sản phẩm phù hợp theo từng mục đích khác nhau.
+              - Shop được tham gia tất cả các chương trình khuyến mãi và thúc đẩy bán hàng của Surfn Shop<br>
+              <b>4. Tài Chính</b><br>
+              - Quản lý doanh thu bán hàng và số dư ví trên Kênh Người Bán.<br>
+              - Doanh Thu cung cấp cho bạn một cái nhìn tổng quan về doanh thu bán hàng đang chờ xử lý và đã nhận
+              được.<br>
+              - Am hiểu về doanh thu và nắm vững hiệu quả hoạt động của Shop sẽ giúp Người bán đưa ra các quyết định
+              phát
+              triển kinh doanh và tạo nên chiến lược bán hàng hiệu quả.<br>
+              - Để xem xét hiệu quả kinh doanh, hãy dùng Phân Tích Bán Hàng để phân tích kết quả hoạt động và các chỉ số
+              bán hàng.
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

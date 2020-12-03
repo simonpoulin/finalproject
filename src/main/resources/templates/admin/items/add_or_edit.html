@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/add_or_edit.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/layouts/add_or_edit.html}">
 
 <head>
 
@@ -14,20 +15,41 @@
 
     <!-- Add division to add-or-edit form fragment -->
     <div layout:fragment="addOrEdit_form">
-        <form class="form-group" th:action="@{/admin/items/save}" method="POST" th:object="${object}">
+        <form class="form-group" th:action="@{/admin/items/save}" method="POST" th:object="${object}"
+            enctype="multipart/form-data">
             <div th:if="${res.isEdit}">
-                <label for="my-input">Mã Mặt hàng</label>
+                <label for="my-input">Mã mặt hàng</label>
                 <input disabled id="my-input" class="form-control" type="text" th:value="*{id}">
                 <input type="hidden" th:field="*{id}">
             </div>
             <label for="my-input">Tiêu đề</label>
             <input id="my-input" class="form-control" type="text" th:field="*{title}">
+
             <label for="my-input">Miêu tả</label>
             <input id="my-input" class="form-control" type="text" th:field="*{des}">
+
             <label for="my-input">Giá bán</label>
             <input id="my-input" class="form-control" type="number" th:field="*{price}">
+
             <label for="my-input">Số lượng</label>
             <input id="my-input" class="form-control" type="number" th:field="*{quantity}">
+
+            <label for="my-input">Sản phẩm</label>
+            <select id="my-input" class="form-control" th:field="*{productId}">
+                <option th:each="p : ${products}" th:value="${p.id}" th:text="${p.name}"></option>
+            </select>
+
+            <label for="my-input">Cửa hàng</label>
+            <select id="my-input" class="form-control" th:field="*{shopId}">
+                <option th:each="s : ${shops}" th:value="${s.id}" th:text="${s.name}"></option>
+            </select>
+
+            <img for="my-input"
+                th:src="@{'https://res.cloudinary.com/surfnshop/image/upload/c_lpad,h_200/' + *{imageName}}"
+                style="padding: 20px">
+            <input id="my-input" class="form-control" type="file" th:field="*{image}">
+            <input type="hidden" th:field="*{imageName}">
+
             <hr>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

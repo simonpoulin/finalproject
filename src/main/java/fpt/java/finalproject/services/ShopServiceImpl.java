@@ -58,7 +58,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> findAll() throws Exception{
+    public List<Shop> findAll() {
         return (List<Shop>) shopRepository.findAll();
     }
 
