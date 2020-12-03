@@ -329,15 +329,11 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             recipient.setEmail("user2@gmail.com");
             recipient.setName("Duy");
             recipient.setPhone("0868975578");
-<<<<<<< HEAD
             RandomString.make(64);
             String random_code = RandomString.make(64);
             recipient.setVerification_code(random_code);
             User user = userRepository.findById(3).get();
             recipient.setAppro(false);
-=======
-            User user = userRepository.findById(3).get();
->>>>>>> origin/master
             recipient.setUser(user);
             recipientRepository.save(recipient);
         }
@@ -348,13 +344,10 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             recipient.setEmail("user4@gmail.com");
             recipient.setName("Hoa");
             recipient.setPhone("0868974478");
-<<<<<<< HEAD
             recipient.setAppro(false);
             RandomString.make(64);
             String random_code = RandomString.make(64);
             recipient.setVerification_code(random_code);
-=======
->>>>>>> origin/master
             User user = userRepository.findById(4).get();
             recipient.setUser(user);
             recipientRepository.save(recipient);
@@ -1346,11 +1339,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             order.setUser(user);
             OrderStatus orderStatus = orderStatusRepository.findById(1).get();
             order.setOrderStatus(orderStatus);
-<<<<<<< HEAD
             Recipient recipient = recipientRepository.findById(2).get();
-=======
-            Recipient recipient = recipientRepository.findById(3).get();
->>>>>>> origin/master
             order.setRecipient(recipient);
             orderRepostitory.save(order);
         }
@@ -1362,11 +1351,7 @@ public class MockDataComponent implements ApplicationListener<ContextRefreshedEv
             order.setUser(user);
             OrderStatus orderStatus = orderStatusRepository.findById(2).get();
             order.setOrderStatus(orderStatus);
-<<<<<<< HEAD
             Recipient recipient = recipientRepository.findById(3).get();
-=======
-            Recipient recipient = recipientRepository.findById(4).get();
->>>>>>> origin/master
             order.setRecipient(recipient);
             orderRepostitory.save(order);
         }

@@ -2,7 +2,7 @@ package fpt.java.finalproject.services;
 
 import java.util.List;
 
-import fpt.java.finalproject.dtos.ShopItemDto;
+import fpt.java.finalproject.DTOS.ShopItemDto;
 import fpt.java.finalproject.models.ShopItem;
 
 public interface ShopItemService {

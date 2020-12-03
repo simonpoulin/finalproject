@@ -1,4 +1,4 @@
-package fpt.java.finalproject.dtos;
+package fpt.java.finalproject.DTOS;
 
 import java.io.Serializable;
 
