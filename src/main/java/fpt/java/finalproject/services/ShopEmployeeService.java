@@ -7,6 +7,8 @@ import fpt.java.finalproject.models.ShopEmployee;
 
 public interface ShopEmployeeService {
 
+    public List<ShopEmployee> findByUserId(Integer id) throws Exception;
+
     public ShopEmployee save(ShopEmployee entity);
 
     public List<ShopEmployee> saveAll(List<ShopEmployee> entities);

@@ -180,7 +180,7 @@ public class ShopItemController {
         // end if else
 
         try {
-            l = shopItemService.customFind(shopId, productId);
+            l = shopItemService.customFind(0, 0, shopId, productId);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {

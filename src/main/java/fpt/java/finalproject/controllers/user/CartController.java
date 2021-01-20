@@ -18,7 +18,7 @@ import fpt.java.finalproject.response.UserResponse;
 import fpt.java.finalproject.services.CartDetailSevice;
 import fpt.java.finalproject.services.UserService;
 
-@RequestMapping("/carts")
+@RequestMapping("/w/carts")
 @Controller
 public class CartController {
     
@@ -89,7 +89,7 @@ public class CartController {
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/carts";
+        return "redirect:/w/carts";
     }
 
     // Save new
@@ -116,6 +116,6 @@ public class CartController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/carts";
+        return "redirect:/w/carts";
     }
 }

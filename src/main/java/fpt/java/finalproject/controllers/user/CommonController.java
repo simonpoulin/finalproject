@@ -22,7 +22,7 @@ import fpt.java.finalproject.services.ShopService;
 import fpt.java.finalproject.services.UserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/w")
 public class CommonController {
 
     @Autowired
@@ -121,12 +121,12 @@ public class CommonController {
 
     @GetMapping("")
     public String blank() {
-        return "redirect:/user/home";
+        return "redirect:/w/home";
     }
 
     @GetMapping("/index")
     public String index() {
-        return "redirect:/user/home";
+        return "redirect:/w/home";
     }
 
     @GetMapping("/login")

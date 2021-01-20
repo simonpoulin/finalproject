@@ -21,6 +21,11 @@ public class ShopEmployeeServiceImpl implements ShopEmployeeService {
     }
 
     @Override
+    public List<ShopEmployee> findByUserId(Integer id) throws Exception {
+        return shopEmployeeRepository.findByUserId(id);
+    }
+
+    @Override
     public List<ShopEmployee> saveAll(List<ShopEmployee> entities) {
         return (List<ShopEmployee>) shopEmployeeRepository.saveAll(entities);
     }
