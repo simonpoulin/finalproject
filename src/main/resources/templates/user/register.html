@@ -6,7 +6,7 @@
     <!-- Add division to head fragment -->
     <div layout:fragment="head">
 
-        <title>Đăng nhập</title>
+        <title>Đăng kí</title>
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -19,13 +19,17 @@
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
         <div class="container" id="container">
+            <div class="form-container sign-up-container">
+            </div>
             <div class="form-container sign-in-container ">
-                <form action="# " th:action="@{/user/login}" method="POST">
-                    <h1>Đăng Nhập</h1>
-                    <input type="text" placeholder="Tên tài khoản " name="username" />
-                    <input type="password" placeholder="Mật khẩu " name="password" />
-                    <a href="# ">Quên mật khẩu</a>
-                    <button type="submit ">Đăng nhập</button>
+                <form th:action="@{/user/register/save}" method="POST" th:object="${object}">
+                    <h1>Đăng kí</h1>
+                    <input type="text" placeholder="Họ Tên" name="name" th:field="*{name}" />
+                    <input type="text" placeholder="Tên tài khoản " name="username" th:field="*{username}" />
+                    <input type="text" placeholder="Số Điện Thoại " name="phone" th:field="*{phone}" />
+                    <input type="email" placeholder="Email " name="email" th:field="*{email}" />
+                    <input type="password" placeholder="Mật khẩu " name="password" th:field="*{password}" />
+                    <button type="submit">Đăng kí</button>
                 </form>
             </div>
             <div class="overlay-container ">
@@ -38,7 +42,7 @@
                     <div class="overlay-panel overlay-right ">
                         <h1>Xin chào!</h1>
                         <p>Nhập thông tin của bạn để bắt đầu trải nghiệm tuyệt với nhé!</p>
-                        <button class="ghost " id="signUp ">Đăng kí</button>
+                        <button class="ghost " id="signUp ">Đăng Nhập</button>
                     </div>
                 </div>
             </div>

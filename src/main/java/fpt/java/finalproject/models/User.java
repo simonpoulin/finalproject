@@ -35,7 +35,7 @@ public class User implements Serializable {
     @Column(columnDefinition = "nvarchar(10) not null")
     private String phone;
 
-    @Column(columnDefinition = "nvarchar(500) not null")
+    @Column(columnDefinition = "nvarchar(500)")
     private String address;
 
     @Column(columnDefinition = "nvarchar(50) not null")
@@ -178,4 +178,13 @@ public class User implements Serializable {
         this.image = image;
     }
 
+    @Override
+    public String toString() {
+        return "User [address=" + address + ", cartDetails=" + cartDetails + ", createdAt=" + createdAt + ", email="
+                + email + ", id=" + id + ", image=" + image + ", name=" + name + ", orders=" + orders + ", password="
+                + password + ", phone=" + phone + ", recipients=" + recipients + ", shop=" + shop + ", shopEmployees="
+                + shopEmployees + ", username=" + username + "]";
+    }
+
+    
 }

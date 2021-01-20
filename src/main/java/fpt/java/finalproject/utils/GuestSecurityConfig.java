@@ -34,15 +34,14 @@ public class GuestSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/user/register/save").permitAll()
                     .antMatchers("/user/forgetpassword").permitAll()
                     .antMatchers("/user/recover").permitAll()
-
 					// ROLE Employee
                     .and()
                 .formLogin()
                     .loginPage("/user/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .successForwardUrl("/user/dashboard")
-                    .defaultSuccessUrl("/user/dashboard")
+                    .successForwardUrl("/user/index")
+                    .defaultSuccessUrl("/user/index")
                     .failureUrl("/user/login?error")
                     .and()
                 .exceptionHandling()

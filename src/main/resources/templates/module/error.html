@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{module/blank_layout.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{module/blank_layout.html}">
 
 <head>
 
@@ -12,7 +11,7 @@
             body {
                 background: #dedede;
             }
-
+            
             .page-wrap {
                 min-height: 100vh;
             }
@@ -26,13 +25,12 @@
 
     <!-- Add division to body fragment -->
     <div layout:fragment="body">
-
         <div class="page-wrap d-flex flex-row align-items-center">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center">
                         <span class="display-1 d-block" th:text="${res.errorCode}"></span>
-                        <div class="mb-4 lead" >
+                        <div class="mb-4 lead">
                             <b th:text="${res.message}"></b>
                         </div>
                     </div>

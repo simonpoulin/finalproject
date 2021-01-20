@@ -21,7 +21,7 @@ public class IndexController {
 
        m.put("list", shopService.findAll());
 
-       return "user/layouts/item_list";
+       return "user/layouts/index";
     }
 
     @GetMapping(value="/detail/{id}")

@@ -1,7 +1,6 @@
 <!doctype html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{module/blank_layout.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{module/blank_layout.html}">
 
 <head>
 
@@ -21,8 +20,7 @@
             <div class="col-sm-4 offset-4">
                 <div class="signup">
                     <h1 class="signup-heading">Đăng Nhập</h1>
-                    <form action="javscript:voi(0);" class="signup-form" autocomplete="off" th:action="@{/admin/login}"
-                        method="POST">
+                    <form action="javscript:voi(0);" class="signup-form" autocomplete="off" th:action="@{/admin/login}" method="POST">
                         <div class="form-group">
                             <label for="name" class="form-label">Tên đăng nhập</label>
                             <input name="username" type="text" class="form-input" id="name" placeholder="Tên đăng nhập">

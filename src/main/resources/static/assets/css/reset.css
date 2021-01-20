@@ -352,7 +352,7 @@ big {
 .container1 {
     max-width: 1170px;
     position: relative;
-    left: 342px;
+    margin: 0 auto;
 }
 
 .container2 {
