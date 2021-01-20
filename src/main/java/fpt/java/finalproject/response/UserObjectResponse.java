@@ -1,6 +1,6 @@
 package fpt.java.finalproject.response;
 
-public class UserObjectResponse<E> extends AdminResponse {
+public class UserObjectResponse<E> extends UserResponse {
 
     private E object;
     private boolean isEdit;

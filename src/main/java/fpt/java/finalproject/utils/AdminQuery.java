@@ -12,7 +12,7 @@ public class AdminQuery {
         this.productId = productId;
     }
 
-        public boolean isEmptyQuery() {
+    public boolean isEmptyQuery() {
         if (!this.name.equals("") || this.categoryId != 0 || this.brandId != 0 || this.shopId != 0
                 || this.productId != 0) {
             return false;

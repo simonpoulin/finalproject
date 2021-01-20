@@ -16,6 +16,11 @@ public class CartDetailServiceImpl implements CartDetailSevice {
     private CartDetailRepository cartDetailRepository;
 
     @Override
+    public List<CartDetail> findByUserId(Integer userId) throws Exception {
+        return cartDetailRepository.findByUserId(userId);
+    }
+
+    @Override
     public CartDetail save(CartDetail entity) {
         return cartDetailRepository.save(entity);
     }

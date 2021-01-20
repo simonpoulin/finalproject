@@ -6,6 +6,8 @@ import fpt.java.finalproject.models.Shop;
 
 public interface ShopService {
 
+    public List<Shop> getMostViewList(Integer limit) throws Exception;
+
     public List<Shop> customFind(String name) throws Exception;
     
     public void save(Shop entity) throws Exception;

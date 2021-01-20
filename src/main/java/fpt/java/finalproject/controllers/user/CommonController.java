@@ -1,6 +1,7 @@
 package fpt.java.finalproject.controllers.user;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fpt.java.finalproject.models.Shop;
+import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.models.User;
+import fpt.java.finalproject.response.UserHomeResponse;
 import fpt.java.finalproject.response.UserObjectResponse;
 import fpt.java.finalproject.response.UserResponse;
+import fpt.java.finalproject.services.ShopItemService;
+import fpt.java.finalproject.services.ShopService;
 import fpt.java.finalproject.services.UserService;
 
 @Controller
@@ -21,6 +27,12 @@ public class CommonController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ShopItemService shopItemService;
+
+    @Autowired
+    ShopService shopService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -43,9 +55,9 @@ public class CommonController {
     // Save new
     @PostMapping("/register/save")
     public String save(User u, ModelMap m) {
-        
+
         UserResponse res = new UserResponse();
-        
+
         try {
 
             // Check username is existed
@@ -83,7 +95,28 @@ public class CommonController {
 
     @GetMapping("/home")
     public String home(ModelMap m) {
-        return response(m, "user/home");
+        UserHomeResponse res = new UserHomeResponse();
+
+        try {
+
+            List<ShopItem> mostViewList = shopItemService.getMostViewList(10);
+            res.setMostViewList(mostViewList);
+
+            List<ShopItem> mostSellList = shopItemService.getMostSellList(10);
+            res.setMostSellList(mostSellList);
+
+            List<Shop> mostViewShop = shopService.getMostViewList(5);
+            res.setMostViewShop(mostViewShop);
+
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setErrorCode("404");
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
+
+        return response(m, "user/home", res);
     }
 
     @GetMapping("")
@@ -109,10 +142,9 @@ public class CommonController {
         m.addAttribute("res", res);
         return "module/error";
     }
-    
-    public String response(ModelMap m, String routing) {
+
+    public String response(ModelMap m, String routing, UserHomeResponse res) {
         User authUser = userService.getAuthUser();
-        UserResponse res = new UserResponse();
         res.setAuthUser(authUser);
         m.addAttribute("res", res);
         return routing;

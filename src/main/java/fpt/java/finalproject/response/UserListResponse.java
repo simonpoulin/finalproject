@@ -4,7 +4,7 @@ import java.util.List;
 
 import fpt.java.finalproject.utils.Config;
 
-public class UserListResponse<E> extends AdminResponse {
+public class UserListResponse<E> extends UserResponse {
 
     private List<E> pagedList;
     private Integer page, totalPage, limit;

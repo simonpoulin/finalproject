@@ -37,6 +37,12 @@ public class ShopItem implements Serializable {
     @Column(columnDefinition = "nvarchar(max)")
     private String image;
 
+    @Column(columnDefinition = "int default 0")
+    private Integer viewCount;
+
+    @Column(columnDefinition = "int default 0")
+    private Integer sellCount;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -132,6 +138,22 @@ public class ShopItem implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Integer getSellCount() {
+        return sellCount;
+    }
+
+    public void setSellCount(Integer sellCount) {
+        this.sellCount = sellCount;
     }
 
 }

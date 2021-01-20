@@ -11,6 +11,11 @@ import fpt.java.finalproject.models.Shop;
 
 @Repository
 public interface ShopRepository extends CrudRepository<Shop, Integer> {
+    
     @Query(value = "exec search_shop :name", nativeQuery = true)
     List<Shop> customFind(@Param("name") String name);
+
+    @Query(value = "select * from shops order by view_count limit :limit")
+    List<Shop> getMostViewList(@Param("limit") Integer limit);
+
 }
