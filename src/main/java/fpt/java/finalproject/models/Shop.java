@@ -47,6 +47,9 @@ public class Shop implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String avatarUrl;
 
+    @Column(columnDefinition = "int default 0") 
+    private Integer viewCount;
+
     @ManyToOne
     @JoinColumn(name = "shop_pack_id")
     private ShopPack shopPack;
@@ -154,6 +157,14 @@ public class Shop implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 
 }

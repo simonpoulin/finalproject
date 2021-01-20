@@ -7,6 +7,8 @@ import fpt.java.finalproject.models.CartDetail;
 
 public interface CartDetailSevice {
 
+    public List<CartDetail> findByUserId(Integer userId) throws Exception;
+
     public CartDetail save(CartDetail entity);
 
     public List<CartDetail> saveAll(List<CartDetail> entities);

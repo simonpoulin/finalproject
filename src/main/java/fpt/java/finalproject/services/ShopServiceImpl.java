@@ -16,6 +16,11 @@ public class ShopServiceImpl implements ShopService {
     private ShopRepository shopRepository;
 
     @Override
+    public List<Shop> getMostViewList(Integer limit) throws Exception {
+        return shopRepository.getMostViewList(limit);
+    }
+    
+    @Override
     public List<Shop> customFind(String name) throws Exception {
         return shopRepository.customFind(name);
     }

@@ -7,7 +7,11 @@ import fpt.java.finalproject.models.ShopItem;
 
 public interface ShopItemService {
 
-    public List<ShopItem> customFind(Integer shopId, Integer productId) throws Exception;
+    public List<ShopItem> getMostViewList(Integer limit) throws Exception;
+
+    public List<ShopItem> getMostSellList(Integer limit) throws Exception;
+
+    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId) throws Exception;
 
     public void save(ShopItemDto entity) throws Exception;
 

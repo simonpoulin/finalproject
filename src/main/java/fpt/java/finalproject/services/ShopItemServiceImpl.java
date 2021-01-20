@@ -25,9 +25,18 @@ public class ShopItemServiceImpl implements ShopItemService {
     private Cloudinary cloudinary;
 
     @Override
-    public List<ShopItem> customFind(Integer shopId, Integer productId)
-            throws Exception {
-        return shopItemRepository.customFind(0, 0, shopId, productId);
+    public List<ShopItem> getMostViewList(Integer limit) throws Exception {
+        return shopItemRepository.getMostViewList(limit);
+    }
+
+    @Override
+    public List<ShopItem> getMostSellList(Integer limit) throws Exception {
+        return shopItemRepository.getMostSellList(limit);
+    }
+
+    @Override
+    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId) throws Exception {
+        return shopItemRepository.customFind(categoryId, brandId, shopId, productId);
     }
 
     @Override

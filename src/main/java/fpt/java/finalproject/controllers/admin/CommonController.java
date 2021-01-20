@@ -18,7 +18,7 @@ import fpt.java.finalproject.services.EmployeeService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminCommonController {
+public class CommonController {
     @Autowired
     EmployeeService employeeService;
 

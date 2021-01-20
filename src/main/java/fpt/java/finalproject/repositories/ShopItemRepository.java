@@ -11,12 +11,15 @@ import fpt.java.finalproject.models.ShopItem;
 
 @Repository
 public interface ShopItemRepository extends CrudRepository<ShopItem, Integer> {
+    
     @Query(value = "exec search_item :categoryId, :brandId, :shopId, :productId", nativeQuery = true)
     List<ShopItem> customFind(@Param("categoryId") Integer categoryId, @Param("brandId") Integer brandId,
             @Param("shopId") Integer shopId, @Param("productId") Integer productId);
 
-    // @Query(value = "SELECT s FROM ShopItems WHERE s.product_id= ?1 ORDER BY s.id DESC ")
-    // List<ShopItem> findByidShopItem(Integer idShop);
+    @Query(value = "select * from shopitems order by view_count desc limit :limit")
+    List<ShopItem> getMostViewList(@Param("limit") Integer limit);
 
-    
+    @Query(value = "select * from shopitems order by sell_count desc limit :limit")
+    List<ShopItem> getMostSellList(@Param("limit") Integer limit);
+
 }

@@ -1,10 +1,10 @@
 package fpt.java.finalproject.utils;
 
-public class AdminQuery {
+public class UserQuery {
     private String name;
     private Integer categoryId, brandId, shopId, productId;
 
-    public AdminQuery(String name, Integer categoryId, Integer brandId, Integer shopId, Integer productId) {
+    public UserQuery(String name, Integer categoryId, Integer brandId, Integer shopId, Integer productId) {
         this.name = name;
         this.categoryId = categoryId;
         this.brandId = brandId;
