@@ -11,7 +11,7 @@ public interface ShopRoleService {
 
     public List<ShopRole> saveAll(List<ShopRole> entities);
 
-    public Optional<ShopRole> findById(Integer id);
+    public ShopRole findById(Integer id) throws Exception;
 
     public boolean existsById(Integer id);
 

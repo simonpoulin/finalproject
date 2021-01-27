@@ -22,7 +22,7 @@ import fpt.java.finalproject.services.EmployeeService;
 
 @RequestMapping("/admin/shoppacks")
 @Controller
-public class ShopPackController {
+public class AdminShopPackController {
 
     @Autowired
     ShopPackService shopPackService;

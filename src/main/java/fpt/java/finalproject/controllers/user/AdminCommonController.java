@@ -23,7 +23,7 @@ import fpt.java.finalproject.services.UserService;
 
 @Controller
 @RequestMapping("/w")
-public class CommonController {
+public class AdminCommonController {
 
     @Autowired
     UserService userService;

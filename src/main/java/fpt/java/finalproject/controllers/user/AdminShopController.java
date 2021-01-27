@@ -14,19 +14,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fpt.java.finalproject.models.Shop;
 import fpt.java.finalproject.models.ShopEmployee;
 import fpt.java.finalproject.models.ShopItem;
+import fpt.java.finalproject.models.ShopRole;
 import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.UserListResponse;
 import fpt.java.finalproject.response.UserObjectResponse;
 import fpt.java.finalproject.response.UserResponse;
 import fpt.java.finalproject.services.ShopEmployeeService;
 import fpt.java.finalproject.services.ShopItemService;
+import fpt.java.finalproject.services.ShopRoleService;
 import fpt.java.finalproject.services.ShopService;
 import fpt.java.finalproject.services.UserService;
 import fpt.java.finalproject.utils.UserQuery;
 
 @Controller
 @RequestMapping("/w/shops")
-public class ShopController {
+public class AdminShopController {
 
     @Autowired
     ShopService shopService;
@@ -38,14 +40,10 @@ public class ShopController {
     ShopEmployeeService shopEmployeeService;
 
     @Autowired
-    UserService userService;
+    ShopRoleService shopRoleService;
 
-    public String response(ModelMap m, String routing, UserObjectResponse res) {
-        User authUser = userService.getAuthUser();
-        res.setAuthUser(authUser);
-        m.addAttribute("res", res);
-        return routing;
-    }
+    @Autowired
+    UserService userService;
 
     // Drirect to shop register page
     @GetMapping("/register")
@@ -94,7 +92,12 @@ public class ShopController {
         try {
 
             // Save shop
+            s.setCreatedAt(new Date(new Date().getTime()));
             shopService.save(s);
+            ShopEmployee se = new ShopEmployee();
+            se.setUser(authUser);
+            ShopRole sr = shopRoleService.findById(1);
+            se.setShopRole(sr);
 
         } catch (Exception ex) {
             res.setErrorCode("404");
@@ -104,11 +107,6 @@ public class ShopController {
             m.addAttribute("res", res);
             return "user/shops/register";
         }
-
-        s.setCreatedAt(new Date(new Date().getTime()));
-
-        ShopEmployee se = new ShopEmployee();
-        se.setUser(authUser);
 
         // Set response
         res.setMessage("Đăng ký thành công!");
@@ -157,7 +155,7 @@ public class ShopController {
 
     @GetMapping("/details/edit")
     public String shopSaveEdited(Shop s, ModelMap m) {
-        
+
         UserObjectResponse<Shop> res = new UserObjectResponse<>();
         User authUser = userService.getAuthUser();
         res.setAuthUser(authUser);

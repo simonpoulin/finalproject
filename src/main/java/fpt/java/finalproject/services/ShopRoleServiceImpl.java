@@ -26,8 +26,15 @@ public class ShopRoleServiceImpl implements ShopRoleService {
     }
 
     @Override
-    public Optional<ShopRole> findById(Integer id) {
-        return shopRoleRepository.findById(id);
+    public ShopRole findById(Integer id) throws Exception{
+        ShopRole sr;
+        Optional<ShopRole> opts = shopRoleRepository.findById(id);
+        if (opts.isPresent()) {
+            sr = opts.get();
+        } else {
+            throw new Exception("Shop role not found");
+        }
+        return sr;
     }
 
     @Override

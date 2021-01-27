@@ -30,7 +30,7 @@ import fpt.java.finalproject.services.ShopService;
 
 @Controller
 @RequestMapping("/admin/items")
-public class ShopItemController {
+public class AdminShopItemController {
     
     @Autowired
     private ShopItemService shopItemService;

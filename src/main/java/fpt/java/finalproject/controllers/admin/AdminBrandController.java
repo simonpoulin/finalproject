@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.utils.AdminQuery;
+import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Employee;
-import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
+import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
+import fpt.java.finalproject.services.BrandService;
 import fpt.java.finalproject.services.EmployeeService;
-import fpt.java.finalproject.services.UserService;
 
-@RequestMapping("/admin/users")
+@RequestMapping("/admin/brands")
 @Controller
-public class UserController {
+public class AdminBrandController {
 
     @Autowired
-    UserService userService;
+    BrandService brandService;
 
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
-    public String response(ModelMap m, String routing, AdminListResponse<User> listResponse) {
+    public String response(ModelMap m, String routing, AdminListResponse<Brand> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        listResponse.setAuthEmployee(authEmployee);
-        m.addAttribute("res", listResponse);
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
         return routing;
     }
 
-    public String response(ModelMap m, String routing, AdminObjectResponse<User> listResponse) {
+    public String response(ModelMap m, String routing, AdminObjectResponse<Brand> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        listResponse.setAuthEmployee(authEmployee);
-        m.addAttribute("res", listResponse);
+        res.setAuthEmployee(authEmployee);
+        m.addAttribute("res", res);
         return routing;
     }
 
@@ -48,27 +48,26 @@ public class UserController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        AdminObjectResponse<User> res = new AdminObjectResponse<>();
-        User u = new User();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
+        Brand b = new Brand();
 
-        res.setTitle("Thêm người dùng");
+        res.setTitle("Thêm nhãn hàng");
 
         // Send new response bean
-        m.addAttribute("res", res);
-        m.addAttribute("object", u);
+        m.addAttribute("object", b);
 
-        return response(m, "admin/users/add_or_edit", res);
+        return response(m, "admin/brands/add_or_edit", res);
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(User u, ModelMap m) {
+    public String save(Brand b, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
 
-        // Save user
+        // Save brand
         try {
-            userService.save(u);
+            brandService.save(b);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -84,19 +83,19 @@ public class UserController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/users";
+        return "redirect:/admin/brands";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        AdminObjectResponse<User> res = new AdminObjectResponse<>();
-        User u = new User();
+        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
+        Brand b = new Brand();
 
-        // Find user
+        // Find brand
         try {
-            u = userService.findById(id);
+            b = brandService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -110,19 +109,20 @@ public class UserController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("res", res);
-        m.addAttribute("object", u);
-
-        return response(m, "admin/users/add_or_edit", res);
+        m.addAttribute("object", b);
+        return response(m, "admin/brands/add_or_edit", res);
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
-            @RequestParam(required = false, defaultValue = "") String name) {
+    public String list(ModelMap m, 
+    @RequestParam(required = false, defaultValue = "0") Integer page,
+    @RequestParam(required = false, defaultValue = "") String name
+    ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
-        AdminListResponse<User> res = new AdminListResponse<>();
+        List<Brand> l;
+        AdminListResponse<Brand> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
         } else {
@@ -130,57 +130,28 @@ public class UserController {
         }
 
         // Set paging string
-
-        String pagingStr = "/admin/users";
+        String pagingStr = "/admin/brands";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
 
-        List<User> l;
+        // Set response
+        
         try {
-            l = userService.customFind(name);
+            l = brandService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
-                // return fail
+                // Return error on fail
                 res.setErrorCode("404");
                 res.setMessage(ex.getMessage());
                 m.addAttribute("res", res);
                 return "module/error";
             }
         }
-        res.setTitle("Danh sách người dùng");
+        res.setTitle("Danh sách nhãn hàng");
 
         // Send response
-        m.addAttribute("res", res);
-        return response(m, "admin/users/list", res);
-    }
-
-    // Detail
-    @GetMapping("/{id}")
-    public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
-
-        AdminObjectResponse<User> res = new AdminObjectResponse<>();
-        User u = new User();
-
-        // Find user
-        try {
-            u = userService.findById(id);
-        } catch (Exception ex) {
-            // Return error on fail
-            res.setErrorCode("404");
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "module/error";
-        }
-
-        // Set response
-        res.setObject(u);
-        res.setTitle("Thông tin người dùng");
-
-        // Send response
-        m.addAttribute("res", res);
-
-        return response(m, "admin/users/list", res);
+        return response(m, "admin/brands/list", res);
     }
 
     // Delete
@@ -189,9 +160,9 @@ public class UserController {
 
         AdminResponse res = new AdminResponse();
 
-        // Find user
+        // Find brand
         try {
-            userService.deleteById(id);
+            brandService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -201,11 +172,11 @@ public class UserController {
         }
 
         // Set response
-        res.setTitle("Xóa người dùng thành công");
+        res.setTitle("Xóa nhãn hàng thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/users";
+        return "redirect:/admin/brands";
     }
 }

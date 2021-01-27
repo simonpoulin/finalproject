@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.models.Category;
+import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.models.Employee;
+import fpt.java.finalproject.models.User;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
-import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
-import fpt.java.finalproject.services.CategoryService;
 import fpt.java.finalproject.services.EmployeeService;
+import fpt.java.finalproject.services.UserService;
 
-@RequestMapping("/admin/categories")
+@RequestMapping("/admin/users")
 @Controller
-public class CategoryController {
+public class AdminUserController {
 
     @Autowired
-    CategoryService categoryService;
+    UserService userService;
 
     @Autowired
-    private EmployeeService employeeService;
+    EmployeeService employeeService;
 
-    public String response(ModelMap m, String routing, AdminListResponse<Category> res) {
+    public String response(ModelMap m, String routing, AdminListResponse<User> listResponse) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        res.setAuthEmployee(authEmployee);
-        m.addAttribute("res", res);
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
         return routing;
     }
 
-    public String response(ModelMap m, String routing, AdminObjectResponse<Category> res) {
+    public String response(ModelMap m, String routing, AdminObjectResponse<User> listResponse) {
         Employee authEmployee = employeeService.getAuthEmployee();
-        res.setAuthEmployee(authEmployee);
-        m.addAttribute("res", res);
+        listResponse.setAuthEmployee(authEmployee);
+        m.addAttribute("res", listResponse);
         return routing;
     }
 
@@ -48,25 +48,27 @@ public class CategoryController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
-        Category c = new Category();
-        res.setTitle("Thêm danh mục");
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
+        User u = new User();
+
+        res.setTitle("Thêm người dùng");
 
         // Send new response bean
-        m.addAttribute("object", c);
+        m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
-        return response(m, "admin/categories/add_or_edit", res);
+        return response(m, "admin/users/add_or_edit", res);
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(Category c, ModelMap m) {
+    public String save(User u, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
 
-        // Save category
+        // Save user
         try {
-            categoryService.save(c);
+            userService.save(u);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -82,19 +84,19 @@ public class CategoryController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/categories";
+        return "redirect:/admin/users";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
-        Category c = new Category();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
+        User u = new User();
 
-        // Find category
+        // Find user
         try {
-            c = categoryService.findById(id);
+            u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -108,20 +110,19 @@ public class CategoryController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("object", c);
+        m.addAttribute("res", res);
+        m.addAttribute("object", u);
 
-        return response(m, "admin/categories/add_or_edit", res);
+        return response(m, "admin/users/add_or_edit", res);
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m,
-    @RequestParam(required = false, defaultValue = "0") Integer page,
-    @RequestParam(required = false, defaultValue = "") String name
-    ) {
+    public String list(ModelMap m, @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "") String name) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
-        AdminListResponse<Category> res = new AdminListResponse<>();
+        AdminListResponse<User> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
         } else {
@@ -129,39 +130,41 @@ public class CategoryController {
         }
 
         // Set paging string
-        String pagingStr = "/admin/categories";
+
+        String pagingStr = "/admin/users";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
 
-        // Set list
-        List<Category> l;
+        List<User> l;
         try {
-            l = categoryService.customFind(name);
+            l = userService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
-                // Return error on fail
+                // return fail
                 res.setErrorCode("404");
                 res.setMessage(ex.getMessage());
                 m.addAttribute("res", res);
                 return "module/error";
             }
         }
-        res.setTitle("Danh sách danh mục");
+        res.setTitle("Danh sách người dùng");
 
         // Send response
-        return response(m, "admin/categories/list", res);
+        m.addAttribute("res", res);
+        return response(m, "admin/users/list", res);
     }
 
-    // Delete
-    @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
+    // Detail
+    @GetMapping("/{id}")
+    public String detail(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        AdminResponse res = new AdminResponse();
+        AdminObjectResponse<User> res = new AdminObjectResponse<>();
+        User u = new User();
 
-        // Find category
+        // Find user
         try {
-            categoryService.deleteById(id);
+            u = userService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -171,11 +174,38 @@ public class CategoryController {
         }
 
         // Set response
-        res.setTitle("Xóa danh mục thành công");
+        res.setObject(u);
+        res.setTitle("Thông tin người dùng");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/categories";
+        return response(m, "admin/users/list", res);
+    }
+
+    // Delete
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable(name = "id") Integer id, ModelMap m) {
+
+        AdminResponse res = new AdminResponse();
+
+        // Find user
+        try {
+            userService.deleteById(id);
+        } catch (Exception ex) {
+            // Return error on fail
+            res.setErrorCode("404");
+            res.setMessage(ex.getMessage());
+            m.addAttribute("res", res);
+            return "module/error";
+        }
+
+        // Set response
+        res.setTitle("Xóa người dùng thành công");
+
+        // Send response
+        m.addAttribute("res", res);
+
+        return "redirect:/admin/users";
     }
 }

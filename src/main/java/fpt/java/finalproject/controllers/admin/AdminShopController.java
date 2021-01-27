@@ -27,7 +27,7 @@ import fpt.java.finalproject.services.UserService;
 
 @Controller
 @RequestMapping("/admin/shops")
-public class ShopController{
+public class AdminShopController{
 
     @Autowired
     private ShopService shopService;

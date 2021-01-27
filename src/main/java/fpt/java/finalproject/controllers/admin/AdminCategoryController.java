@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.models.Brand;
+import fpt.java.finalproject.models.Category;
 import fpt.java.finalproject.models.Employee;
 import fpt.java.finalproject.response.AdminListResponse;
 import fpt.java.finalproject.response.AdminObjectResponse;
 import fpt.java.finalproject.utils.AdminQuery;
 import fpt.java.finalproject.response.AdminResponse;
-import fpt.java.finalproject.services.BrandService;
+import fpt.java.finalproject.services.CategoryService;
 import fpt.java.finalproject.services.EmployeeService;
 
-@RequestMapping("/admin/brands")
+@RequestMapping("/admin/categories")
 @Controller
-public class BrandController {
+public class AdminCategoryController {
 
     @Autowired
-    BrandService brandService;
+    CategoryService categoryService;
 
     @Autowired
     private EmployeeService employeeService;
 
-    public String response(ModelMap m, String routing, AdminListResponse<Brand> res) {
+    public String response(ModelMap m, String routing, AdminListResponse<Category> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
         res.setAuthEmployee(authEmployee);
         m.addAttribute("res", res);
         return routing;
     }
 
-    public String response(ModelMap m, String routing, AdminObjectResponse<Brand> res) {
+    public String response(ModelMap m, String routing, AdminObjectResponse<Category> res) {
         Employee authEmployee = employeeService.getAuthEmployee();
         res.setAuthEmployee(authEmployee);
         m.addAttribute("res", res);
@@ -48,26 +48,25 @@ public class BrandController {
     @GetMapping("/add")
     public String add(ModelMap m) {
 
-        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
-        Brand b = new Brand();
-
-        res.setTitle("Thêm nhãn hàng");
+        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
+        Category c = new Category();
+        res.setTitle("Thêm danh mục");
 
         // Send new response bean
-        m.addAttribute("object", b);
+        m.addAttribute("object", c);
 
-        return response(m, "admin/brands/add_or_edit", res);
+        return response(m, "admin/categories/add_or_edit", res);
     }
 
     // Save new
     @PostMapping("/save")
-    public String save(Brand b, ModelMap m) {
+    public String save(Category c, ModelMap m) {
 
         AdminResponse res = new AdminResponse();
 
-        // Save brand
+        // Save category
         try {
-            brandService.save(b);
+            categoryService.save(c);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -83,19 +82,19 @@ public class BrandController {
         m.addAttribute("res", res);
 
         // Redirect to list page
-        return "redirect:/admin/brands";
+        return "redirect:/admin/categories";
     }
 
     // Direct to edit page
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Integer id, ModelMap m) {
 
-        AdminObjectResponse<Brand> res = new AdminObjectResponse<>();
-        Brand b = new Brand();
+        AdminObjectResponse<Category> res = new AdminObjectResponse<>();
+        Category c = new Category();
 
-        // Find brand
+        // Find category
         try {
-            b = brandService.findById(id);
+            c = categoryService.findById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -109,20 +108,20 @@ public class BrandController {
         res.setTitle("Cập nhật thông tin");
 
         // Send response
-        m.addAttribute("object", b);
-        return response(m, "admin/brands/add_or_edit", res);
+        m.addAttribute("object", c);
+
+        return response(m, "admin/categories/add_or_edit", res);
     }
 
     // List
     @GetMapping("")
-    public String list(ModelMap m, 
+    public String list(ModelMap m,
     @RequestParam(required = false, defaultValue = "0") Integer page,
     @RequestParam(required = false, defaultValue = "") String name
     ) {
 
         AdminResponse obj = (AdminResponse) m.getAttribute("res");
-        List<Brand> l;
-        AdminListResponse<Brand> res = new AdminListResponse<>();
+        AdminListResponse<Category> res = new AdminListResponse<>();
         if (obj == null) {
             res = new AdminListResponse<>();
         } else {
@@ -130,14 +129,14 @@ public class BrandController {
         }
 
         // Set paging string
-        String pagingStr = "/admin/brands";
+        String pagingStr = "/admin/categories";
         AdminQuery query = new AdminQuery(name, 0, 0, 0, 0);
         pagingStr = query.generateResponseQuery(pagingStr);
 
-        // Set response
-        
+        // Set list
+        List<Category> l;
         try {
-            l = brandService.customFind(name);
+            l = categoryService.customFind(name);
             res.generateResponse(l, 0, page, pagingStr);
         } catch (Exception ex) {
             if (!res.getIsEmpty()) {
@@ -148,10 +147,10 @@ public class BrandController {
                 return "module/error";
             }
         }
-        res.setTitle("Danh sách nhãn hàng");
+        res.setTitle("Danh sách danh mục");
 
         // Send response
-        return response(m, "admin/brands/list", res);
+        return response(m, "admin/categories/list", res);
     }
 
     // Delete
@@ -160,9 +159,9 @@ public class BrandController {
 
         AdminResponse res = new AdminResponse();
 
-        // Find brand
+        // Find category
         try {
-            brandService.deleteById(id);
+            categoryService.deleteById(id);
         } catch (Exception ex) {
             // Return error on fail
             res.setErrorCode("404");
@@ -172,11 +171,11 @@ public class BrandController {
         }
 
         // Set response
-        res.setTitle("Xóa nhãn hàng thành công");
+        res.setTitle("Xóa danh mục thành công");
 
         // Send response
         m.addAttribute("res", res);
 
-        return "redirect:/admin/brands";
+        return "redirect:/admin/categories";
     }
 }
