@@ -20,7 +20,7 @@ import fpt.java.finalproject.services.UserService;
 
 @RequestMapping("/w/carts")
 @Controller
-public class AdminCartController {
+public class UserCartController {
     
     @Autowired
     CartDetailSevice cartDetailService;

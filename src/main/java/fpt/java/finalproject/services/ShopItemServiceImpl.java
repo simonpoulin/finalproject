@@ -35,8 +35,19 @@ public class ShopItemServiceImpl implements ShopItemService {
     }
 
     @Override
-    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId) throws Exception {
+    public List<ShopItem> customFind(Integer categoryId, Integer brandId, Integer shopId, Integer productId)
+            throws Exception {
         return shopItemRepository.customFind(categoryId, brandId, shopId, productId);
+    }
+
+    @Override
+    public List<ShopItem> customFind(String title, Integer categoryId, boolean sort) throws Exception {
+        return shopItemRepository.customFind(title, categoryId, sort);
+    }
+
+    @Override
+    public List<ShopItem> customFindByCategoryId(Integer categoryId) throws Exception {
+        return shopItemRepository.customFindByCategoryId(categoryId);
     }
 
     @Override

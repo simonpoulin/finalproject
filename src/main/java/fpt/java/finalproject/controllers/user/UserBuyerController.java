@@ -3,7 +3,7 @@ package fpt.java.finalproject.controllers.user;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class AdminBuyerController {
+public class UserBuyerController {
     
     
 

@@ -15,7 +15,7 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
     @Query(value = "exec search_shop :name", nativeQuery = true)
     List<Shop> customFind(@Param("name") String name);
 
-    @Query(value = "select * from shops order by view_count limit :limit")
+    @Query(value = "select * from shops limit :limit order by view_count desc", nativeQuery = true)
     List<Shop> getMostViewList(@Param("limit") Integer limit);
 
 }

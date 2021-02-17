@@ -1,11 +1,12 @@
 package fpt.java.finalproject.utils;
 
 public class UserQuery {
-    private String name;
+    private String name, title;
     private Integer categoryId, brandId, shopId, productId;
 
-    public UserQuery(String name, Integer categoryId, Integer brandId, Integer shopId, Integer productId) {
+    public UserQuery(String name, String title, Integer categoryId, Integer brandId, Integer shopId, Integer productId) {
         this.name = name;
+        this.title = title;
         this.categoryId = categoryId;
         this.brandId = brandId;
         this.shopId = shopId;
@@ -22,6 +23,11 @@ public class UserQuery {
 
     public String generateResponseQuery(String str) {
         boolean isFirst = true;
+
+        if (!this.title.equals("")) {
+            str = solveResponseVariable(str, "title", this.title, isFirst);
+            isFirst = false;
+        }
 
         if (!this.name.equals("")) {
             str = solveResponseVariable(str, "name", this.name, isFirst);
@@ -98,6 +104,14 @@ public class UserQuery {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

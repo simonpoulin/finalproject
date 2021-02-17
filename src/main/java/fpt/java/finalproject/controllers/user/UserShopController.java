@@ -28,7 +28,7 @@ import fpt.java.finalproject.utils.UserQuery;
 
 @Controller
 @RequestMapping("/w/shops")
-public class AdminShopController {
+public class UserShopController {
 
     @Autowired
     ShopService shopService;
@@ -205,7 +205,7 @@ public class AdminShopController {
 
             // Set paging string
             String pagingStr = "/w/shops/items";
-            UserQuery query = new UserQuery("", 0, 0, shopId, productId);
+            UserQuery query = new UserQuery("", "", 0, 0, shopId, productId);
             pagingStr = query.generateResponseQuery(pagingStr);
 
             List<ShopItem> l = shopItemService.customFind(0, 0, shopId, productId);
