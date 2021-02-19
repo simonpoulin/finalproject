@@ -16,10 +16,10 @@ public interface ShopItemRepository extends CrudRepository<ShopItem, Integer> {
     List<ShopItem> customFind(@Param("categoryId") Integer categoryId, @Param("brandId") Integer brandId,
             @Param("shopId") Integer shopId, @Param("productId") Integer productId);
 
-    @Query(value = "select * from shopitems order by view_count desc limit :limit")
+    @Query(value = "select * from shopitems order by view_count desc limit :limit" ,nativeQuery=true)
     List<ShopItem> getMostViewList(@Param("limit") Integer limit);
 
-    @Query(value = "select * from shopitems order by sell_count desc limit :limit")
+    @Query(value = "select * from shopitems order by sell_count desc limit :limit",nativeQuery=true)
     List<ShopItem> getMostSellList(@Param("limit") Integer limit);
 
 }

@@ -11,7 +11,7 @@ import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fpt.java.finalproject.DTOS.ShopItemDto;
+import fpt.java.finalproject.dtos.ShopItemDto;
 import fpt.java.finalproject.models.ShopItem;
 import fpt.java.finalproject.repositories.ShopItemRepository;
 

@@ -23,7 +23,7 @@ import fpt.java.finalproject.services.UserService;
 
 @Controller
 @RequestMapping("/w")
-public class CommonController {
+public class UserCommonController {
 
     @Autowired
     UserService userService;
@@ -37,9 +37,6 @@ public class CommonController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private ShopItemService shopIService;
-
     // Direct to add page
     @GetMapping("/register")
     public String add(ModelMap m) {
@@ -52,22 +49,26 @@ public class CommonController {
         m.addAttribute("res", res);
         m.addAttribute("object", u);
 
-        return "user/register";
+        return "user/signup";
     }
 
     // Save new
-    @PostMapping("/register/save")
+    @PostMapping("w/register/save")
     public String save(User u, ModelMap m) {
 
         UserResponse res = new UserResponse();
 
         try {
+
             // Check username is existed
             User check = new User();
             check = userService.findByUsername(u.getUsername());
             if (check != null) {
                 throw new Exception("Tên đăng nhập đã tồn tại!");
             }
+
+            // Save user
+            userService.save(u);
 
         } catch (Exception ex) {
             if (!ex.getMessage().equals("User not found")) {
@@ -81,17 +82,6 @@ public class CommonController {
 
         u.setCreatedAt(new Date(new Date().getTime()));
         u.setPassword(passwordEncoder.encode(u.getPassword()));
-
-        try {
-            userService.save(u);
-        } catch (Exception ex) {
-            res.setErrorCode("404");
-            res.setTitle("Đăng ký");
-            res.setMessage(ex.getMessage());
-            m.addAttribute("res", res);
-            return "user/signup";
-
-        }
 
         // Set response
         res.setMessage("Đăng ký thành công!");

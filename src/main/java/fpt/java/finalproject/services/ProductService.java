@@ -2,7 +2,7 @@ package fpt.java.finalproject.services;
 
 import java.util.List;
 
-import fpt.java.finalproject.DTOS.ProductDto;
+import fpt.java.finalproject.dtos.ProductDto;
 import fpt.java.finalproject.models.Product;
 
 public interface ProductService {

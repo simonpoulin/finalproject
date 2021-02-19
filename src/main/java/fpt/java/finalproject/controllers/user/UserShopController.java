@@ -26,7 +26,7 @@ import fpt.java.finalproject.utils.UserQuery;
 
 @Controller
 @RequestMapping("/w/shops")
-public class ShopController {
+public class UserShopController {
 
     @Autowired
     ShopService shopService;

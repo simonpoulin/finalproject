@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fpt.java.finalproject.DTOS.ProductDto;
+import fpt.java.finalproject.dtos.ProductDto;
 import fpt.java.finalproject.models.Brand;
 import fpt.java.finalproject.models.Category;
 import fpt.java.finalproject.models.Employee;
